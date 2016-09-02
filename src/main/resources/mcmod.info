@@ -1,0 +1,16 @@
+[
+    {
+      "modid": "worldstripper",
+      "name": "World Stripper",
+      "description": "Strip The World! #AllNude",
+      "version": "${version}",
+      "mcversion": "${mcversion}",
+      "url": "",
+      "updateUrl": "",
+      "authorList": ["Ewy"],
+      "credits": "",
+      "logoFile": "",
+      "screenshots": [],
+      "dependencies": []
+    }
+]
