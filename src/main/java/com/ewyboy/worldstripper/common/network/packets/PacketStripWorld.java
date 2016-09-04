@@ -1,9 +1,11 @@
-package com.ewyboy.worldstripper.common.network;
+package com.ewyboy.worldstripper.common.network.packets;
 
+import com.ewyboy.worldstripper.common.util.BlockCacher;
 import com.ewyboy.worldstripper.common.util.BlocksToStrip;
 import com.ewyboy.worldstripper.common.util.Config;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -46,9 +48,13 @@ public class PacketStripWorld implements IMessage {
                 for (int y = 0; (double)y <= player.getPosition().getY() + chunkClearSize; ++y) {
                     for (int z = (int)(player.getPosition().getZ() - chunkClearSize); (double)z <= player.getPosition().getZ() + chunkClearSize; z++) {
                         BlockPos targetBlockPos = new BlockPos(x,y,z);
-                        Block targetBlock = world.getBlockState(targetBlockPos).getBlock();
+                        IBlockState targetBlockState = world.getBlockState(targetBlockPos);
+                        Block targetBlock = targetBlockState.getBlock();
                         if (!targetBlock.equals(Blocks.BEDROCK) || !targetBlock.equals(Blocks.AIR)) {
-                            BlocksToStrip.blockList.stream().filter(targetBlock :: equals).forEachOrdered(blockList -> world.setBlockToAir(targetBlockPos));
+                            BlocksToStrip.blockList.stream().filter(targetBlock :: equals).forEachOrdered(blockList -> {
+                                BlockCacher.hashedBlockCache.put(targetBlockPos, targetBlockState);
+                                world.setBlockToAir(targetBlockPos);
+                            });
                         }
                     }
                 }

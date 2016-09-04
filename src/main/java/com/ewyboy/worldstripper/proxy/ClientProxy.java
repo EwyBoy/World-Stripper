@@ -13,6 +13,7 @@ public class ClientProxy extends CommonProxy {
     public void registerKeybindings() {
         KeyBindingHandler.initKeyBinding();
         ClientRegistry.registerKeyBinding(KeyBindingHandler.strip);
+        ClientRegistry.registerKeyBinding(KeyBindingHandler.dress);
         MinecraftForge.EVENT_BUS.register(new KeyBindingHandler());
     }
 }
