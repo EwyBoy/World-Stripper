@@ -14,7 +14,7 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.1.0-1.10.2"
+version = "1.1.1-1.10.2"
 group= "com.ewyboy.worldstripper"
 archivesBaseName = "World-Stripper"
 

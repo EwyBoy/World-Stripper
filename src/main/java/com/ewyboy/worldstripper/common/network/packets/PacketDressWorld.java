@@ -39,23 +39,27 @@ public class PacketDressWorld implements IMessage {
 
             double chunkClearSize = ((16 * Config.chuckRadius) / 2);
 
-            if (BlockCacher.hashedBlockCache != null) {
-                player.addChatComponentMessage(new TextComponentString(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."));
+            if (player.isCreative()) {
+                if (BlockCacher.hashedBlockCache != null) {
+                    player.addChatComponentMessage(new TextComponentString(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."));
 
-                for (int x = (int)(player.getPosition().getX() - chunkClearSize); (double)x <= player.getPosition().getX() + chunkClearSize; x++) {
-                    for (int y = 0; (double)y <= player.getPosition().getY() + chunkClearSize; ++y) {
-                        for (int z = (int)(player.getPosition().getZ() - chunkClearSize); (double)z <= player.getPosition().getZ() + chunkClearSize; z++) {
-                            BlockPos targetBlockPos = new BlockPos(x,y,z);
+                    for (int x = (int)(player.getPosition().getX() - chunkClearSize); (double)x <= player.getPosition().getX() + chunkClearSize; x++) {
+                        for (int y = 0; (double)y <= player.getPosition().getY() + chunkClearSize; ++y) {
+                            for (int z = (int)(player.getPosition().getZ() - chunkClearSize); (double)z <= player.getPosition().getZ() + chunkClearSize; z++) {
+                                BlockPos targetBlockPos = new BlockPos(x,y,z);
 
-                            if (BlockCacher.hashedBlockCache.get(targetBlockPos) != null) {
-                                world.setBlockState(targetBlockPos, BlockCacher.hashedBlockCache.get(targetBlockPos), 3);
+                                if (BlockCacher.hashedBlockCache.get(targetBlockPos) != null) {
+                                    world.setBlockState(targetBlockPos, BlockCacher.hashedBlockCache.get(targetBlockPos), 3);
+                                }
                             }
                         }
                     }
+                    player.addChatComponentMessage(new TextComponentString("World Dressing Successfully Done!"));
+                } else {
+                    player.addChatComponentMessage(new TextComponentString("Non Cords have been cashed"));
                 }
-                player.addChatComponentMessage(new TextComponentString("World Dressing Successfully Done!"));
             } else {
-                player.addChatComponentMessage(new TextComponentString("Non Cords have been cashed"));
+                player.addChatComponentMessage(new TextComponentString(TextFormatting.RED + "Error: You have to be in creative mode to use this feature!"));
             }
         }
     }

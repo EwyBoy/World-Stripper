@@ -44,22 +44,26 @@ public class PacketStripWorld implements IMessage {
 
             player.addChatComponentMessage(new TextComponentString(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."));
 
-            for (int x = (int)(player.getPosition().getX() - chunkClearSize); (double)x <= player.getPosition().getX() + chunkClearSize; x++) {
-                for (int y = 0; (double)y <= player.getPosition().getY() + chunkClearSize; ++y) {
-                    for (int z = (int)(player.getPosition().getZ() - chunkClearSize); (double)z <= player.getPosition().getZ() + chunkClearSize; z++) {
-                        BlockPos targetBlockPos = new BlockPos(x,y,z);
-                        IBlockState targetBlockState = world.getBlockState(targetBlockPos);
-                        Block targetBlock = targetBlockState.getBlock();
-                        if (!targetBlock.equals(Blocks.BEDROCK) || !targetBlock.equals(Blocks.AIR)) {
-                            BlocksToStrip.blockList.stream().filter(targetBlock :: equals).forEachOrdered(blockList -> {
-                                BlockCacher.hashedBlockCache.put(targetBlockPos, targetBlockState);
-                                world.setBlockToAir(targetBlockPos);
-                            });
+            if (player.isCreative()) {
+                for (int x = (int)(player.getPosition().getX() - chunkClearSize); (double)x <= player.getPosition().getX() + chunkClearSize; x++) {
+                    for (int y = 0; (double)y <= player.getPosition().getY() + chunkClearSize; ++y) {
+                        for (int z = (int)(player.getPosition().getZ() - chunkClearSize); (double)z <= player.getPosition().getZ() + chunkClearSize; z++) {
+                            BlockPos targetBlockPos = new BlockPos(x,y,z);
+                            IBlockState targetBlockState = world.getBlockState(targetBlockPos);
+                            Block targetBlock = targetBlockState.getBlock();
+                            if (!targetBlock.equals(Blocks.BEDROCK) || !targetBlock.equals(Blocks.AIR)) {
+                                BlocksToStrip.blockList.stream().filter(targetBlock :: equals).forEachOrdered(blockList -> {
+                                    BlockCacher.hashedBlockCache.put(targetBlockPos, targetBlockState);
+                                    world.setBlockToAir(targetBlockPos);
+                                });
+                            }
                         }
                     }
                 }
+                player.addChatComponentMessage(new TextComponentString("World Stripping Successfully Done!"));
+            } else {
+                player.addChatComponentMessage(new TextComponentString(TextFormatting.RED + "Error: You have to be in creative mode to use this feature!"));
             }
-            player.addChatComponentMessage(new TextComponentString("World Stripping Successfully Done!"));
         }
     }
 }
