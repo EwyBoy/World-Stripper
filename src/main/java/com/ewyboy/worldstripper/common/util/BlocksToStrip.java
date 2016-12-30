@@ -28,6 +28,7 @@ public class BlocksToStrip {
         blockList.add(Blocks.LOG2);
         blockList.add(Blocks.LEAVES);
         blockList.add(Blocks.LEAVES2);
+        blockList.add(Blocks.NETHERRACK);
     }
 
 }
