@@ -1,0 +1,16 @@
+[
+    {
+      "modid": "worldstripper",
+      "name": "World Stripper",
+      "description": "Original made by Moze_Intel, this version has been refurbished by me EwyBoy and released with Moze's permission",
+      "version": "${version}",
+      "mcversion": "${mcversion}",
+      "url": "https://minecraft.curseforge.com/projects/world-stripper",
+      "updateUrl": "https://minecraft.curseforge.com/projects/world-stripper/files",
+      "authorList": ["EwyBoy", "Moze_Intel"],
+      "credits": "All credits of this (The 1.7) version goes to Moze himself! GG dude",
+      "logoFile": "",
+      "screenshots": [],
+      "dependencies": []
+    }
+]
