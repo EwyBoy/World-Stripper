@@ -1,0 +1,131 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'maven-publish'
+
+version = "${MC_VERSION}-${VERSION}"
+group = "com.ewyboy.${MODID}"
+archivesBaseName = MODNAME
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+minecraft {
+
+    apply plugin: 'idea'
+    mappings channel: MCP_CHANNEL, version: MCP_MAPPINGS
+
+    runs {
+
+        client {
+            workingDirectory project.file('run')
+            ideaModule "${project.name}.main"
+
+            mods {
+                worldstripper {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            ideaModule "${project.name}.main"
+
+            mods {
+                worldstripper {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+            args '--mod', 'worldstripper', '--all', '--output', file('src/generated/resources/')
+            ideaModule "${project.name}.main"
+
+            mods {
+                craftablehorsearmour {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${MC_VERSION}-${FORGE_VERSION}"
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title": MODNAME,
+                "Specification-Vendor": AUTHOR,
+                "Specification-Version": "1",
+                "Implementation-Title": project.name,
+                "Implementation-Version": VERSION,
+                "Implementation-Vendor" : AUTHOR,
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+}
+
+task sourcesJar(type: Jar) {
+    classifier = "sources"
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = "javadoc"
+    from javadoc.destinationDir
+}
+
+tasks.build.dependsOn('sourcesJar', 'deobfJar')
+tasks.publish.dependsOn('build', 'reobfJar')
+
+artifacts {
+    archives jar
+    archives deobfJar
+    archives sourcesJar
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/ewyboy/bibliotheca")
+            credentials {
+                username = property('gpr.username')
+                password = property('gpr.token')
+            }
+        }
+        maven {
+            name = "local"
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            artifact jar
+            artifact sourcesJar
+        }
+        mavenJava(MavenPublication) {
+            artifact jar
+            artifact sourcesJar
+        }
+    }
+}
