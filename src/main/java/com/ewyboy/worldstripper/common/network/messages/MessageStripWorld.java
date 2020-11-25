@@ -1,7 +1,8 @@
 package com.ewyboy.worldstripper.common.network.messages;
 
+import com.ewyboy.worldstripper.common.config.ConfigOptions;
 import com.ewyboy.worldstripper.common.network.MessageHandler;
-import com.ewyboy.worldstripper.common.util.Config;
+import com.ewyboy.worldstripper.common.config.temp.ConfigOld;
 import com.ewyboy.worldstripper.common.util.Profile;
 import java.util.Arrays;
 import java.util.Objects;
@@ -34,31 +35,33 @@ public class MessageStripWorld {
         ctx.get().enqueueWork(() -> {
             ServerPlayerEntity player = ctx.get().getSender();
             World world = player != null ? player.getEntityWorld() : null;
-            int profile = Config.SETTINGS.selectedProfile.get();
-            double chunkClearSizeX = 16 * Config.SETTINGS.chunkRadiusX.get() / 2;
-            double chunkClearSizeZ = 16 * Config.SETTINGS.chunkRadiusZ.get() / 2;
+            // int profile = ConfigOld.SETTINGS.selectedProfile.get();
+            double chunkClearSizeX = ConfigOptions.Stripping.blocksToStripX / 2;
+            double chunkClearSizeZ = ConfigOptions.Stripping.blocksToStripZ / 2;
+
             if (player.isCreative()) {
                 player.sendStatusMessage(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."), false);
-
                 for(int x = (int)(player.getPosX() - chunkClearSizeX); (double)x <= player.getPosX() + chunkClearSizeX; ++x) {
-                    for(int y = 0; (double)y <= player.getPosY() + 16.0D; ++y) {
+                    for(int y = (int) (player.getPosY() + 16.00D); (double)y >= 0; y--) {
                         for(int z = (int)(player.getPosZ() - chunkClearSizeZ); (double)z <= player.getPosZ() + chunkClearSizeZ; ++z) {
                             BlockPos targetBlockPos = new BlockPos(x, y, z);
                             BlockState targetBlockState = world.getBlockState(targetBlockPos);
                             Block targetBlock = targetBlockState.getBlock();
-                            if (!targetBlock.equals(Blocks.AIR)) {
-                                Stream var10000 = Arrays.stream(Profile.profileMapper.get(profile));
-                                String var10001 = targetBlock.getRegistryName().toString();
-                                var10001.getClass();
-                                var10000.filter(var10001::equals).forEachOrdered((s) -> {
+                            if (!targetBlock.equals(Blocks.AIR)  || !targetBlock.equals(Blocks.TALL_GRASS)) {
+
+                                //Stream stream = Arrays.stream(Profile.profileMapper.get(profile));
+
+                                Stream stream = Arrays.stream(ConfigOptions.Profiles.profile1.toArray(new ResourceLocation[0]));
+                                ResourceLocation targetBlockResource = new ResourceLocation(Objects.requireNonNull(targetBlock.getRegistryName()).toString());
+
+                                stream.filter(targetBlockResource :: equals).forEachOrdered((s) -> {
                                     MessageHandler.hashedBlockCache.put(targetBlockPos, targetBlockState);
-                                    world.setBlockState(targetBlockPos, ((Block)Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(Config.SETTINGS.replacementBlock.get())))).getDefaultState(), (Integer)Config.SETTINGS.blockStateFlag.get());
+                                    world.setBlockState(targetBlockPos, Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(ConfigOptions.Stripping.replacementBlock))).getDefaultState(), ConfigOptions.Stripping.updateFlag);
                                 });
                             }
                         }
                     }
                 }
-
                 player.sendStatusMessage(new StringTextComponent("World Stripping Successfully Done!"), false);
             } else {
                 player.sendStatusMessage(new StringTextComponent(TextFormatting.RED + "Error: You have to be in creative mode to use this feature!"), false);

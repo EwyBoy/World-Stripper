@@ -10,10 +10,10 @@ public class Profile {
     public Profile() {}
 
     static {
-        profileMapper.put(1, Config.SETTINGS.stripProfile1Config.get().toArray());
-        profileMapper.put(2, Config.SETTINGS.stripProfile2Config.get().toArray());
-        profileMapper.put(3, Config.SETTINGS.stripProfile3Config.get().toArray());
-        profileMapper.put(4, Config.SETTINGS.stripProfile4Config.get().toArray());
-        profileMapper.put(5, Config.SETTINGS.stripProfile5Config.get().toArray());
+        //profileMapper.put(1, ConfigOld.SETTINGS.stripProfile1Config.get().toArray());
+        //profileMapper.put(2, ConfigOld.SETTINGS.stripProfile2Config.get().toArray());
+        //profileMapper.put(3, ConfigOld.SETTINGS.stripProfile3Config.get().toArray());
+        //profileMapper.put(4, ConfigOld.SETTINGS.stripProfile4Config.get().toArray());
+        //profileMapper.put(5, ConfigOld.SETTINGS.stripProfile5Config.get().toArray());
     }
 }

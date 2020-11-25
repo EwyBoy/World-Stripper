@@ -1,4 +1,4 @@
-version:2580
+version:2584
 autoJump:true
 autoSuggestions:true
 chatColors:true
@@ -25,7 +25,7 @@ fovEffectScale:1.0
 gamma:1.0
 renderDistance:12
 entityDistanceScaling:1.0
-guiScale:0
+guiScale:2
 particles:0
 maxFps:120
 difficulty:2
@@ -63,6 +63,8 @@ mouseWheelSensitivity:1.0
 rawMouseInput:true
 glDebugVerbosity:1
 skipMultiplayerWarning:false
+hideMatchedNames:true
+joinedFirstServer:false
 syncChunkWrites:true
 key_key.attack:key.mouse.left
 key_key.use:key.mouse.right
@@ -79,6 +81,7 @@ key_key.chat:key.keyboard.t
 key_key.playerlist:key.keyboard.tab
 key_key.pickItem:key.mouse.middle
 key_key.command:key.keyboard.slash
+key_key.socialInteractions:key.keyboard.p
 key_key.screenshot:key.keyboard.f2
 key_key.togglePerspective:key.keyboard.f5
 key_key.smoothCamera:key.keyboard.unknown
@@ -99,6 +102,7 @@ key_key.hotbar.8:key.keyboard.8
 key_key.hotbar.9:key.keyboard.9
 key_Strip World:key.keyboard.delete
 key_Dress World:key.keyboard.insert
+key_Copy Block:key.keyboard.home
 soundCategory_master:0.16556291
 soundCategory_music:0.0
 soundCategory_record:1.0

@@ -1,9 +1,9 @@
 package com.ewyboy.worldstripper.common.network.messages;
 
 import com.ewyboy.worldstripper.common.network.MessageHandler;
-import com.ewyboy.worldstripper.common.util.Config;
+import com.ewyboy.worldstripper.common.config.temp.ConfigOld;
 import java.util.function.Supplier;
-import net.minecraft.block.BlockState;
+
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
@@ -27,8 +27,8 @@ public class MessageDressWorld {
         ctx.get().enqueueWork(() -> {
             ServerPlayerEntity player = ctx.get().getSender();
             World world = player != null ? player.getEntityWorld() : null;
-            double chunkClearSizeX = 16 * Config.SETTINGS.chunkRadiusX.get() / 2;
-            double chunkClearSizeZ = 16 * Config.SETTINGS.chunkRadiusZ.get() / 2;
+            double chunkClearSizeX = 16 * ConfigOld.SETTINGS.chunkRadiusX.get() / 2;
+            double chunkClearSizeZ = 16 * ConfigOld.SETTINGS.chunkRadiusZ.get() / 2;
             if (player.isCreative()) {
                 player.sendStatusMessage(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."), false);
 

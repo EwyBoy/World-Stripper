@@ -18,6 +18,14 @@ archivesBaseName = MODNAME
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
+repositories {
+    maven { url 'https://maven.latmod.com' }
+}
+
+dependencies {
+    compileOnly fg.deobf('com.feed_the_beast.mods:ftb-gui-library:1.0.0.18')
+}
+
 minecraft {
 
     apply plugin: 'idea'

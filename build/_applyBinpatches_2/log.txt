@@ -1,67 +1,69 @@
-Args: "--clean", "C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\joined\1.16.3-20200910.110331\joined-1.16.3-20200910.110331-srg.jar", "--output", "C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.3-34.0.0\forge-1.16.3-34.0.0-binpatched.jar", "--apply", "C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.3-34.0.0\forge-1.16.3-34.0.0-binpatches.lzma"
+Args: "--clean", "C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\joined\1.16.4-20201102.104115\joined-1.16.4-20201102.104115-srg.jar", "--output", "C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.0\forge-1.16.4-35.1.0-binpatched.jar", "--apply", "C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.0\forge-1.16.4-35.1.0-binpatches.lzma"
 Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\binarypatcher\1.0.12\binarypatcher-1.0.12-fatjar.jar
 WorkDir: C:\Users\Eivind\Documents\Development\Modding\World-Stripper\build\_applyBinpatches_2
 Main: net.minecraftforge.binarypatcher.ConsoleTool
 ====================================
 Applying: 
-  Clean:     C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\joined\1.16.3-20200910.110331\joined-1.16.3-20200910.110331-srg.jar
-  Output:    C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.3-34.0.0\forge-1.16.3-34.0.0-binpatched.jar
+  Clean:     C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\joined\1.16.4-20201102.104115\joined-1.16.4-20201102.104115-srg.jar
+  Output:    C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.0\forge-1.16.4-35.1.0-binpatched.jar
   KeepData:  false
   Unpatched: false
-  Patches:   C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.3-34.0.0\forge-1.16.3-34.0.0-binpatches.lzma
-Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.3-34.0.0\forge-1.16.3-34.0.0-binpatches.lzma
+  Patches:   C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.0\forge-1.16.4-35.1.0-binpatches.lzma
+Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.0\forge-1.16.4-35.1.0-binpatches.lzma
   Reading patch com.mojang.blaze3d.platform.GlStateManager$1.binpatch
-    Checksum: 27fccb26 Exists: true
+    Checksum: 37bccb56 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$AlphaState.binpatch
-    Checksum: f8e82169 Exists: true
+    Checksum: 271721b9 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$BlendState.binpatch
-    Checksum: 824b24fe Exists: true
+    Checksum: c44b256e Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$BooleanState.binpatch
-    Checksum: 6e4bbbb0 Exists: true
+    Checksum: 5a5ebcc8 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$Color.binpatch
-    Checksum: 7066c7e7 Exists: true
+    Checksum: f996c8d7 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$ColorLogicState.binpatch
-    Checksum: 34f01761 Exists: true
+    Checksum: 57a017a1 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$ColorMask.binpatch
-    Checksum: b5fde9af Exists: true
+    Checksum: f761ea27 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$ColorMaterialState.binpatch
-    Checksum: abf32953 Exists: true
+    Checksum: da1329a3 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$CullState.binpatch
-    Checksum: 1ba60f3b Exists: true
+    Checksum: 3e560f7b Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$DepthState.binpatch
-    Checksum: dc017ae Exists: true
+    Checksum: 3aa017fe Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$DestFactor.binpatch
-    Checksum: 95d90283 Exists: true
+    Checksum: ddf9fc0c Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$FogMode.binpatch
-    Checksum: a47b6df0 Exists: true
+    Checksum: 5ea6e80 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$FogState.binpatch
-    Checksum: 28eb298d Exists: true
+    Checksum: 61bb29ed Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$FramebufferExtension.binpatch
-    Checksum: 446e735c Exists: true
+    Checksum: 795e73ac Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$LogicOp.binpatch
-    Checksum: 5741e660 Exists: true
+    Checksum: 7300e7c0 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$PolygonOffsetState.binpatch
-    Checksum: 353026eb Exists: true
+    Checksum: 57e0272b Exists: true
+  Reading patch com.mojang.blaze3d.platform.GlStateManager$ScissorState.binpatch
+    Checksum: a7450c5a Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$SourceFactor.binpatch
-    Checksum: 2e902235 Exists: true
+    Checksum: 29e81ce0 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$StencilFunc.binpatch
-    Checksum: fda4e222 Exists: true
+    Checksum: 1e63e262 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$StencilState.binpatch
-    Checksum: 75f126ad Exists: true
+    Checksum: b7f1271d Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$SupportType.binpatch
-    Checksum: 6e035afd Exists: true
+    Checksum: a2f35b4d Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$TexGen.binpatch
-    Checksum: 5a7459c3 Exists: true
+    Checksum: a2a45a27 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$TexGenCoord.binpatch
-    Checksum: 5d97ec34 Exists: true
+    Checksum: 8637ec98 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$TexGenState.binpatch
-    Checksum: d2c2ff2 Exists: true
+    Checksum: 5430306a Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$TextureState.binpatch
-    Checksum: 74c114f Exists: true
+    Checksum: 200c117f Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$Viewport.binpatch
-    Checksum: ead857e8 Exists: true
+    Checksum: 18b75838 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager.binpatch
-    Checksum: 2d7829cc Exists: true
+    Checksum: e711d45b Exists: true
   Reading patch com.mojang.blaze3d.vertex.IVertexBuilder.binpatch
     Checksum: cd0e30aa Exists: true
   Reading patch com.mojang.realmsclient.gui.screens.RealmsGenericErrorScreen.binpatch
@@ -124,6 +126,8 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: a85fb21e Exists: true
   Reading patch net.minecraft.block.BambooSaplingBlock.binpatch
     Checksum: 5481c1fa Exists: true
+  Reading patch net.minecraft.block.BannerBlock.binpatch
+    Checksum: 45fc26f Exists: true
   Reading patch net.minecraft.block.BeetrootBlock.binpatch
     Checksum: ea22cbed Exists: true
   Reading patch net.minecraft.block.Block$1.binpatch
@@ -293,9 +297,9 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.client.GameSettings$1.binpatch
     Checksum: 20d8abbc Exists: true
   Reading patch net.minecraft.client.GameSettings$2.binpatch
-    Checksum: da3dd4aa Exists: true
+    Checksum: dc35d4b3 Exists: true
   Reading patch net.minecraft.client.GameSettings.binpatch
-    Checksum: 702ec3a3 Exists: true
+    Checksum: 8eb951c8 Exists: true
   Reading patch net.minecraft.client.KeyboardListener$1.binpatch
     Checksum: adede591 Exists: true
   Reading patch net.minecraft.client.KeyboardListener.binpatch
@@ -307,13 +311,13 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.client.MainWindow.binpatch
     Checksum: 66af3abc Exists: true
   Reading patch net.minecraft.client.Minecraft$1.binpatch
-    Checksum: e834801e Exists: true
+    Checksum: ffdc806f Exists: true
   Reading patch net.minecraft.client.Minecraft$PackManager.binpatch
-    Checksum: 7cccf839 Exists: true
+    Checksum: f60bf9aa Exists: true
   Reading patch net.minecraft.client.Minecraft$WorldSelectionType.binpatch
-    Checksum: 70615466 Exists: true
+    Checksum: 3b5c55d2 Exists: true
   Reading patch net.minecraft.client.Minecraft.binpatch
-    Checksum: 5b793b1d Exists: true
+    Checksum: 4323f052 Exists: true
   Reading patch net.minecraft.client.MouseHelper.binpatch
     Checksum: a0cd768c Exists: true
   Reading patch net.minecraft.client.audio.SoundEngine.binpatch
@@ -337,7 +341,7 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.client.gui.DisplayEffectsScreen.binpatch
     Checksum: b7736543 Exists: true
   Reading patch net.minecraft.client.gui.IngameGui.binpatch
-    Checksum: 818b2a58 Exists: true
+    Checksum: eea242e0 Exists: true
   Reading patch net.minecraft.client.gui.MapItemRenderer$1.binpatch
     Checksum: e33a674b Exists: true
   Reading patch net.minecraft.client.gui.MapItemRenderer$Instance.binpatch
@@ -367,7 +371,7 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.client.gui.overlay.DebugOverlayGui.binpatch
     Checksum: 1a9af3b5 Exists: true
   Reading patch net.minecraft.client.gui.recipebook.RecipeBookGui.binpatch
-    Checksum: 8b9316d4 Exists: true
+    Checksum: e0c92381 Exists: true
   Reading patch net.minecraft.client.gui.screen.ControlsScreen.binpatch
     Checksum: 7a810a44 Exists: true
   Reading patch net.minecraft.client.gui.screen.CreateWorldScreen$1.binpatch
@@ -391,11 +395,11 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.client.gui.screen.EnchantmentScreen.binpatch
     Checksum: e6f3a29c Exists: true
   Reading patch net.minecraft.client.gui.screen.LanguageScreen$List$LanguageEntry.binpatch
-    Checksum: 834d27c Exists: true
+    Checksum: 1a24d289 Exists: true
   Reading patch net.minecraft.client.gui.screen.LanguageScreen$List.binpatch
-    Checksum: 98adb981 Exists: true
+    Checksum: c69fb997 Exists: true
   Reading patch net.minecraft.client.gui.screen.LanguageScreen.binpatch
-    Checksum: f3ead3b0 Exists: true
+    Checksum: 455d204b Exists: true
   Reading patch net.minecraft.client.gui.screen.MainMenuScreen.binpatch
     Checksum: d9b9eef1 Exists: true
   Reading patch net.minecraft.client.gui.screen.MultiplayerScreen.binpatch
@@ -415,19 +419,19 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.client.gui.screen.PackScreen$PackDirectoryWatcher.binpatch
     Checksum: 7e927814 Exists: true
   Reading patch net.minecraft.client.gui.screen.PackScreen.binpatch
-    Checksum: 6c1f8b65 Exists: true
+    Checksum: 7a1f89df Exists: true
   Reading patch net.minecraft.client.gui.screen.Screen.binpatch
     Checksum: 4b6a282e Exists: true
   Reading patch net.minecraft.client.gui.screen.ServerSelectionList$Entry.binpatch
-    Checksum: a3050053 Exists: true
+    Checksum: a2b50052 Exists: true
   Reading patch net.minecraft.client.gui.screen.ServerSelectionList$LanDetectedEntry.binpatch
-    Checksum: bfac5309 Exists: true
+    Checksum: a0d252f6 Exists: true
   Reading patch net.minecraft.client.gui.screen.ServerSelectionList$LanScanEntry.binpatch
-    Checksum: b41f7226 Exists: true
+    Checksum: a4c67219 Exists: true
   Reading patch net.minecraft.client.gui.screen.ServerSelectionList$NormalEntry.binpatch
-    Checksum: 82d7948a Exists: true
+    Checksum: 5dc5f34 Exists: true
   Reading patch net.minecraft.client.gui.screen.ServerSelectionList.binpatch
-    Checksum: 76c5d8dc Exists: true
+    Checksum: dec48880 Exists: true
   Reading patch net.minecraft.client.gui.screen.inventory.ContainerScreen.binpatch
     Checksum: 99e04a54 Exists: true
   Reading patch net.minecraft.client.gui.screen.inventory.CreativeScreen$CreativeContainer.binpatch
@@ -439,17 +443,17 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.client.gui.screen.inventory.CreativeScreen.binpatch
     Checksum: 74f11461 Exists: true
   Reading patch net.minecraft.client.gui.widget.Widget.binpatch
-    Checksum: 8a5cfe67 Exists: true
+    Checksum: dc0f1159 Exists: true
   Reading patch net.minecraft.client.gui.widget.list.AbstractList$1.binpatch
     Checksum: 2d096e71 Exists: true
   Reading patch net.minecraft.client.gui.widget.list.AbstractList$AbstractListEntry.binpatch
-    Checksum: c68cf5ed Exists: true
+    Checksum: ecccf623 Exists: true
   Reading patch net.minecraft.client.gui.widget.list.AbstractList$Ordering.binpatch
-    Checksum: 173b610d Exists: true
+    Checksum: 467b6161 Exists: true
   Reading patch net.minecraft.client.gui.widget.list.AbstractList$SimpleArrayList.binpatch
-    Checksum: 2a4ff045 Exists: true
+    Checksum: 241cf165 Exists: true
   Reading patch net.minecraft.client.gui.widget.list.AbstractList.binpatch
-    Checksum: b27d9eed Exists: true
+    Checksum: 2735e464 Exists: true
   Reading patch net.minecraft.client.gui.widget.list.KeyBindingList$1.binpatch
     Checksum: 4d496fd5 Exists: true
   Reading patch net.minecraft.client.gui.widget.list.KeyBindingList$CategoryEntry.binpatch
@@ -495,11 +499,13 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.client.network.handshake.ClientHandshakeNetHandler.binpatch
     Checksum: a4f7d267 Exists: true
   Reading patch net.minecraft.client.network.login.ClientLoginNetHandler.binpatch
-    Checksum: 3ad68a3f Exists: true
+    Checksum: 2262883e Exists: true
   Reading patch net.minecraft.client.network.play.ClientPlayNetHandler$1.binpatch
-    Checksum: 7b59a1ff Exists: true
+    Checksum: 7ce1a203 Exists: true
   Reading patch net.minecraft.client.network.play.ClientPlayNetHandler.binpatch
-    Checksum: da011b40 Exists: true
+    Checksum: 5ecfabf8 Exists: true
+  Reading patch net.minecraft.client.network.play.NetworkPlayerInfo.binpatch
+    Checksum: 62614994 Exists: true
   Reading patch net.minecraft.client.particle.DiggingParticle$Factory.binpatch
     Checksum: d02a31dc Exists: true
   Reading patch net.minecraft.client.particle.DiggingParticle.binpatch
@@ -758,6 +764,8 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: f36c0753 Exists: true
   Reading patch net.minecraft.client.settings.KeyBinding.binpatch
     Checksum: 70abfa7 Exists: true
+  Reading patch net.minecraft.client.settings.ToggleableKeyBinding.binpatch
+    Checksum: f70352a8 Exists: true
   Reading patch net.minecraft.client.shader.Framebuffer.binpatch
     Checksum: ee5f874b Exists: true
   Reading patch net.minecraft.client.shader.ShaderGroup.binpatch
@@ -774,12 +782,28 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: a55dc66f Exists: true
   Reading patch net.minecraft.client.world.ClientWorld.binpatch
     Checksum: 66e359e0 Exists: true
+  Reading patch net.minecraft.client.world.DimensionRenderInfo$End.binpatch
+    Checksum: b6e35522 Exists: true
+  Reading patch net.minecraft.client.world.DimensionRenderInfo$FogType.binpatch
+    Checksum: 99745c3f Exists: true
+  Reading patch net.minecraft.client.world.DimensionRenderInfo$Nether.binpatch
+    Checksum: 854b1cd1 Exists: true
+  Reading patch net.minecraft.client.world.DimensionRenderInfo$Overworld.binpatch
+    Checksum: 38e8562a Exists: true
+  Reading patch net.minecraft.client.world.DimensionRenderInfo.binpatch
+    Checksum: 74c83e5 Exists: true
   Reading patch net.minecraft.command.Commands$EnvironmentType.binpatch
     Checksum: 67745d9c Exists: true
   Reading patch net.minecraft.command.Commands$IParser.binpatch
     Checksum: 5db67094 Exists: true
   Reading patch net.minecraft.command.Commands.binpatch
     Checksum: e4dd2c1 Exists: true
+  Reading patch net.minecraft.command.arguments.ArgumentTypes$1.binpatch
+    Checksum: 30b03d59 Exists: true
+  Reading patch net.minecraft.command.arguments.ArgumentTypes$Entry.binpatch
+    Checksum: 21fc332 Exists: true
+  Reading patch net.minecraft.command.arguments.ArgumentTypes.binpatch
+    Checksum: 64a55686 Exists: true
   Reading patch net.minecraft.command.arguments.BlockStateParser.binpatch
     Checksum: 135537b7 Exists: true
   Reading patch net.minecraft.command.arguments.EntitySelectorParser.binpatch
@@ -987,7 +1011,7 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.entity.boss.WitherEntity.binpatch
     Checksum: c2b426e6 Exists: true
   Reading patch net.minecraft.entity.boss.dragon.EnderDragonEntity.binpatch
-    Checksum: bf40c470 Exists: true
+    Checksum: 2847d1dc Exists: true
   Reading patch net.minecraft.entity.effect.LightningBoltEntity.binpatch
     Checksum: 4ab8005 Exists: true
   Reading patch net.minecraft.entity.item.ArmorStandEntity$1.binpatch
@@ -1076,8 +1100,6 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 8cd0abc6 Exists: true
   Reading patch net.minecraft.entity.monster.EvokerEntity.binpatch
     Checksum: 7b27ed68 Exists: true
-  Reading patch net.minecraft.entity.monster.HoglinEntity.binpatch
-    Checksum: c9bcbc42 Exists: true
   Reading patch net.minecraft.entity.monster.IllusionerEntity$1.binpatch
     Checksum: 74b23dcf Exists: true
   Reading patch net.minecraft.entity.monster.IllusionerEntity$BlindnessSpellGoal.binpatch
@@ -1270,32 +1292,6 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 7a6a0346 Exists: true
   Reading patch net.minecraft.entity.passive.OcelotEntity.binpatch
     Checksum: cc54b710 Exists: true
-  Reading patch net.minecraft.entity.passive.PandaEntity$AttackGoal.binpatch
-    Checksum: c97fc315 Exists: true
-  Reading patch net.minecraft.entity.passive.PandaEntity$AvoidGoal.binpatch
-    Checksum: 982e4e89 Exists: true
-  Reading patch net.minecraft.entity.passive.PandaEntity$ChildPlayGoal.binpatch
-    Checksum: 605a112a Exists: true
-  Reading patch net.minecraft.entity.passive.PandaEntity$Gene.binpatch
-    Checksum: 975137cf Exists: true
-  Reading patch net.minecraft.entity.passive.PandaEntity$LieBackGoal.binpatch
-    Checksum: 812f36ab Exists: true
-  Reading patch net.minecraft.entity.passive.PandaEntity$MateGoal.binpatch
-    Checksum: 5d92fbdd Exists: true
-  Reading patch net.minecraft.entity.passive.PandaEntity$MoveHelperController.binpatch
-    Checksum: d891ce52 Exists: true
-  Reading patch net.minecraft.entity.passive.PandaEntity$PanicGoal.binpatch
-    Checksum: 66c2ae73 Exists: true
-  Reading patch net.minecraft.entity.passive.PandaEntity$RevengeGoal.binpatch
-    Checksum: 1abd889b Exists: true
-  Reading patch net.minecraft.entity.passive.PandaEntity$RollGoal.binpatch
-    Checksum: 42b6c7f Exists: true
-  Reading patch net.minecraft.entity.passive.PandaEntity$SitGoal.binpatch
-    Checksum: 5733e78a Exists: true
-  Reading patch net.minecraft.entity.passive.PandaEntity$WatchGoal.binpatch
-    Checksum: 2330e68d Exists: true
-  Reading patch net.minecraft.entity.passive.PandaEntity.binpatch
-    Checksum: bda76285 Exists: true
   Reading patch net.minecraft.entity.passive.ParrotEntity$1.binpatch
     Checksum: 58b71250 Exists: true
   Reading patch net.minecraft.entity.passive.ParrotEntity.binpatch
@@ -1324,30 +1320,6 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 6ff0615a Exists: true
   Reading patch net.minecraft.entity.passive.SnowGolemEntity.binpatch
     Checksum: c2821c7b Exists: true
-  Reading patch net.minecraft.entity.passive.TurtleEntity$1.binpatch
-    Checksum: a7673a61 Exists: true
-  Reading patch net.minecraft.entity.passive.TurtleEntity$GoHomeGoal.binpatch
-    Checksum: 94db78b8 Exists: true
-  Reading patch net.minecraft.entity.passive.TurtleEntity$GoToWaterGoal.binpatch
-    Checksum: 28a03363 Exists: true
-  Reading patch net.minecraft.entity.passive.TurtleEntity$LayEggGoal.binpatch
-    Checksum: 14dd1f05 Exists: true
-  Reading patch net.minecraft.entity.passive.TurtleEntity$MateGoal.binpatch
-    Checksum: f07224fb Exists: true
-  Reading patch net.minecraft.entity.passive.TurtleEntity$MoveHelperController.binpatch
-    Checksum: 8b294642 Exists: true
-  Reading patch net.minecraft.entity.passive.TurtleEntity$Navigator.binpatch
-    Checksum: 77ee1e59 Exists: true
-  Reading patch net.minecraft.entity.passive.TurtleEntity$PanicGoal.binpatch
-    Checksum: 497c7cea Exists: true
-  Reading patch net.minecraft.entity.passive.TurtleEntity$PlayerTemptGoal.binpatch
-    Checksum: 5141a974 Exists: true
-  Reading patch net.minecraft.entity.passive.TurtleEntity$TravelGoal.binpatch
-    Checksum: 73829225 Exists: true
-  Reading patch net.minecraft.entity.passive.TurtleEntity$WanderGoal.binpatch
-    Checksum: 21a0578e Exists: true
-  Reading patch net.minecraft.entity.passive.TurtleEntity.binpatch
-    Checksum: 8f7daddf Exists: true
   Reading patch net.minecraft.entity.passive.WolfEntity$AvoidEntityGoal.binpatch
     Checksum: e05419b6 Exists: true
   Reading patch net.minecraft.entity.passive.WolfEntity.binpatch
@@ -1358,16 +1330,6 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: e47eb79a Exists: true
   Reading patch net.minecraft.entity.passive.horse.HorseEntity.binpatch
     Checksum: 83a623c9 Exists: true
-  Reading patch net.minecraft.entity.passive.horse.LlamaEntity$1.binpatch
-    Checksum: ba923dd9 Exists: true
-  Reading patch net.minecraft.entity.passive.horse.LlamaEntity$DefendTargetGoal.binpatch
-    Checksum: d905ded8 Exists: true
-  Reading patch net.minecraft.entity.passive.horse.LlamaEntity$HurtByTargetGoal.binpatch
-    Checksum: f08e1987 Exists: true
-  Reading patch net.minecraft.entity.passive.horse.LlamaEntity$LlamaData.binpatch
-    Checksum: 6e9cd068 Exists: true
-  Reading patch net.minecraft.entity.passive.horse.LlamaEntity.binpatch
-    Checksum: 5e839b96 Exists: true
   Reading patch net.minecraft.entity.player.PlayerEntity$1.binpatch
     Checksum: 8033a645 Exists: true
   Reading patch net.minecraft.entity.player.PlayerEntity$SleepResult.binpatch
@@ -1377,7 +1339,7 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.entity.player.PlayerInventory.binpatch
     Checksum: a87dad97 Exists: true
   Reading patch net.minecraft.entity.player.ServerPlayerEntity.binpatch
-    Checksum: 59a7686b Exists: true
+    Checksum: 204adb30 Exists: true
   Reading patch net.minecraft.entity.projectile.AbstractArrowEntity$PickupStatus.binpatch
     Checksum: d03580a0 Exists: true
   Reading patch net.minecraft.entity.projectile.AbstractArrowEntity.binpatch
@@ -1387,7 +1349,7 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.entity.projectile.FireballEntity.binpatch
     Checksum: f7aa6a86 Exists: true
   Reading patch net.minecraft.entity.projectile.FireworkRocketEntity.binpatch
-    Checksum: 1bdaca1b Exists: true
+    Checksum: c743d514 Exists: true
   Reading patch net.minecraft.entity.projectile.FishingBobberEntity$1.binpatch
     Checksum: 1df5d5d2 Exists: true
   Reading patch net.minecraft.entity.projectile.FishingBobberEntity$State.binpatch
@@ -1725,13 +1687,13 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.nbt.StringNBT.binpatch
     Checksum: f9f4660e Exists: true
   Reading patch net.minecraft.network.NetworkManager$1.binpatch
-    Checksum: 5b0bb0b8 Exists: true
+    Checksum: 4de9b0a0 Exists: true
   Reading patch net.minecraft.network.NetworkManager$2.binpatch
-    Checksum: de7701f Exists: true
+    Checksum: add7019 Exists: true
   Reading patch net.minecraft.network.NetworkManager$QueuedPacket.binpatch
-    Checksum: f900a2c6 Exists: true
+    Checksum: f032a2ba Exists: true
   Reading patch net.minecraft.network.NetworkManager.binpatch
-    Checksum: 8859752c Exists: true
+    Checksum: 14cd5128 Exists: true
   Reading patch net.minecraft.network.NetworkSystem$1.binpatch
     Checksum: d26c9562 Exists: true
   Reading patch net.minecraft.network.NetworkSystem$2.binpatch
@@ -1799,23 +1761,23 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.network.handshake.ServerHandshakeNetHandler$1.binpatch
     Checksum: 6afdaa96 Exists: true
   Reading patch net.minecraft.network.handshake.ServerHandshakeNetHandler.binpatch
-    Checksum: 554ab99d Exists: true
+    Checksum: 385eaffa Exists: true
   Reading patch net.minecraft.network.handshake.client.CHandshakePacket.binpatch
     Checksum: 9be8b21d Exists: true
   Reading patch net.minecraft.network.login.ServerLoginNetHandler$1.binpatch
-    Checksum: 3a3272bf Exists: true
+    Checksum: e00edbfd Exists: true
   Reading patch net.minecraft.network.login.ServerLoginNetHandler$State.binpatch
-    Checksum: e7ec5d13 Exists: true
+    Checksum: 3065d36 Exists: true
   Reading patch net.minecraft.network.login.ServerLoginNetHandler.binpatch
-    Checksum: 739a6217 Exists: true
+    Checksum: c9d505e5 Exists: true
   Reading patch net.minecraft.network.login.client.CCustomPayloadLoginPacket.binpatch
     Checksum: dd896c2c Exists: true
   Reading patch net.minecraft.network.login.server.SCustomPayloadLoginPacket.binpatch
     Checksum: 43f78db Exists: true
   Reading patch net.minecraft.network.play.ServerPlayNetHandler$1.binpatch
-    Checksum: 4f5dfdc2 Exists: true
+    Checksum: 9dafcd1 Exists: true
   Reading patch net.minecraft.network.play.ServerPlayNetHandler.binpatch
-    Checksum: 9a7dfcf0 Exists: true
+    Checksum: ece2774d Exists: true
   Reading patch net.minecraft.network.play.client.CClickWindowPacket.binpatch
     Checksum: 1dabebe4 Exists: true
   Reading patch net.minecraft.network.play.client.CClientSettingsPacket.binpatch
@@ -1832,6 +1794,14 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 7ab71d17 Exists: true
   Reading patch net.minecraft.network.play.server.SCustomPayloadPlayPacket.binpatch
     Checksum: 20a00116 Exists: true
+  Reading patch net.minecraft.network.play.server.SEntityPropertiesPacket$Snapshot.binpatch
+    Checksum: cb20a9eb Exists: true
+  Reading patch net.minecraft.network.play.server.SEntityPropertiesPacket.binpatch
+    Checksum: edd593ac Exists: true
+  Reading patch net.minecraft.network.rcon.ClientThread.binpatch
+    Checksum: 907824a7 Exists: true
+  Reading patch net.minecraft.network.rcon.RConConsoleSource.binpatch
+    Checksum: 4db7bef9 Exists: true
   Reading patch net.minecraft.network.status.server.SServerInfoPacket.binpatch
     Checksum: de60e46a Exists: true
   Reading patch net.minecraft.particles.BlockParticleData$1.binpatch
@@ -1901,19 +1871,19 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.resources.VanillaPack.binpatch
     Checksum: 169be08 Exists: true
   Reading patch net.minecraft.server.Main$1.binpatch
-    Checksum: 859db9bb Exists: true
+    Checksum: 84a5b9b8 Exists: true
   Reading patch net.minecraft.server.Main.binpatch
-    Checksum: ea38267d Exists: true
+    Checksum: 6192f999 Exists: true
   Reading patch net.minecraft.server.MinecraftServer$1.binpatch
-    Checksum: 161b8b91 Exists: true
+    Checksum: 37c68baf Exists: true
   Reading patch net.minecraft.server.MinecraftServer$2.binpatch
-    Checksum: fee434cd Exists: true
+    Checksum: ff334e5 Exists: true
   Reading patch net.minecraft.server.MinecraftServer.binpatch
-    Checksum: 29fb93de Exists: true
+    Checksum: 51484644 Exists: true
   Reading patch net.minecraft.server.dedicated.DedicatedServer$1.binpatch
-    Checksum: dfe5c871 Exists: true
+    Checksum: f6d1c8a1 Exists: true
   Reading patch net.minecraft.server.dedicated.DedicatedServer.binpatch
-    Checksum: 2241d1d6 Exists: true
+    Checksum: d7746315 Exists: true
   Reading patch net.minecraft.server.dedicated.PropertyManager$1.binpatch
     Checksum: b9a43ddd Exists: true
   Reading patch net.minecraft.server.dedicated.PropertyManager$Property.binpatch
@@ -1921,9 +1891,9 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.server.dedicated.PropertyManager.binpatch
     Checksum: 3e47a56b Exists: true
   Reading patch net.minecraft.server.dedicated.ServerHangWatchdog$1.binpatch
-    Checksum: 70abbc1d Exists: true
+    Checksum: 7a51bc3b Exists: true
   Reading patch net.minecraft.server.dedicated.ServerHangWatchdog.binpatch
-    Checksum: 31406e0d Exists: true
+    Checksum: bb93aaed Exists: true
   Reading patch net.minecraft.server.gui.MinecraftServerGui$1.binpatch
     Checksum: cad2b979 Exists: true
   Reading patch net.minecraft.server.gui.MinecraftServerGui$2.binpatch
@@ -1931,7 +1901,7 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.server.gui.MinecraftServerGui.binpatch
     Checksum: ab785ef4 Exists: true
   Reading patch net.minecraft.server.integrated.IntegratedServer.binpatch
-    Checksum: 8b3adc48 Exists: true
+    Checksum: 466da873 Exists: true
   Reading patch net.minecraft.server.management.PlayerInteractionManager.binpatch
     Checksum: 630b03da Exists: true
   Reading patch net.minecraft.server.management.PlayerList$1.binpatch
@@ -1972,6 +1942,8 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 73a09c90 Exists: true
   Reading patch net.minecraft.tags.ITagCollectionSupplier$1.binpatch
     Checksum: 80ed9b7f Exists: true
+  Reading patch net.minecraft.tags.ITagCollectionSupplier$2.binpatch
+    Checksum: 0 Exists: false
   Reading patch net.minecraft.tags.ITagCollectionSupplier.binpatch
     Checksum: 1417b4a7 Exists: true
   Reading patch net.minecraft.tags.ItemTags.binpatch
@@ -2052,6 +2024,10 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 92b5fd9e Exists: true
   Reading patch net.minecraft.util.RegistryKey.binpatch
     Checksum: d6f43da2 Exists: true
+  Reading patch net.minecraft.util.ResourceLocation$Serializer.binpatch
+    Checksum: 62e93fde Exists: true
+  Reading patch net.minecraft.util.ResourceLocation.binpatch
+    Checksum: 54c01ee4 Exists: true
   Reading patch net.minecraft.util.ScreenShotHelper.binpatch
     Checksum: ec01c3b2 Exists: true
   Reading patch net.minecraft.util.Session$Type.binpatch
@@ -2059,7 +2035,7 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.util.Session.binpatch
     Checksum: 984bb5e1 Exists: true
   Reading patch net.minecraft.util.SharedConstants.binpatch
-    Checksum: 89baebcd Exists: true
+    Checksum: 859f534 Exists: true
   Reading patch net.minecraft.util.SoundEvent.binpatch
     Checksum: a5cf0ba0 Exists: true
   Reading patch net.minecraft.util.SoundEvents.binpatch
@@ -2104,10 +2080,28 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 6757ee23 Exists: true
   Reading patch net.minecraft.util.registry.Bootstrap.binpatch
     Checksum: 44ee03df Exists: true
+  Reading patch net.minecraft.util.registry.DynamicRegistries$CodecHolder.binpatch
+    Checksum: 17aef21 Exists: true
+  Reading patch net.minecraft.util.registry.DynamicRegistries$Impl.binpatch
+    Checksum: 275f345f Exists: true
+  Reading patch net.minecraft.util.registry.DynamicRegistries.binpatch
+    Checksum: 6e496e5d Exists: true
   Reading patch net.minecraft.util.registry.Registry.binpatch
     Checksum: e073f5c8 Exists: true
   Reading patch net.minecraft.util.registry.WorldGenRegistries.binpatch
     Checksum: b4ffd4d6 Exists: true
+  Reading patch net.minecraft.util.registry.WorldSettingsImport$1.binpatch
+    Checksum: cb3b3f59 Exists: true
+  Reading patch net.minecraft.util.registry.WorldSettingsImport$IResourceAccess$1.binpatch
+    Checksum: b4ff5a24 Exists: true
+  Reading patch net.minecraft.util.registry.WorldSettingsImport$IResourceAccess$RegistryAccess.binpatch
+    Checksum: 3d22c4a6 Exists: true
+  Reading patch net.minecraft.util.registry.WorldSettingsImport$IResourceAccess.binpatch
+    Checksum: c8480495 Exists: true
+  Reading patch net.minecraft.util.registry.WorldSettingsImport$ResultMap.binpatch
+    Checksum: 7c06362 Exists: true
+  Reading patch net.minecraft.util.registry.WorldSettingsImport.binpatch
+    Checksum: 53a0820a Exists: true
   Reading patch net.minecraft.util.text.LanguageMap$1.binpatch
     Checksum: 26228efd Exists: true
   Reading patch net.minecraft.util.text.LanguageMap.binpatch
@@ -2143,7 +2137,7 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.world.World$1.binpatch
     Checksum: 916f77c Exists: true
   Reading patch net.minecraft.world.World.binpatch
-    Checksum: 7d4f8b6d Exists: true
+    Checksum: fd31895c Exists: true
   Reading patch net.minecraft.world.WorldSettings.binpatch
     Checksum: 498f0d6b Exists: true
   Reading patch net.minecraft.world.biome.Biome$1.binpatch
@@ -2166,8 +2160,38 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: c07f2c25 Exists: true
   Reading patch net.minecraft.world.biome.Biome.binpatch
     Checksum: 4f12f6af Exists: true
+  Reading patch net.minecraft.world.biome.BiomeAmbience$1.binpatch
+    Checksum: baed379b Exists: true
+  Reading patch net.minecraft.world.biome.BiomeAmbience$Builder.binpatch
+    Checksum: b77fd29d Exists: true
+  Reading patch net.minecraft.world.biome.BiomeAmbience$GrassColorModifier$1.binpatch
+    Checksum: f870371 Exists: true
+  Reading patch net.minecraft.world.biome.BiomeAmbience$GrassColorModifier$2.binpatch
+    Checksum: 7b5d08e5 Exists: true
+  Reading patch net.minecraft.world.biome.BiomeAmbience$GrassColorModifier$3.binpatch
+    Checksum: c38f5a86 Exists: true
+  Reading patch net.minecraft.world.biome.BiomeAmbience$GrassColorModifier.binpatch
+    Checksum: 7cf7aeaf Exists: true
+  Reading patch net.minecraft.world.biome.BiomeAmbience.binpatch
+    Checksum: 6fcac471 Exists: true
+  Reading patch net.minecraft.world.biome.BiomeGenerationSettings$1.binpatch
+    Checksum: c6fe4041 Exists: true
+  Reading patch net.minecraft.world.biome.BiomeGenerationSettings$Builder.binpatch
+    Checksum: 752151c4 Exists: true
+  Reading patch net.minecraft.world.biome.BiomeGenerationSettings.binpatch
+    Checksum: 8bb3e048 Exists: true
   Reading patch net.minecraft.world.biome.BiomeRegistry.binpatch
     Checksum: 1267fc59 Exists: true
+  Reading patch net.minecraft.world.biome.MobSpawnInfo$1.binpatch
+    Checksum: 314c36ff Exists: true
+  Reading patch net.minecraft.world.biome.MobSpawnInfo$Builder.binpatch
+    Checksum: 4e26694b Exists: true
+  Reading patch net.minecraft.world.biome.MobSpawnInfo$SpawnCosts.binpatch
+    Checksum: 2544c6bd Exists: true
+  Reading patch net.minecraft.world.biome.MobSpawnInfo$Spawners.binpatch
+    Checksum: b147ae6a Exists: true
+  Reading patch net.minecraft.world.biome.MobSpawnInfo.binpatch
+    Checksum: 8570a9f8 Exists: true
   Reading patch net.minecraft.world.border.WorldBorder$1.binpatch
     Checksum: 590d3749 Exists: true
   Reading patch net.minecraft.world.border.WorldBorder$IBorderInfo.binpatch
@@ -2204,10 +2228,12 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 824ada73 Exists: true
   Reading patch net.minecraft.world.gen.DebugChunkGenerator.binpatch
     Checksum: 9d96db4e Exists: true
+  Reading patch net.minecraft.world.gen.FlatGenerationSettings.binpatch
+    Checksum: 37ddae82 Exists: true
   Reading patch net.minecraft.world.gen.NoiseChunkGenerator.binpatch
     Checksum: a4fa9ad3 Exists: true
   Reading patch net.minecraft.world.gen.WorldGenRegion.binpatch
-    Checksum: ae1346b2 Exists: true
+    Checksum: 9f99ea04 Exists: true
   Reading patch net.minecraft.world.gen.blockplacer.BlockPlacerType.binpatch
     Checksum: 88dabc70 Exists: true
   Reading patch net.minecraft.world.gen.blockstateprovider.BlockStateProviderType.binpatch
@@ -2240,6 +2266,10 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 6df1a5c0 Exists: true
   Reading patch net.minecraft.world.gen.feature.jigsaw.SingleJigsawPiece.binpatch
     Checksum: c7974cc0 Exists: true
+  Reading patch net.minecraft.world.gen.feature.structure.FortressStructure$Start.binpatch
+    Checksum: 99e0160 Exists: true
+  Reading patch net.minecraft.world.gen.feature.structure.FortressStructure.binpatch
+    Checksum: 12baed44 Exists: true
   Reading patch net.minecraft.world.gen.feature.structure.MineshaftPieces$1.binpatch
     Checksum: 65a7354b Exists: true
   Reading patch net.minecraft.world.gen.feature.structure.MineshaftPieces$Corridor.binpatch
@@ -2254,6 +2284,12 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 2dba7120 Exists: true
   Reading patch net.minecraft.world.gen.feature.structure.MineshaftPieces.binpatch
     Checksum: cedd0365 Exists: true
+  Reading patch net.minecraft.world.gen.feature.structure.OceanMonumentStructure$Start.binpatch
+    Checksum: a0d963f5 Exists: true
+  Reading patch net.minecraft.world.gen.feature.structure.OceanMonumentStructure.binpatch
+    Checksum: 9c6c3bf3 Exists: true
+  Reading patch net.minecraft.world.gen.feature.structure.PillagerOutpostStructure.binpatch
+    Checksum: 6599be9f Exists: true
   Reading patch net.minecraft.world.gen.feature.structure.Structure$IStartFactory.binpatch
     Checksum: 1924e634 Exists: true
   Reading patch net.minecraft.world.gen.feature.structure.Structure.binpatch
@@ -2268,6 +2304,10 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: c0685d9d Exists: true
   Reading patch net.minecraft.world.gen.feature.structure.StructureStart.binpatch
     Checksum: 1409ea25 Exists: true
+  Reading patch net.minecraft.world.gen.feature.structure.SwampHutStructure$Start.binpatch
+    Checksum: df5211fa Exists: true
+  Reading patch net.minecraft.world.gen.feature.structure.SwampHutStructure.binpatch
+    Checksum: 43cf6332 Exists: true
   Reading patch net.minecraft.world.gen.feature.template.StructureProcessor.binpatch
     Checksum: 5ef76123 Exists: true
   Reading patch net.minecraft.world.gen.feature.template.Template$1.binpatch
@@ -2284,6 +2324,8 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: f841c7b4 Exists: true
   Reading patch net.minecraft.world.gen.foliageplacer.FoliagePlacerType.binpatch
     Checksum: c5271048 Exists: true
+  Reading patch net.minecraft.world.gen.layer.BiomeLayer.binpatch
+    Checksum: c62e30fa Exists: true
   Reading patch net.minecraft.world.gen.placement.Placement.binpatch
     Checksum: d6425f5b Exists: true
   Reading patch net.minecraft.world.gen.surfacebuilders.SurfaceBuilder.binpatch
@@ -2335,7 +2377,7 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
   Reading patch net.minecraft.world.server.ChunkManager.binpatch
     Checksum: 687b449e Exists: true
   Reading patch net.minecraft.world.server.ServerWorld.binpatch
-    Checksum: 16c052e4 Exists: true
+    Checksum: e974c9d4 Exists: true
   Reading patch net.minecraft.world.spawner.AbstractSpawner.binpatch
     Checksum: c3c159d8 Exists: true
   Reading patch net.minecraft.world.spawner.WorldEntitySpawner$1.binpatch
@@ -2368,11 +2410,11 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 531d664c Exists: true
   Reading patch net.minecraft.world.storage.WorldSavedData.binpatch
     Checksum: f3fb0286 Exists: true
-Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\joined\1.16.3-20200910.110331\joined-1.16.3-20200910.110331-srg.jar
+Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\joined\1.16.4-20201102.104115\joined-1.16.4-20201102.104115-srg.jar
+  Patching net/minecraft/block/VineBlock$1 1/1
   Patching net/minecraft/block/WebBlock 1/1
   Patching net/minecraft/block/VineBlock 1/1
   Patching net/minecraft/block/TurtleEggBlock 1/1
-  Patching net/minecraft/world/gen/feature/structure/Structure$IStartFactory 1/1
   Patching net/minecraft/block/TrapDoorBlock 1/1
   Patching net/minecraft/block/TNTBlock 1/1
   Patching net/minecraft/block/TallSeaGrassBlock 1/1
@@ -2384,9 +2426,8 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/block/SpreadableSnowyDirtBlock 1/1
   Patching net/minecraft/block/SpongeBlock 1/1
   Patching net/minecraft/block/SpawnerBlock 1/1
-  Patching net/minecraft/particles/BlockParticleData$1 1/1
   Patching net/minecraft/block/SoundType 1/1
-  Patching net/minecraft/client/renderer/FogRenderer$FogType 1/1
+  Patching net/minecraft/particles/BlockParticleData$1 1/1
   Patching net/minecraft/block/ShulkerBoxBlock 1/1
   Patching net/minecraft/block/SeaGrassBlock 1/1
   Patching net/minecraft/block/ScaffoldingBlock 1/1
@@ -2407,8 +2448,8 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/block/LadderBlock 1/1
   Patching net/minecraft/block/AbstractTopPlantBlock 1/1
   Patching net/minecraft/block/AbstractBodyPlantBlock 1/1
-  Patching net/minecraft/world/server/ChunkHolder$IChunkLoadingError$1 1/1
   Patching net/minecraft/block/FrostedIceBlock 1/1
+  Patching net/minecraft/world/server/ChunkHolder$IChunkLoadingError$1 1/1
   Patching net/minecraft/block/FlowerPotBlock 1/1
   Patching net/minecraft/block/FireBlock 1/1
   Patching net/minecraft/block/FarmlandBlock 1/1
@@ -2435,11 +2476,18 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/block/BeetrootBlock 1/1
   Patching net/minecraft/block/AbstractRailBlock 1/1
   Patching net/minecraft/block/AbstractFireBlock 1/1
+  Patching net/minecraft/block/BannerBlock 1/1
   Patching net/minecraft/block/BambooSaplingBlock 1/1
   Patching net/minecraft/block/BambooBlock 1/1
   Patching net/minecraft/block/AttachedStemBlock 1/1
   Patching net/minecraft/block/AbstractBannerBlock 1/1
+  Patching net/minecraft/world/biome/MobSpawnInfo 1/1
+  Patching net/minecraft/world/biome/BiomeAmbience 1/1
+  Patching net/minecraft/world/biome/BiomeGenerationSettings 1/1
   Patching net/minecraft/world/biome/Biome 1/1
+  Patching net/minecraft/entity/projectile/FishingBobberEntity$WaterType 1/1
+  Patching net/minecraft/item/ItemStack$TooltipDisplayFlags 1/1
+  Patching net/minecraft/entity/projectile/FishingBobberEntity$State 1/1
   Patching net/minecraft/world/spawner/WorldEntitySpawner 1/1
   Patching net/minecraft/world/WorldSettings 1/1
   Patching net/minecraft/world/IWorldReader 1/1
@@ -2447,22 +2495,22 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/world/ExplosionContext 1/1
   Patching net/minecraft/world/Explosion 1/1
   Patching net/minecraft/util/datafix/codec/DatapackCodec 1/1
-  Patching net/minecraft/block/LadderBlock$1 1/1
   Patching net/minecraft/util/math/RayTraceContext 1/1
-  Patching net/minecraft/entity/passive/SheepEntity$2 1/1
-  Patching net/minecraft/entity/passive/SheepEntity$1 1/1
   Patching net/minecraft/world/IBlockReader 1/1
+  Patching net/minecraft/entity/projectile/FishingBobberEntity$1 1/1
   Patching net/minecraft/world/spawner/AbstractSpawner 1/1
+  Patching net/minecraft/client/gui/screen/PackScreen$PackDirectoryWatcher 1/1
   Patching net/minecraft/item/MerchantOffer 1/1
-  Patching net/minecraft/entity/monster/ZombieEntity$GroupData 1/1
-  Patching net/minecraft/entity/monster/ZombieEntity$AttackTurtleEggGoal 1/1
   Patching net/minecraft/enchantment/FrostWalkerEnchantment 1/1
   Patching net/minecraft/enchantment/Enchantments 1/1
   Patching net/minecraft/enchantment/EnchantmentHelper 1/1
   Patching net/minecraft/enchantment/EnchantmentType 1/1
   Patching net/minecraft/enchantment/Enchantment 1/1
+  Patching net/minecraft/client/network/ServerPinger$2 1/1
+  Patching net/minecraft/client/network/ServerPinger$1 1/1
   Patching net/minecraft/item/crafting/SmithingRecipe 1/1
   Patching net/minecraft/item/crafting/TippedArrowRecipe 1/1
+  Patching net/minecraft/client/gui/overlay/DebugOverlayGui$1 1/1
   Patching net/minecraft/item/crafting/SuspiciousStewRecipe 1/1
   Patching net/minecraft/item/crafting/StonecuttingRecipe 1/1
   Patching net/minecraft/item/crafting/SmokingRecipe 1/1
@@ -2495,8 +2543,8 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/dispenser/IDispenseItemBehavior$8$1 1/1
   Patching net/minecraft/item/WallOrFloorItem 1/1
   Patching net/minecraft/item/ShovelItem 1/1
-  Patching net/minecraft/advancements/AdvancementRewards$Builder 1/1
   Patching net/minecraft/item/ShearsItem 1/1
+  Patching net/minecraft/advancements/AdvancementRewards$Builder 1/1
   Patching net/minecraft/item/MusicDiscItem 1/1
   Patching net/minecraft/item/Rarity 1/1
   Patching net/minecraft/item/PickaxeItem 1/1
@@ -2504,8 +2552,6 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/item/MilkBucketItem 1/1
   Patching net/minecraft/item/FilledMapItem 1/1
   Patching net/minecraft/item/Items 1/1
-  Patching net/minecraft/world/Explosion$Mode 1/1
-  Patching net/minecraft/village/VillageSiege$State 1/1
   Patching net/minecraft/item/ItemStack 1/1
   Patching net/minecraft/item/Item 1/1
   Patching net/minecraft/item/HorseArmorItem 1/1
@@ -2519,31 +2565,26 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/item/BucketItem 1/1
   Patching net/minecraft/item/BowItem 1/1
   Patching net/minecraft/item/BoneMealItem 1/1
-  Patching net/minecraft/client/gui/widget/list/AbstractList$SimpleArrayList 1/1
   Patching net/minecraft/item/BlockItem 1/1
-  Patching net/minecraft/client/gui/widget/list/AbstractList$Ordering 1/1
-  Patching net/minecraft/client/gui/widget/list/AbstractList$AbstractListEntry 1/1
+  Patching net/minecraft/client/world/ClientWorld$ClientWorldInfo 1/1
   Patching net/minecraft/item/AxeItem 1/1
   Patching net/minecraft/item/ArrowItem 1/1
-  Patching net/minecraft/entity/monster/SpiderEntity$TargetGoal 1/1
-  Patching net/minecraft/entity/monster/SpiderEntity$GroupData 1/1
-  Patching net/minecraft/entity/monster/SpiderEntity$AttackGoal 1/1
+  Patching net/minecraft/loot/LootPool$Serializer 1/1
+  Patching net/minecraft/loot/LootPool$Builder 1/1
   Patching net/minecraft/item/ArmorItem 1/1
   Patching net/minecraft/inventory/container/Slot 1/1
   Patching net/minecraft/inventory/container/CraftingResultSlot 1/1
   Patching net/minecraft/inventory/container/RecipeBookContainer 1/1
   Patching net/minecraft/inventory/container/ContainerType 1/1
   Patching net/minecraft/inventory/container/PlayerContainer 1/1
-  Patching net/minecraft/client/network/ServerPinger$2 1/1
   Patching net/minecraft/inventory/container/GrindstoneContainer 1/1
-  Patching net/minecraft/client/network/ServerPinger$1 1/1
   Patching net/minecraft/inventory/container/FurnaceResultSlot 1/1
-  Patching net/minecraft/client/gui/widget/list/AbstractList$1 1/1
+  Patching net/minecraft/client/world/ClientWorld$1 1/1
   Patching net/minecraft/inventory/container/EnchantmentContainer 1/1
+  Patching net/minecraft/loot/LootPool$1 1/1
   Patching net/minecraft/inventory/container/BrewingStandContainer 1/1
   Patching net/minecraft/inventory/container/BeaconContainer 1/1
   Patching net/minecraft/inventory/container/RepairContainer 1/1
-  Patching net/minecraft/client/renderer/model/ItemTransformVec3f$Deserializer 1/1
   Patching net/minecraft/inventory/container/Container 1/1
   Patching net/minecraft/item/Food 1/1
   Patching net/minecraft/entity/item/minecart/SpawnerMinecartEntity 1/1
@@ -2568,6 +2609,8 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/entity/projectile/FireworkRocketEntity 1/1
   Patching net/minecraft/entity/projectile/DamagingProjectileEntity 1/1
   Patching net/minecraft/entity/projectile/AbstractArrowEntity 1/1
+  Patching net/minecraft/client/particle/ParticleManager$IParticleMetaFactory 1/1
+  Patching net/minecraft/client/particle/ParticleManager$AnimatedSpriteImpl 1/1
   Patching net/minecraft/entity/player/PlayerEntity 1/1
   Patching net/minecraft/entity/player/PlayerInventory 1/1
   Patching net/minecraft/entity/merchant/villager/VillagerProfession 1/1
@@ -2575,74 +2618,70 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/entity/merchant/villager/AbstractVillagerEntity 1/1
   Patching net/minecraft/entity/monster/piglin/PiglinTasks 1/1
   Patching net/minecraft/entity/monster/piglin/PiglinEntity 1/1
-  Patching net/minecraft/entity/monster/HoglinEntity 1/1
   Patching net/minecraft/entity/monster/ZombieEntity 1/1
+  Patching net/minecraft/client/particle/ParticleManager$1 1/1
   Patching net/minecraft/entity/monster/SpiderEntity 1/1
   Patching net/minecraft/entity/monster/SlimeEntity 1/1
   Patching net/minecraft/entity/monster/SilverfishEntity 1/1
   Patching net/minecraft/entity/monster/ShulkerEntity 1/1
   Patching net/minecraft/entity/monster/RavagerEntity 1/1
   Patching net/minecraft/entity/monster/PhantomEntity 1/1
-  Patching net/minecraft/client/gui/MapItemRenderer$Instance 1/1
   Patching net/minecraft/entity/monster/MagmaCubeEntity 1/1
   Patching net/minecraft/entity/monster/IllusionerEntity 1/1
   Patching net/minecraft/entity/monster/EvokerEntity 1/1
   Patching net/minecraft/entity/monster/EndermanEntity 1/1
-  Patching net/minecraft/entity/monster/IllusionerEntity$MirrorSpellGoal 1/1
-  Patching net/minecraft/entity/monster/IllusionerEntity$BlindnessSpellGoal 1/1
+  Patching net/minecraft/inventory/container/ContainerType$IFactory 1/1
   Patching net/minecraft/entity/monster/CreeperEntity 1/1
   Patching net/minecraft/entity/monster/AbstractSkeletonEntity 1/1
   Patching net/minecraft/entity/item/ItemEntity 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$17 1/1
   Patching net/minecraft/entity/item/FallingBlockEntity 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$16 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$15 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$14 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$17 1/1
   Patching net/minecraft/entity/item/PaintingType 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$13 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$16 1/1
   Patching net/minecraft/entity/item/LeashKnotEntity 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$12 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$15 1/1
   Patching net/minecraft/entity/item/ItemFrameEntity 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$11 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$14 1/1
   Patching net/minecraft/entity/item/HangingEntity 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$10 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$13 1/1
   Patching net/minecraft/entity/item/ArmorStandEntity 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$1 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$12 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$11 1/1
   Patching net/minecraft/entity/boss/WitherEntity 1/1
-  Patching net/minecraft/client/gui/MapItemRenderer$1 1/1
-  Patching net/minecraft/entity/monster/IllusionerEntity$1 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$10 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$1 1/1
   Patching net/minecraft/entity/boss/dragon/EnderDragonEntity 1/1
-  Patching net/minecraft/loot/LootContext$EntityTarget$Serializer 1/1
-  Patching net/minecraft/entity/passive/horse/LlamaEntity 1/1
   Patching net/minecraft/entity/passive/horse/HorseEntity 1/1
-  Patching net/minecraft/client/gui/widget/list/KeyBindingList$KeyEntry$2 1/1
-  Patching net/minecraft/client/gui/widget/list/KeyBindingList$KeyEntry$1 1/1
   Patching net/minecraft/entity/passive/horse/AbstractHorseEntity 1/1
   Patching net/minecraft/entity/passive/WolfEntity 1/1
-  Patching net/minecraft/client/gui/screen/LanguageScreen$List$LanguageEntry 1/1
-  Patching net/minecraft/entity/passive/TurtleEntity 1/1
   Patching net/minecraft/entity/passive/SnowGolemEntity 1/1
   Patching net/minecraft/entity/passive/SheepEntity 1/1
   Patching net/minecraft/entity/passive/RabbitEntity 1/1
   Patching net/minecraft/entity/passive/ParrotEntity 1/1
-  Patching net/minecraft/entity/passive/PandaEntity 1/1
   Patching net/minecraft/entity/passive/OcelotEntity 1/1
   Patching net/minecraft/entity/passive/MooshroomEntity 1/1
   Patching net/minecraft/entity/passive/IronGolemEntity 1/1
   Patching net/minecraft/entity/passive/FoxEntity 1/1
-  Patching net/minecraft/world/lighting/LevelBasedGraph$2 1/1
-  Patching net/minecraft/world/lighting/LevelBasedGraph$1 1/1
-  Patching net/minecraft/inventory/container/PlayerContainer$2 1/1
-  Patching net/minecraft/inventory/container/PlayerContainer$1 1/1
   Patching net/minecraft/entity/passive/CatEntity 1/1
   Patching net/minecraft/entity/passive/BeeEntity 1/1
+  Patching net/minecraft/inventory/container/GrindstoneContainer$4 1/1
+  Patching net/minecraft/inventory/container/GrindstoneContainer$3 1/1
+  Patching net/minecraft/inventory/container/GrindstoneContainer$2 1/1
+  Patching net/minecraft/inventory/container/GrindstoneContainer$1 1/1
   Patching net/minecraft/entity/passive/AnimalEntity 1/1
+  Patching net/minecraft/client/renderer/model/WeightedBakedModel$WeightedModel 1/1
+  Patching net/minecraft/client/renderer/model/WeightedBakedModel$Builder 1/1
   Patching net/minecraft/village/PointOfInterestType 1/1
   Patching net/minecraft/village/VillageSiege 1/1
+  Patching net/minecraft/world/spawner/WorldEntitySpawner$EntityDensityManager 1/1
+  Patching net/minecraft/world/spawner/WorldEntitySpawner$IDensityCheck 1/1
+  Patching net/minecraft/world/spawner/WorldEntitySpawner$IInitialDensityAdder 1/1
+  Patching net/minecraft/world/spawner/WorldEntitySpawner$IOnSpawnDensityAdder 1/1
   Patching net/minecraft/entity/ai/brain/sensor/SensorType 1/1
   Patching net/minecraft/nbt/NBTSizeTracker$1 1/1
   Patching net/minecraft/pathfinding/ClimberPathNavigator 1/1
   Patching net/minecraft/entity/ai/brain/memory/MemoryModuleType 1/1
+  Patching net/minecraft/world/spawner/WorldEntitySpawner$1 1/1
   Patching net/minecraft/entity/ai/goal/RunAroundLikeCrazyGoal 1/1
   Patching net/minecraft/entity/ai/goal/BreakBlockGoal 1/1
   Patching net/minecraft/entity/ai/goal/RangedBowAttackGoal 1/1
@@ -2652,22 +2691,23 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/util/text/Style$Serializer 1/1
   Patching net/minecraft/entity/ai/goal/EatGrassGoal 1/1
   Patching net/minecraft/entity/ai/goal/BreakDoorGoal 1/1
+  Patching net/minecraft/client/Minecraft$PackManager 1/1
+  Patching net/minecraft/client/Minecraft$WorldSelectionType 1/1
   Patching net/minecraft/world/server/ChunkManager$2 1/1
   Patching net/minecraft/world/server/ChunkManager$1 1/1
   Patching net/minecraft/util/text/Style$1 1/1
-  Patching net/minecraft/block/AbstractBlock$IPositionPredicate 1/1
-  Patching net/minecraft/block/AbstractBlock$IExtendedPositionPredicate 1/1
-  Patching net/minecraft/block/AbstractBlock$Properties 1/1
-  Patching net/minecraft/block/AbstractBlock$OffsetType 1/1
-  Patching net/minecraft/block/AbstractBlock$AbstractBlockState 1/1
+  Patching net/minecraft/client/Minecraft$1 1/1
   Patching net/minecraft/entity/ai/brain/task/FarmTask 1/1
   Patching net/minecraft/entity/ai/attributes/GlobalEntityTypeAttributes 1/1
-  Patching net/minecraft/block/AbstractBlock$1 1/1
   Patching net/minecraft/entity/ai/attributes/Attribute 1/1
+  Patching net/minecraft/tileentity/PistonTileEntity$1 1/1
   Patching net/minecraft/entity/EntitySpawnPlacementRegistry 1/1
-  Patching net/minecraft/server/management/PlayerList$1 1/1
   Patching net/minecraft/entity/IShearable 1/1
-  Patching net/minecraft/tileentity/BeaconTileEntity$BeamSegment 1/1
+  Patching net/minecraft/client/gui/screen/PackLoadingManager$DisabledPack 1/1
+  Patching net/minecraft/client/gui/screen/PackLoadingManager$EnabledPack 1/1
+  Patching net/minecraft/client/gui/screen/PackLoadingManager$AbstractPack 1/1
+  Patching net/minecraft/client/gui/screen/PackLoadingManager$IPack 1/1
+  Patching net/minecraft/tileentity/BannerPattern$Builder 1/1
   Patching net/minecraft/entity/EntityClassification 1/1
   Patching net/minecraft/entity/MobEntity 1/1
   Patching net/minecraft/entity/LivingEntity 1/1
@@ -2680,26 +2720,19 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/potion/EffectInstance 1/1
   Patching net/minecraft/potion/EffectType 1/1
   Patching net/minecraft/potion/Effect 1/1
-  Patching net/minecraft/tileentity/BeaconTileEntity$1 1/1
-  Patching net/minecraft/world/chunk/ChunkStatus$ISelectiveWorker 1/1
-  Patching net/minecraft/world/chunk/ChunkStatus$ILoadingWorker 1/1
-  Patching net/minecraft/world/chunk/ChunkStatus$IGenerationWorker 1/1
-  Patching net/minecraft/world/chunk/ChunkStatus$Type 1/1
-  Patching net/minecraft/tags/TagRegistry$NamedTag 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$7$1 1/1
-  Patching net/minecraft/server/Main$1 1/1
-  Patching net/minecraft/tags/TagRegistry$1 1/1
-  Patching net/minecraft/loot/conditions/RandomChanceWithLooting$Serializer 1/1
-  Patching net/minecraft/fluid/WaterFluid$Source 1/1
-  Patching net/minecraft/fluid/WaterFluid$Flowing 1/1
-  Patching net/minecraft/resources/IResourceManager$Instance 1/1
-  Patching net/minecraft/loot/conditions/RandomChanceWithLooting$1 1/1
   Patching net/minecraft/client/util/SearchTreeManager$Key 1/1
-  Patching net/minecraft/entity/item/minecart/CommandBlockMinecartEntity$MinecartCommandLogic 1/1
+  Patching net/minecraft/potion/PotionBrewing$MixPredicate 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$7$1 1/1
+  Patching net/minecraft/client/gui/advancements/AdvancementTabType$1 1/1
+  Patching net/minecraft/server/Main$1 1/1
+  Patching net/minecraft/entity/passive/CatEntity$TemptGoal 1/1
+  Patching net/minecraft/entity/passive/CatEntity$MorningGiftGoal 1/1
+  Patching net/minecraft/entity/passive/CatEntity$AvoidPlayerGoal 1/1
+  Patching net/minecraft/entity/monster/SilverfishEntity$SummonSilverfishGoal 1/1
+  Patching net/minecraft/entity/monster/SilverfishEntity$HideInStoneGoal 1/1
   Patching net/minecraft/util/Direction$Axis$3 1/1
   Patching net/minecraft/util/Direction$Axis$2 1/1
   Patching net/minecraft/util/Direction$Axis$1 1/1
-  Patching net/minecraft/block/RailState$1 1/1
   Patching net/minecraft/tags/NetworkTagManager 1/1
   Patching net/minecraft/tags/ITagCollectionSupplier 1/1
   Patching net/minecraft/tags/ITagCollection 1/1
@@ -2711,13 +2744,11 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/tags/FluidTags 1/1
   Patching net/minecraft/tags/EntityTypeTags 1/1
   Patching net/minecraft/tags/BlockTags 1/1
-  Patching net/minecraft/fluid/FlowingFluid$1 1/1
   Patching net/minecraft/stats/StatType 1/1
   Patching net/minecraft/util/SoundEvents 1/1
   Patching net/minecraft/util/SoundEvent 1/1
-  Patching net/minecraft/entity/EntitySpawnPlacementRegistry$PlacementType 1/1
-  Patching net/minecraft/entity/EntitySpawnPlacementRegistry$IPlacementPredicate 1/1
-  Patching net/minecraft/entity/EntitySpawnPlacementRegistry$Entry 1/1
+  Patching net/minecraft/network/rcon/ClientThread 1/1
+  Patching net/minecraft/network/rcon/RConConsoleSource 1/1
   Patching net/minecraft/server/management/PlayerList 1/1
   Patching net/minecraft/resources/SimpleReloadableResourceManager 1/1
   Patching net/minecraft/client/resources/JsonReloadListener 1/1
@@ -2728,13 +2759,9 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/resources/ResourcePackInfo 1/1
   Patching net/minecraft/resources/VanillaPack 1/1
   Patching net/minecraft/resources/IResourcePack 1/1
-  Patching net/minecraft/world/biome/Biome$TemperatureModifier 1/1
-  Patching net/minecraft/world/biome/Biome$RainType 1/1
   Patching net/minecraft/network/login/ServerLoginNetHandler 1/1
-  Patching net/minecraft/world/biome/Biome$Climate 1/1
-  Patching net/minecraft/world/biome/Biome$Attributes 1/1
-  Patching net/minecraft/world/biome/Biome$Category 1/1
-  Patching net/minecraft/world/biome/Biome$Builder 1/1
+  Patching net/minecraft/world/raid/Raid$WaveMember 1/1
+  Patching net/minecraft/world/raid/Raid$Status 1/1
   Patching net/minecraft/network/handshake/ServerHandshakeNetHandler 1/1
   Patching net/minecraft/network/play/ServerPlayNetHandler 1/1
   Patching net/minecraft/network/NetworkSystem 1/1
@@ -2744,134 +2771,39 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/entity/player/ServerPlayerEntity 1/1
   Patching net/minecraft/world/server/ServerWorld 1/1
   Patching net/minecraft/world/TrackedEntity 1/1
-  Patching net/minecraft/world/biome/Biome$1 1/1
+  Patching net/minecraft/world/raid/Raid$1 1/1
+  Patching net/minecraft/loot/functions/Smelt$Serializer 1/1
+  Patching net/minecraft/loot/functions/Smelt$1 1/1
   Patching net/minecraft/client/main/Main 1/1
-  Patching net/minecraft/client/renderer/entity/layers/BipedArmorLayer$1 1/1
-  Patching net/minecraft/block/TrapDoorBlock$1 1/1
-  Patching net/minecraft/world/biome/Biome$TemperatureModifier$2 1/1
-  Patching net/minecraft/world/biome/Biome$TemperatureModifier$1 1/1
-  Patching net/minecraft/loot/functions/LootingEnchantBonus$Serializer 1/1
-  Patching net/minecraft/loot/functions/LootingEnchantBonus$Builder 1/1
-  Patching net/minecraft/loot/functions/LootingEnchantBonus$1 1/1
+  Patching net/minecraft/util/math/RayTraceResult$Type 1/1
   Patching net/minecraft/world/server/ChunkHolder$IPlayerProvider 1/1
   Patching net/minecraft/world/server/ChunkHolder$IListener 1/1
   Patching net/minecraft/world/server/ChunkHolder$LocationType 1/1
   Patching net/minecraft/world/server/ChunkHolder$IChunkLoadingError 1/1
-  Patching net/minecraft/world/chunk/Chunk$CreateEntityType 1/1
   Patching net/minecraft/world/server/ChunkHolder$1 1/1
-  Patching net/minecraft/entity/passive/RabbitEntity$RaidFarmGoal 1/1
-  Patching net/minecraft/entity/passive/RabbitEntity$PanicGoal 1/1
-  Patching net/minecraft/entity/passive/RabbitEntity$MoveHelperController 1/1
-  Patching net/minecraft/entity/passive/RabbitEntity$JumpHelperController 1/1
-  Patching net/minecraft/entity/passive/RabbitEntity$RabbitData 1/1
-  Patching net/minecraft/entity/passive/RabbitEntity$AvoidEntityGoal 1/1
-  Patching net/minecraft/entity/passive/RabbitEntity$EvilAttackGoal 1/1
-  Patching net/minecraft/entity/Entity$IMoveCallback 1/1
-  Patching net/minecraft/entity/Entity$1 1/1
-  Patching net/minecraft/client/multiplayer/ServerData$ServerResourceMode 1/1
-  Patching net/minecraft/loot/LootTable$Serializer 1/1
-  Patching net/minecraft/loot/LootTable$Builder 1/1
-  Patching net/minecraft/client/renderer/vertex/VertexFormatElement$Usage$ISetupState 1/1
-  Patching net/minecraft/entity/monster/SlimeEntity$FaceRandomGoal 1/1
-  Patching net/minecraft/entity/monster/SlimeEntity$MoveHelperController 1/1
-  Patching net/minecraft/entity/monster/SlimeEntity$HopGoal 1/1
-  Patching net/minecraft/entity/monster/SlimeEntity$FloatGoal 1/1
-  Patching net/minecraft/entity/monster/SlimeEntity$AttackGoal 1/1
-  Patching net/minecraft/loot/LootTable$1 1/1
-  Patching net/minecraft/block/RailBlock$1 1/1
-  Patching net/minecraft/world/gen/feature/BaseTreeFeatureConfig$Builder 1/1
-  Patching net/minecraft/block/VineBlock$1 1/1
-  Patching net/minecraft/client/ClientBrandRetriever 1/1
-  Patching net/minecraft/enchantment/EnchantmentType$9 1/1
-  Patching net/minecraft/enchantment/EnchantmentType$8 1/1
-  Patching net/minecraft/enchantment/EnchantmentType$7 1/1
-  Patching net/minecraft/enchantment/EnchantmentType$6 1/1
-  Patching net/minecraft/enchantment/EnchantmentType$5 1/1
-  Patching net/minecraft/client/audio/SoundHandler$Loader 1/1
-  Patching net/minecraft/client/audio/SoundHandler$2 1/1
-  Patching net/minecraft/client/audio/SoundHandler$1 1/1
-  Patching net/minecraft/client/renderer/model/ModelBakery$ModelListWrapper 1/1
-  Patching net/minecraft/client/renderer/model/ModelBakery$BlockStateDefinitionException 1/1
-  Patching net/minecraft/entity/projectile/FishingBobberEntity$WaterType 1/1
-  Patching net/minecraft/entity/projectile/FishingBobberEntity$State 1/1
-  Patching net/minecraft/client/audio/SoundHandler$Loader$1 1/1
-  Patching net/minecraft/entity/projectile/FishingBobberEntity$1 1/1
-  Patching net/minecraft/client/gui/screen/PackScreen$PackDirectoryWatcher 1/1
-  Patching net/minecraft/util/registry/Bootstrap$1 1/1
-  Patching net/minecraft/client/gui/overlay/DebugOverlayGui$1 1/1
-  Patching net/minecraft/client/particle/DiggingParticle$Factory 1/1
-  Patching net/minecraft/entity/projectile/AbstractArrowEntity$PickupStatus 1/1
-  Patching net/minecraft/loot/LootPool$Serializer 1/1
-  Patching net/minecraft/loot/LootPool$Builder 1/1
-  Patching net/minecraft/loot/LootPool$1 1/1
-  Patching net/minecraft/client/renderer/model/ItemModelGenerator$SpanFacing 1/1
-  Patching net/minecraft/client/renderer/model/ItemModelGenerator$Span 1/1
-  Patching net/minecraft/client/renderer/model/ItemModelGenerator$1 1/1
-  Patching net/minecraft/inventory/container/ContainerType$IFactory 1/1
-  Patching net/minecraft/inventory/container/GrindstoneContainer$4 1/1
-  Patching net/minecraft/inventory/container/GrindstoneContainer$3 1/1
-  Patching net/minecraft/inventory/container/GrindstoneContainer$2 1/1
-  Patching net/minecraft/inventory/container/GrindstoneContainer$1 1/1
-  Patching net/minecraft/world/spawner/WorldEntitySpawner$EntityDensityManager 1/1
-  Patching net/minecraft/world/spawner/WorldEntitySpawner$IDensityCheck 1/1
-  Patching net/minecraft/world/spawner/WorldEntitySpawner$IInitialDensityAdder 1/1
-  Patching net/minecraft/world/spawner/WorldEntitySpawner$IOnSpawnDensityAdder 1/1
-  Patching net/minecraft/world/spawner/WorldEntitySpawner$1 1/1
-  Patching net/minecraft/client/renderer/texture/TextureAtlasSprite$InterpolationData 1/1
-  Patching net/minecraft/client/renderer/texture/TextureAtlasSprite$Info 1/1
-  Patching net/minecraft/client/renderer/texture/TextureAtlasSprite$1 1/1
-  Patching net/minecraft/client/Minecraft$PackManager 1/1
-  Patching net/minecraft/client/Minecraft$WorldSelectionType 1/1
-  Patching net/minecraft/client/Minecraft$1 1/1
-  Patching net/minecraft/tileentity/PistonTileEntity$1 1/1
-  Patching net/minecraft/client/gui/screen/PackLoadingManager$DisabledPack 1/1
-  Patching net/minecraft/client/gui/screen/PackLoadingManager$EnabledPack 1/1
-  Patching net/minecraft/client/gui/screen/PackLoadingManager$AbstractPack 1/1
-  Patching net/minecraft/client/gui/screen/PackLoadingManager$IPack 1/1
-  Patching net/minecraft/advancements/AdvancementList$IListener 1/1
-  Patching net/minecraft/potion/PotionBrewing$MixPredicate 1/1
-  Patching net/minecraft/client/gui/advancements/AdvancementTabType$1 1/1
-  Patching net/minecraft/entity/monster/SilverfishEntity$SummonSilverfishGoal 1/1
-  Patching net/minecraft/entity/monster/SilverfishEntity$HideInStoneGoal 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$9 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$8 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$7 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$6 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$5 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$4 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$3 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$2 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$19 1/1
-  Patching net/minecraft/network/datasync/DataSerializers$18 1/1
-  Patching net/minecraft/network/NetworkManager$QueuedPacket 1/1
-  Patching net/minecraft/crash/CrashReportCategory$Entry 1/1
-  Patching net/minecraft/network/NetworkManager$2 1/1
-  Patching net/minecraft/network/NetworkManager$1 1/1
-  Patching net/minecraft/item/crafting/SingleItemRecipe$Serializer 1/1
-  Patching net/minecraft/block/AbstractBlock$AbstractBlockState$Cache 1/1
-  Patching net/minecraft/client/renderer/BlockModelRenderer$Orientation 1/1
-  Patching net/minecraft/client/renderer/BlockModelRenderer$Cache 1/1
-  Patching net/minecraft/client/renderer/BlockModelRenderer$VertexTranslations 1/1
-  Patching net/minecraft/client/renderer/BlockModelRenderer$AmbientOcclusionFace 1/1
-  Patching net/minecraft/client/renderer/BlockModelRenderer$NeighborInfo 1/1
-  Patching net/minecraft/client/renderer/BlockModelRenderer$1 1/1
-  Patching net/minecraft/server/MinecraftServer$2 1/1
-  Patching net/minecraft/server/MinecraftServer$1 1/1
-  Patching net/minecraft/loot/functions/Smelt$Serializer 1/1
-  Patching net/minecraft/loot/functions/Smelt$1 1/1
-  Patching net/minecraft/util/math/RayTraceResult$Type 1/1
-  Patching net/minecraft/client/renderer/texture/AtlasTexture$SheetData 1/1
-  Patching net/minecraft/network/handshake/ServerHandshakeNetHandler$1 1/1
+  Patching net/minecraft/world/storage/SaveFormat$LevelSave$2 1/1
+  Patching net/minecraft/world/storage/SaveFormat$LevelSave$1 1/1
   Patching net/minecraft/world/gen/feature/structure/StructureStart$1 1/1
-  Patching net/minecraft/util/Direction$Plane 1/1
-  Patching net/minecraft/util/Direction$AxisDirection 1/1
   Patching net/minecraft/block/ShulkerBoxBlock$1 1/1
-  Patching net/minecraft/util/Direction$Axis 1/1
   Patching net/minecraft/entity/item/ItemFrameEntity$1 1/1
-  Patching net/minecraft/util/Direction$1 1/1
   Patching net/minecraft/world/World$1 1/1
-  Patching net/minecraft/advancements/Advancement$Builder 1/1
-  Patching net/minecraft/advancements/Advancement$1 1/1
+  Patching net/minecraft/entity/passive/BeeEntity$WanderGoal 1/1
+  Patching net/minecraft/entity/passive/BeeEntity$PollinateGoal 1/1
+  Patching net/minecraft/entity/passive/BeeEntity$BeeLookController 1/1
+  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkRender$SortTransparencyTask 1/1
+  Patching net/minecraft/entity/passive/BeeEntity$UpdateBeehiveGoal 1/1
+  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkRender$RebuildTask 1/1
+  Patching net/minecraft/entity/passive/BeeEntity$AngerGoal 1/1
+  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkRender$ChunkRenderTask 1/1
+  Patching net/minecraft/entity/passive/BeeEntity$FindPollinationTargetGoal 1/1
+  Patching net/minecraft/entity/passive/BeeEntity$FindFlowerGoal 1/1
+  Patching net/minecraft/entity/passive/BeeEntity$FindBeehiveGoal 1/1
+  Patching net/minecraft/entity/passive/BeeEntity$EnterBeehiveGoal 1/1
+  Patching net/minecraft/entity/passive/BeeEntity$AttackPlayerGoal 1/1
+  Patching net/minecraft/entity/passive/BeeEntity$StingGoal 1/1
+  Patching net/minecraft/entity/passive/BeeEntity$PassiveGoal 1/1
+  Patching net/minecraft/entity/passive/BeeEntity$1 1/1
+  Patching net/minecraft/client/multiplayer/ClientChunkProvider$ChunkArray 1/1
   Patching net/minecraft/client/renderer/BufferBuilder$State 1/1
   Patching net/minecraft/loot/LootContext$EntityTarget 1/1
   Patching net/minecraft/client/renderer/BufferBuilder$DrawState 1/1
@@ -2882,14 +2814,20 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/entity/monster/ShulkerEntity$DefenseAttackGoal 1/1
   Patching net/minecraft/entity/monster/ShulkerEntity$BodyHelperController 1/1
   Patching net/minecraft/entity/monster/ShulkerEntity$AttackGoal 1/1
+  Patching net/minecraft/client/multiplayer/ClientChunkProvider$1 1/1
   Patching net/minecraft/client/renderer/BufferBuilder$1 1/1
   Patching net/minecraft/loot/LootContext$1 1/1
-  Patching net/minecraft/advancements/criterion/ItemPredicate$Builder 1/1
   Patching net/minecraft/entity/monster/ShulkerEntity$1 1/1
+  Patching net/minecraft/item/ItemGroup$9 1/1
+  Patching net/minecraft/item/ItemGroup$8 1/1
+  Patching net/minecraft/item/ItemGroup$7 1/1
+  Patching net/minecraft/world/gen/feature/structure/SwampHutStructure$Start 1/1
   Patching net/minecraft/entity/item/BoatEntity$Type 1/1
   Patching net/minecraft/entity/item/BoatEntity$Status 1/1
   Patching net/minecraft/block/PoweredRailBlock$1 1/1
+  Patching net/minecraft/command/arguments/ArgumentTypes$Entry 1/1
   Patching net/minecraft/entity/item/BoatEntity$1 1/1
+  Patching net/minecraft/command/arguments/ArgumentTypes$1 1/1
   Patching net/minecraft/client/MainWindow$GlException 1/1
   Patching net/minecraft/entity/monster/EvokerEntity$WololoSpellGoal 1/1
   Patching net/minecraft/entity/monster/EvokerEntity$SummonSpellGoal 1/1
@@ -2898,6 +2836,7 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/client/MainWindow$1 1/1
   Patching net/minecraft/entity/monster/EvokerEntity$1 1/1
   Patching net/minecraft/util/math/shapes/EntitySelectionContext$1 1/1
+  Patching net/minecraft/client/ClientBrandRetriever 1/1
   Patching com/mojang/blaze3d/platform/GlStateManager$Viewport 1/1
   Patching com/mojang/blaze3d/platform/GlStateManager$TextureState 1/1
   Patching com/mojang/blaze3d/platform/GlStateManager$TexGenState 1/1
@@ -2906,6 +2845,7 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching com/mojang/blaze3d/platform/GlStateManager$StencilState 1/1
   Patching com/mojang/blaze3d/platform/GlStateManager$StencilFunc 1/1
   Patching com/mojang/blaze3d/platform/GlStateManager$SourceFactor 1/1
+  Patching com/mojang/blaze3d/platform/GlStateManager$ScissorState 1/1
   Patching com/mojang/blaze3d/platform/GlStateManager$PolygonOffsetState 1/1
   Patching com/mojang/blaze3d/platform/GlStateManager$LogicOp 1/1
   Patching com/mojang/blaze3d/platform/GlStateManager$FogState 1/1
@@ -2928,12 +2868,9 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching com/mojang/blaze3d/platform/GlStateManager$1 1/1
   Patching net/minecraft/block/AbstractRailBlock$1 1/1
   Patching net/minecraft/item/crafting/Ingredient$1 1/1
-  Patching net/minecraft/server/MinecraftServer 1/1
+  Patching net/minecraft/client/renderer/model/SimpleBakedModel$Builder 1/1
+  Patching net/minecraft/world/gen/feature/structure/OceanMonumentStructure$Start 1/1
   Patching net/minecraft/entity/passive/WolfEntity$AvoidEntityGoal 1/1
-  Patching net/minecraft/item/ItemGroup$9 1/1
-  Patching net/minecraft/item/ItemGroup$8 1/1
-  Patching net/minecraft/item/ItemGroup$7 1/1
-  Patching net/minecraft/network/play/ServerPlayNetHandler$1 1/1
   Patching net/minecraft/world/gen/feature/structure/StructurePiece$BlockSelector 1/1
   Patching net/minecraft/inventory/container/BrewingStandContainer$PotionSlot 1/1
   Patching net/minecraft/inventory/container/BrewingStandContainer$IngredientSlot 1/1
@@ -2944,11 +2881,13 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/world/gen/feature/structure/StructurePiece$1 1/1
   Patching net/minecraft/block/StairsBlock$1 1/1
   Patching net/minecraft/entity/item/HangingEntity$1 1/1
-  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkRender$SortTransparencyTask 1/1
-  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkRender$RebuildTask 1/1
-  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkRender$ChunkRenderTask 1/1
+  Patching net/minecraft/client/particle/DiggingParticle$Factory 1/1
+  Patching net/minecraft/client/renderer/entity/LivingRenderer$1 1/1
+  Patching net/minecraft/block/PistonHeadBlock$1 1/1
   Patching net/minecraft/entity/passive/ParrotEntity$1 1/1
   Patching net/minecraft/enchantment/EnchantmentHelper$IEnchantmentVisitor 1/1
+  Patching net/minecraft/util/registry/Bootstrap$1 1/1
+  Patching net/minecraft/client/renderer/model/VariantList$Deserializer 1/1
   Patching net/minecraft/world/gen/feature/structure/MineshaftPieces$Stairs 1/1
   Patching net/minecraft/world/gen/feature/structure/MineshaftPieces$Room 1/1
   Patching net/minecraft/world/gen/feature/structure/MineshaftPieces$Piece 1/1
@@ -2958,63 +2897,36 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/world/gen/feature/structure/MineshaftPieces$1 1/1
   Patching net/minecraft/item/Food$1 1/1
   Patching net/minecraft/potion/Effects$1 1/1
-  Patching net/minecraft/network/play/server/SCommandListPacket$Entry 1/1
-  Patching net/minecraft/world/gen/feature/template/Template$EntityInfo 1/1
-  Patching net/minecraft/world/gen/feature/template/Template$BlockInfo 1/1
-  Patching net/minecraft/world/gen/feature/template/Template$BasicPalette 1/1
-  Patching net/minecraft/world/gen/feature/template/Template$Palette 1/1
+  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$CompiledChunk$1 1/1
   Patching net/minecraft/entity/monster/RavagerEntity$Processor 1/1
   Patching net/minecraft/item/crafting/SmithingRecipe$Serializer 1/1
   Patching net/minecraft/entity/monster/RavagerEntity$Navigator 1/1
   Patching net/minecraft/entity/monster/RavagerEntity$AttackGoal 1/1
-  Patching net/minecraft/network/play/server/SCommandListPacket$1 1/1
-  Patching net/minecraft/world/gen/feature/template/Template$1 1/1
   Patching net/minecraft/entity/monster/RavagerEntity$1 1/1
-  Patching net/minecraft/resources/ResourcePackInfo$Priority 1/1
-  Patching net/minecraft/resources/ResourcePackInfo$IFactory 1/1
+  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkRender 1/1
+  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$CompiledChunk 1/1
+  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkTaskResult 1/1
   Patching net/minecraft/item/crafting/CookingRecipeSerializer$IFactory 1/1
-  Patching net/minecraft/client/renderer/WorldRenderer$ShaderException 1/1
-  Patching net/minecraft/client/renderer/WorldRenderer$LocalRenderInformationContainer 1/1
   Patching net/minecraft/client/gui/ScreenManager$IScreenFactory 1/1
-  Patching net/minecraft/server/Main 1/1
-  Patching net/minecraft/client/renderer/BlockRendererDispatcher$1 1/1
-  Patching net/minecraft/client/renderer/WorldRenderer$1 1/1
   Patching net/minecraft/block/NetherPortalBlock$1 1/1
+  Patching net/minecraft/client/renderer/texture/TextureAtlasSprite$InterpolationData 1/1
+  Patching net/minecraft/client/renderer/texture/TextureAtlasSprite$Info 1/1
   Patching net/minecraft/world/gen/feature/jigsaw/JigsawPattern$PlacementBehaviour 1/1
-  Patching net/minecraft/client/gui/screen/inventory/CreativeScreen$CreativeSlot 1/1
-  Patching net/minecraft/client/gui/screen/inventory/CreativeScreen$CreativeContainer 1/1
-  Patching net/minecraft/client/gui/screen/inventory/CreativeScreen$LockedSlot 1/1
-  Patching net/minecraft/client/renderer/texture/Stitcher$ISpriteLoader 1/1
-  Patching net/minecraft/client/renderer/texture/Stitcher$Slot 1/1
-  Patching net/minecraft/client/renderer/texture/Stitcher$Holder 1/1
+  Patching net/minecraft/client/renderer/texture/TextureAtlasSprite$1 1/1
+  Patching net/minecraft/client/renderer/model/MultipartBakedModel$Builder 1/1
   Patching net/minecraft/tileentity/BrewingStandTileEntity$1 1/1
-  Patching net/minecraft/network/NetworkSystem$2 1/1
-  Patching net/minecraft/network/NetworkSystem$1 1/1
-  Patching net/minecraft/server/gui/MinecraftServerGui$2 1/1
-  Patching net/minecraft/server/gui/MinecraftServerGui$1 1/1
+  Patching net/minecraft/network/play/server/SEntityPropertiesPacket$Snapshot 1/1
   Patching net/minecraft/entity/item/ArmorStandEntity$1 1/1
-  Patching net/minecraft/entity/passive/PandaEntity$ChildPlayGoal 1/1
-  Patching net/minecraft/entity/passive/PandaEntity$SitGoal 1/1
-  Patching net/minecraft/entity/passive/PandaEntity$RollGoal 1/1
-  Patching net/minecraft/entity/passive/PandaEntity$PanicGoal 1/1
-  Patching net/minecraft/entity/passive/PandaEntity$MoveHelperController 1/1
-  Patching net/minecraft/entity/passive/PandaEntity$WatchGoal 1/1
-  Patching net/minecraft/entity/passive/PandaEntity$LieBackGoal 1/1
-  Patching net/minecraft/entity/passive/PandaEntity$RevengeGoal 1/1
-  Patching net/minecraft/entity/passive/PandaEntity$MateGoal 1/1
-  Patching net/minecraft/entity/passive/PandaEntity$AvoidGoal 1/1
-  Patching net/minecraft/entity/passive/PandaEntity$AttackGoal 1/1
-  Patching net/minecraft/entity/passive/PandaEntity$Gene 1/1
-  Patching net/minecraft/util/text/LanguageMap$1 1/1
-  Patching net/minecraft/data/TagsProvider$Builder 1/1
+  Patching net/minecraft/world/biome/BiomeAmbience$GrassColorModifier$3 1/1
+  Patching net/minecraft/world/biome/BiomeAmbience$GrassColorModifier$2 1/1
+  Patching net/minecraft/world/biome/BiomeAmbience$GrassColorModifier$1 1/1
+  Patching net/minecraft/block/PistonBlock$1 1/1
   Patching net/minecraft/client/gui/screen/ServerSelectionList$NormalEntry 1/1
   Patching net/minecraft/client/gui/screen/ServerSelectionList$LanDetectedEntry 1/1
   Patching net/minecraft/client/gui/screen/ServerSelectionList$LanScanEntry 1/1
   Patching net/minecraft/client/gui/screen/ServerSelectionList$Entry 1/1
   Patching net/minecraft/client/renderer/vertex/VertexFormatElement$Usage 1/1
   Patching net/minecraft/client/renderer/vertex/VertexFormatElement$Type 1/1
-  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$CompiledChunk$1 1/1
-  Patching net/minecraft/data/TagsProvider$1 1/1
   Patching net/minecraft/enchantment/EnchantmentType$4 1/1
   Patching net/minecraft/enchantment/EnchantmentType$3 1/1
   Patching net/minecraft/enchantment/EnchantmentType$2 1/1
@@ -3024,24 +2936,45 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/enchantment/EnchantmentType$11 1/1
   Patching net/minecraft/enchantment/EnchantmentType$10 1/1
   Patching net/minecraft/enchantment/EnchantmentType$1 1/1
+  Patching net/minecraft/client/renderer/model/ItemCameraTransforms$TransformType 1/1
+  Patching net/minecraft/client/renderer/model/ItemCameraTransforms$Deserializer 1/1
   Patching net/minecraft/world/border/WorldBorder$StationaryBorderInfo 1/1
   Patching net/minecraft/world/border/WorldBorder$Serializer 1/1
   Patching net/minecraft/world/border/WorldBorder$MovingBorderInfo 1/1
+  Patching net/minecraft/advancements/AdvancementList$IListener 1/1
   Patching net/minecraft/world/border/WorldBorder$IBorderInfo 1/1
+  Patching net/minecraft/client/renderer/model/ItemCameraTransforms$1 1/1
   Patching net/minecraft/world/border/WorldBorder$1 1/1
   Patching net/minecraft/block/RedstoneWireBlock$1 1/1
   Patching net/minecraft/entity/player/PlayerEntity$SleepResult 1/1
   Patching net/minecraft/entity/player/PlayerEntity$1 1/1
-  Patching net/minecraft/client/network/play/ClientPlayNetHandler$1 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$9 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$8 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$7 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$6 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$5 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$4 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$3 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$2 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$19 1/1
+  Patching net/minecraft/network/datasync/DataSerializers$18 1/1
+  Patching net/minecraft/network/NetworkManager$QueuedPacket 1/1
+  Patching net/minecraft/world/gen/feature/structure/Structure$IStartFactory 1/1
+  Patching net/minecraft/crash/CrashReportCategory$Entry 1/1
   Patching net/minecraft/entity/item/minecart/AbstractMinecartEntity$Type 1/1
-  Patching net/minecraft/particles/ParticleTypes$1 1/1
+  Patching net/minecraft/network/NetworkManager$2 1/1
+  Patching net/minecraft/network/NetworkManager$1 1/1
   Patching net/minecraft/entity/item/minecart/AbstractMinecartEntity$1 1/1
-  Patching net/minecraft/network/ServerStatusResponse$Version 1/1
-  Patching net/minecraft/network/ServerStatusResponse$Serializer 1/1
-  Patching net/minecraft/network/ServerStatusResponse$Players 1/1
+  Patching net/minecraft/resources/ResourcePackInfo$Priority 1/1
+  Patching net/minecraft/resources/ResourcePackInfo$IFactory 1/1
   Patching net/minecraft/world/storage/SaveFormat$LevelSave 1/1
+  Patching net/minecraft/client/renderer/FogRenderer$FogType 1/1
   Patching net/minecraft/client/gui/ResourceLoadProgressGui$MojangLogoTexture 1/1
-  Patching net/minecraft/nbt/StringNBT$1 1/1
+  Patching net/minecraft/client/renderer/BlockModelRenderer$Cache$2 1/1
+  Patching net/minecraft/client/renderer/BlockModelRenderer$Cache$1 1/1
+  Patching net/minecraft/server/MinecraftServer$2 1/1
+  Patching net/minecraft/server/MinecraftServer$1 1/1
+  Patching net/minecraft/client/renderer/texture/AtlasTexture$SheetData 1/1
   Patching net/minecraft/util/palette/PalettedContainer$ICountConsumer 1/1
   Patching net/minecraft/client/GameSettings$2 1/1
   Patching net/minecraft/client/GameSettings$1 1/1
@@ -3049,125 +2982,51 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/inventory/container/EnchantmentContainer$2 1/1
   Patching net/minecraft/inventory/container/EnchantmentContainer$1 1/1
   Patching net/minecraft/entity/monster/AbstractSkeletonEntity$1 1/1
-  Patching net/minecraft/entity/passive/TurtleEntity$TravelGoal 1/1
-  Patching net/minecraft/entity/passive/TurtleEntity$PlayerTemptGoal 1/1
-  Patching net/minecraft/entity/passive/TurtleEntity$WanderGoal 1/1
-  Patching net/minecraft/entity/passive/TurtleEntity$Navigator 1/1
-  Patching net/minecraft/entity/passive/TurtleEntity$PanicGoal 1/1
-  Patching net/minecraft/entity/passive/TurtleEntity$MoveHelperController 1/1
-  Patching net/minecraft/entity/passive/TurtleEntity$LayEggGoal 1/1
-  Patching net/minecraft/entity/passive/TurtleEntity$GoToWaterGoal 1/1
-  Patching net/minecraft/entity/passive/TurtleEntity$GoHomeGoal 1/1
-  Patching net/minecraft/entity/passive/TurtleEntity$MateGoal 1/1
+  Patching net/minecraft/client/renderer/WorldRenderer$ShaderException 1/1
+  Patching net/minecraft/client/renderer/WorldRenderer$LocalRenderInformationContainer 1/1
+  Patching net/minecraft/client/renderer/WorldRenderer$1 1/1
   Patching net/minecraft/item/MinecartItem$1 1/1
-  Patching net/minecraft/entity/passive/TurtleEntity$1 1/1
   Patching net/minecraft/tileentity/TileEntityType$Builder 1/1
+  Patching net/minecraft/network/handshake/ServerHandshakeNetHandler$1 1/1
   Patching net/minecraft/inventory/container/BeaconContainer$BeaconSlot 1/1
+  Patching net/minecraft/util/Direction$Plane 1/1
+  Patching net/minecraft/util/Direction$AxisDirection 1/1
+  Patching net/minecraft/util/Direction$Axis 1/1
   Patching net/minecraft/inventory/container/BeaconContainer$1 1/1
-  Patching net/minecraft/item/ItemStack$TooltipDisplayFlags 1/1
   Patching net/minecraft/entity/passive/OcelotEntity$TemptGoal 1/1
   Patching net/minecraft/entity/passive/OcelotEntity$AvoidEntityGoal 1/1
+  Patching net/minecraft/util/Direction$1 1/1
+  Patching net/minecraft/util/ResourceLocation$Serializer 1/1
+  Patching net/minecraft/entity/monster/SpiderEntity$TargetGoal 1/1
   Patching net/minecraft/enchantment/Enchantment$Rarity 1/1
-  Patching net/minecraft/world/storage/SaveFormat$LevelSave$2 1/1
-  Patching net/minecraft/world/storage/SaveFormat$LevelSave$1 1/1
-  Patching net/minecraft/client/world/ClientWorld$ClientWorldInfo 1/1
-  Patching net/minecraft/world/server/ChunkManager 1/1
-  Patching net/minecraft/world/server/ChunkHolder 1/1
-  Patching net/minecraft/server/gui/MinecraftServerGui 1/1
-  Patching net/minecraft/server/dedicated/PropertyManager 1/1
-  Patching net/minecraft/server/dedicated/ServerHangWatchdog 1/1
-  Patching net/minecraft/server/dedicated/DedicatedServer 1/1
-  Patching net/minecraft/command/impl/TeleportCommand 1/1
-  Patching net/minecraft/client/world/ClientWorld$1 1/1
-  Patching net/minecraft/command/impl/TeleportCommand$Facing 1/1
-  Patching net/minecraft/command/impl/LocateCommand 1/1
-  Patching net/minecraft/resources/DataPackRegistries 1/1
-  Patching net/minecraft/advancements/AdvancementManager 1/1
-  Patching net/minecraft/advancements/PlayerAdvancements 1/1
-  Patching net/minecraft/client/renderer/BlockModelRenderer$Cache$2 1/1
-  Patching net/minecraft/client/renderer/BlockModelRenderer$Cache$1 1/1
-  Patching net/minecraft/util/registry/Bootstrap 1/1
-  Patching net/minecraft/util/RegistryKey 1/1
-  Patching net/minecraft/client/particle/ParticleManager$IParticleMetaFactory 1/1
-  Patching net/minecraft/client/particle/ParticleManager$AnimatedSpriteImpl 1/1
-  Patching net/minecraft/network/ServerStatusResponse$Version$Serializer 1/1
+  Patching net/minecraft/entity/monster/SpiderEntity$GroupData 1/1
+  Patching net/minecraft/entity/monster/SpiderEntity$AttackGoal 1/1
+  Patching net/minecraft/item/crafting/SingleItemRecipe$Serializer$IRecipeFactory 1/1
+  Patching net/minecraft/client/renderer/model/ItemTransformVec3f$Deserializer 1/1
+  Patching net/minecraft/advancements/Advancement$Builder 1/1
+  Patching net/minecraft/advancements/Advancement$1 1/1
+  Patching net/minecraft/resources/FallbackResourceManager$LeakComplainerInputStream 1/1
+  Patching net/minecraft/advancements/criterion/ItemPredicate$Builder 1/1
   Patching net/minecraft/tileentity/ShulkerBoxTileEntity$AnimationStatus 1/1
-  Patching net/minecraft/item/crafting/IRecipePlacer 1/1
-  Patching net/minecraft/network/datasync/EntityDataManager 1/1
-  Patching net/minecraft/network/datasync/DataSerializers 1/1
-  Patching net/minecraft/network/ServerStatusResponse 1/1
-  Patching net/minecraft/network/status/server/SServerInfoPacket 1/1
-  Patching net/minecraft/network/login/client/CCustomPayloadLoginPacket 1/1
-  Patching net/minecraft/network/login/server/SCustomPayloadLoginPacket 1/1
-  Patching net/minecraft/network/handshake/client/CHandshakePacket 1/1
-  Patching net/minecraft/client/particle/ParticleManager$1 1/1
-  Patching net/minecraft/network/play/client/CCreativeInventoryActionPacket 1/1
   Patching net/minecraft/tileentity/ShulkerBoxTileEntity$1 1/1
-  Patching net/minecraft/command/Commands$IParser 1/1
-  Patching net/minecraft/command/Commands$EnvironmentType 1/1
   Patching net/minecraft/entity/monster/EndermanEntity$TakeBlockGoal 1/1
   Patching net/minecraft/entity/monster/EndermanEntity$FindPlayerGoal 1/1
   Patching net/minecraft/entity/monster/EndermanEntity$PlaceBlockGoal 1/1
   Patching net/minecraft/entity/monster/EndermanEntity$StareGoal 1/1
-  Patching net/minecraft/network/play/client/CCustomPayloadPacket 1/1
-  Patching net/minecraft/network/play/client/CClickWindowPacket 1/1
-  Patching net/minecraft/network/play/client/CClientSettingsPacket 1/1
-  Patching net/minecraft/entity/passive/horse/LlamaEntity$HurtByTargetGoal 1/1
-  Patching net/minecraft/entity/passive/horse/LlamaEntity$LlamaData 1/1
-  Patching net/minecraft/entity/passive/horse/LlamaEntity$DefendTargetGoal 1/1
-  Patching net/minecraft/network/play/server/SCustomPayloadPlayPacket 1/1
-  Patching net/minecraft/client/renderer/FirstPersonRenderer$1 1/1
-  Patching net/minecraft/network/play/server/SCommandListPacket 1/1
-  Patching net/minecraft/entity/passive/horse/LlamaEntity$1 1/1
-  Patching net/minecraft/util/text/TranslationTextComponent 1/1
-  Patching net/minecraft/util/text/Style 1/1
-  Patching net/minecraft/client/network/ServerPinger$2$1 1/1
-  Patching net/minecraft/network/PacketBuffer 1/1
-  Patching net/minecraft/network/NetworkManager 1/1
-  Patching net/minecraft/nbt/StringNBT 1/1
-  Patching net/minecraft/nbt/CompressedStreamTools 1/1
-  Patching net/minecraft/nbt/NBTSizeTracker 1/1
-  Patching net/minecraft/nbt/CompoundNBT 1/1
-  Patching net/minecraft/util/text/LanguageMap 1/1
-  Patching net/minecraft/world/biome/BiomeRegistry 1/1
-  Patching net/minecraft/client/renderer/model/WeightedBakedModel$WeightedModel 1/1
-  Patching net/minecraft/client/renderer/model/WeightedBakedModel$Builder 1/1
-  Patching net/minecraft/data/TagsProvider 1/1
-  Patching net/minecraft/data/ItemTagsProvider 1/1
-  Patching net/minecraft/data/FluidTagsProvider 1/1
-  Patching net/minecraft/data/EntityTypeTagsProvider 1/1
-  Patching net/minecraft/data/BlockTagsProvider 1/1
-  Patching net/minecraft/data/RecipeProvider 1/1
-  Patching net/minecraft/data/LootTableProvider 1/1
-  Patching net/minecraft/data/loot/EntityLootTables 1/1
-  Patching net/minecraft/data/loot/BlockLootTables 1/1
-  Patching net/minecraft/data/DirectoryCache 1/1
-  Patching net/minecraft/data/DataGenerator 1/1
-  Patching net/minecraft/util/registry/WorldGenRegistries 1/1
-  Patching net/minecraft/particles/ParticleTypes 1/1
-  Patching net/minecraft/particles/ParticleType 1/1
-  Patching net/minecraft/particles/ItemParticleData 1/1
-  Patching net/minecraft/particles/BlockParticleData 1/1
-  Patching net/minecraft/advancements/PlayerAdvancements$1 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior 1/1
-  Patching net/minecraft/util/registry/Registry 1/1
-  Patching net/minecraft/server/dedicated/PropertyManager$Property 1/1
-  Patching net/minecraft/util/Direction 1/1
+  Patching net/minecraft/server/MinecraftServer 1/1
+  Patching net/minecraft/world/gen/feature/structure/FortressStructure$Start 1/1
   Patching net/minecraft/block/DetectorRailBlock$1 1/1
-  Patching net/minecraft/item/crafting/SingleItemRecipe$Serializer$IRecipeFactory 1/1
+  Patching net/minecraft/network/play/ServerPlayNetHandler$1 1/1
+  Patching net/minecraft/world/chunk/ChunkStatus$ISelectiveWorker 1/1
+  Patching net/minecraft/world/chunk/ChunkStatus$ILoadingWorker 1/1
+  Patching net/minecraft/world/chunk/ChunkStatus$IGenerationWorker 1/1
+  Patching net/minecraft/world/chunk/ChunkStatus$Type 1/1
   Patching net/minecraft/entity/boss/WitherEntity$DoNothingGoal 1/1
-  Patching net/minecraft/command/arguments/EntitySelectorParser 1/1
-  Patching net/minecraft/server/dedicated/PropertyManager$1 1/1
-  Patching net/minecraft/command/arguments/BlockStateParser 1/1
   Patching net/minecraft/inventory/container/RepairContainer$1 1/1
-  Patching net/minecraft/command/Commands 1/1
   Patching net/minecraft/entity/passive/MooshroomEntity$Type 1/1
-  Patching net/minecraft/resources/SimpleReloadableResourceManager$FailedPackException 1/1
-  Patching net/minecraft/resources/SimpleReloadableResourceManager$FailedPackReloader 1/1
-  Patching net/minecraft/advancements/criterion/ItemPredicate 1/1
-  Patching net/minecraft/tileentity/BannerPattern$Builder 1/1
-  Patching net/minecraft/advancements/AdvancementRewards 1/1
   Patching net/minecraft/item/ArmorItem$1 1/1
+  Patching net/minecraft/block/RailState$1 1/1
+  Patching net/minecraft/network/play/server/SCommandListPacket$Entry 1/1
   Patching net/minecraft/entity/monster/PhantomEntity$SweepAttackGoal 1/1
   Patching net/minecraft/entity/monster/PhantomEntity$MoveGoal 1/1
   Patching net/minecraft/entity/monster/PhantomEntity$MoveHelperController 1/1
@@ -3177,14 +3036,14 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/entity/monster/PhantomEntity$PickAttackGoal 1/1
   Patching net/minecraft/entity/monster/PhantomEntity$AttackPlayerGoal 1/1
   Patching net/minecraft/entity/monster/PhantomEntity$AttackPhase 1/1
+  Patching net/minecraft/network/play/server/SCommandListPacket$1 1/1
   Patching net/minecraft/entity/monster/PhantomEntity$1 1/1
-  Patching net/minecraft/client/renderer/model/FaceBakery$1 1/1
   Patching net/minecraft/item/crafting/ShapelessRecipe$Serializer 1/1
+  Patching net/minecraft/client/renderer/entity/layers/BipedArmorLayer$1 1/1
+  Patching net/minecraft/block/TrapDoorBlock$1 1/1
   Patching net/minecraft/client/gui/screen/LanguageScreen$List 1/1
-  Patching net/minecraft/world/raid/Raid$WaveMember 1/1
-  Patching net/minecraft/world/raid/Raid$Status 1/1
   Patching net/minecraft/entity/passive/horse/HorseEntity$HorseData 1/1
-  Patching net/minecraft/world/raid/Raid$1 1/1
+  Patching net/minecraft/server/Main 1/1
   Patching net/minecraft/item/ItemGroup$6 1/1
   Patching net/minecraft/item/ItemGroup$5 1/1
   Patching net/minecraft/item/ItemGroup$4 1/1
@@ -3194,168 +3053,62 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/item/ItemGroup$11 1/1
   Patching net/minecraft/item/ItemGroup$10 1/1
   Patching net/minecraft/item/ItemGroup$1 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$9 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$8 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$7 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$6 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$5 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$4 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$3 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$25 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$24 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$23 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$22 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$21 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$20 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$2 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$19 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$18 1/1
+  Patching net/minecraft/util/registry/DynamicRegistries$Impl 1/1
+  Patching net/minecraft/util/registry/DynamicRegistries$CodecHolder 1/1
   Patching net/minecraft/entity/MobEntity$1 1/1
-  Patching net/minecraft/nbt/CompoundNBT$1 1/1
-  Patching net/minecraft/server/dedicated/ServerHangWatchdog$1 1/1
-  Patching net/minecraft/client/audio/SoundHandler 1/1
-  Patching net/minecraft/client/audio/SoundEngine 1/1
-  Patching net/minecraft/server/integrated/IntegratedServer 1/1
-  Patching net/minecraft/client/util/SearchTreeManager 1/1
-  Patching net/minecraft/tags/ITagCollectionSupplier$1 1/1
+  Patching net/minecraft/client/renderer/FirstPersonRenderer$1 1/1
+  Patching net/minecraft/network/NetworkSystem$2 1/1
+  Patching net/minecraft/network/NetworkSystem$1 1/1
+  Patching net/minecraft/entity/Entity$IMoveCallback 1/1
+  Patching net/minecraft/server/gui/MinecraftServerGui$2 1/1
+  Patching net/minecraft/server/gui/MinecraftServerGui$1 1/1
+  Patching net/minecraft/entity/Entity$1 1/1
   Patching net/minecraft/entity/passive/IronGolemEntity$Cracks 1/1
-  Patching net/minecraft/client/renderer/model/WeightedBakedModel 1/1
-  Patching net/minecraft/client/renderer/model/IUnbakedModel 1/1
-  Patching net/minecraft/client/renderer/model/SimpleBakedModel 1/1
-  Patching net/minecraft/client/renderer/model/MultipartBakedModel 1/1
-  Patching net/minecraft/client/renderer/model/IModelTransform 1/1
-  Patching net/minecraft/client/renderer/model/ModelResourceLocation 1/1
-  Patching net/minecraft/client/renderer/model/ModelManager 1/1
-  Patching net/minecraft/client/renderer/model/ModelBakery 1/1
-  Patching net/minecraft/client/renderer/model/IBakedModel 1/1
-  Patching net/minecraft/client/resources/LanguageManager 1/1
-  Patching net/minecraft/client/resources/Language 1/1
-  Patching net/minecraft/client/resources/I18n 1/1
-  Patching net/minecraft/client/resources/ClientLanguageMap 1/1
-  Patching net/minecraft/client/resources/GrassColorReloadListener 1/1
-  Patching net/minecraft/client/resources/FoliageColorReloadListener 1/1
-  Patching net/minecraft/client/renderer/texture/TextureManager 1/1
-  Patching net/minecraft/client/renderer/texture/TextureAtlasSprite 1/1
-  Patching net/minecraft/client/renderer/texture/AtlasTexture 1/1
-  Patching net/minecraft/client/renderer/texture/Stitcher 1/1
-  Patching net/minecraft/client/renderer/texture/Texture 1/1
-  Patching net/minecraft/client/renderer/entity/PlayerRenderer 1/1
-  Patching net/minecraft/client/renderer/entity/layers/BipedArmorLayer 1/1
-  Patching net/minecraft/client/renderer/entity/layers/ElytraLayer 1/1
-  Patching net/minecraft/data/Main 1/1
+  Patching net/minecraft/resources/SimpleReloadableResourceManager$FailedPackException 1/1
+  Patching net/minecraft/resources/SimpleReloadableResourceManager$FailedPackReloader 1/1
+  Patching net/minecraft/util/text/LanguageMap$1 1/1
+  Patching net/minecraft/data/TagsProvider$Builder 1/1
+  Patching net/minecraft/client/multiplayer/ServerData$ServerResourceMode 1/1
+  Patching net/minecraft/data/TagsProvider$1 1/1
+  Patching net/minecraft/loot/LootContext$EntityTarget$Serializer 1/1
+  Patching net/minecraft/client/gui/widget/list/KeyBindingList$KeyEntry$2 1/1
+  Patching net/minecraft/client/gui/widget/list/KeyBindingList$KeyEntry$1 1/1
+  Patching net/minecraft/client/gui/screen/LanguageScreen$List$LanguageEntry 1/1
+  Patching net/minecraft/block/RailBlock$1 1/1
   Patching net/minecraft/fluid/LavaFluid$Source 1/1
   Patching net/minecraft/fluid/LavaFluid$Flowing 1/1
   Patching net/minecraft/util/math/RayTraceContext$IVoxelProvider 1/1
   Patching net/minecraft/util/math/RayTraceContext$FluidMode 1/1
   Patching net/minecraft/util/math/RayTraceContext$BlockMode 1/1
-  Patching net/minecraft/client/renderer/entity/LivingRenderer 1/1
-  Patching net/minecraft/client/renderer/ItemRenderer 1/1
-  Patching net/minecraft/client/renderer/entity/ItemFrameRenderer 1/1
-  Patching net/minecraft/client/renderer/entity/ItemRenderer 1/1
-  Patching net/minecraft/client/renderer/entity/FishRenderer 1/1
-  Patching net/minecraft/client/renderer/entity/FallingBlockRenderer 1/1
-  Patching net/minecraft/client/renderer/entity/EntityRenderer 1/1
-  Patching net/minecraft/client/renderer/entity/EntityRendererManager 1/1
-  Patching net/minecraft/client/multiplayer/ClientChunkProvider$ChunkArray 1/1
-  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher 1/1
-  Patching net/minecraft/client/renderer/tileentity/PistonTileEntityRenderer 1/1
-  Patching net/minecraft/client/multiplayer/ClientChunkProvider$1 1/1
-  Patching net/minecraft/client/renderer/tileentity/ChestTileEntityRenderer 1/1
-  Patching net/minecraft/client/renderer/tileentity/TileEntityRendererDispatcher 1/1
-  Patching net/minecraft/client/renderer/model/VariantList 1/1
-  Patching net/minecraft/client/renderer/model/ItemCameraTransforms 1/1
-  Patching net/minecraft/client/renderer/model/ItemTransformVec3f 1/1
-  Patching net/minecraft/client/renderer/model/ItemOverrideList 1/1
-  Patching net/minecraft/client/renderer/model/ItemModelGenerator 1/1
-  Patching net/minecraft/client/renderer/model/FaceBakery 1/1
-  Patching net/minecraft/client/renderer/model/BlockModel 1/1
-  Patching net/minecraft/client/renderer/model/BakedQuad 1/1
-  Patching net/minecraft/client/renderer/BlockModelRenderer 1/1
-  Patching net/minecraft/client/renderer/FluidBlockRenderer 1/1
-  Patching net/minecraft/client/renderer/BlockRendererDispatcher 1/1
-  Patching net/minecraft/client/renderer/BlockModelShapes 1/1
-  Patching net/minecraft/client/renderer/OverlayRenderer 1/1
-  Patching net/minecraft/client/shader/ShaderGroup 1/1
-  Patching net/minecraft/particles/ItemParticleData$1 1/1
-  Patching net/minecraft/network/ServerStatusResponse$Players$Serializer 1/1
+  Patching net/minecraft/client/network/ServerPinger$2$1 1/1
+  Patching net/minecraft/world/biome/BiomeAmbience$GrassColorModifier 1/1
+  Patching net/minecraft/world/biome/BiomeAmbience$Builder 1/1
+  Patching net/minecraft/particles/ParticleTypes$1 1/1
+  Patching net/minecraft/world/biome/BiomeAmbience$1 1/1
+  Patching net/minecraft/network/ServerStatusResponse$Version 1/1
+  Patching net/minecraft/network/ServerStatusResponse$Serializer 1/1
+  Patching net/minecraft/network/ServerStatusResponse$Players 1/1
   Patching net/minecraft/block/Block$RenderSideCacheKey 1/1
   Patching net/minecraft/item/crafting/ShapedRecipe$Serializer 1/1
   Patching net/minecraft/block/Block$2 1/1
   Patching net/minecraft/block/Block$1 1/1
-  Patching net/minecraft/client/renderer/LightTexture 1/1
-  Patching net/minecraft/client/renderer/WorldRenderer 1/1
-  Patching net/minecraft/client/renderer/ItemModelMesher 1/1
-  Patching net/minecraft/client/renderer/FirstPersonRenderer 1/1
-  Patching net/minecraft/client/renderer/RenderTypeLookup 1/1
-  Patching net/minecraft/client/renderer/GameRenderer 1/1
-  Patching net/minecraft/client/renderer/FogRenderer 1/1
-  Patching net/minecraft/client/shader/ShaderInstance 1/1
-  Patching net/minecraft/client/entity/player/RemoteClientPlayerEntity 1/1
-  Patching net/minecraft/client/entity/player/ClientPlayerEntity 1/1
-  Patching net/minecraft/client/entity/player/AbstractClientPlayerEntity 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$17 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$16 1/1
-  Patching net/minecraft/client/particle/DiggingParticle 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$15 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$14 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$13 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$12 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$11 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$10 1/1
-  Patching net/minecraft/dispenser/IDispenseItemBehavior$1 1/1
-  Patching net/minecraft/client/particle/ParticleManager 1/1
-  Patching net/minecraft/client/particle/Particle 1/1
-  Patching net/minecraft/client/gui/screen/CreateWorldScreen$GameMode 1/1
-  Patching net/minecraft/client/gui/screen/CreateWorldScreen$DatapackException 1/1
-  Patching net/minecraft/client/network/ServerPinger 1/1
-  Patching net/minecraft/client/multiplayer/ServerData 1/1
-  Patching net/minecraft/client/multiplayer/PlayerController 1/1
-  Patching net/minecraft/client/network/play/ClientPlayNetHandler 1/1
-  Patching net/minecraft/client/world/ClientWorld 1/1
-  Patching net/minecraft/client/network/login/ClientLoginNetHandler 1/1
-  Patching net/minecraft/client/multiplayer/ClientChunkProvider 1/1
-  Patching net/minecraft/client/gui/screen/CreateWorldScreen$5 1/1
-  Patching net/minecraft/client/gui/screen/CreateWorldScreen$4 1/1
-  Patching net/minecraft/client/gui/screen/CreateWorldScreen$3 1/1
-  Patching net/minecraft/client/gui/screen/CreateWorldScreen$2 1/1
-  Patching net/minecraft/client/gui/screen/CreateWorldScreen$1 1/1
-  Patching net/minecraft/client/renderer/entity/model/SkeletonModel 1/1
+  Patching net/minecraft/client/world/DimensionRenderInfo$FogType 1/1
+  Patching net/minecraft/client/world/DimensionRenderInfo$Overworld 1/1
+  Patching net/minecraft/client/world/DimensionRenderInfo$Nether 1/1
+  Patching net/minecraft/client/world/DimensionRenderInfo$End 1/1
+  Patching net/minecraft/nbt/StringNBT$1 1/1
+  Patching net/minecraft/client/audio/SoundHandler$Loader 1/1
+  Patching net/minecraft/client/audio/SoundHandler$2 1/1
+  Patching net/minecraft/client/audio/SoundHandler$1 1/1
+  Patching net/minecraft/client/renderer/model/ModelBakery$ModelListWrapper 1/1
   Patching net/minecraft/entity/LivingEntity$1 1/1
-  Patching net/minecraft/client/renderer/model/SimpleBakedModel$Builder 1/1
-  Patching net/minecraft/entity/passive/CatEntity$TemptGoal 1/1
-  Patching net/minecraft/entity/passive/CatEntity$MorningGiftGoal 1/1
-  Patching net/minecraft/entity/passive/CatEntity$AvoidPlayerGoal 1/1
-  Patching net/minecraft/client/gui/screen/CreateWorldScreen 1/1
-  Patching net/minecraft/client/gui/recipebook/RecipeBookGui 1/1
-  Patching net/minecraft/client/gui/screen/PackScreen 1/1
-  Patching net/minecraft/client/gui/screen/PackLoadingManager 1/1
-  Patching net/minecraft/client/gui/screen/ServerSelectionList 1/1
-  Patching net/minecraft/client/gui/screen/MultiplayerScreen 1/1
-  Patching net/minecraft/client/main/Main$3 1/1
-  Patching net/minecraft/client/main/Main$2 1/1
-  Patching net/minecraft/client/main/Main$1 1/1
-  Patching net/minecraft/client/gui/screen/EnchantmentScreen 1/1
-  Patching net/minecraft/client/gui/DisplayEffectsScreen 1/1
-  Patching net/minecraft/client/gui/screen/inventory/CreativeScreen 1/1
-  Patching net/minecraft/client/gui/screen/inventory/ContainerScreen 1/1
-  Patching net/minecraft/client/gui/screen/ControlsScreen 1/1
-  Patching net/minecraft/client/gui/widget/list/KeyBindingList 1/1
-  Patching net/minecraft/client/gui/advancements/AdvancementsScreen 1/1
-  Patching net/minecraft/client/gui/advancements/AdvancementTabType 1/1
-  Patching net/minecraft/client/gui/advancements/AdvancementTabGui 1/1
-  Patching net/minecraft/client/gui/screen/MainMenuScreen 1/1
-  Patching net/minecraft/client/gui/screen/Screen 1/1
-  Patching net/minecraft/client/gui/screen/OptionsScreen 1/1
-  Patching net/minecraft/client/gui/ScreenManager 1/1
-  Patching net/minecraft/client/gui/ResourceLoadProgressGui 1/1
-  Patching net/minecraft/client/gui/screen/LanguageScreen 1/1
-  Patching net/minecraft/client/gui/screen/DeathScreen 1/1
+  Patching net/minecraft/client/renderer/model/ModelBakery$BlockStateDefinitionException 1/1
   Patching net/minecraft/entity/passive/FoxEntity$Type 1/1
   Patching net/minecraft/entity/passive/FoxEntity$FollowTargetGoal 1/1
   Patching net/minecraft/entity/passive/FoxEntity$SleepGoal 1/1
   Patching net/minecraft/entity/passive/FoxEntity$FindShelterGoal 1/1
   Patching net/minecraft/entity/passive/FoxEntity$SitAndLookGoal 1/1
-  Patching net/minecraft/tags/ITagCollection$1 1/1
+  Patching net/minecraft/tags/ITagCollectionSupplier$1 1/1
   Patching net/minecraft/entity/passive/FoxEntity$StrollGoal 1/1
   Patching net/minecraft/entity/passive/FoxEntity$FindItemsGoal 1/1
   Patching net/minecraft/entity/passive/FoxEntity$PounceGoal 1/1
@@ -3372,30 +3125,330 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/entity/passive/FoxEntity$BaseGoal 1/1
   Patching net/minecraft/entity/passive/FoxEntity$AlertablePredicate 1/1
   Patching net/minecraft/entity/passive/FoxEntity$JumpGoal 1/1
+  Patching net/minecraft/entity/projectile/AbstractArrowEntity$PickupStatus 1/1
   Patching net/minecraft/entity/passive/FoxEntity$RevengeGoal 1/1
+  Patching net/minecraft/util/registry/WorldSettingsImport$IResourceAccess 1/1
+  Patching net/minecraft/util/registry/WorldSettingsImport$ResultMap 1/1
+  Patching net/minecraft/entity/passive/FoxEntity$1 1/1
+  Patching net/minecraft/util/registry/WorldSettingsImport$1 1/1
+  Patching net/minecraft/tileentity/AbstractFurnaceTileEntity$1 1/1
+  Patching net/minecraft/client/renderer/model/ItemModelGenerator$SpanFacing 1/1
+  Patching net/minecraft/client/renderer/model/ItemModelGenerator$Span 1/1
+  Patching net/minecraft/world/biome/MobSpawnInfo$Spawners 1/1
+  Patching net/minecraft/world/biome/MobSpawnInfo$SpawnCosts 1/1
+  Patching net/minecraft/world/biome/MobSpawnInfo$Builder 1/1
+  Patching net/minecraft/client/renderer/model/ItemModelGenerator$1 1/1
+  Patching net/minecraft/world/biome/MobSpawnInfo$1 1/1
+  Patching net/minecraft/entity/item/minecart/SpawnerMinecartEntity$1 1/1
+  Patching net/minecraft/world/server/ChunkManager 1/1
+  Patching net/minecraft/world/server/ChunkHolder 1/1
+  Patching net/minecraft/server/gui/MinecraftServerGui 1/1
+  Patching net/minecraft/server/dedicated/PropertyManager 1/1
+  Patching net/minecraft/server/dedicated/ServerHangWatchdog 1/1
+  Patching net/minecraft/server/dedicated/DedicatedServer 1/1
+  Patching net/minecraft/command/impl/TeleportCommand 1/1
+  Patching net/minecraft/command/impl/TeleportCommand$Facing 1/1
+  Patching net/minecraft/command/impl/LocateCommand 1/1
+  Patching net/minecraft/world/biome/Biome$TemperatureModifier$2 1/1
+  Patching net/minecraft/world/biome/Biome$TemperatureModifier$1 1/1
+  Patching net/minecraft/resources/DataPackRegistries 1/1
+  Patching net/minecraft/advancements/AdvancementManager 1/1
+  Patching net/minecraft/advancements/PlayerAdvancements 1/1
+  Patching net/minecraft/util/registry/Bootstrap 1/1
+  Patching net/minecraft/util/ResourceLocation 1/1
+  Patching net/minecraft/util/RegistryKey 1/1
+  Patching net/minecraft/util/registry/WorldSettingsImport 1/1
+  Patching net/minecraft/network/ServerStatusResponse$Version$Serializer 1/1
+  Patching net/minecraft/item/crafting/IRecipePlacer 1/1
+  Patching net/minecraft/network/datasync/EntityDataManager 1/1
+  Patching net/minecraft/network/datasync/DataSerializers 1/1
+  Patching net/minecraft/network/ServerStatusResponse 1/1
+  Patching net/minecraft/network/status/server/SServerInfoPacket 1/1
+  Patching net/minecraft/network/login/client/CCustomPayloadLoginPacket 1/1
+  Patching net/minecraft/network/login/server/SCustomPayloadLoginPacket 1/1
+  Patching net/minecraft/network/handshake/client/CHandshakePacket 1/1
+  Patching net/minecraft/network/play/client/CCreativeInventoryActionPacket 1/1
+  Patching net/minecraft/command/Commands$IParser 1/1
+  Patching net/minecraft/command/Commands$EnvironmentType 1/1
+  Patching net/minecraft/client/renderer/texture/NativeImage$WriteCallback 1/1
+  Patching net/minecraft/client/renderer/texture/NativeImage$PixelFormatGLCode 1/1
+  Patching net/minecraft/util/Session$Type 1/1
+  Patching net/minecraft/client/renderer/texture/NativeImage$PixelFormat 1/1
+  Patching net/minecraft/network/play/client/CCustomPayloadPacket 1/1
+  Patching net/minecraft/network/play/client/CClickWindowPacket 1/1
+  Patching net/minecraft/network/play/client/CClientSettingsPacket 1/1
+  Patching net/minecraft/network/play/server/SEntityPropertiesPacket 1/1
+  Patching net/minecraft/client/renderer/texture/NativeImage$1 1/1
+  Patching net/minecraft/network/play/server/SCustomPayloadPlayPacket 1/1
+  Patching net/minecraft/network/play/server/SCommandListPacket 1/1
+  Patching net/minecraft/util/registry/WorldSettingsImport$IResourceAccess$RegistryAccess 1/1
+  Patching net/minecraft/util/text/TranslationTextComponent 1/1
+  Patching net/minecraft/util/text/Style 1/1
+  Patching net/minecraft/network/PacketBuffer 1/1
+  Patching net/minecraft/network/NetworkManager 1/1
+  Patching net/minecraft/util/registry/WorldSettingsImport$IResourceAccess$1 1/1
+  Patching net/minecraft/nbt/StringNBT 1/1
+  Patching net/minecraft/nbt/CompressedStreamTools 1/1
+  Patching net/minecraft/nbt/NBTSizeTracker 1/1
+  Patching net/minecraft/world/storage/MapDecoration$Type 1/1
+  Patching net/minecraft/nbt/CompoundNBT 1/1
+  Patching net/minecraft/util/text/LanguageMap 1/1
+  Patching net/minecraft/world/biome/BiomeRegistry 1/1
+  Patching net/minecraft/data/TagsProvider 1/1
+  Patching net/minecraft/data/ItemTagsProvider 1/1
+  Patching net/minecraft/data/FluidTagsProvider 1/1
+  Patching net/minecraft/data/EntityTypeTagsProvider 1/1
+  Patching net/minecraft/data/BlockTagsProvider 1/1
+  Patching net/minecraft/data/RecipeProvider 1/1
+  Patching net/minecraft/client/renderer/vertex/VertexFormatElement$Usage$ISetupState 1/1
+  Patching net/minecraft/data/LootTableProvider 1/1
+  Patching net/minecraft/data/loot/EntityLootTables 1/1
+  Patching net/minecraft/data/loot/BlockLootTables 1/1
+  Patching net/minecraft/data/DirectoryCache 1/1
+  Patching net/minecraft/data/DataGenerator 1/1
+  Patching net/minecraft/util/registry/WorldGenRegistries 1/1
+  Patching net/minecraft/particles/ParticleTypes 1/1
+  Patching net/minecraft/particles/ParticleType 1/1
+  Patching net/minecraft/particles/ItemParticleData 1/1
+  Patching net/minecraft/particles/BlockParticleData 1/1
+  Patching net/minecraft/advancements/PlayerAdvancements$1 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior 1/1
+  Patching net/minecraft/util/registry/DynamicRegistries 1/1
+  Patching net/minecraft/util/registry/Registry 1/1
+  Patching net/minecraft/server/dedicated/PropertyManager$Property 1/1
+  Patching net/minecraft/util/Direction 1/1
+  Patching net/minecraft/client/gui/widget/list/KeyBindingList$KeyEntry 1/1
+  Patching net/minecraft/client/gui/widget/list/KeyBindingList$Entry 1/1
+  Patching net/minecraft/client/gui/widget/list/KeyBindingList$CategoryEntry 1/1
+  Patching net/minecraft/command/arguments/ArgumentTypes 1/1
+  Patching net/minecraft/command/arguments/EntitySelectorParser 1/1
+  Patching net/minecraft/server/dedicated/PropertyManager$1 1/1
+  Patching net/minecraft/command/arguments/BlockStateParser 1/1
+  Patching net/minecraft/client/gui/widget/list/KeyBindingList$1 1/1
+  Patching net/minecraft/tags/ITagCollection$1 1/1
+  Patching net/minecraft/item/Item$Properties 1/1
+  Patching net/minecraft/command/Commands 1/1
+  Patching net/minecraft/item/Item$1 1/1
+  Patching net/minecraft/advancements/criterion/ItemPredicate 1/1
+  Patching net/minecraft/advancements/AdvancementRewards 1/1
+  Patching net/minecraft/block/CocoaBlock$1 1/1
+  Patching net/minecraft/client/renderer/model/FaceBakery$1 1/1
+  Patching net/minecraft/item/crafting/SingleItemRecipe$Serializer 1/1
+  Patching net/minecraft/client/renderer/BlockModelRenderer$Orientation 1/1
+  Patching net/minecraft/client/renderer/BlockModelRenderer$Cache 1/1
+  Patching net/minecraft/client/renderer/BlockModelRenderer$VertexTranslations 1/1
+  Patching net/minecraft/client/renderer/BlockModelRenderer$AmbientOcclusionFace 1/1
+  Patching net/minecraft/client/renderer/BlockModelRenderer$NeighborInfo 1/1
+  Patching net/minecraft/client/renderer/BlockModelRenderer$1 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$9 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$8 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$7 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$6 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$5 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$4 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$3 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$25 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$24 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$23 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$22 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$21 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$20 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$2 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$19 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$18 1/1
+  Patching net/minecraft/nbt/CompoundNBT$1 1/1
+  Patching net/minecraft/block/LadderBlock$1 1/1
+  Patching net/minecraft/entity/passive/SheepEntity$2 1/1
+  Patching net/minecraft/entity/passive/SheepEntity$1 1/1
+  Patching net/minecraft/entity/monster/ZombieEntity$GroupData 1/1
+  Patching net/minecraft/entity/monster/ZombieEntity$AttackTurtleEggGoal 1/1
+  Patching net/minecraft/tags/ITag$TagEntry 1/1
+  Patching net/minecraft/tags/ITag$OptionalTagEntry 1/1
+  Patching net/minecraft/tags/ITag$OptionalItemEntry 1/1
+  Patching net/minecraft/tags/ITag$INamedTag 1/1
+  Patching net/minecraft/tags/ITag$ITagEntry 1/1
+  Patching net/minecraft/tags/ITag$ItemEntry 1/1
+  Patching net/minecraft/tags/ITag$Proxy 1/1
+  Patching net/minecraft/tags/ITag$Builder 1/1
+  Patching net/minecraft/client/audio/SoundHandler 1/1
+  Patching net/minecraft/client/audio/SoundEngine 1/1
+  Patching net/minecraft/server/dedicated/ServerHangWatchdog$1 1/1
+  Patching net/minecraft/server/integrated/IntegratedServer 1/1
+  Patching net/minecraft/client/util/SearchTreeManager 1/1
+  Patching net/minecraft/tags/ITag$1 1/1
+  Patching net/minecraft/world/Explosion$Mode 1/1
+  Patching net/minecraft/village/VillageSiege$State 1/1
+  Patching net/minecraft/client/renderer/model/WeightedBakedModel 1/1
+  Patching net/minecraft/client/renderer/model/IUnbakedModel 1/1
+  Patching net/minecraft/client/renderer/model/SimpleBakedModel 1/1
+  Patching net/minecraft/client/renderer/model/MultipartBakedModel 1/1
+  Patching net/minecraft/client/renderer/model/IModelTransform 1/1
+  Patching net/minecraft/client/renderer/model/ModelResourceLocation 1/1
+  Patching net/minecraft/client/renderer/model/ModelManager 1/1
+  Patching net/minecraft/client/renderer/model/ModelBakery 1/1
+  Patching net/minecraft/client/renderer/model/IBakedModel 1/1
+  Patching net/minecraft/client/resources/LanguageManager 1/1
+  Patching net/minecraft/client/resources/Language 1/1
+  Patching net/minecraft/client/resources/I18n 1/1
+  Patching net/minecraft/client/resources/ClientLanguageMap 1/1
+  Patching net/minecraft/client/resources/GrassColorReloadListener 1/1
+  Patching net/minecraft/client/resources/FoliageColorReloadListener 1/1
+  Patching net/minecraft/client/gui/widget/list/AbstractList$SimpleArrayList 1/1
+  Patching net/minecraft/client/renderer/texture/TextureManager 1/1
+  Patching net/minecraft/client/gui/widget/list/AbstractList$Ordering 1/1
+  Patching net/minecraft/client/renderer/texture/TextureAtlasSprite 1/1
+  Patching net/minecraft/client/gui/widget/list/AbstractList$AbstractListEntry 1/1
+  Patching net/minecraft/client/renderer/texture/AtlasTexture 1/1
+  Patching net/minecraft/client/renderer/texture/Stitcher 1/1
+  Patching net/minecraft/client/renderer/texture/Texture 1/1
+  Patching net/minecraft/client/renderer/entity/PlayerRenderer 1/1
+  Patching net/minecraft/client/gui/widget/list/AbstractList$1 1/1
+  Patching net/minecraft/client/renderer/entity/layers/BipedArmorLayer 1/1
+  Patching net/minecraft/client/renderer/entity/layers/ElytraLayer 1/1
+  Patching net/minecraft/data/Main 1/1
+  Patching net/minecraft/client/renderer/entity/LivingRenderer 1/1
+  Patching net/minecraft/client/renderer/ItemRenderer 1/1
+  Patching net/minecraft/client/renderer/entity/ItemFrameRenderer 1/1
+  Patching net/minecraft/client/renderer/entity/ItemRenderer 1/1
+  Patching net/minecraft/client/renderer/entity/FishRenderer 1/1
+  Patching net/minecraft/client/renderer/entity/FallingBlockRenderer 1/1
+  Patching net/minecraft/client/renderer/entity/EntityRenderer 1/1
+  Patching net/minecraft/client/renderer/entity/EntityRendererManager 1/1
+  Patching net/minecraft/client/gui/MapItemRenderer$Instance 1/1
+  Patching net/minecraft/entity/monster/IllusionerEntity$MirrorSpellGoal 1/1
+  Patching net/minecraft/entity/monster/IllusionerEntity$BlindnessSpellGoal 1/1
+  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher 1/1
+  Patching net/minecraft/client/renderer/tileentity/PistonTileEntityRenderer 1/1
+  Patching net/minecraft/client/renderer/tileentity/ChestTileEntityRenderer 1/1
+  Patching net/minecraft/client/renderer/tileentity/TileEntityRendererDispatcher 1/1
+  Patching net/minecraft/client/gui/MapItemRenderer$1 1/1
+  Patching net/minecraft/entity/monster/IllusionerEntity$1 1/1
+  Patching net/minecraft/client/renderer/model/VariantList 1/1
+  Patching net/minecraft/client/renderer/model/ItemCameraTransforms 1/1
+  Patching net/minecraft/client/renderer/model/ItemTransformVec3f 1/1
+  Patching net/minecraft/client/renderer/model/ItemOverrideList 1/1
+  Patching net/minecraft/client/renderer/model/ItemModelGenerator 1/1
+  Patching net/minecraft/client/renderer/model/FaceBakery 1/1
+  Patching net/minecraft/client/renderer/model/BlockModel 1/1
+  Patching net/minecraft/client/renderer/model/BakedQuad 1/1
+  Patching net/minecraft/world/biome/BiomeGenerationSettings$Builder 1/1
+  Patching net/minecraft/client/renderer/BlockModelRenderer 1/1
+  Patching net/minecraft/client/renderer/FluidBlockRenderer 1/1
+  Patching net/minecraft/client/renderer/BlockRendererDispatcher 1/1
+  Patching net/minecraft/client/renderer/BlockModelShapes 1/1
+  Patching net/minecraft/client/renderer/OverlayRenderer 1/1
+  Patching net/minecraft/client/shader/ShaderGroup 1/1
+  Patching net/minecraft/client/renderer/LightTexture 1/1
+  Patching net/minecraft/client/renderer/WorldRenderer 1/1
+  Patching net/minecraft/client/renderer/ItemModelMesher 1/1
+  Patching net/minecraft/client/renderer/FirstPersonRenderer 1/1
+  Patching net/minecraft/client/renderer/RenderTypeLookup 1/1
+  Patching net/minecraft/particles/ItemParticleData$1 1/1
+  Patching net/minecraft/world/biome/BiomeGenerationSettings$1 1/1
+  Patching net/minecraft/client/gui/screen/CreateWorldScreen$GameMode 1/1
+  Patching net/minecraft/client/gui/screen/CreateWorldScreen$DatapackException 1/1
+  Patching net/minecraft/network/ServerStatusResponse$Players$Serializer 1/1
+  Patching net/minecraft/client/gui/screen/CreateWorldScreen$5 1/1
+  Patching net/minecraft/client/gui/screen/CreateWorldScreen$4 1/1
+  Patching net/minecraft/client/gui/screen/CreateWorldScreen$3 1/1
+  Patching net/minecraft/client/gui/screen/CreateWorldScreen$2 1/1
+  Patching net/minecraft/client/gui/screen/CreateWorldScreen$1 1/1
+  Patching net/minecraft/world/lighting/LevelBasedGraph$2 1/1
+  Patching net/minecraft/world/lighting/LevelBasedGraph$1 1/1
+  Patching net/minecraft/inventory/container/PlayerContainer$2 1/1
+  Patching net/minecraft/inventory/container/PlayerContainer$1 1/1
+  Patching net/minecraft/client/renderer/GameRenderer 1/1
+  Patching net/minecraft/client/renderer/FogRenderer 1/1
+  Patching net/minecraft/client/shader/ShaderInstance 1/1
+  Patching net/minecraft/client/world/DimensionRenderInfo 1/1
+  Patching net/minecraft/client/entity/player/RemoteClientPlayerEntity 1/1
+  Patching net/minecraft/client/entity/player/ClientPlayerEntity 1/1
+  Patching net/minecraft/client/entity/player/AbstractClientPlayerEntity 1/1
+  Patching net/minecraft/client/particle/DiggingParticle 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$17 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$16 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$15 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$14 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$13 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$12 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$11 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$10 1/1
+  Patching net/minecraft/dispenser/IDispenseItemBehavior$1 1/1
+  Patching net/minecraft/client/particle/ParticleManager 1/1
+  Patching net/minecraft/client/particle/Particle 1/1
+  Patching net/minecraft/client/network/ServerPinger 1/1
+  Patching net/minecraft/client/multiplayer/ServerData 1/1
+  Patching net/minecraft/client/network/play/NetworkPlayerInfo 1/1
+  Patching net/minecraft/client/multiplayer/PlayerController 1/1
+  Patching net/minecraft/client/network/play/ClientPlayNetHandler 1/1
+  Patching net/minecraft/client/world/ClientWorld 1/1
+  Patching net/minecraft/client/network/login/ClientLoginNetHandler 1/1
+  Patching net/minecraft/client/multiplayer/ClientChunkProvider 1/1
+  Patching net/minecraft/client/renderer/entity/model/SkeletonModel 1/1
+  Patching net/minecraft/block/AbstractBlock$IPositionPredicate 1/1
+  Patching net/minecraft/block/AbstractBlock$IExtendedPositionPredicate 1/1
+  Patching net/minecraft/block/AbstractBlock$Properties 1/1
+  Patching net/minecraft/block/AbstractBlock$OffsetType 1/1
+  Patching net/minecraft/block/AbstractBlock$AbstractBlockState 1/1
+  Patching net/minecraft/client/gui/screen/CreateWorldScreen 1/1
+  Patching net/minecraft/client/gui/recipebook/RecipeBookGui 1/1
+  Patching net/minecraft/client/gui/screen/PackScreen 1/1
+  Patching net/minecraft/client/gui/screen/PackLoadingManager 1/1
+  Patching net/minecraft/block/AbstractBlock$1 1/1
+  Patching net/minecraft/client/gui/screen/ServerSelectionList 1/1
+  Patching net/minecraft/client/gui/screen/MultiplayerScreen 1/1
+  Patching net/minecraft/tileentity/BeaconTileEntity$BeamSegment 1/1
+  Patching net/minecraft/client/gui/screen/EnchantmentScreen 1/1
+  Patching net/minecraft/client/main/Main$3 1/1
+  Patching net/minecraft/client/main/Main$2 1/1
+  Patching net/minecraft/client/gui/DisplayEffectsScreen 1/1
+  Patching net/minecraft/client/main/Main$1 1/1
+  Patching net/minecraft/client/gui/screen/inventory/CreativeScreen 1/1
+  Patching net/minecraft/client/gui/screen/inventory/ContainerScreen 1/1
+  Patching net/minecraft/client/gui/screen/ControlsScreen 1/1
+  Patching net/minecraft/client/gui/widget/list/KeyBindingList 1/1
+  Patching net/minecraft/client/gui/advancements/AdvancementsScreen 1/1
+  Patching net/minecraft/client/gui/advancements/AdvancementTabType 1/1
+  Patching net/minecraft/client/gui/advancements/AdvancementTabGui 1/1
+  Patching net/minecraft/tileentity/BeaconTileEntity$1 1/1
+  Patching net/minecraft/client/gui/screen/MainMenuScreen 1/1
+  Patching net/minecraft/client/gui/screen/Screen 1/1
+  Patching net/minecraft/client/gui/screen/OptionsScreen 1/1
+  Patching net/minecraft/client/gui/ScreenManager 1/1
+  Patching net/minecraft/client/gui/ResourceLoadProgressGui 1/1
+  Patching net/minecraft/client/gui/screen/LanguageScreen 1/1
+  Patching net/minecraft/client/gui/screen/DeathScreen 1/1
+  Patching net/minecraft/loot/conditions/RandomChanceWithLooting$Serializer 1/1
+  Patching net/minecraft/fluid/WaterFluid$Source 1/1
+  Patching net/minecraft/fluid/WaterFluid$Flowing 1/1
   Patching net/minecraft/client/gui/overlay/DebugOverlayGui 1/1
   Patching net/minecraft/client/gui/overlay/BossOverlayGui 1/1
   Patching net/minecraft/client/gui/widget/Widget 1/1
   Patching net/minecraft/client/gui/widget/list/AbstractList 1/1
-  Patching net/minecraft/client/renderer/entity/LivingRenderer$1 1/1
   Patching net/minecraft/client/gui/MapItemRenderer 1/1
+  Patching net/minecraft/loot/conditions/RandomChanceWithLooting$1 1/1
   Patching net/minecraft/client/gui/IngameGui 1/1
-  Patching net/minecraft/block/PistonHeadBlock$1 1/1
   Patching net/minecraft/client/renderer/color/ItemColors 1/1
   Patching net/minecraft/client/renderer/color/BlockColors 1/1
-  Patching net/minecraft/entity/passive/FoxEntity$1 1/1
   Patching net/minecraft/util/Session 1/1
+  Patching net/minecraft/client/settings/ToggleableKeyBinding 1/1
   Patching net/minecraft/util/ScreenShotHelper 1/1
   Patching net/minecraft/client/GameSettings 1/1
+  Patching net/minecraft/world/gen/feature/template/Template$EntityInfo 1/1
+  Patching net/minecraft/world/gen/feature/template/Template$BlockInfo 1/1
   Patching net/minecraft/client/MouseHelper 1/1
+  Patching net/minecraft/world/gen/feature/template/Template$BasicPalette 1/1
+  Patching net/minecraft/world/gen/feature/template/Template$Palette 1/1
   Patching net/minecraft/client/Minecraft 1/1
   Patching net/minecraft/client/KeyboardListener 1/1
   Patching net/minecraft/client/settings/KeyBinding 1/1
   Patching net/minecraft/client/renderer/ActiveRenderInfo 1/1
-  Patching net/minecraft/tileentity/AbstractFurnaceTileEntity$1 1/1
-  Patching net/minecraft/client/renderer/model/VariantList$Deserializer 1/1
+  Patching net/minecraft/block/AbstractBlock$AbstractBlockState$Cache 1/1
+  Patching net/minecraft/world/gen/feature/template/Template$1 1/1
+  Patching net/minecraft/client/renderer/model/BlockModel$GuiLight 1/1
+  Patching net/minecraft/client/renderer/model/BlockModel$Deserializer 1/1
   Patching com/mojang/realmsclient/gui/screens/RealmsGenericErrorScreen 1/1
-  Patching net/minecraft/entity/item/minecart/SpawnerMinecartEntity$1 1/1
+  Patching net/minecraft/entity/item/minecart/CommandBlockMinecartEntity$MinecartCommandLogic 1/1
   Patching net/minecraft/client/renderer/vertex/VertexFormatElement 1/1
   Patching net/minecraft/client/renderer/vertex/VertexFormat 1/1
   Patching com/mojang/blaze3d/vertex/IVertexBuilder 1/1
@@ -3404,24 +3457,29 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/client/renderer/texture/NativeImage 1/1
   Patching com/mojang/blaze3d/platform/GlStateManager 1/1
   Patching net/minecraft/client/shader/Framebuffer 1/1
+  Patching net/minecraft/fluid/FlowingFluid$1 1/1
+  Patching net/minecraft/entity/EntitySpawnPlacementRegistry$PlacementType 1/1
+  Patching net/minecraft/entity/EntitySpawnPlacementRegistry$IPlacementPredicate 1/1
+  Patching net/minecraft/entity/EntitySpawnPlacementRegistry$Entry 1/1
   Patching net/minecraft/util/math/shapes/EntitySelectionContext 1/1
   Patching net/minecraft/util/math/shapes/ISelectionContext 1/1
   Patching net/minecraft/util/math/vector/Vector3d 1/1
   Patching net/minecraft/util/math/RayTraceResult 1/1
   Patching net/minecraft/loot/conditions/RandomChanceWithLooting 1/1
-  Patching net/minecraft/client/renderer/model/BlockModel$GuiLight 1/1
-  Patching net/minecraft/client/renderer/model/BlockModel$Deserializer 1/1
+  Patching net/minecraft/world/biome/Biome$TemperatureModifier 1/1
   Patching net/minecraft/loot/LootParameterSets 1/1
+  Patching net/minecraft/world/biome/Biome$RainType 1/1
+  Patching net/minecraft/world/biome/Biome$Climate 1/1
+  Patching net/minecraft/world/biome/Biome$Attributes 1/1
+  Patching net/minecraft/world/biome/Biome$Category 1/1
+  Patching net/minecraft/world/biome/Biome$Builder 1/1
   Patching net/minecraft/loot/functions/Smelt 1/1
   Patching net/minecraft/loot/functions/LootingEnchantBonus 1/1
-  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkRender 1/1
-  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$CompiledChunk 1/1
-  Patching net/minecraft/client/renderer/chunk/ChunkRenderDispatcher$ChunkTaskResult 1/1
-  Patching net/minecraft/client/renderer/texture/NativeImage$WriteCallback 1/1
-  Patching net/minecraft/client/renderer/texture/NativeImage$PixelFormatGLCode 1/1
-  Patching net/minecraft/util/Session$Type 1/1
-  Patching net/minecraft/client/renderer/texture/NativeImage$PixelFormat 1/1
-  Patching net/minecraft/client/renderer/texture/NativeImage$1 1/1
+  Patching net/minecraft/client/renderer/BlockRendererDispatcher$1 1/1
+  Patching net/minecraft/world/biome/Biome$1 1/1
+  Patching net/minecraft/client/gui/screen/inventory/CreativeScreen$CreativeSlot 1/1
+  Patching net/minecraft/client/gui/screen/inventory/CreativeScreen$CreativeContainer 1/1
+  Patching net/minecraft/client/gui/screen/inventory/CreativeScreen$LockedSlot 1/1
   Patching net/minecraft/loot/LootTableManager 1/1
   Patching net/minecraft/loot/LootTable 1/1
   Patching net/minecraft/loot/LootPool 1/1
@@ -3431,14 +3489,21 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/world/storage/DimensionSavedDataManager 1/1
   Patching net/minecraft/world/storage/MapDecoration 1/1
   Patching net/minecraft/world/storage/WorldSavedData 1/1
+  Patching net/minecraft/client/renderer/texture/Stitcher$ISpriteLoader 1/1
+  Patching net/minecraft/client/renderer/texture/Stitcher$Slot 1/1
+  Patching net/minecraft/client/renderer/texture/Stitcher$Holder 1/1
   Patching net/minecraft/block/PortalSize 1/1
   Patching net/minecraft/world/Teleporter 1/1
+  Patching net/minecraft/loot/functions/LootingEnchantBonus$Serializer 1/1
+  Patching net/minecraft/loot/functions/LootingEnchantBonus$Builder 1/1
   Patching net/minecraft/pathfinding/WalkNodeProcessor 1/1
-  Patching net/minecraft/network/login/ServerLoginNetHandler$State 1/1
   Patching net/minecraft/pathfinding/PathNodeType 1/1
+  Patching net/minecraft/network/login/ServerLoginNetHandler$State 1/1
+  Patching net/minecraft/loot/functions/LootingEnchantBonus$1 1/1
+  Patching net/minecraft/world/gen/layer/BiomeLayer 1/1
   Patching net/minecraft/network/login/ServerLoginNetHandler$1 1/1
-  Patching net/minecraft/world/storage/MapDecoration$Type 1/1
   Patching net/minecraft/fluid/WaterFluid 1/1
+  Patching net/minecraft/world/chunk/Chunk$CreateEntityType 1/1
   Patching net/minecraft/fluid/LavaFluid 1/1
   Patching net/minecraft/fluid/FluidState 1/1
   Patching net/minecraft/fluid/Fluid 1/1
@@ -3448,81 +3513,77 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/world/lighting/LevelBasedGraph 1/1
   Patching net/minecraft/world/lighting/BlockLightEngine 1/1
   Patching net/minecraft/world/gen/surfacebuilders/SurfaceBuilder 1/1
-  Patching net/minecraft/client/renderer/model/MultipartBakedModel$Builder 1/1
-  Patching net/minecraft/entity/passive/BeeEntity$WanderGoal 1/1
-  Patching net/minecraft/entity/passive/BeeEntity$PollinateGoal 1/1
   Patching net/minecraft/world/gen/feature/template/Template 1/1
-  Patching net/minecraft/entity/passive/BeeEntity$BeeLookController 1/1
-  Patching net/minecraft/entity/passive/BeeEntity$UpdateBeehiveGoal 1/1
-  Patching net/minecraft/entity/passive/BeeEntity$AngerGoal 1/1
   Patching net/minecraft/world/gen/feature/template/StructureProcessor 1/1
-  Patching net/minecraft/entity/passive/BeeEntity$FindPollinationTargetGoal 1/1
-  Patching net/minecraft/entity/passive/BeeEntity$FindFlowerGoal 1/1
-  Patching net/minecraft/entity/passive/BeeEntity$FindBeehiveGoal 1/1
-  Patching net/minecraft/entity/passive/BeeEntity$EnterBeehiveGoal 1/1
-  Patching net/minecraft/entity/passive/BeeEntity$AttackPlayerGoal 1/1
-  Patching net/minecraft/entity/passive/BeeEntity$StingGoal 1/1
-  Patching net/minecraft/entity/passive/BeeEntity$PassiveGoal 1/1
+  Patching net/minecraft/entity/passive/RabbitEntity$RaidFarmGoal 1/1
+  Patching net/minecraft/entity/passive/RabbitEntity$PanicGoal 1/1
+  Patching net/minecraft/entity/passive/RabbitEntity$MoveHelperController 1/1
+  Patching net/minecraft/entity/passive/RabbitEntity$JumpHelperController 1/1
+  Patching net/minecraft/entity/passive/RabbitEntity$RabbitData 1/1
+  Patching net/minecraft/entity/passive/RabbitEntity$AvoidEntityGoal 1/1
+  Patching net/minecraft/entity/passive/RabbitEntity$EvilAttackGoal 1/1
   Patching net/minecraft/world/gen/feature/structure/StructureStart 1/1
   Patching net/minecraft/world/gen/feature/structure/StructurePiece 1/1
   Patching net/minecraft/world/gen/feature/structure/MineshaftPieces 1/1
-  Patching net/minecraft/entity/passive/BeeEntity$1 1/1
+  Patching net/minecraft/server/management/PlayerList$1 1/1
   Patching net/minecraft/world/gen/placement/Placement 1/1
-  Patching net/minecraft/client/gui/widget/list/KeyBindingList$KeyEntry 1/1
-  Patching net/minecraft/client/gui/widget/list/KeyBindingList$Entry 1/1
-  Patching net/minecraft/client/gui/widget/list/KeyBindingList$CategoryEntry 1/1
+  Patching net/minecraft/world/gen/FlatGenerationSettings 1/1
   Patching net/minecraft/world/gen/treedecorator/TreeDecoratorType 1/1
   Patching net/minecraft/world/gen/feature/jigsaw/JigsawPattern 1/1
-  Patching net/minecraft/tags/ITag$TagEntry 1/1
   Patching net/minecraft/world/gen/feature/jigsaw/SingleJigsawPiece 1/1
-  Patching net/minecraft/tags/ITag$OptionalTagEntry 1/1
-  Patching net/minecraft/tags/ITag$OptionalItemEntry 1/1
-  Patching net/minecraft/tags/ITag$INamedTag 1/1
-  Patching net/minecraft/tags/ITag$ITagEntry 1/1
-  Patching net/minecraft/tags/ITag$ItemEntry 1/1
-  Patching net/minecraft/tags/ITag$Proxy 1/1
-  Patching net/minecraft/tags/ITag$Builder 1/1
+  Patching net/minecraft/tags/TagRegistry$NamedTag 1/1
   Patching net/minecraft/world/gen/blockstateprovider/BlockStateProviderType 1/1
   Patching net/minecraft/world/gen/foliageplacer/FoliagePlacerType 1/1
-  Patching net/minecraft/client/gui/widget/list/KeyBindingList$1 1/1
   Patching net/minecraft/world/gen/feature/BaseTreeFeatureConfig 1/1
-  Patching net/minecraft/tags/ITag$1 1/1
-  Patching net/minecraft/item/Item$Properties 1/1
+  Patching net/minecraft/tags/TagRegistry$1 1/1
+  Patching net/minecraft/client/audio/SoundHandler$Loader$1 1/1
+  Patching net/minecraft/resources/IResourceManager$Instance 1/1
   Patching net/minecraft/world/gen/blockplacer/BlockPlacerType 1/1
+  Patching net/minecraft/world/gen/feature/structure/SwampHutStructure 1/1
   Patching net/minecraft/world/gen/feature/structure/Structure 1/1
   Patching net/minecraft/world/gen/feature/SpringFeature 1/1
-  Patching net/minecraft/block/PistonBlock$1 1/1
-  Patching net/minecraft/item/Item$1 1/1
+  Patching net/minecraft/world/gen/feature/structure/PillagerOutpostStructure 1/1
+  Patching net/minecraft/world/gen/feature/structure/OceanMonumentStructure 1/1
+  Patching net/minecraft/world/gen/feature/structure/FortressStructure 1/1
   Patching net/minecraft/world/gen/feature/DungeonsFeature 1/1
+  Patching net/minecraft/loot/LootTable$Serializer 1/1
+  Patching net/minecraft/loot/LootTable$Builder 1/1
+  Patching net/minecraft/entity/monster/SlimeEntity$FaceRandomGoal 1/1
+  Patching net/minecraft/entity/monster/SlimeEntity$MoveHelperController 1/1
+  Patching net/minecraft/entity/monster/SlimeEntity$HopGoal 1/1
+  Patching net/minecraft/entity/monster/SlimeEntity$FloatGoal 1/1
+  Patching net/minecraft/entity/monster/SlimeEntity$AttackGoal 1/1
   Patching net/minecraft/world/gen/feature/IceSpikeFeature 1/1
   Patching net/minecraft/world/gen/feature/BigRedMushroomFeature 1/1
   Patching net/minecraft/world/gen/feature/BigBrownMushroomFeature 1/1
   Patching net/minecraft/world/gen/feature/GlowstoneBlobFeature 1/1
   Patching net/minecraft/world/gen/feature/Feature 1/1
-  Patching net/minecraft/block/CocoaBlock$1 1/1
+  Patching net/minecraft/enchantment/EnchantmentType$9 1/1
+  Patching net/minecraft/enchantment/EnchantmentType$8 1/1
+  Patching net/minecraft/enchantment/EnchantmentType$7 1/1
+  Patching net/minecraft/enchantment/EnchantmentType$6 1/1
+  Patching net/minecraft/enchantment/EnchantmentType$5 1/1
+  Patching net/minecraft/client/network/play/ClientPlayNetHandler$1 1/1
+  Patching net/minecraft/loot/LootTable$1 1/1
   Patching net/minecraft/world/gen/feature/AbstractBigMushroomFeature 1/1
   Patching net/minecraft/world/gen/carver/WorldCarver 1/1
-  Patching net/minecraft/client/renderer/model/ItemCameraTransforms$TransformType 1/1
-  Patching net/minecraft/client/renderer/model/ItemCameraTransforms$Deserializer 1/1
   Patching net/minecraft/world/gen/NoiseChunkGenerator 1/1
   Patching net/minecraft/world/gen/DebugChunkGenerator 1/1
   Patching net/minecraft/world/end/DragonFightManager 1/1
   Patching net/minecraft/world/chunk/storage/ChunkSerializer 1/1
-  Patching net/minecraft/client/renderer/model/ItemCameraTransforms$1 1/1
   Patching net/minecraft/world/chunk/ChunkPrimer 1/1
   Patching net/minecraft/util/palette/PalettedContainer 1/1
   Patching net/minecraft/world/chunk/Chunk 1/1
   Patching net/minecraft/world/chunk/ChunkStatus 1/1
-  Patching net/minecraft/advancements/AdvancementList 1/1
-  Patching net/minecraft/advancements/Advancement 1/1
   Patching net/minecraft/world/chunk/IChunk 1/1
-  Patching net/minecraft/util/SharedConstants 1/1
+  Patching net/minecraft/advancements/AdvancementList 1/1
   Patching net/minecraft/world/border/WorldBorder 1/1
+  Patching net/minecraft/advancements/Advancement 1/1
+  Patching net/minecraft/util/SharedConstants 1/1
   Patching net/minecraft/block/WoodType 1/1
   Patching net/minecraft/crash/CrashReportCategory 1/1
   Patching net/minecraft/crash/CrashReport 1/1
   Patching net/minecraft/util/math/vector/Vector4f 1/1
-  Patching net/minecraft/resources/FallbackResourceManager$LeakComplainerInputStream 1/1
   Patching net/minecraft/util/math/vector/Vector3f 1/1
   Patching net/minecraft/util/math/vector/TransformationMatrix 1/1
   Patching net/minecraft/util/math/vector/Matrix4f 1/1
@@ -3531,10 +3592,11 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/block/AbstractBlock 1/1
   Patching net/minecraft/block/PistonBlockStructureHelper 1/1
   Patching net/minecraft/tileentity/PistonTileEntity 1/1
-  Patching net/minecraft/network/datasync/EntityDataManager$DataEntry 1/1
   Patching net/minecraft/block/PistonHeadBlock 1/1
   Patching net/minecraft/block/PistonBlock 1/1
+  Patching net/minecraft/network/datasync/EntityDataManager$DataEntry 1/1
   Patching net/minecraft/block/MovingPistonBlock 1/1
+  Patching net/minecraft/world/gen/feature/BaseTreeFeatureConfig$Builder 1/1
   Patching net/minecraft/tileentity/ShulkerBoxTileEntity 1/1
   Patching net/minecraft/tileentity/HopperTileEntity 1/1
   Patching net/minecraft/tileentity/ConduitTileEntity 1/1
@@ -3548,3 +3610,4 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/tileentity/BannerTileEntity 1/1
   Patching net/minecraft/tileentity/AbstractFurnaceTileEntity 1/1
   Patching net/minecraft/tags/TagRegistry$OptionalNamedTag 1/1
+  Patching net/minecraft/tags/ITagCollectionSupplier$2 1/1

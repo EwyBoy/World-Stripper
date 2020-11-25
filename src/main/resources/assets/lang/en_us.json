@@ -1,0 +1,7 @@
+{
+  "worldstripper.gui.save" : "Save",
+  "worldstripper.gui.done" : "Done",
+  "worldstripper.gui.configuration" : "%s Configuration",
+
+  "worldstripper.config.category.general" : "General"
+}
