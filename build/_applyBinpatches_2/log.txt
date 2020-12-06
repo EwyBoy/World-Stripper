@@ -1,15 +1,15 @@
-Args: "--clean", "C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\joined\1.16.4-20201102.104115\joined-1.16.4-20201102.104115-srg.jar", "--output", "C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.0\forge-1.16.4-35.1.0-binpatched.jar", "--apply", "C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.0\forge-1.16.4-35.1.0-binpatches.lzma"
+Args: "--clean", "C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\joined\1.16.4-20201102.104115\joined-1.16.4-20201102.104115-srg.jar", "--output", "C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.10\forge-1.16.4-35.1.10-binpatched.jar", "--apply", "C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.10\forge-1.16.4-35.1.10-binpatches.lzma"
 Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\binarypatcher\1.0.12\binarypatcher-1.0.12-fatjar.jar
 WorkDir: C:\Users\Eivind\Documents\Development\Modding\World-Stripper\build\_applyBinpatches_2
 Main: net.minecraftforge.binarypatcher.ConsoleTool
 ====================================
 Applying: 
   Clean:     C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\joined\1.16.4-20201102.104115\joined-1.16.4-20201102.104115-srg.jar
-  Output:    C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.0\forge-1.16.4-35.1.0-binpatched.jar
+  Output:    C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.10\forge-1.16.4-35.1.10-binpatched.jar
   KeepData:  false
   Unpatched: false
-  Patches:   C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.0\forge-1.16.4-35.1.0-binpatches.lzma
-Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.0\forge-1.16.4-35.1.0-binpatches.lzma
+  Patches:   C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.10\forge-1.16.4-35.1.10-binpatches.lzma
+Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.10\forge-1.16.4-35.1.10-binpatches.lzma
   Reading patch com.mojang.blaze3d.platform.GlStateManager$1.binpatch
     Checksum: 37bccb56 Exists: true
   Reading patch com.mojang.blaze3d.platform.GlStateManager$AlphaState.binpatch
@@ -372,6 +372,26 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 1a9af3b5 Exists: true
   Reading patch net.minecraft.client.gui.recipebook.RecipeBookGui.binpatch
     Checksum: e0c92381 Exists: true
+  Reading patch net.minecraft.client.gui.screen.BiomeGeneratorTypeScreens$1.binpatch
+    Checksum: 908435e2 Exists: true
+  Reading patch net.minecraft.client.gui.screen.BiomeGeneratorTypeScreens$2.binpatch
+    Checksum: 3b701d75 Exists: true
+  Reading patch net.minecraft.client.gui.screen.BiomeGeneratorTypeScreens$3.binpatch
+    Checksum: 224c4dc3 Exists: true
+  Reading patch net.minecraft.client.gui.screen.BiomeGeneratorTypeScreens$4.binpatch
+    Checksum: 4f2e4dd9 Exists: true
+  Reading patch net.minecraft.client.gui.screen.BiomeGeneratorTypeScreens$5.binpatch
+    Checksum: 76896b36 Exists: true
+  Reading patch net.minecraft.client.gui.screen.BiomeGeneratorTypeScreens$6.binpatch
+    Checksum: 392657d3 Exists: true
+  Reading patch net.minecraft.client.gui.screen.BiomeGeneratorTypeScreens$7.binpatch
+    Checksum: ceba6b7a Exists: true
+  Reading patch net.minecraft.client.gui.screen.BiomeGeneratorTypeScreens$8.binpatch
+    Checksum: fdfe00c Exists: true
+  Reading patch net.minecraft.client.gui.screen.BiomeGeneratorTypeScreens$IFactory.binpatch
+    Checksum: 96c9b6d3 Exists: true
+  Reading patch net.minecraft.client.gui.screen.BiomeGeneratorTypeScreens.binpatch
+    Checksum: 54f5314c Exists: true
   Reading patch net.minecraft.client.gui.screen.ControlsScreen.binpatch
     Checksum: 7a810a44 Exists: true
   Reading patch net.minecraft.client.gui.screen.CreateWorldScreen$1.binpatch
@@ -432,6 +452,14 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 5dc5f34 Exists: true
   Reading patch net.minecraft.client.gui.screen.ServerSelectionList.binpatch
     Checksum: dec48880 Exists: true
+  Reading patch net.minecraft.client.gui.screen.WorldOptionsScreen$1.binpatch
+    Checksum: ae6beb9c Exists: true
+  Reading patch net.minecraft.client.gui.screen.WorldOptionsScreen$2.binpatch
+    Checksum: ec85e684 Exists: true
+  Reading patch net.minecraft.client.gui.screen.WorldOptionsScreen$3.binpatch
+    Checksum: 9ef1a6b2 Exists: true
+  Reading patch net.minecraft.client.gui.screen.WorldOptionsScreen.binpatch
+    Checksum: f81691cb Exists: true
   Reading patch net.minecraft.client.gui.screen.inventory.ContainerScreen.binpatch
     Checksum: 99e04a54 Exists: true
   Reading patch net.minecraft.client.gui.screen.inventory.CreativeScreen$CreativeContainer.binpatch
@@ -1820,6 +1848,8 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: 72f6fab9 Exists: true
   Reading patch net.minecraft.pathfinding.ClimberPathNavigator.binpatch
     Checksum: 600a37df Exists: true
+  Reading patch net.minecraft.pathfinding.PathNavigator.binpatch
+    Checksum: acfd2def Exists: true
   Reading patch net.minecraft.pathfinding.PathNodeType.binpatch
     Checksum: 4449f6e9 Exists: true
   Reading patch net.minecraft.pathfinding.WalkNodeProcessor.binpatch
@@ -2328,6 +2358,8 @@ Loading patches file: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user
     Checksum: c62e30fa Exists: true
   Reading patch net.minecraft.world.gen.placement.Placement.binpatch
     Checksum: d6425f5b Exists: true
+  Reading patch net.minecraft.world.gen.settings.DimensionGeneratorSettings.binpatch
+    Checksum: 29115ecf Exists: true
   Reading patch net.minecraft.world.gen.surfacebuilders.SurfaceBuilder.binpatch
     Checksum: e36fcae3 Exists: true
   Reading patch net.minecraft.world.gen.treedecorator.TreeDecoratorType.binpatch
@@ -2680,6 +2712,7 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/entity/ai/brain/sensor/SensorType 1/1
   Patching net/minecraft/nbt/NBTSizeTracker$1 1/1
   Patching net/minecraft/pathfinding/ClimberPathNavigator 1/1
+  Patching net/minecraft/pathfinding/PathNavigator 1/1
   Patching net/minecraft/entity/ai/brain/memory/MemoryModuleType 1/1
   Patching net/minecraft/world/spawner/WorldEntitySpawner$1 1/1
   Patching net/minecraft/entity/ai/goal/RunAroundLikeCrazyGoal 1/1
@@ -2965,8 +2998,17 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/network/NetworkManager$2 1/1
   Patching net/minecraft/network/NetworkManager$1 1/1
   Patching net/minecraft/entity/item/minecart/AbstractMinecartEntity$1 1/1
+  Patching net/minecraft/client/gui/screen/BiomeGeneratorTypeScreens$IFactory 1/1
   Patching net/minecraft/resources/ResourcePackInfo$Priority 1/1
   Patching net/minecraft/resources/ResourcePackInfo$IFactory 1/1
+  Patching net/minecraft/client/gui/screen/BiomeGeneratorTypeScreens$8 1/1
+  Patching net/minecraft/client/gui/screen/BiomeGeneratorTypeScreens$7 1/1
+  Patching net/minecraft/client/gui/screen/BiomeGeneratorTypeScreens$6 1/1
+  Patching net/minecraft/client/gui/screen/BiomeGeneratorTypeScreens$5 1/1
+  Patching net/minecraft/client/gui/screen/BiomeGeneratorTypeScreens$4 1/1
+  Patching net/minecraft/client/gui/screen/BiomeGeneratorTypeScreens$3 1/1
+  Patching net/minecraft/client/gui/screen/BiomeGeneratorTypeScreens$2 1/1
+  Patching net/minecraft/client/gui/screen/BiomeGeneratorTypeScreens$1 1/1
   Patching net/minecraft/world/storage/SaveFormat$LevelSave 1/1
   Patching net/minecraft/client/renderer/FogRenderer$FogType 1/1
   Patching net/minecraft/client/gui/ResourceLoadProgressGui$MojangLogoTexture 1/1
@@ -3008,6 +3050,9 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/resources/FallbackResourceManager$LeakComplainerInputStream 1/1
   Patching net/minecraft/advancements/criterion/ItemPredicate$Builder 1/1
   Patching net/minecraft/tileentity/ShulkerBoxTileEntity$AnimationStatus 1/1
+  Patching net/minecraft/client/gui/screen/WorldOptionsScreen$3 1/1
+  Patching net/minecraft/client/gui/screen/WorldOptionsScreen$2 1/1
+  Patching net/minecraft/client/gui/screen/WorldOptionsScreen$1 1/1
   Patching net/minecraft/tileentity/ShulkerBoxTileEntity$1 1/1
   Patching net/minecraft/entity/monster/EndermanEntity$TakeBlockGoal 1/1
   Patching net/minecraft/entity/monster/EndermanEntity$FindPlayerGoal 1/1
@@ -3390,6 +3435,8 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/block/AbstractBlock$Properties 1/1
   Patching net/minecraft/block/AbstractBlock$OffsetType 1/1
   Patching net/minecraft/block/AbstractBlock$AbstractBlockState 1/1
+  Patching net/minecraft/client/gui/screen/BiomeGeneratorTypeScreens 1/1
+  Patching net/minecraft/client/gui/screen/WorldOptionsScreen 1/1
   Patching net/minecraft/client/gui/screen/CreateWorldScreen 1/1
   Patching net/minecraft/client/gui/recipebook/RecipeBookGui 1/1
   Patching net/minecraft/client/gui/screen/PackScreen 1/1
@@ -3567,6 +3614,7 @@ Processing: C:\Users\Eivind\.gradle\caches\forge_gradle\mcp_repo\net\minecraft\j
   Patching net/minecraft/loot/LootTable$1 1/1
   Patching net/minecraft/world/gen/feature/AbstractBigMushroomFeature 1/1
   Patching net/minecraft/world/gen/carver/WorldCarver 1/1
+  Patching net/minecraft/world/gen/settings/DimensionGeneratorSettings 1/1
   Patching net/minecraft/world/gen/NoiseChunkGenerator 1/1
   Patching net/minecraft/world/gen/DebugChunkGenerator 1/1
   Patching net/minecraft/world/end/DragonFightManager 1/1

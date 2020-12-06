@@ -1,8 +1,6 @@
 package com.ewyboy.worldstripper.common.config;
 
-import net.minecraft.util.ResourceLocation;
-
-import java.util.Set;
+import java.util.List;
 
 public class ConfigOptions {
 
@@ -10,9 +8,9 @@ public class ConfigOptions {
         public static int testInt1;
         public static int testInt2;
         public static boolean testBool;
-        public static Set<ResourceLocation> testList;
+        public static List<String> testList;
+        public static Enum<Config.General.Test> testEnum;
     }
-
 
     public static class Stripping {
         public static int blocksToStripX;
@@ -21,14 +19,13 @@ public class ConfigOptions {
         public static String replacementBlock;
     }
 
-
     public static class Profiles {
-        public static int selectedProfile;
-        public static Set<ResourceLocation> profile1;
-        public static Set<ResourceLocation> profile2;
-        public static Set<ResourceLocation> profile3;
-        public static Set<ResourceLocation> profile4;
-        public static Set<ResourceLocation> profile5;
+        public static Enum<Config.Profiles.Profile> profile;
+        public static List<String> profile1;
+        public static List<String> profile2;
+        public static List<String> profile3;
+        public static List<String> profile4;
+        public static List<String> profile5;
     }
 
 }

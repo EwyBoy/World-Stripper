@@ -24,7 +24,7 @@ public class ConfigHolder {
         ModConfig config = event.getConfig();
 
         if (config.getSpec() == ConfigHolder.configSpec) {
-            ConfigHelper.refreshConfig(config);
+            ConfigHelper.readConfigToMemory(config);
         }
     }
 

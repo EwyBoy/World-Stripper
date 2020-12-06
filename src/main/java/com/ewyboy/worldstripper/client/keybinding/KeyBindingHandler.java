@@ -3,6 +3,7 @@ package com.ewyboy.worldstripper.client.keybinding;
 import com.ewyboy.worldstripper.client.gui.config.GuiConfigMain;
 import com.ewyboy.worldstripper.common.network.MessageHandler;
 import com.ewyboy.worldstripper.common.network.messages.MessageDressWorld;
+import com.ewyboy.worldstripper.common.network.messages.MessageStripWorker;
 import com.ewyboy.worldstripper.common.network.messages.MessageStripWorld;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
@@ -18,6 +19,7 @@ public class KeyBindingHandler {
     private static KeyBinding strip;
     private static KeyBinding dress;
     private static KeyBinding config;
+    private static KeyBinding worker;
 
     public KeyBindingHandler() {}
 
@@ -28,6 +30,8 @@ public class KeyBindingHandler {
         ClientRegistry.registerKeyBinding(dress);
         config = new KeyBinding("Open Config", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_HOME, "World Stripper");
         ClientRegistry.registerKeyBinding(config);
+        worker = new KeyBinding("Strip Worker", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, "World Stripper");
+        ClientRegistry.registerKeyBinding(worker);
     }
 
     @SubscribeEvent
@@ -42,6 +46,10 @@ public class KeyBindingHandler {
 
         if (config.isPressed()) {
             Minecraft.getInstance().displayGuiScreen(new GuiConfigMain());
+        }
+
+        if (worker.isPressed()) {
+            MessageHandler.CHANNEL.sendToServer(new MessageStripWorker());
         }
     }
 }

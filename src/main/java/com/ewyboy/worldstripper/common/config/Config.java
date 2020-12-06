@@ -10,13 +10,25 @@ import java.util.List;
 public class Config {
 
     public static class General {
+
         ForgeConfigSpec.IntValue testInt1;
         ForgeConfigSpec.IntValue testInt2;
         ForgeConfigSpec.BooleanValue testBool;
         ForgeConfigSpec.ConfigValue<List<String>> testList;
+        ForgeConfigSpec.EnumValue testEnum;
+
+        public enum Test {
+            TEST_1,
+            TEST_2,
+            TEST_3,
+            TEST_4,
+            TEST_5
+        }
+
     }
 
     public static class Stripping {
+
         ForgeConfigSpec.IntValue blocksToStripX;
         ForgeConfigSpec.IntValue blocksToStripZ;
         ForgeConfigSpec.IntValue updateFlag;
@@ -25,7 +37,16 @@ public class Config {
     }
 
     public static class Profiles {
-        ForgeConfigSpec.IntValue selectedProfile;
+
+        ForgeConfigSpec.EnumValue profile;
+
+        public enum Profile {
+            PROFILE_1,
+            PROFILE_2,
+            PROFILE_3,
+            PROFILE_4,
+            PROFILE_5,
+        }
 
         ForgeConfigSpec.ConfigValue<List<? extends String>> profile1;
         ForgeConfigSpec.ConfigValue<List<? extends String>> profile2;
@@ -74,7 +95,6 @@ public class Config {
 
     }
 
-
     public final General general = new General();
     public final Stripping stripping = new Stripping();
     public final Profiles profiles = new Profiles();
@@ -102,6 +122,11 @@ public class Config {
                         .translation("worldstripper.config.common.general.testList")
                         .define("test_list", Lists.newArrayList("test1", "test2", "test3"), o -> o instanceof String
                 );
+                general.testEnum = builder
+                        .comment("Test enum")
+                        .translation("worldstripper.config.common.general.testEnum")
+                        .defineEnum("test_enum", General.Test.TEST_1
+                );
             } builder.pop();
 
             builder.comment("Stripper Settings").push("Stripping"); {
@@ -116,9 +141,9 @@ public class Config {
                         .defineInRange("blocks_to_strip_z", 48, 0, 4096
                 );
                 stripping.updateFlag = builder
-                        .comment("Flag 1 will cause a block update. Flag 2 will send the change to clients. Flag 4 will prevent the block from\nbeing re-rendered, if this is a client world. Flag 8 will force any re-renders to run on the main thread instead\nof the worker pool, if this is a client world and flag 4 is clear. Flag 16 will prevent observers from seeing this change\nFlags can be added together to obtain multiple flag properties")
+                        .comment("Read more at www.testurl.com/blockflags")
                         .translation("worldstripper.config.stripping.updateFlag")
-                        .defineInRange("update_flag", 3, 1, 64
+                        .defineInRange("update_flag", 18, 1, 64
                 );
                 stripping.replacementBlock = builder
                         .comment("Replaces every block touched by the stripper with this block")
@@ -129,10 +154,10 @@ public class Config {
             } builder.pop();
 
             builder.comment("Stripper Profile Settings").push("Profiles"); {
-                profiles.selectedProfile = builder
-                        .comment("Selected Profile")
-                        .translation("worldstripper.config.profiles.selectedProfile")
-                        .defineInRange("selectedProfile", 1, 1, 5
+                profiles.profile = builder
+                        .comment("Selected profile")
+                        .translation("worldstripper.config.common.profiles.profile")
+                        .defineEnum("profile", Profiles.Profile.PROFILE_1
                 );
                 profiles.profile1 = builder
                         .comment("Profile 1 - A list of blocks to strip away from the world")
@@ -141,22 +166,22 @@ public class Config {
                 );
                 profiles.profile2 = builder
                         .comment("Profile 2 - A list of blocks to strip away from the world")
-                        .translation("worldstripper.config.profiles.profile1")
+                        .translation("worldstripper.config.profiles.profile2")
                         .define("profile_2", Lists.newArrayList(Profiles.defaultStripList), o -> o instanceof String
                 );
                 profiles.profile3 = builder
                         .comment("Profile 3 - A list of blocks to strip away from the world")
-                        .translation("worldstripper.config.profiles.profile1")
+                        .translation("worldstripper.config.profiles.profile3")
                         .define("profile_3", Lists.newArrayList(Profiles.defaultStripList), o -> o instanceof String
                 );
                 profiles.profile4 = builder
                         .comment("Profile 4 - A list of blocks to strip away from the world")
-                        .translation("worldstripper.config.profiles.profile1")
+                        .translation("worldstripper.config.profiles.profile4")
                         .define("profile_4", Lists.newArrayList(Profiles.defaultStripList), o -> o instanceof String
                 );
                 profiles.profile5 = builder
                         .comment("Profile 5 - A list of blocks to strip away from the world")
-                        .translation("worldstripper.config.profiles.profile1")
+                        .translation("worldstripper.config.profiles.profile5")
                         .define("profile_5", Lists.newArrayList(Profiles.defaultStripList), o -> o instanceof String
                 );
             } builder.pop();

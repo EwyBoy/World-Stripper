@@ -22,6 +22,7 @@ public class WorldStripper {
     public static final String MOD_ID = "worldstripper";
     public static final String NAME = "World Stripper";
 
+    //TODO Remove dist-exe and proxies
     private static final IModProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
     public WorldStripper() {

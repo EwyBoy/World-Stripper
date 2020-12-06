@@ -102,9 +102,10 @@ key_key.hotbar.8:key.keyboard.8
 key_key.hotbar.9:key.keyboard.9
 key_Strip World:key.keyboard.delete
 key_Dress World:key.keyboard.insert
-key_Copy Block:key.keyboard.home
-soundCategory_master:0.16556291
-soundCategory_music:0.0
+key_Open Config:key.keyboard.home
+key_Strip Worker:key.keyboard.page.up
+soundCategory_master:0.40066224
+soundCategory_music:0.20422535
 soundCategory_record:1.0
 soundCategory_weather:1.0
 soundCategory_block:1.0

@@ -13,6 +13,7 @@ public class CommandCenter {
                 LiteralArgumentBuilder.<CommandSource> literal(WorldStripper.MOD_ID)
                 .then(CommandReloadConfig.register())
                 .then(CommandOpenConfig.register())
+                .then(CommandStrip.register())
                 .executes(ctx -> {
                     // TODO add something meaningful here
                     ctx.getSource().sendFeedback(new StringTextComponent("Placeholder Text"), false);

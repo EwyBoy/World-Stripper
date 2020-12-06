@@ -12,7 +12,7 @@ java.lang.IllegalArgumentException: Cannot add an element to an intermediary val
 	at com.electronwill.nightconfig.core.Config.set(Config.java:27) ~[core-3.6.2.jar:?] {}
 	at com.ewyboy.worldstripper.common.config.ConfigHelper.setValueAndSaveConfig(ConfigHelper.java:56) ~[main/:?] {re:classloading}
 	at com.ewyboy.worldstripper.client.gui.config.GuiConfigMain$2.lambda$getOptions$1(GuiConfigGeneral.java:56) ~[main/:?] {re:classloading}
-	at com.ewyboy.worldstripper.client.gui.config.value.OptionsEntryValue.save(OptionsEntryValue.java:33) ~[main/:?] {re:classloading}
+	at com.ewyboy.worldstripper.client.gui.config.widget.entries.OptionsEntryValue.save(OptionsEntryValue.java:33) ~[main/:?] {re:classloading}
 	at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184) ~[?:1.8.0_261] {}
 	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193) ~[?:1.8.0_261] {}
 	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175) ~[?:1.8.0_261] {}
@@ -24,7 +24,7 @@ java.lang.IllegalArgumentException: Cannot add an element to an intermediary val
 	at java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174) ~[?:1.8.0_261] {}
 	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:1.8.0_261] {}
 	at java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:418) ~[?:1.8.0_261] {}
-	at com.ewyboy.worldstripper.client.gui.config.OptionsListWidget.save(OptionsListWidget.java:121) ~[main/:?] {re:classloading}
+	at com.ewyboy.worldstripper.client.gui.config.widget.OptionsListWidget.save(OptionsListWidget.java:121) ~[main/:?] {re:classloading}
 	at com.ewyboy.worldstripper.client.gui.config.GuiConfigOptions.lambda$init$2(GuiConfigOptions.java:57) ~[main/:?] {re:classloading}
 	at net.minecraft.client.gui.widget.button.Button.onPress(Button.java:26) ~[forge-1.16.4-35.1.0_mapped_snapshot_20201028-1.16.3-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}
 	at net.minecraft.client.gui.widget.button.AbstractButton.onClick(AbstractButton.java:18) ~[forge-1.16.4-35.1.0_mapped_snapshot_20201028-1.16.3-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}
@@ -70,7 +70,7 @@ Stacktrace:
 	at com.electronwill.nightconfig.core.Config.set(Config.java:27) ~[core-3.6.2.jar:?] {}
 	at com.ewyboy.worldstripper.common.config.ConfigHelper.setValueAndSaveConfig(ConfigHelper.java:56) ~[?:?] {re:classloading}
 	at com.ewyboy.worldstripper.client.gui.config.GuiConfigMain$2.lambda$getOptions$1(GuiConfigGeneral.java:56) ~[?:?] {re:classloading}
-	at com.ewyboy.worldstripper.client.gui.config.value.OptionsEntryValue.save(OptionsEntryValue.java:33) ~[?:?] {re:classloading}
+	at com.ewyboy.worldstripper.client.gui.config.widget.entries.OptionsEntryValue.save(OptionsEntryValue.java:33) ~[?:?] {re:classloading}
 	at java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184) ~[?:1.8.0_261] {}
 	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193) ~[?:1.8.0_261] {}
 	at java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:175) ~[?:1.8.0_261] {}
@@ -82,7 +82,7 @@ Stacktrace:
 	at java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174) ~[?:1.8.0_261] {}
 	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[?:1.8.0_261] {}
 	at java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:418) ~[?:1.8.0_261] {}
-	at com.ewyboy.worldstripper.client.gui.config.OptionsListWidget.save(OptionsListWidget.java:121) ~[?:?] {re:classloading}
+	at com.ewyboy.worldstripper.client.gui.config.widget.OptionsListWidget.save(OptionsListWidget.java:121) ~[?:?] {re:classloading}
 	at com.ewyboy.worldstripper.client.gui.config.GuiConfigOptions.lambda$init$2(GuiConfigOptions.java:57) ~[?:?] {re:classloading}
 	at net.minecraft.client.gui.widget.button.Button.onPress(Button.java:26) ~[forge:?] {re:classloading,pl:runtimedistcleaner:A}
 	at net.minecraft.client.gui.widget.button.AbstractButton.onClick(AbstractButton.java:18) ~[forge:?] {re:classloading,pl:runtimedistcleaner:A}

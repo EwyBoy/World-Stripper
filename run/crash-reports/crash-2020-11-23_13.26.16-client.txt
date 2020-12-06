@@ -10,7 +10,7 @@ java.lang.NullPointerException: mouseClicked event handler
 	at net.minecraft.client.Minecraft.displayGuiScreen(Minecraft.java:874) ~[forge-1.16.4-35.1.0_mapped_snapshot_20201028-1.16.3-recomp.jar:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
 	at com.ewyboy.worldstripper.client.gui.config.GuiConfigMain.lambda$getOptions$0(GuiConfigWorldStripper.java:22) ~[main/:?] {re:classloading}
 	at net.minecraft.client.gui.widget.button.Button.onPress(Button.java:26) ~[forge-1.16.4-35.1.0_mapped_snapshot_20201028-1.16.3-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}
-	at com.ewyboy.worldstripper.client.gui.config.value.OptionsEntryButton.mouseClicked(OptionsEntryButton.java:32) ~[main/:?] {re:classloading}
+	at com.ewyboy.worldstripper.client.gui.config.widget.entries.OptionsEntryButton.mouseClicked(OptionsEntryButton.java:32) ~[main/:?] {re:classloading}
 	at net.minecraft.client.gui.widget.list.AbstractList.mouseClicked(AbstractList.java:309) ~[forge-1.16.4-35.1.0_mapped_snapshot_20201028-1.16.3-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}
 	at net.minecraft.client.gui.INestedGuiEventHandler.mouseClicked(INestedGuiEventHandler.java:31) ~[forge-1.16.4-35.1.0_mapped_snapshot_20201028-1.16.3-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}
 	at net.minecraft.client.MouseHelper.lambda$mouseButtonCallback$0(MouseHelper.java:92) ~[forge-1.16.4-35.1.0_mapped_snapshot_20201028-1.16.3-recomp.jar:?] {re:classloading,pl:runtimedistcleaner:A}
@@ -51,7 +51,7 @@ Stacktrace:
 	at net.minecraft.client.Minecraft.displayGuiScreen(Minecraft.java:874) ~[forge:?] {re:classloading,pl:accesstransformer:B,pl:runtimedistcleaner:A}
 	at com.ewyboy.worldstripper.client.gui.config.GuiConfigMain.lambda$getOptions$0(GuiConfigWorldStripper.java:22) ~[?:?] {re:classloading}
 	at net.minecraft.client.gui.widget.button.Button.onPress(Button.java:26) ~[forge:?] {re:classloading,pl:runtimedistcleaner:A}
-	at com.ewyboy.worldstripper.client.gui.config.value.OptionsEntryButton.mouseClicked(OptionsEntryButton.java:32) ~[?:?] {re:classloading}
+	at com.ewyboy.worldstripper.client.gui.config.widget.entries.OptionsEntryButton.mouseClicked(OptionsEntryButton.java:32) ~[?:?] {re:classloading}
 	at net.minecraft.client.gui.widget.list.AbstractList.mouseClicked(AbstractList.java:309) ~[forge:?] {re:classloading,pl:runtimedistcleaner:A}
 	at net.minecraft.client.gui.INestedGuiEventHandler.mouseClicked(INestedGuiEventHandler.java:31) ~[forge:?] {re:classloading,pl:runtimedistcleaner:A}
 	at net.minecraft.client.MouseHelper.lambda$mouseButtonCallback$0(MouseHelper.java:92) ~[forge:?] {re:classloading,pl:runtimedistcleaner:A}

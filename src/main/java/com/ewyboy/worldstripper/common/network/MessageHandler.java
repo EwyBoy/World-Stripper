@@ -1,9 +1,7 @@
 package com.ewyboy.worldstripper.common.network;
 
-import com.ewyboy.worldstripper.common.network.messages.MessageCopyBlock;
-import com.ewyboy.worldstripper.common.network.messages.MessageDressWorld;
-import com.ewyboy.worldstripper.common.network.messages.MessageOpenConfig;
-import com.ewyboy.worldstripper.common.network.messages.MessageStripWorld;
+import com.ewyboy.worldstripper.common.network.messages.*;
+
 import java.util.HashMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.ResourceLocation;
@@ -29,6 +27,7 @@ public class MessageHandler {
         CHANNEL.registerMessage(nextID(), MessageDressWorld.class, MessageDressWorld::encode, MessageDressWorld::decode, MessageDressWorld::handle);
         CHANNEL.registerMessage(nextID(), MessageCopyBlock.class, MessageCopyBlock::encode, MessageCopyBlock::decode, MessageCopyBlock::handle);
         CHANNEL.registerMessage(nextID(), MessageOpenConfig.class, MessageOpenConfig::encode, MessageOpenConfig::decode, MessageOpenConfig::handle);
+        CHANNEL.registerMessage(nextID(), MessageStripWorker.class, MessageStripWorker::encode, MessageStripWorker::decode, MessageStripWorker::handle);
     }
 
     static {
