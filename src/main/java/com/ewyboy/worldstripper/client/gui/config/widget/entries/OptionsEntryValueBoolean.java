@@ -1,15 +1,13 @@
-package com.ewyboy.worldstripper.client.gui.config.value;
+package com.ewyboy.worldstripper.client.gui.config.widget.entries;
 
 import com.ewyboy.worldstripper.common.config.ConfigHelper;
 import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.IGuiEventListener;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-import java.awt.*;
 import java.util.function.Consumer;
 
 public class OptionsEntryValueBoolean extends OptionsEntryValue<Boolean> {

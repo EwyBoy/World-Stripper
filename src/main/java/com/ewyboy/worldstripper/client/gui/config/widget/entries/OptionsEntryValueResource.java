@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.client.gui.config.value;
+package com.ewyboy.worldstripper.client.gui.config.widget.entries;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
@@ -22,7 +22,7 @@ public class OptionsEntryValueResource<T> extends OptionsEntryValue<T> {
         super(optionName, save);
 
         this.value = value;
-        this.textField = new WatchedTextfield(this, client.fontRenderer, 0, 0, 98, 18);
+        this.textField = new WatchedTextfield(this, client.fontRenderer, 0, 0, 200, 20);
         textField.setText(String.valueOf(value));
         textField.setValidator(validator);
         this.button = button;
@@ -86,7 +86,6 @@ public class OptionsEntryValueResource<T> extends OptionsEntryValue<T> {
 
         public WatchedTextfield(OptionsEntryValueResource<?> watcher, FontRenderer fontRenderer, int x, int y, int width, int height) {
             super(fontRenderer, x, y, width, height, new StringTextComponent(""));
-
             this.watcher = watcher;
         }
 

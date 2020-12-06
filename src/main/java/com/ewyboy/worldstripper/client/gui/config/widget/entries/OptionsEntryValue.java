@@ -1,6 +1,6 @@
-package com.ewyboy.worldstripper.client.gui.config.value;
+package com.ewyboy.worldstripper.client.gui.config.widget.entries;
 
-import com.ewyboy.worldstripper.client.gui.config.OptionsListWidget;
+import com.ewyboy.worldstripper.client.gui.config.widget.OptionsListWidget;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.IGuiEventListener;
 import net.minecraft.util.text.TextComponent;

@@ -56,19 +56,21 @@ public class WorldStrippingWorker implements WorldWorkerManager.IWorker {
      * Returning false will skip calling this worker until next tick.
      */
     public boolean doWork() {
-        CachedBlockInfo next = queue.poll();
-
-        while (next == null || !isReplaceableBlock(next) && !queue.isEmpty()) {
+        CachedBlockInfo next;
+        do {
             next = queue.poll();
-        }
-        if (++lastNotification >= notificationFrequency || lastNotifcationTime < System.currentTimeMillis() - 60 * 1000) {
-            // TODO: Send update message using:
+        } while ((next == null || !isReplaceableBlock(next)) && !queue.isEmpty());
+
+        if (next != null) {
+            if (++lastNotification >= notificationFrequency || lastNotifcationTime < System.currentTimeMillis() - 60 * 1000) {
+                // TODO: Send update message using:
 //                   listener.sendFeedback(new TranslationTextComponent("commands.worldstripper.strip.progress", total - queue.size(), total), true);
-            listener.sendFeedback(new StringTextComponent(String.format("HAHA got %.02f%% of the way there", (float) (total - queue.size()) / total * 100F)), false);
-            lastNotification = 0;
-            lastNotifcationTime = System.currentTimeMillis();
+                listener.sendFeedback(new StringTextComponent(String.format("HAHA got %.02f%% of the way there", (float) (total - queue.size()) / total * 100F)), false);
+                lastNotification = 0;
+                lastNotifcationTime = System.currentTimeMillis();
+            }
+            dim.setBlockState(next.getPos(), Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(ConfigOptions.Stripping.replacementBlock))).getDefaultState(), ConfigOptions.Stripping.updateFlag);
         }
-        dim.setBlockState(next.getPos(), Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(ConfigOptions.Stripping.replacementBlock))).getDefaultState(), ConfigOptions.Stripping.updateFlag);
 
         if (queue.size() == 0) {
             // TODO: Send chat message saying that the work is done:

@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.client.gui.config.value;
+package com.ewyboy.worldstripper.client.gui.config.widget.entries;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.IGuiEventListener;
@@ -17,7 +17,7 @@ public class OptionsEntryValueEnum<T extends Enum<T>> extends OptionsEntryValue<
         super(optionName, save);
 
         this.translationKey = optionName;
-        this.button = new Button(0, 0, 100, 20, new TranslationTextComponent(optionName + "_" + selected.name().toLowerCase(Locale.ROOT)), w -> {
+        this.button = new Button(0, 0, 100, 20, new TranslationTextComponent(selected.name()), w -> {
             value = values[(value.ordinal() + 1) % values.length];
         });
         this.value = selected;
