@@ -2,6 +2,7 @@ package com.ewyboy.worldstripper.client.gui.config.widget;
 
 import com.ewyboy.worldstripper.client.gui.config.GuiConfigOptions;
 import com.ewyboy.worldstripper.client.gui.config.widget.entries.OptionsEntryValue;
+import com.ewyboy.worldstripper.client.gui.config.widget.entries.OptionsEntryValueResource;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -35,6 +36,11 @@ public class OptionsListWidget extends AbstractList<OptionsListWidget.Entry> {
     }
 
     @Override
+    protected int getScrollbarPosition() {
+        return this.width - 50;
+    }
+
+    @Override
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float delta) {
         this.renderBackground(matrixStack);
         int scrollPosX = this.getScrollbarPosition();
@@ -47,7 +53,7 @@ public class OptionsListWidget extends AbstractList<OptionsListWidget.Entry> {
         this.minecraft.getTextureManager().bindTexture(BACKGROUND_LOCATION);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         int rowLeft = this.getRowLeft();
-        int scrollJump = this.y0 + 4 - (int)this.getScrollAmount();
+        int scrollJump = this.y0 + 4 - (int) this.getScrollAmount();
 
         this.renderList(matrixStack, rowLeft, scrollJump, mouseX, mouseY, delta);
         this.minecraft.getTextureManager().bindTexture(BACKGROUND_LOCATION);
@@ -55,14 +61,14 @@ public class OptionsListWidget extends AbstractList<OptionsListWidget.Entry> {
         RenderSystem.enableDepthTest();
         RenderSystem.depthFunc(519);
         bufferBuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-        bufferBuilder.pos(this.x0, this.y0, -100.0D).tex(0.0F, (float)this.y0 / 32.0F).color(64, 64, 64, 255).endVertex();
-        bufferBuilder.pos((this.x0 + this.width), this.y0, -100.0D).tex((float)this.width / 32.0F, (float)this.y0 / 32.0F).color(64, 64, 64, 255).endVertex();
-        bufferBuilder.pos((this.x0 + this.width), 0.0D, -100.0D).tex((float)this.width / 32.0F, 0.0F).color(64, 64, 64, 255).endVertex();
+        bufferBuilder.pos(this.x0, this.y0, -100.0D).tex(0.0F, (float) this.y0 / 32.0F).color(64, 64, 64, 255).endVertex();
+        bufferBuilder.pos((this.x0 + this.width), this.y0, -100.0D).tex((float) this.width / 32.0F, (float) this.y0 / 32.0F).color(64, 64, 64, 255).endVertex();
+        bufferBuilder.pos((this.x0 + this.width), 0.0D, -100.0D).tex((float) this.width / 32.0F, 0.0F).color(64, 64, 64, 255).endVertex();
         bufferBuilder.pos(this.x0, 0.0D, -100.0D).tex(0.0F, 0.0F).color(64, 64, 64, 255).endVertex();
-        bufferBuilder.pos(this.x0, this.height, -100.0D).tex(0.0F, (float)this.height / 32.0F).color(64, 64, 64, 255).endVertex();
-        bufferBuilder.pos((this.x0 + this.width), this.height, -100.0D).tex((float)this.width / 32.0F, (float)this.height / 32.0F).color(64, 64, 64, 255).endVertex();
-        bufferBuilder.pos((this.x0 + this.width), this.y1, -100.0D).tex((float)this.width / 32.0F, (float)this.y1 / 32.0F).color(64, 64, 64, 255).endVertex();
-        bufferBuilder.pos(this.x0, this.y1, -100.0D).tex(0.0F, (float)this.y1 / 32.0F).color(64, 64, 64, 255).endVertex();
+        bufferBuilder.pos(this.x0, this.height, -100.0D).tex(0.0F, (float) this.height / 32.0F).color(64, 64, 64, 255).endVertex();
+        bufferBuilder.pos((this.x0 + this.width), this.height, -100.0D).tex((float) this.width / 32.0F, (float) this.height / 32.0F).color(64, 64, 64, 255).endVertex();
+        bufferBuilder.pos((this.x0 + this.width), this.y1, -100.0D).tex((float) this.width / 32.0F, (float) this.y1 / 32.0F).color(64, 64, 64, 255).endVertex();
+        bufferBuilder.pos(this.x0, this.y1, -100.0D).tex(0.0F, (float) this.y1 / 32.0F).color(64, 64, 64, 255).endVertex();
         tessellator.draw();
         RenderSystem.depthFunc(515);
         RenderSystem.disableDepthTest();
@@ -81,12 +87,13 @@ public class OptionsListWidget extends AbstractList<OptionsListWidget.Entry> {
         bufferBuilder.pos(this.x1, this.y1 - 4, 0.0D).color(0, 0, 0, 0).tex(1.0f, 0.0f).endVertex();
         bufferBuilder.pos(this.x0, this.y1 - 4, 0.0D).color(0, 0, 0, 0).tex(0.0f, 0.0f).endVertex();
         tessellator.draw();
+
         int int_8 = Math.max(0, this.getMaxPosition() - (this.y1 - this.y0 - 4));
-        if (int_8 > 0) {
-            int int_9 = (int)((float)((this.y1 - this.y0) * (this.y1 - this.y0)) / (float)this.getMaxPosition());
+        if(int_8 > 0) {
+            int int_9 = (int) ((float) ((this.y1 - this.y0) * (this.y1 - this.y0)) / (float) this.getMaxPosition());
             int_9 = MathHelper.clamp(int_9, 32, this.y1 - this.y0 - 8);
-            int int_10 = (int)this.getScrollAmount() * (this.y1 - this.y0 - int_9) / int_8 + this.y0;
-            if (int_10 < this.y0) {
+            int int_10 = (int) this.getScrollAmount() * (this.y1 - this.y0 - int_9) / int_8 + this.y0;
+            if(int_10 < this.y0) {
                 int_10 = this.y0;
             }
 
@@ -114,29 +121,31 @@ public class OptionsListWidget extends AbstractList<OptionsListWidget.Entry> {
     }
 
     public void save() {
-        getEventListeners()
-                .stream()
-                .filter(e -> e instanceof OptionsEntryValue)
-                .map(e -> (OptionsEntryValue) e)
-                .forEach(OptionsEntryValue::save);
-        if (diskWriter != null)
-            diskWriter.run();
+        getEventListeners().stream().filter(e -> e instanceof OptionsEntryValue).map(e -> (OptionsEntryValue) e).forEach(OptionsEntryValue :: save);
+        getEventListeners().stream().filter(e -> e instanceof OptionsEntryValueResource).map(e -> (OptionsEntryValueResource) e).forEach(OptionsEntryValueResource :: save);
+        if(diskWriter != null) diskWriter.run();
     }
 
     public void add(Entry entry) {
-        if (entry instanceof OptionsEntryValue) {
+        if(entry instanceof OptionsEntryValue) {
             IGuiEventListener element = ((OptionsEntryValue) entry).getListener();
-            if (element != null)
-                owner.addListener(element);
+            if(element != null) owner.addListener(element);
+        }
+        if(entry instanceof OptionsEntryValueResource) {
+            IGuiEventListener element = ((OptionsEntryValueResource) entry).getListener();
+            if(element != null) owner.addListener(element);
         }
         addEntry(entry);
     }
 
     public void remove(Entry entry) {
-        if (entry instanceof OptionsEntryValue) {
+        if(entry instanceof OptionsEntryValue) {
             IGuiEventListener element = ((OptionsEntryValue) entry).getListener();
-            if (element != null)
-                owner.addListener(element);
+            if(element != null) owner.addListener(element);
+        }
+        if(entry instanceof OptionsEntryValueResource) {
+            IGuiEventListener element = ((OptionsEntryValueResource) entry).getListener();
+            if(element != null) owner.addListener(element);
         }
         removeEntry(entry);
     }
@@ -151,5 +160,7 @@ public class OptionsListWidget extends AbstractList<OptionsListWidget.Entry> {
 
         @Override
         public abstract void render(MatrixStack matrixStack, int index, int rowTop, int rowLeft, int width, int height, int mouseX, int mouseY, boolean hovered, float deltaTime);
+
     }
+
 }

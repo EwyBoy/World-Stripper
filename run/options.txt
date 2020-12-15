@@ -103,9 +103,11 @@ key_key.hotbar.9:key.keyboard.9
 key_Strip World:key.keyboard.delete
 key_Dress World:key.keyboard.insert
 key_Open Config:key.keyboard.home
-key_Strip Worker:key.keyboard.page.up
-soundCategory_master:0.40066224
-soundCategory_music:0.20422535
+key_Add Block:key.keyboard.page.up
+key_Remove Block:key.keyboard.page.down
+key_Cycle Profile:key.keyboard.end
+soundCategory_master:0.25496688
+soundCategory_music:0.0
 soundCategory_record:1.0
 soundCategory_weather:1.0
 soundCategory_block:1.0

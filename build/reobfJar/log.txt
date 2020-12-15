@@ -1,7 +1,7 @@
-Args: "--in-jar", "C:\Users\Eivind\Documents\Development\Modding\World-Stripper\build\libs\World Stripper-1.16.4-1.7.2.jar", "--out-jar", "C:\Users\Eivind\Documents\Development\Modding\World-Stripper\build\reobfJar\output.jar", "--srg-in", "C:\Users\Eivind\Documents\Development\Modding\World-Stripper\build\createMcpToSrg\output.tsrg", "--live"
+Args: "--in-jar", "C:\Users\Eivind\Documents\Development\Modding\World-Stripper\build\libs\World Stripper-1.16.4-2.0.0.jar", "--out-jar", "C:\Users\Eivind\Documents\Development\Modding\World-Stripper\build\reobfJar\output.jar", "--srg-in", "C:\Users\Eivind\Documents\Development\Modding\World-Stripper\build\createMcpToSrg\output.tsrg", "--live"
 Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\maven_downloader\net\md-5\SpecialSource\1.8.3\SpecialSource-1.8.3-shaded.jar
-Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.0.15_mapped_snapshot_20201028-1.16.3\forge-1.16.4-35.0.15_mapped_snapshot_20201028-1.16.3-recomp.jar
-Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.0.15_mapped_snapshot_20201028-1.16.3\forge-1.16.4-35.0.15_mapped_snapshot_20201028-1.16.3-launcher.jar
+Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.10_mapped_snapshot_20201028-1.16.3\forge-1.16.4-35.1.10_mapped_snapshot_20201028-1.16.3-recomp.jar
+Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.10_mapped_snapshot_20201028-1.16.3\forge-1.16.4-35.1.10_mapped_snapshot_20201028-1.16.3-launcher.jar
 Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_repo\versions\1.16.4\client-extra.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\net.minecraftforge\accesstransformers\2.2.0\43c882f4e7e5648acb14c9de8c2eca5f670d2bd\accesstransformers-2.2.0-shadowed.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\net.minecraftforge\eventbus\3.0.5\ddaf05a46ff9e4af845e4b6fc914c0b9f98f28c2\eventbus-3.0.5-service.jar
@@ -23,7 +23,7 @@ Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\com.electronwill.n
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\com.electronwill.night-config\core\3.6.2\56f6500038861d4a8832072676da7bf7916217d0\core-3.6.2.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\org.jline\jline\3.12.1\de2bd909cb9f8eaa741bd03df4a1bd3f6eb593c7\jline-3.12.1.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\org.apache.maven\maven-artifact\3.6.3\f8ff8032903882376e8d000c51e3e16d20fc7df7\maven-artifact-3.6.3.jar
-Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\net.jodah\typetools\0.8.1\d12de898d333cb7eb0e39a35db03c1e09d92d595\typetools-0.8.1.jar
+Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\net.jodah\typetools\0.8.3\98f84f353457629e81cc6827224871b1a8faa7af\typetools-0.8.3.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\net.minecrell\terminalconsoleappender\1.2.0\96d02cd3b384ff015a8fef4223bcb4ccf1717c95\terminalconsoleappender-1.2.0.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-core\2.11.2\6c2fb3f5b7cd27504726aef1b674b542a0c9cf53\log4j-core-2.11.2.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-api\2.11.2\f5e9a2ffca496057d6891a3de65128efc636e26e\log4j-api-2.11.2.jar

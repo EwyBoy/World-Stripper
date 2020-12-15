@@ -9,35 +9,15 @@ import java.util.List;
 
 public class Config {
 
-    public static class General {
-
-        ForgeConfigSpec.IntValue testInt1;
-        ForgeConfigSpec.IntValue testInt2;
-        ForgeConfigSpec.BooleanValue testBool;
-        ForgeConfigSpec.ConfigValue<List<String>> testList;
-        ForgeConfigSpec.EnumValue testEnum;
-
-        public enum Test {
-            TEST_1,
-            TEST_2,
-            TEST_3,
-            TEST_4,
-            TEST_5
-        }
-
-    }
-
     public static class Stripping {
-
         ForgeConfigSpec.IntValue blocksToStripX;
         ForgeConfigSpec.IntValue blocksToStripZ;
-        ForgeConfigSpec.IntValue updateFlag;
+        ForgeConfigSpec.BooleanValue liveStripping;
+        ForgeConfigSpec.BooleanValue stripBedrock;
         ForgeConfigSpec.ConfigValue<String> replacementBlock;
-
     }
 
     public static class Profiles {
-
         ForgeConfigSpec.EnumValue profile;
 
         public enum Profile {
@@ -45,7 +25,7 @@ public class Config {
             PROFILE_2,
             PROFILE_3,
             PROFILE_4,
-            PROFILE_5,
+            PROFILE_5
         }
 
         ForgeConfigSpec.ConfigValue<List<? extends String>> profile1;
@@ -92,58 +72,43 @@ public class Config {
             defaultStripList.add("minecraft:seagrass");
             defaultStripList.add("minecraft:tall_seagrass");
         }
-
     }
 
-    public final General general = new General();
+    public static class BlockUpdate {
+        ForgeConfigSpec.BooleanValue notifyNeighbors;
+        ForgeConfigSpec.BooleanValue blockUpdate;
+        ForgeConfigSpec.BooleanValue noRender;
+        ForgeConfigSpec.BooleanValue renderMainThread;
+        ForgeConfigSpec.BooleanValue updateNeighbors;
+    }
+
     public final Stripping stripping = new Stripping();
     public final Profiles profiles = new Profiles();
+    public final BlockUpdate blockUpdate = new BlockUpdate();
 
     Config(final ForgeConfigSpec.Builder builder) {
         builder.comment(WorldStripper.NAME + " Config File").push("WorldStripper"); {
-            builder.comment("General Settings").push("General"); {
-                general.testInt1 = builder
-                        .comment("Test int 1")
-                        .translation("worldstripper.config.common.general.testInt1")
-                        .defineInRange("test_int_1", 8, 1, 16
-                );
-                general.testInt2 = builder
-                        .comment("Test int 2")
-                        .translation("worldstripper.config.common.general.testInt2")
-                        .defineInRange("test_int_2", 8, 1, 16
-                );
-                general.testBool = builder
-                        .comment("Test boolean")
-                        .translation("worldstripper.config.common.general.testBool")
-                        .define("test_bool", false
-                );
-                general.testList = builder
-                        .comment("Test list")
-                        .translation("worldstripper.config.common.general.testList")
-                        .define("test_list", Lists.newArrayList("test1", "test2", "test3"), o -> o instanceof String
-                );
-                general.testEnum = builder
-                        .comment("Test enum")
-                        .translation("worldstripper.config.common.general.testEnum")
-                        .defineEnum("test_enum", General.Test.TEST_1
-                );
-            } builder.pop();
 
             builder.comment("Stripper Settings").push("Stripping"); {
                 stripping.blocksToStripX = builder
                         .comment("Amount of blocks to strip in on the x-axis")
                         .translation("worldstripper.config.stripping.blocksToStripX")
-                        .defineInRange("blocks_to_strip_x", 48, 0, 4096
+                        .defineInRange("blocks_to_strip_x", 48, 0, 320
                 );
                 stripping.blocksToStripZ = builder
                         .comment("Amount of blocks to strip in on the z-axis")
                         .translation("worldstripper.config.stripping.blocksToStripZ")
-                        .defineInRange("blocks_to_strip_z", 48, 0, 4096
+                        .defineInRange("blocks_to_strip_z", 48, 0, 320
                 );
-                stripping.updateFlag = builder
-                        .comment("Read more at www.testurl.com/blockflags")
-                        .translation("worldstripper.config.stripping.updateFlag")
-                        .defineInRange("update_flag", 18, 1, 64
+                stripping.liveStripping = builder
+                        .comment("Toggles realtime world stripping / dressing")
+                        .translation("worldstripper.config.stripping.liveStripping")
+                        .define("live_stripping",true
+                );
+                stripping.stripBedrock = builder
+                        .comment("Should bedrock be removed?")
+                        .translation("worldstripper.config.stripping.stripBedrock")
+                        .define("strip_bedrock", false
                 );
                 stripping.replacementBlock = builder
                         .comment("Replaces every block touched by the stripper with this block")
@@ -162,29 +127,64 @@ public class Config {
                 profiles.profile1 = builder
                         .comment("Profile 1 - A list of blocks to strip away from the world")
                         .translation("worldstripper.config.profiles.profile1")
-                        .define("profile_1", Lists.newArrayList(Profiles.defaultStripList), o -> o instanceof String
+                        .define("profile_1", Lists.newArrayList(Profiles.defaultStripList)
                 );
                 profiles.profile2 = builder
                         .comment("Profile 2 - A list of blocks to strip away from the world")
                         .translation("worldstripper.config.profiles.profile2")
-                        .define("profile_2", Lists.newArrayList(Profiles.defaultStripList), o -> o instanceof String
+                        .define("profile_2", Lists.newArrayList(Profiles.defaultStripList)
                 );
                 profiles.profile3 = builder
                         .comment("Profile 3 - A list of blocks to strip away from the world")
                         .translation("worldstripper.config.profiles.profile3")
-                        .define("profile_3", Lists.newArrayList(Profiles.defaultStripList), o -> o instanceof String
+                        .define("profile_3", Lists.newArrayList(Profiles.defaultStripList)
                 );
                 profiles.profile4 = builder
                         .comment("Profile 4 - A list of blocks to strip away from the world")
                         .translation("worldstripper.config.profiles.profile4")
-                        .define("profile_4", Lists.newArrayList(Profiles.defaultStripList), o -> o instanceof String
+                        .define("profile_4", Lists.newArrayList(Profiles.defaultStripList)
                 );
                 profiles.profile5 = builder
                         .comment("Profile 5 - A list of blocks to strip away from the world")
                         .translation("worldstripper.config.profiles.profile5")
-                        .define("profile_5", Lists.newArrayList(Profiles.defaultStripList), o -> o instanceof String
+                        .define("profile_5", Lists.newArrayList(Profiles.defaultStripList)
                 );
+
             } builder.pop();
+
+            builder.comment("Block Update Settings").push("BlockUpdate"); {
+
+                builder.comment("ADVANCED SETTINGS");
+                builder.comment("Don't touch unless you know what you are doing");
+
+                blockUpdate.notifyNeighbors = builder
+                        .comment("Calls neighborChanged on surrounding blocks (with isMoving as false)")
+                        .translation("worldstripper.config.blockupdate.notifyNeighbors")
+                        .define("notify_neighbors", false
+                );
+                blockUpdate.blockUpdate = builder
+                        .comment("Calls for block update")
+                        .translation("worldstripper.config.blockupdate.blockUpdate")
+                        .define("block_update", true
+                );
+                blockUpdate.noRender = builder
+                        .comment("Stops the blocks from being marked for a render update")
+                        .translation("worldstripper.config.blockupdate.noRender")
+                        .define("no_render", false
+                );
+                blockUpdate.renderMainThread = builder
+                        .comment("Makes the block be re-rendered immediately, on the main thread")
+                        .translation("worldstripper.config.blockupdate.renderMainThread")
+                        .define("render_main_thread", false
+                );
+                blockUpdate.updateNeighbors = builder
+                        .comment("Causes neighbor updates to be sent to ALL surrounding blocks")
+                        .translation("worldstripper.config.blockupdate.updateNeighbors")
+                        .define("update_neighbors", true
+                );
+
+            } builder.pop();
+
 
         } builder.pop();
     }

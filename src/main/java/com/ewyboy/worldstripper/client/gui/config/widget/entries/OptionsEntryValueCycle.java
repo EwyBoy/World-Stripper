@@ -45,4 +45,5 @@ public class OptionsEntryValueCycle extends OptionsEntryValue<String> {
     public IGuiEventListener getListener() {
         return button;
     }
+
 }

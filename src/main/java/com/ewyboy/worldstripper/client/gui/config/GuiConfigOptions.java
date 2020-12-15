@@ -45,7 +45,7 @@ public abstract class GuiConfigOptions extends Screen {
         setListener(options);
 
         if (saver != null && canceller != null) {
-            addButton(new Button(width / 2 - 100, height - 25, 100, 20, new TranslationTextComponent("gui.done"), w -> {
+            addButton(new Button(width / 2 - 100, height - 25, 100, 20, new TranslationTextComponent("gui.save"), w -> {
                 options.save();
                 saver.run();
                 minecraft.displayGuiScreen(parent);

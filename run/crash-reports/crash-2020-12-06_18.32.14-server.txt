@@ -5,9 +5,9 @@ Time: 2020-12-06, 18:32
 Description: Exception in server tick loop
 
 java.lang.ExceptionInInitializerError: null
-	at com.ewyboy.worldstripper.common.network.messages.MessageDressWorld.lambda$handle$0(MessageDressWorld.java:30) ~[main/:?] {re:classloading}
+	at com.ewyboy.worldstripper.common.network.messages.stripping.MessageDressWorld.lambda$handle$0(MessageDressWorld.java:30) ~[main/:?] {re:classloading}
 	at net.minecraftforge.fml.network.NetworkEvent$Context.enqueueWork(NetworkEvent.java:215) ~[forge-1.16.4-35.1.10_mapped_snapshot_20201028-1.16.3-recomp.jar:?] {re:classloading}
-	at com.ewyboy.worldstripper.common.network.messages.MessageDressWorld.handle(MessageDressWorld.java:27) ~[main/:?] {re:classloading}
+	at com.ewyboy.worldstripper.common.network.messages.stripping.MessageDressWorld.handle(MessageDressWorld.java:27) ~[main/:?] {re:classloading}
 	at net.minecraftforge.fml.network.simple.IndexedMessageCodec.lambda$tryDecode$3(IndexedMessageCodec.java:128) ~[forge-1.16.4-35.1.10_mapped_snapshot_20201028-1.16.3-recomp.jar:?] {re:classloading}
 	at java.util.Optional.ifPresent(Optional.java:183) ~[?:?] {}
 	at net.minecraftforge.fml.network.simple.IndexedMessageCodec.tryDecode(IndexedMessageCodec.java:128) ~[forge-1.16.4-35.1.10_mapped_snapshot_20201028-1.16.3-recomp.jar:?] {re:classloading}

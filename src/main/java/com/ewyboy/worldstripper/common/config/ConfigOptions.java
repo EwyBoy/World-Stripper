@@ -4,18 +4,11 @@ import java.util.List;
 
 public class ConfigOptions {
 
-    public static class General {
-        public static int testInt1;
-        public static int testInt2;
-        public static boolean testBool;
-        public static List<String> testList;
-        public static Enum<Config.General.Test> testEnum;
-    }
-
     public static class Stripping {
         public static int blocksToStripX;
         public static int blocksToStripZ;
-        public static int updateFlag;
+        public static boolean liveStripping;
+        public static boolean stripBedrock;
         public static String replacementBlock;
     }
 
@@ -26,6 +19,14 @@ public class ConfigOptions {
         public static List<String> profile3;
         public static List<String> profile4;
         public static List<String> profile5;
+    }
+
+    public static class BlockUpdate {
+        public static boolean notifyNeighbors;
+        public static boolean blockUpdate;
+        public static boolean noRender;
+        public static boolean renderMainThread;
+        public static boolean updateNeighbors;
     }
 
 }

@@ -1,6 +1,11 @@
 package com.ewyboy.worldstripper.common.commands;
 
 import com.ewyboy.worldstripper.WorldStripper;
+import com.ewyboy.worldstripper.common.commands.config.CommandOpenConfig;
+import com.ewyboy.worldstripper.common.commands.config.CommandReloadConfig;
+import com.ewyboy.worldstripper.common.commands.stripping.CommandDress;
+import com.ewyboy.worldstripper.common.commands.profile.CommandProfile;
+import com.ewyboy.worldstripper.common.commands.stripping.CommandStrip;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.command.CommandSource;
@@ -14,9 +19,10 @@ public class CommandCenter {
                 .then(CommandReloadConfig.register())
                 .then(CommandOpenConfig.register())
                 .then(CommandStrip.register())
+                .then(CommandDress.register())
+                .then(CommandProfile.register())
                 .executes(ctx -> {
-                    // TODO add something meaningful here
-                    ctx.getSource().sendFeedback(new StringTextComponent("Placeholder Text"), false);
+                    ctx.getSource().sendFeedback(new StringTextComponent("So I heard you like strippers, huh?"), false);
                     return 0;
                 })
         );
