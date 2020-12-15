@@ -9,6 +9,6 @@ public class CommonProxy implements IModProxy {
     public void construct() {}
 
     public void setup() {
-
+        MessageHandler.init();
     }
 }

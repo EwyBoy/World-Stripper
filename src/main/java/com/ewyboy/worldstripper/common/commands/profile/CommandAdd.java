@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.common.commands;
+package com.ewyboy.worldstripper.common.commands.profile;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;

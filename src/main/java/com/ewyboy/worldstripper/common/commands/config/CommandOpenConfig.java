@@ -1,7 +1,7 @@
-package com.ewyboy.worldstripper.common.commands;
+package com.ewyboy.worldstripper.common.commands.config;
 
 import com.ewyboy.worldstripper.common.network.MessageHandler;
-import com.ewyboy.worldstripper.common.network.messages.client.MessageOpenConfig;
+import com.ewyboy.worldstripper.common.network.messages.config.MessageOpenConfig;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;

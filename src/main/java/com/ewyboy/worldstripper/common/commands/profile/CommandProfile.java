@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.common.commands;
+package com.ewyboy.worldstripper.common.commands.profile;
 
 import com.ewyboy.worldstripper.common.config.Config;
 import com.ewyboy.worldstripper.common.config.ConfigHelper;

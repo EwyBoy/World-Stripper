@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.common.network.messages.client;
+package com.ewyboy.worldstripper.common.network.messages.config;
 
 import com.ewyboy.worldstripper.client.gui.config.GuiConfigMain;
 import net.minecraft.client.Minecraft;

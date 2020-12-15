@@ -1,7 +1,9 @@
-package com.ewyboy.worldstripper.common.network.messages;
+package com.ewyboy.worldstripper.common.network.messages.profile;
 
+import com.ewyboy.worldstripper.common.config.Config;
 import com.ewyboy.worldstripper.common.config.ConfigHelper;
 import com.ewyboy.worldstripper.common.config.ConfigOptions;
+import com.ewyboy.worldstripper.common.stripclub.ProfileManager;
 import com.ewyboy.worldstripper.common.stripclub.StripperAccessories;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -32,17 +34,19 @@ public class MessageAddBlock {
 
                 BlockState state = StripperAccessories.getStateFromRaytrace();
 
-                String blockString = Objects.requireNonNull(state.getBlock().getRegistryName()).toString();
-                String blockName = state.getBlock().getTranslatedName().getString();
+                if (state != null) {
+                    String blockString = Objects.requireNonNull(state.getBlock().getRegistryName()).toString();
+                    String blockName = state.getBlock().getTranslatedName().getString();
 
-                List<String> selectedList = ConfigOptions.General.testList;
+                    List<String> selectedList = ConfigHelper.profileMap.get(ConfigOptions.Profiles.profile);
 
-                if(!selectedList.contains(blockString)) {
-                    selectedList.add(blockString);
-                    ConfigHelper.setValueAndSaveConfig(ConfigHelper.CategoryName.GENERAL + "test_list", selectedList);
-                    player.sendStatusMessage(new StringTextComponent(blockName + " was added to strip profile."), false);
-                } else {
-                    player.sendStatusMessage(new StringTextComponent(TextFormatting.RED + "Error: " + blockName + " is already in this profile."), false);
+                    if(!selectedList.contains(blockString)) {
+                        selectedList.add(blockString);
+                        ConfigHelper.setValueAndSaveConfig(ConfigHelper.CategoryName.PROFILES + ConfigHelper.profilePathMap.get(ConfigOptions.Profiles.profile), selectedList);
+                        player.sendStatusMessage(new StringTextComponent(blockName + " was added to strip " + ProfileManager.profileNameMap.get(ConfigOptions.Profiles.profile)), false);
+                    } else {
+                        player.sendStatusMessage(new StringTextComponent(TextFormatting.RED + "Error: " + blockName + " is already in this profile."), false);
+                    }
                 }
 
             } else {

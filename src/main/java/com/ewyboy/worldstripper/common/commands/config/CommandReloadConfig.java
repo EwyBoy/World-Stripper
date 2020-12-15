@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.common.commands;
+package com.ewyboy.worldstripper.common.commands.config;
 
 import com.ewyboy.worldstripper.common.config.ConfigHelper;
 import com.mojang.brigadier.builder.ArgumentBuilder;
