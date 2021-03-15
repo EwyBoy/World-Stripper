@@ -1,7 +1,7 @@
 Args: "--in-jar", "C:\Users\Eivind\Documents\Development\Modding\World-Stripper\build\libs\World Stripper-1.16.4-2.0.0.jar", "--out-jar", "C:\Users\Eivind\Documents\Development\Modding\World-Stripper\build\reobfJar\output.jar", "--srg-in", "C:\Users\Eivind\Documents\Development\Modding\World-Stripper\build\createMcpToSrg\output.tsrg", "--live"
 Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\maven_downloader\net\md-5\SpecialSource\1.8.3\SpecialSource-1.8.3-shaded.jar
-Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.10_mapped_snapshot_20201028-1.16.3\forge-1.16.4-35.1.10_mapped_snapshot_20201028-1.16.3-recomp.jar
-Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.10_mapped_snapshot_20201028-1.16.3\forge-1.16.4-35.1.10_mapped_snapshot_20201028-1.16.3-launcher.jar
+Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.36_mapped_snapshot_20201028-1.16.3\forge-1.16.4-35.1.36_mapped_snapshot_20201028-1.16.3-recomp.jar
+Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.16.4-35.1.36_mapped_snapshot_20201028-1.16.3\forge-1.16.4-35.1.36_mapped_snapshot_20201028-1.16.3-launcher.jar
 Classpath: C:\Users\Eivind\.gradle\caches\forge_gradle\minecraft_repo\versions\1.16.4\client-extra.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\net.minecraftforge\accesstransformers\2.2.0\43c882f4e7e5648acb14c9de8c2eca5f670d2bd\accesstransformers-2.2.0-shadowed.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\net.minecraftforge\eventbus\3.0.5\ddaf05a46ff9e4af845e4b6fc914c0b9f98f28c2\eventbus-3.0.5-service.jar
@@ -46,7 +46,7 @@ Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\net.java.jutils\ju
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\com.mojang\brigadier\1.0.17\c6b7dc51dd44379cc751b7504816006e9be4b1e6\brigadier-1.0.17.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\com.mojang\datafixerupper\4.0.26\ebd6690f33871ccee9b6132c6480668ee2e35020\datafixerupper-4.0.26.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.0\c4ba5371a29ac9b2ad6129b1d39ea38750043eff\gson-2.8.0.jar
-Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\com.mojang\authlib\2.0.27\cc36c2be8b0de3e200efbb23f0eb2d28055cd98f\authlib-2.0.27.jar
+Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\com.mojang\authlib\2.1.28\ad54da276bf59983d02d5ed16fc14541354c71fd\authlib-2.1.28.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-compress\1.8.1\a698750c16740fd5b3871425f4cb3bbaa87f529d\commons-compress-1.8.1.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.1.3\f6f66e966c70a83ffbdb6f17a0919eaf7c8aca7f\commons-logging-1.1.3.jar
 Classpath: C:\Users\Eivind\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.3.2\31fbbff1ddbf98f3aa7377c94d33b0447c646b6e\httpcore-4.3.2.jar

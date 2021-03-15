@@ -3555,6 +3555,7 @@ gc$c net/minecraft/util/Direction$Plane
 	a ()Ljava/util/stream/Stream; func_239636_a_
 	a (Lgc;)Z test
 	a (Ljava/util/Random;)Lgc; func_179518_a
+	b (Ljava/util/Random;)Lgc$a; func_244803_b
 	test (Ljava/lang/Object;)Z test
 	values ()[Lgc$c; values
 	valueOf (Ljava/lang/String;)Lgc$c; valueOf

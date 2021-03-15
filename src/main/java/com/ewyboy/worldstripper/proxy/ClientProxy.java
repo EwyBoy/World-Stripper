@@ -18,6 +18,7 @@ public class ClientProxy extends CommonProxy {
         super.construct();
     }
 
+    @OnlyIn(Dist.CLIENT)
     public void setup() {
         super.setup();
         ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, () -> (mc, screen) -> new GuiConfigMain(screen));
