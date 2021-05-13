@@ -6,8 +6,7 @@ World Stripper is a utility mod that allows you to strip away the terrain to vie
 # Developers
 To add World Stripper to your development environment you need to add the following codeblocks to your projects `build.gralde` file.
 
-You can use https://www.cursemaven.com/ to add World Stripper to your development workspace by: Example of `gradle.properties` file in `C:\Users\YOUR_USERNAME\.gradle` or `~/.gradle/gradle.properties`
-
+You can use https://www.cursemaven.com/ to add World Stripper to your development workspace by:
 -----------------------------------
 Code to add to `build.gradle`
 ```groovy
