@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: World-Stripper
-Implementation-Version: 2.0.0
-Specification-Vendor: Ewy
-Specification-Title: World Stripper
-Implementation-Timestamp: 2021-03-14T16:46:43+0100
-Specification-Version: 1
-Implementation-Vendor: Ewy
-
