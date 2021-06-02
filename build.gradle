@@ -1,38 +1,39 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
-        jcenter()
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
     }
 }
 
+plugins {
+    id 'com.matthewprenger.cursegradle' version '1.4.0'
+}
+
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = "${MC_VERSION}-${VERSION}"
 group = "com.ewyboy.${MODID}"
 archivesBaseName = MODNAME
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
-repositories {}
-
-dependencies {}
+println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
 minecraft {
-
     apply plugin: 'idea'
     mappings channel: MCP_CHANNEL, version: MCP_MAPPINGS
 
     runs {
-
         client {
             workingDirectory project.file('run')
-            ideaModule "${project.name}.main"
-
+            property 'fml.earlyprogresswindow', 'false'
             mods {
                 worldstripper {
                     source sourceSets.main
@@ -42,8 +43,6 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            ideaModule "${project.name}.main"
-
             mods {
                 worldstripper {
                     source sourceSets.main
@@ -53,17 +52,25 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            args '--mod', 'worldstripper', '--all', '--output', file('src/generated/resources/')
-            ideaModule "${project.name}.main"
-
             mods {
-                craftablehorsearmour {
+                worldstripper {
                     source sourceSets.main
                 }
             }
         }
     }
 }
+
+repositories {
+    maven {
+        url "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${MC_VERSION}-${FORGE_VERSION}"
@@ -72,64 +79,28 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title": MODNAME,
-                "Specification-Vendor": AUTHOR,
-                "Specification-Version": "1",
-                "Implementation-Title": project.name,
-                "Implementation-Version": VERSION,
-                "Implementation-Vendor" : AUTHOR,
+                "Specification-Title"     : MODNAME,
+                "Specification-Vendor"    : AUTHOR,
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : VERSION,
+                "Implementation-Vendor"   : AUTHOR,
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
 
-task deobfJar(type: Jar) {
-    from sourceSets.main.output
-    classifier = 'deobf'
-}
-
-task sourcesJar(type: Jar) {
-    classifier = "sources"
-    from sourceSets.main.allJava
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = "javadoc"
-    from javadoc.destinationDir
-}
-
-tasks.build.dependsOn('sourcesJar', 'deobfJar')
-tasks.publish.dependsOn('build', 'reobfJar')
-
-artifacts {
-    archives jar
-    archives deobfJar
-    archives sourcesJar
-}
+jar.finalizedBy('reobfJar')
 
 publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/ewyboy/world-stripper")
-            credentials {
-                username = property('gpr.username')
-                password = property('gpr.token')
-            }
-        }
-        maven {
-            name = "local"
-            url "file:///${rootProject.projectDir}/mcmodsrepo"
-        }
-    }
     publications {
-        gpr(MavenPublication) {
-            artifact jar
-            artifact sourcesJar
-        }
         mavenJava(MavenPublication) {
             artifact jar
-            artifact sourcesJar
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
         }
     }
 }

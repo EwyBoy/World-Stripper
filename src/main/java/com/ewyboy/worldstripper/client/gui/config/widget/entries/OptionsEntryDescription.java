@@ -24,8 +24,7 @@ public class OptionsEntryDescription extends OptionsListWidget.Entry {
 
     public static void drawCenteredString(MatrixStack matrixStack, FontRenderer fontRenderer, ITextComponent font, int text, int x, int y) {
         IReorderingProcessor ireorderingprocessor = font.func_241878_f();
-        fontRenderer.func_238407_a_(matrixStack, ireorderingprocessor, (float)(text - fontRenderer.func_243245_a(ireorderingprocessor) / 2), (float) x, y);
+        fontRenderer.drawTextWithShadow(matrixStack, ireorderingprocessor, (float) (text - fontRenderer.func_243245_a(ireorderingprocessor) / 2), (float) x, y);
     }
-
 
 }
