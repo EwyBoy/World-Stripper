@@ -22,16 +22,16 @@ repositories {
 ```
 ```groovy
 dependencies {
-    implementation fg.deobf("curse.maven:worldstripper-250603:FileID")
+    implementation fg.deobf("curse.maven:bibliotheca-268210:FileID")
 }
 ```
 
-FileID can be found by going to https://www.curseforge.com/minecraft/mc-mods/world-stripper/files and click the build you are looking for.  
+FileID can be found by going to https://www.curseforge.com/minecraft/mc-mods/bibliotheca/files and click the build you are looking for.  
 The ID is the numbers in the end of the build URL as seen in the image below:
 
 ![Capture](https://user-images.githubusercontent.com/5883716/118098823-b0779e00-b3d4-11eb-976d-f822658d63e4.PNG)
 
-Builds can be found by clicking **_[here](https://www.curseforge.com/minecraft/mc-mods/world-stripper/files)_**!
+Builds can be found by clicking **_[here](https://www.curseforge.com/minecraft/mc-mods/bibliotheca/files)_**!
 
 # Credits
 I want to give my friend Moze_Intel a huge shout out for creating the original strippermod_4.20 back in Minecraft 1.6 / 1.7.
