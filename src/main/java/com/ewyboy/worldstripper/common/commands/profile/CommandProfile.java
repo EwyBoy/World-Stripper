@@ -6,29 +6,29 @@ import com.ewyboy.worldstripper.common.config.ConfigOptions;
 import com.ewyboy.worldstripper.common.stripclub.ProfileManager;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
 
 import java.util.Set;
 
 public class CommandProfile {
 
-    public static ArgumentBuilder<CommandSource, ?> register() {
+    public static ArgumentBuilder<CommandSourceStack, ?> register() {
 
-        return Commands.literal("profile").requires(cs -> cs.hasPermissionLevel(2)).executes(context -> {
-            ServerPlayerEntity player = context.getSource().asPlayer();
+        return Commands.literal("profile").requires(cs -> cs.hasPermission(2)).executes(context -> {
+            ServerPlayer player = context.getSource().getPlayerOrException();
             Set<Config.Profiles.Profile> newProfile = ProfileManager.cycleProfile();
             ConfigHelper.setValueAndSaveConfig(ConfigHelper.CategoryName.PROFILES + "profile", newProfile.toArray()[0]);
-            player.sendStatusMessage(new StringTextComponent(TextFormatting.GREEN + "Profile" + TextFormatting.WHITE + " set to: " + ProfileManager.profileNameMap.get(ConfigOptions.Profiles.profile)), false);
+            player.displayClientMessage(new TextComponent(ChatFormatting.GREEN + "Profile" + ChatFormatting.WHITE + " set to: " + ProfileManager.profileNameMap.get(ConfigOptions.Profiles.profile)), false);
             return 0;
         }).then(Commands.argument("Profile ID", IntegerArgumentType.integer(1, 5)).executes(context -> {
-            ServerPlayerEntity player = context.getSource().asPlayer();
+            ServerPlayer player = context.getSource().getPlayerOrException();
             ConfigOptions.Profiles.profile = ProfileManager.idFromProfileMap.get(IntegerArgumentType.getInteger(context, "Profile ID"));
             ConfigHelper.setValueAndSaveConfig(ConfigHelper.CategoryName.PROFILES + "profile", ConfigOptions.Profiles.profile);
-            player.sendStatusMessage(new StringTextComponent(TextFormatting.GREEN + "Profile" + TextFormatting.WHITE + " set to: " + ProfileManager.profileNameMap.get(ConfigOptions.Profiles.profile)), false);
+            player.displayClientMessage(new TextComponent(ChatFormatting.GREEN + "Profile" + ChatFormatting.WHITE + " set to: " + ProfileManager.profileNameMap.get(ConfigOptions.Profiles.profile)), false);
             return 0;
         }));
     }

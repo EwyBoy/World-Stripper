@@ -2,21 +2,21 @@ package com.ewyboy.worldstripper.common.commands.profile;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.command.arguments.BlockStateArgument;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.blocks.BlockStateArgument;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.network.chat.TextComponent;
 
 public class CommandAdd {
 
-    public static ArgumentBuilder<CommandSource, ?> register() {
+    public static ArgumentBuilder<CommandSourceStack, ?> register() {
 
         return (Commands.literal("add").requires((commandSource) -> {
-            return commandSource.hasPermissionLevel(2);
-        }).then(Commands.argument("profile", StringArgumentType.string())).then(Commands.argument("block", BlockStateArgument.blockState()).executes((commandSource) -> {
-            ServerPlayerEntity player = commandSource.getSource().asPlayer();
-            player.sendStatusMessage(new StringTextComponent(BlockStateArgument.getBlockState(commandSource, "block").getState().getBlock().getRegistryName().toString()), false);
+            return commandSource.hasPermission(2);
+        }).then(Commands.argument("profile", StringArgumentType.string())).then(Commands.argument("block", BlockStateArgument.block()).executes((commandSource) -> {
+            ServerPlayer player = commandSource.getSource().getPlayerOrException();
+            player.displayClientMessage(new TextComponent(BlockStateArgument.getBlock(commandSource, "block").getState().getBlock().getRegistryName().toString()), false);
             return 1;
         })));
 

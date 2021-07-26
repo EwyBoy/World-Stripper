@@ -1,12 +1,11 @@
 package com.ewyboy.worldstripper.common;
 
-import com.ewyboy.worldstripper.common.config.ConfigOptions;
 import com.ewyboy.worldstripper.common.network.MessageHandler;
-import net.minecraft.command.CommandSource;
-import net.minecraft.util.CachedBlockInfo;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.state.pattern.BlockInWorld;
 import net.minecraftforge.common.WorldWorkerManager;
 
 import java.util.Deque;
@@ -14,12 +13,12 @@ import java.util.LinkedList;
 
 public class WorldDressingWorker implements WorldWorkerManager.IWorker {
 
-    private final CommandSource listener;
+    private final CommandSourceStack listener;
     protected final BlockPos start;
     protected final int radiusX;
     protected final int radiusZ;
     private final int total;
-    private final ServerWorld dim;
+    private final ServerLevel dim;
     private final Deque<BlockPos> queue;
     private final int notificationFrequency;
     private int lastNotification = 0;
@@ -27,7 +26,7 @@ public class WorldDressingWorker implements WorldWorkerManager.IWorker {
     private final Boolean keepingLoaded = false;
     private int blockUpdateFlag;
 
-    public WorldDressingWorker(CommandSource listener, BlockPos start, int radiusX, int radiusZ, ServerWorld dim, int interval, int blockUpdateFlag) {
+    public WorldDressingWorker(CommandSourceStack listener, BlockPos start, int radiusX, int radiusZ, ServerLevel dim, int interval, int blockUpdateFlag) {
         this.listener = listener;
         this.start = start;
         this.radiusX = radiusX;
@@ -44,8 +43,8 @@ public class WorldDressingWorker implements WorldWorkerManager.IWorker {
         final Deque<BlockPos> queue = new LinkedList<>();
         final BlockPos neg = new BlockPos(start.getX() - radiusX, 0, start.getZ() - radiusZ);
         final BlockPos pos = new BlockPos(start.getX() + radiusX, 255, start.getZ() + radiusZ);
-        BlockPos.getAllInBox(neg, pos)
-                .map(BlockPos::toImmutable)
+        BlockPos.betweenClosedStream(neg, pos)
+                .map(BlockPos::immutable)
                 .filter(MessageHandler.hashedBlockCache::containsKey)
                 .forEach(queue::add);
         return queue;
@@ -64,17 +63,17 @@ public class WorldDressingWorker implements WorldWorkerManager.IWorker {
         if (next != null) {
             if (++lastNotification >= notificationFrequency || lastNotificationTime < System.currentTimeMillis() - 60 * 1000) {
                 // listener.sendFeedback(new TranslationTextComponent("commands.worldstripper.strip.progress", total - queue.size(), total), true);
-                listener.sendFeedback(new StringTextComponent(String.format("Progress: %.02f%%", (float) (total - queue.size()) / total * 100F)), false);
+                listener.sendSuccess(new TextComponent(String.format("Progress: %.02f%%", (float) (total - queue.size()) / total * 100F)), false);
                 lastNotification = 0;
                 lastNotificationTime = System.currentTimeMillis();
             }
-            dim.setBlockState(next, MessageHandler.hashedBlockCache.remove(next), blockUpdateFlag);
+            dim.setBlock(next, MessageHandler.hashedBlockCache.remove(next), blockUpdateFlag);
         }
 
         if (queue.size() == 0) {
             //  listener.sendFeedback(new TranslationTextComponent("commands.worldstripper.strip.finished"), true);
-            listener.sendFeedback(new StringTextComponent("Progress: 100%"), false);
-            listener.sendFeedback(new StringTextComponent("World Dressing operation successfully executed!"), false);
+            listener.sendSuccess(new TextComponent("Progress: 100%"), false);
+            listener.sendSuccess(new TextComponent("World Dressing operation successfully executed!"), false);
             return false;
         }
         return true;
@@ -88,7 +87,7 @@ public class WorldDressingWorker implements WorldWorkerManager.IWorker {
         return queue.size() > 0;
     }
 
-    private CachedBlockInfo blockInfo(BlockPos pos) {
-        return new CachedBlockInfo(dim, pos, keepingLoaded);
+    private BlockInWorld blockInfo(BlockPos pos) {
+        return new BlockInWorld(dim, pos, keepingLoaded);
     }
 }

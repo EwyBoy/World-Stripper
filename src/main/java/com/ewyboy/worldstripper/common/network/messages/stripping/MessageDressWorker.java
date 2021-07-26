@@ -3,12 +3,12 @@ package com.ewyboy.worldstripper.common.network.messages.stripping;
 import com.ewyboy.worldstripper.common.WorldDressingWorker;
 import com.ewyboy.worldstripper.common.config.ConfigOptions;
 import com.ewyboy.worldstripper.common.stripclub.BlockUpdater;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
 import net.minecraftforge.common.WorldWorkerManager;
-import net.minecraftforge.fml.network.NetworkEvent.Context;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -43,25 +43,25 @@ public class MessageDressWorker {
         this.z = z;
     }
 
-    public void encode(PacketBuffer buf) {
+    public void encode(FriendlyByteBuf buf) {
         buf.writeInt(this.x);
         buf.writeInt(this.z);
     }
 
-    public static MessageDressWorker decode(PacketBuffer buf) {
+    public static MessageDressWorker decode(FriendlyByteBuf buf) {
         return new MessageDressWorker(buf.readInt(), buf.readInt());
     }
 
-    public static void handle(MessageDressWorker message, Supplier<Context> ctx) {
+    public static void handle(MessageDressWorker message, Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-            ServerPlayerEntity player = ctx.get().getSender();
+            ServerPlayer player = ctx.get().getSender();
             if (player.isSpectator() || player.isCreative()) {
                 int chunkClearSizeX = message.getX() < 0 ? ConfigOptions.Stripping.blocksToStripX : message.getX();
                 int chunkClearSizeZ = message.getZ() < 0 ? ConfigOptions.Stripping.blocksToStripZ : message.getZ();
-                player.sendStatusMessage(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."), false);
-                WorldWorkerManager.addWorker(new WorldDressingWorker(player.getCommandSource(), player.getPosition(), chunkClearSizeX / 2, chunkClearSizeZ / 2, player.getServerWorld(), 4096, BlockUpdater.getBlockUpdateFlag()));
+                player.displayClientMessage(new TextComponent(ChatFormatting.BOLD + "" + ChatFormatting.RED + "WARNING! " + ChatFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."), false);
+                WorldWorkerManager.addWorker(new WorldDressingWorker(player.createCommandSourceStack(), player.blockPosition(), chunkClearSizeX / 2, chunkClearSizeZ / 2, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag()));
             } else {
-                player.sendStatusMessage(new StringTextComponent(TextFormatting.RED + "Error: You have to be in creative mode to use this feature!"), false);
+                player.displayClientMessage(new TextComponent(ChatFormatting.RED + "Error: You have to be in creative mode to use this feature!"), false);
             }
         });
         ctx.get().setPacketHandled(true);

@@ -2,11 +2,11 @@ package com.ewyboy.worldstripper.common.stripclub;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.CachedBlockInfo;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.pattern.BlockInWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.LevelReader;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,10 +15,10 @@ import java.util.Set;
 public class StripperCache {
     // TODO maybe rename this StripperCash
 
-    public static final Codec<BlockPos> BLOCK_POS_STRING_CODEC = Codec.STRING.xmap(Long::parseLong, String::valueOf).xmap(BlockPos::fromLong, BlockPos::toLong);
+    public static final Codec<BlockPos> BLOCK_POS_STRING_CODEC = Codec.STRING.xmap(Long::parseLong, String::valueOf).xmap(BlockPos::of, BlockPos::asLong);
 
     public static final Codec<StripperCache> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            DimensionType.CODEC.fieldOf("dimension").forGetter(it -> it.dimensionType),
+            DimensionType.DIRECT_CODEC.fieldOf("dimension").forGetter(it -> it.dimensionType),
             Codec.unboundedMap(BLOCK_POS_STRING_CODEC, BlockState.CODEC).fieldOf("strippedBlocks").forGetter(it -> it.strippedBlocksMap)
     ).apply(instance, StripperCache :: new));
 
@@ -31,12 +31,12 @@ public class StripperCache {
         this.strippedBlocksMap = strippedBlocksMap;
     }
 
-    public StripperCache(IWorldReader world) {
-        this(world.getDimensionType(), new HashMap<>());
+    public StripperCache(LevelReader world) {
+        this(world.dimensionType(), new HashMap<>());
     }
 
-    public void addStrippedBlock(CachedBlockInfo blockInfo) {
-        this.strippedBlocksMap.put(blockInfo.getPos(), blockInfo.getBlockState());
+    public void addStrippedBlock(BlockInWorld blockInfo) {
+        this.strippedBlocksMap.put(blockInfo.getPos(), blockInfo.getState());
     }
 
     public Set<BlockPos> getCachedPositions() {

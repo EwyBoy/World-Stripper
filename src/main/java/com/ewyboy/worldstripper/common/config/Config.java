@@ -71,6 +71,9 @@ public class Config {
             defaultStripList.add("minecraft:bamboo");
             defaultStripList.add("minecraft:seagrass");
             defaultStripList.add("minecraft:tall_seagrass");
+            defaultStripList.add("minecraft:deepslate");
+            defaultStripList.add("minecraft:tuff");
+            defaultStripList.add("minecraft:glow_lichen");
         }
     }
 

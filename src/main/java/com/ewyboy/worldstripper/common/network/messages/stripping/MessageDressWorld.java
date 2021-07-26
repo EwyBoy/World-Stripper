@@ -5,13 +5,13 @@ import com.ewyboy.worldstripper.common.network.MessageHandler;
 
 import java.util.function.Supplier;
 
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkEvent.Context;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 public class MessageDressWorld {
 
@@ -44,39 +44,39 @@ public class MessageDressWorld {
         this.z = z;
     }
 
-    public void encode(PacketBuffer buf) {
+    public void encode(FriendlyByteBuf buf) {
         buf.writeInt(this.x);
         buf.writeInt(this.z);
     }
 
-    public static MessageDressWorld decode(PacketBuffer buf) {
+    public static MessageDressWorld decode(FriendlyByteBuf buf) {
         return new MessageDressWorld(buf.readInt(), buf.readInt());
     }
 
-    public static void handle(MessageDressWorld message, Supplier<Context> ctx) {
+    public static void handle(MessageDressWorld message, Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-            ServerPlayerEntity player = ctx.get().getSender();
-            World world = player != null ? player.getEntityWorld() : null;
+            ServerPlayer player = ctx.get().getSender();
+            Level world = player != null ? player.getCommandSenderWorld() : null;
 
             double chunkClearSizeX = ConfigOptions.Stripping.blocksToStripX / 2;
             double chunkClearSizeZ = ConfigOptions.Stripping.blocksToStripZ / 2;
 
             if(player.isCreative() || player.isSpectator()) {
-                player.sendStatusMessage(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."), false);
+                player.displayClientMessage(new TextComponent(ChatFormatting.BOLD + "" + ChatFormatting.RED + "WARNING! " + ChatFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."), false);
 
-                for(int x = (int) (player.getPosX() - chunkClearSizeX); (double) x <= player.getPosX() + chunkClearSizeX; ++x) {
-                    for(int y = 0; (double) y <= player.getPosY() + 16.0D; ++y) {
-                        for(int z = (int) (player.getPosZ() - chunkClearSizeZ); (double) z <= player.getPosZ() + chunkClearSizeZ; ++z) {
+                for(int x = (int) (player.getX() - chunkClearSizeX); (double) x <= player.getX() + chunkClearSizeX; ++x) {
+                    for(int y = 0; (double) y <= player.getY() + 16.0D; ++y) {
+                        for(int z = (int) (player.getZ() - chunkClearSizeZ); (double) z <= player.getZ() + chunkClearSizeZ; ++z) {
                             BlockPos targetBlockPos = new BlockPos(x, y, z);
                             if(MessageHandler.hashedBlockCache.get(targetBlockPos) != null) {
-                                world.setBlockState(targetBlockPos, MessageHandler.hashedBlockCache.get(targetBlockPos), 3);
+                                world.setBlock(targetBlockPos, MessageHandler.hashedBlockCache.get(targetBlockPos), 3);
                             }
                         }
                     }
                 }
-                player.sendStatusMessage(new StringTextComponent("World Dressing Successfully Executed!"), false);
+                player.displayClientMessage(new TextComponent("World Dressing Successfully Executed!"), false);
             } else {
-                player.sendStatusMessage(new StringTextComponent(TextFormatting.RED + "Error: You have to be in creative mode to use this feature!"), false);
+                player.displayClientMessage(new TextComponent(ChatFormatting.RED + "Error: You have to be in creative mode to use this feature!"), false);
             }
 
         });

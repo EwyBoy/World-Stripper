@@ -3,13 +3,13 @@ package com.ewyboy.worldstripper.common;
 import com.ewyboy.worldstripper.common.config.ConfigHelper;
 import com.ewyboy.worldstripper.common.config.ConfigOptions;
 import com.ewyboy.worldstripper.common.network.MessageHandler;
-import net.minecraft.block.Blocks;
-import net.minecraft.command.CommandSource;
-import net.minecraft.util.CachedBlockInfo;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.world.level.block.state.pattern.BlockInWorld;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.WorldWorkerManager;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -19,20 +19,20 @@ import java.util.Queue;
 
 public class WorldStrippingWorker implements WorldWorkerManager.IWorker {
 
-    private final CommandSource listener;
+    private final CommandSourceStack listener;
     protected final BlockPos start;
     protected final int radiusX;
     protected final int radiusZ;
     private final int total;
-    private final ServerWorld dim;
-    private final Queue<CachedBlockInfo> queue;
+    private final ServerLevel dim;
+    private final Queue<BlockInWorld> queue;
     private final int notificationFrequency;
     private int lastNotification = 0;
     private long lastNotificationTime = 0;
     private final Boolean keepingLoaded = true;
     private int blockUpdateFlag;
 
-    public WorldStrippingWorker(CommandSource listener, BlockPos start, int radiusX, int radiusZ, ServerWorld dim, int interval, int blockUpdateFlag) {
+    public WorldStrippingWorker(CommandSourceStack listener, BlockPos start, int radiusX, int radiusZ, ServerLevel dim, int interval, int blockUpdateFlag) {
         this.listener = listener;
         this.start = start;
         this.radiusX = radiusX;
@@ -45,13 +45,13 @@ public class WorldStrippingWorker implements WorldWorkerManager.IWorker {
         this.blockUpdateFlag = blockUpdateFlag;
     }
 
-    private Queue<CachedBlockInfo> stripQueue() {
-        final Queue<CachedBlockInfo> queue = new LinkedList<>();
+    private Queue<BlockInWorld> stripQueue() {
+        final Queue<BlockInWorld> queue = new LinkedList<>();
 
         final BlockPos neg = new BlockPos(start.getX() - radiusX, 0, start.getZ() - radiusZ);
         final BlockPos pos = new BlockPos(start.getX() + radiusX, 255, start.getZ() + radiusZ);
 
-        BlockPos.getAllInBox(neg, pos).map(BlockPos :: toImmutable).map(this :: blockInfo).forEach(queue :: add);
+        BlockPos.betweenClosedStream(neg, pos).map(BlockPos :: immutable).map(this :: blockInfo).forEach(queue :: add);
 
         /*
             for (int y = 255 - start.getY(); y >= -start.getY(); y--)
@@ -68,7 +68,7 @@ public class WorldStrippingWorker implements WorldWorkerManager.IWorker {
      * Returning false will skip calling this worker until next tick.
      */
     public boolean doWork() {
-        CachedBlockInfo next;
+        BlockInWorld next;
         do {
             next = queue.poll();
         } while(
@@ -78,28 +78,28 @@ public class WorldStrippingWorker implements WorldWorkerManager.IWorker {
         if(next != null) {
             if(++lastNotification >= notificationFrequency || lastNotificationTime < System.currentTimeMillis() - 60 * 1000) {
                 // TODO:listener.sendFeedback(new TranslationTextComponent("commands.worldstripper.strip.progress", total - queue.size(), total), true);
-                listener.sendFeedback(new StringTextComponent(String.format("Progress: %.02f%%", (float) (total - queue.size()) / total * 100F)), false);
+                listener.sendSuccess(new TextComponent(String.format("Progress: %.02f%%", (float) (total - queue.size()) / total * 100F)), false);
                 lastNotification = 0;
                 lastNotificationTime = System.currentTimeMillis();
             }
-            MessageHandler.hashedBlockCache.put(next.getPos(), next.getBlockState());
-            dim.setBlockState(next.getPos(), Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(ConfigOptions.Stripping.replacementBlock))).getDefaultState(), blockUpdateFlag);
+            MessageHandler.hashedBlockCache.put(next.getPos(), next.getState());
+            dim.setBlock(next.getPos(), Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(ConfigOptions.Stripping.replacementBlock))).defaultBlockState(), blockUpdateFlag);
         }
 
         if(queue.size() == 0) {
             //  listener.sendFeedback(new TranslationTextComponent("commands.worldstripper.strip.finished"), true);
-            listener.sendFeedback(new StringTextComponent("Progress: 100%"), false);
-            listener.sendFeedback(new StringTextComponent("World Stripping operation successfully executed!"), false);
+            listener.sendSuccess(new TextComponent("Progress: 100%"), false);
+            listener.sendSuccess(new TextComponent("World Stripping operation successfully executed!"), false);
             return false;
         }
         return true;
     }
 
-    private boolean isReplaceableBlock(CachedBlockInfo next) {
-        if(ConfigHelper.profileMap.get(ConfigOptions.Profiles.profile).contains(Objects.requireNonNull(next.getBlockState().getBlock().getRegistryName()).toString())) {
+    private boolean isReplaceableBlock(BlockInWorld next) {
+        if(ConfigHelper.profileMap.get(ConfigOptions.Profiles.profile).contains(Objects.requireNonNull(next.getState().getBlock().getRegistryName()).toString())) {
             return true;
         } else if (ConfigOptions.Stripping.stripBedrock) {
-            return next.getBlockState().getBlock() == Blocks.BEDROCK;
+            return next.getState().getBlock() == Blocks.BEDROCK;
         } else {
             return false;
         }
@@ -109,8 +109,8 @@ public class WorldStrippingWorker implements WorldWorkerManager.IWorker {
         return queue.size() > 0;
     }
 
-    private CachedBlockInfo blockInfo(BlockPos pos) {
-        return new CachedBlockInfo(dim, pos, keepingLoaded);
+    private BlockInWorld blockInfo(BlockPos pos) {
+        return new BlockInWorld(dim, pos, keepingLoaded);
     }
 
 }

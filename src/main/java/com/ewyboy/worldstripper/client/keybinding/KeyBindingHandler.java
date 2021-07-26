@@ -1,7 +1,6 @@
 package com.ewyboy.worldstripper.client.keybinding;
 
 import com.ewyboy.worldstripper.WorldStripper;
-import com.ewyboy.worldstripper.client.gui.config.GuiConfigMain;
 import com.ewyboy.worldstripper.common.config.ConfigOptions;
 import com.ewyboy.worldstripper.common.network.MessageHandler;
 import com.ewyboy.worldstripper.common.network.messages.profile.MessageAddBlock;
@@ -11,39 +10,35 @@ import com.ewyboy.worldstripper.common.network.messages.stripping.MessageDressWo
 import com.ewyboy.worldstripper.common.network.messages.stripping.MessageDressWorld;
 import com.ewyboy.worldstripper.common.network.messages.stripping.MessageStripWorker;
 import com.ewyboy.worldstripper.common.network.messages.stripping.MessageStripWorld;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.client.util.InputMappings.Type;
+import com.mojang.blaze3d.platform.InputConstants.Type;
+import net.minecraft.client.KeyMapping;
 import net.minecraftforge.client.event.InputEvent.KeyInputEvent;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fmlclient.registry.ClientRegistry;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyBindingHandler {
 
-    private static KeyBinding strip;
-    private static KeyBinding dress;
-    private static KeyBinding config;
-    private static KeyBinding add;
-    private static KeyBinding remove;
-    private static KeyBinding profile;
+    private static KeyMapping strip;
+    private static KeyMapping dress;
+    private static KeyMapping add;
+    private static KeyMapping remove;
+    private static KeyMapping profile;
 
     public KeyBindingHandler() {}
 
     public static void initKeyBinding() {
 
-        strip = new KeyBinding("Strip World", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_DELETE, WorldStripper.NAME);
+        strip = new KeyMapping("Strip World", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_DELETE, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(strip);
-        dress = new KeyBinding("Dress World", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_INSERT, WorldStripper.NAME);
+        dress = new KeyMapping("Dress World", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_INSERT, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(dress);
-        config = new KeyBinding("Open Config", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_HOME, WorldStripper.NAME);
-        ClientRegistry.registerKeyBinding(config);
-        add = new KeyBinding("Add Block", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
+        add = new KeyMapping("Add Block", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(add);
-        remove = new KeyBinding("Remove Block", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
+        remove = new KeyMapping("Remove Block", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(remove);
-        profile = new KeyBinding("Cycle Profile", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_END, WorldStripper.NAME);
+        profile = new KeyMapping("Cycle Profile", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_END, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(profile);
 
     }
@@ -51,27 +46,23 @@ public class KeyBindingHandler {
     @SubscribeEvent
     public static void onKeyInput(KeyInputEvent event) {
 
-        if(strip.isPressed()) {
+        if(strip.consumeClick()) {
             MessageHandler.CHANNEL.sendToServer(ConfigOptions.Stripping.liveStripping ? new MessageStripWorker() : new MessageStripWorld());
         }
 
-        if(dress.isPressed()) {
+        if(dress.consumeClick()) {
             MessageHandler.CHANNEL.sendToServer(ConfigOptions.Stripping.liveStripping ? new MessageDressWorker() : new MessageDressWorld());
         }
 
-        if(config.isPressed()) {
-            Minecraft.getInstance().displayGuiScreen(new GuiConfigMain());
-        }
-
-        if(add.isPressed()) {
+        if(add.consumeClick()) {
             MessageHandler.CHANNEL.sendToServer(new MessageAddBlock());
         }
 
-        if(remove.isPressed()) {
+        if(remove.consumeClick()) {
             MessageHandler.CHANNEL.sendToServer(new MessageRemoveBlock());
         }
 
-        if(profile.isPressed()) {
+        if(profile.consumeClick()) {
             MessageHandler.CHANNEL.sendToServer(new MessageCycleProfile());
         }
 

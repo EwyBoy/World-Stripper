@@ -4,17 +4,17 @@ import com.ewyboy.worldstripper.common.config.ConfigHelper;
 import com.ewyboy.worldstripper.common.config.ConfigOptions;
 import com.ewyboy.worldstripper.common.network.MessageHandler;
 import com.ewyboy.worldstripper.common.stripclub.BlockUpdater;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkEvent.Context;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Arrays;
@@ -54,19 +54,19 @@ public class MessageStripWorld {
         this.z = z;
     }
 
-    public void encode(PacketBuffer buf) {
+    public void encode(FriendlyByteBuf buf) {
         buf.writeInt(this.x);
         buf.writeInt(this.z);
     }
 
-    public static MessageStripWorld decode(PacketBuffer buf) {
+    public static MessageStripWorld decode(FriendlyByteBuf buf) {
         return new MessageStripWorld(buf.readInt(), buf.readInt());
     }
 
-    public static void handle(MessageStripWorld message, Supplier<Context> ctx) {
+    public static void handle(MessageStripWorld message, Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-            ServerPlayerEntity player = ctx.get().getSender();
-            World world = player != null ? player.getEntityWorld() : null;
+            ServerPlayer player = ctx.get().getSender();
+            Level world = player != null ? player.getCommandSenderWorld() : null;
             List<String> profileList = ConfigHelper.profileMap.get(ConfigOptions.Profiles.profile);
 
             int blockUpdateFlag = BlockUpdater.getBlockUpdateFlag();
@@ -75,10 +75,10 @@ public class MessageStripWorld {
             double chunkClearSizeZ = message.getZ() < 0 ? ConfigOptions.Stripping.blocksToStripZ : message.getZ();
 
             if(player.isCreative()) {
-                player.sendStatusMessage(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."), false);
-                for(int x = (int) (player.getPosX() - chunkClearSizeX); (double) x <= player.getPosX() + chunkClearSizeX; ++x) {
-                    for(int y = (int) (player.getPosY() + 16.00D); (double) y >= 0; y--) {
-                        for(int z = (int) (player.getPosZ() - chunkClearSizeZ); (double) z <= player.getPosZ() + chunkClearSizeZ; ++z) {
+                player.displayClientMessage(new TextComponent(ChatFormatting.BOLD + "" + ChatFormatting.RED + "WARNING! " + ChatFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."), false);
+                for(int x = (int) (player.getX() - chunkClearSizeX); (double) x <= player.getX() + chunkClearSizeX; ++x) {
+                    for(int y = (int) (player.getY() + 16.00D); (double) y >= 0; y--) {
+                        for(int z = (int) (player.getZ() - chunkClearSizeZ); (double) z <= player.getZ() + chunkClearSizeZ; ++z) {
                             BlockPos targetBlockPos = new BlockPos(x, y, z);
                             BlockState targetBlockState = world.getBlockState(targetBlockPos);
                             Block targetBlock = targetBlockState.getBlock();
@@ -89,16 +89,16 @@ public class MessageStripWorld {
 
                                 stream.map(ResourceLocation :: new).filter(targetBlockResource :: equals).forEachOrdered((s) -> {
                                     MessageHandler.hashedBlockCache.put(targetBlockPos, targetBlockState);
-                                    BlockState newState = Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(ConfigOptions.Stripping.replacementBlock))).getDefaultState();
-                                    world.setBlockState(targetBlockPos, newState, blockUpdateFlag);
+                                    BlockState newState = Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(ConfigOptions.Stripping.replacementBlock))).defaultBlockState();
+                                    world.setBlock(targetBlockPos, newState, blockUpdateFlag);
                                 });
                             }
                         }
                     }
                 }
-                player.sendStatusMessage(new StringTextComponent("World Stripping Successfully Executed!"), false);
+                player.displayClientMessage(new TextComponent("World Stripping Successfully Executed!"), false);
             } else {
-                player.sendStatusMessage(new StringTextComponent(TextFormatting.RED + "Error: You have to be in creative mode to use this feature!"), false);
+                player.displayClientMessage(new TextComponent(ChatFormatting.RED + "Error: You have to be in creative mode to use this feature!"), false);
             }
 
         });

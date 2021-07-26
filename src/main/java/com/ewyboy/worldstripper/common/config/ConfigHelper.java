@@ -50,11 +50,11 @@ public class ConfigHelper {
 
         ConfigOptions.Profiles.profile = (Enum<Config.Profiles.Profile>) config.profiles.profile.get();
 
-        ConfigOptions.Profiles.profile1 = config.profiles.profile1.get().stream().map(entry -> entry.toLowerCase()).collect(Collectors.toList());
-        ConfigOptions.Profiles.profile2 = config.profiles.profile2.get().stream().map(entry -> entry.toLowerCase()).collect(Collectors.toList());
-        ConfigOptions.Profiles.profile3 = config.profiles.profile3.get().stream().map(entry -> entry.toLowerCase()).collect(Collectors.toList());
-        ConfigOptions.Profiles.profile4 = config.profiles.profile4.get().stream().map(entry -> entry.toLowerCase()).collect(Collectors.toList());
-        ConfigOptions.Profiles.profile5 = config.profiles.profile5.get().stream().map(entry -> entry.toLowerCase()).collect(Collectors.toList());
+        ConfigOptions.Profiles.profile1 = config.profiles.profile1.get().stream().map(String :: toLowerCase).collect(Collectors.toList());
+        ConfigOptions.Profiles.profile2 = config.profiles.profile2.get().stream().map(String :: toLowerCase).collect(Collectors.toList());
+        ConfigOptions.Profiles.profile3 = config.profiles.profile3.get().stream().map(String :: toLowerCase).collect(Collectors.toList());
+        ConfigOptions.Profiles.profile4 = config.profiles.profile4.get().stream().map(String :: toLowerCase).collect(Collectors.toList());
+        ConfigOptions.Profiles.profile5 = config.profiles.profile5.get().stream().map(String :: toLowerCase).collect(Collectors.toList());
 
         updateMap(Config.Profiles.Profile.PROFILE_1, ConfigOptions.Profiles.profile1);
         updateMap(Config.Profiles.Profile.PROFILE_2, ConfigOptions.Profiles.profile2);
@@ -81,6 +81,7 @@ public class ConfigHelper {
         config.stripping.stripBedrock.set(ConfigOptions.Stripping.stripBedrock);
 
         config.profiles.profile.set(ConfigOptions.Profiles.profile);
+
         config.profiles.profile1.set(ConfigOptions.Profiles.profile1);
         config.profiles.profile2.set(ConfigOptions.Profiles.profile2);
         config.profiles.profile3.set(ConfigOptions.Profiles.profile3);

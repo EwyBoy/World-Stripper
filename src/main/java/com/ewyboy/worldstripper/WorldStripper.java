@@ -7,11 +7,11 @@ import com.ewyboy.worldstripper.proxy.ClientProxy;
 import com.ewyboy.worldstripper.proxy.CommonProxy;
 import com.ewyboy.worldstripper.proxy.IModProxy;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod("worldstripper")
@@ -28,13 +28,13 @@ public class WorldStripper {
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
         ConfigHolder.init();
         MinecraftForge.EVENT_BUS.register(CommandCenter.class);
-        MinecraftForge.EVENT_BUS.addListener(this :: onServerStart);
+        MinecraftForge.EVENT_BUS.addListener(this :: registerCommands);
 
         proxy.construct();
     }
 
-    public void onServerStart(FMLServerStartingEvent event) {
-        new CommandCenter(event.getServer().getCommandManager().getDispatcher());
+    public void registerCommands(RegisterCommandsEvent event) {
+        new CommandCenter(event.getDispatcher());
     }
 
     @SubscribeEvent
