@@ -1,25 +1,24 @@
 package com.ewyboy.worldstripper.workers;
 
 import com.ewyboy.worldstripper.stripclub.StripperCache;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-
 import java.util.Deque;
 import java.util.LinkedList;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 
 public class DressWorker implements WorldWorker.IWorker {
 
     protected final BlockPos start;
     protected final int radiusX;
     protected final int radiusZ;
-    private final ServerWorld dim;
+    private final ServerLevel dim;
     private final Deque<BlockPos> queue;
     private final int notificationFrequency;
     private int lastNotification = 0;
     private long lastNotificationTime;
     private final int blockUpdateFlag;
 
-    public DressWorker(BlockPos start, int radiusX, int radiusZ, ServerWorld dim, int interval, int blockUpdateFlag) {
+    public DressWorker(BlockPos start, int radiusX, int radiusZ, ServerLevel dim, int interval, int blockUpdateFlag) {
         this.start = start;
         this.radiusX = radiusX;
         this.radiusZ = radiusZ;
@@ -35,8 +34,8 @@ public class DressWorker implements WorldWorker.IWorker {
         final BlockPos neg = new BlockPos(start.getX() - radiusX, 0, start.getZ() - radiusZ);
         final BlockPos pos = new BlockPos(start.getX() + radiusX, 255, start.getZ() + radiusZ);
 
-        BlockPos.stream(neg, pos)
-                .map(BlockPos :: toImmutable)
+        BlockPos.betweenClosedStream(neg, pos)
+                .map(BlockPos :: immutable)
                 .filter(StripperCache.hashedBlockCache :: containsKey)
                 .forEach(queue :: add);
         return queue;
@@ -63,7 +62,7 @@ public class DressWorker implements WorldWorker.IWorker {
                 lastNotification = 0;
                 lastNotificationTime = System.currentTimeMillis();
             }
-            dim.setBlockState(next, StripperCache.hashedBlockCache.remove(next), blockUpdateFlag);
+            dim.setBlock(next, StripperCache.hashedBlockCache.remove(next), blockUpdateFlag);
         }
 
         return queue.size() != 0;

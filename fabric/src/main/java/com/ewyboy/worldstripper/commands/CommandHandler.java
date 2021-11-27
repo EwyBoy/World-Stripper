@@ -5,7 +5,7 @@ import com.ewyboy.worldstripper.commands.server.*;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
-import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.commands.CommandSourceStack;
 
 public class CommandHandler {
 
@@ -19,9 +19,9 @@ public class CommandHandler {
         CommandRegistrationCallback.EVENT.register(this :: registerCommands);
     }
 
-    private void registerCommands(CommandDispatcher<ServerCommandSource> dispatcher, boolean dedicated) {
+    private void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, boolean dedicated) {
         dispatcher.register(
-                LiteralArgumentBuilder.<ServerCommandSource> literal(WorldStripper.MOD_ID)
+                LiteralArgumentBuilder.<CommandSourceStack> literal(WorldStripper.MOD_ID)
                         .then(CommandReload.register())
                         .then(CommandAddEntry.register())
                         .then(CommandRemoveEntry.register())

@@ -6,51 +6,51 @@ import com.ewyboy.worldstripper.network.IPacket;
 import com.ewyboy.worldstripper.stripclub.StripperAccessories;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.block.BlockState;
-import net.minecraft.network.MessageType;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.Registry;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerGamePacketListenerImpl;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class PacketRemoveBlock implements IPacket {
 
-    public static final Identifier ID = new Identifier(WorldStripper.MOD_ID, "remove_block_packet");
+    public static final ResourceLocation ID = new ResourceLocation(WorldStripper.MOD_ID, "remove_block_packet");
 
     public PacketRemoveBlock() {}
 
     @Override
-    public void read(PacketByteBuf packetByteBuf) {}
+    public void read(FriendlyByteBuf packetByteBuf) {}
 
     @Override
-    public void write(PacketByteBuf packetByteBuf) {}
+    public void write(FriendlyByteBuf packetByteBuf) {}
 
     @Override
-    public Identifier getID() {
+    public ResourceLocation getID() {
         return ID;
     }
 
     public static class Handler implements ServerPlayNetworking.PlayChannelHandler {
 
         @Override
-        public void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
+        public void receive(MinecraftServer server, ServerPlayer player, ServerGamePacketListenerImpl handler, FriendlyByteBuf buf, PacketSender responseSender) {
             if(player.isSpectator() || player.isCreative()) {
                 BlockState state = StripperAccessories.getStateFromRaytrace();
                 if (state != null) {
-                    String entry = Registry.BLOCK.getId(state.getBlock()).toString();
+                    String entry = Registry.BLOCK.getKey(state.getBlock()).toString();
                     if (JsonHandler.removeEntry(entry)) {
-                        player.sendMessage(new LiteralText(Formatting.RED + entry + Formatting.WHITE + " removed from config"), true);
+                        player.displayClientMessage(new TextComponent(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"), true);
                     } else {
                         //TODO: fix color for text
-                        player.sendMessage(new LiteralText(Formatting.RED + "ERROR: " + entry + Formatting.WHITE + " not found in config"), MessageType.GAME_INFO, player.getUuid());
+                        player.sendMessage(new TextComponent(ChatFormatting.RED + "ERROR: " + entry + ChatFormatting.WHITE + " not found in config"), ChatType.GAME_INFO, player.getUUID());
                     }
                 }
             } else {
-                player.sendMessage(new LiteralText(Formatting.RED + "Error: You have to be in creative mode to use this feature!"), MessageType.GAME_INFO, player.getUuid());
+                player.sendMessage(new TextComponent(ChatFormatting.RED + "Error: You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
             }
         }
     }

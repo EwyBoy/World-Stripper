@@ -7,19 +7,19 @@ import com.ewyboy.worldstripper.network.packets.PacketDressWorker;
 import com.ewyboy.worldstripper.network.packets.PacketRemoveBlock;
 import com.ewyboy.worldstripper.network.packets.PacketStripWorker;
 import com.ewyboy.worldstripper.stripclub.Translation;
+import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.glfw.GLFW;
 
 public class Keybindings {
 
-    private static KeyBinding strip;
-    private static KeyBinding dress;
-    private static KeyBinding add;
-    private static KeyBinding remove;
+    private static KeyMapping strip;
+    private static KeyMapping dress;
+    private static KeyMapping add;
+    private static KeyMapping remove;
 
     public static void setup() {
         initKeyBinding();
@@ -27,16 +27,16 @@ public class Keybindings {
     }
 
     private static void initKeyBinding() {
-        strip = new KeyBinding(Translation.Key.STRIP, InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_DELETE, WorldStripper.NAME);
+        strip = new KeyMapping(Translation.Key.STRIP, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_DELETE, WorldStripper.NAME);
         KeyBindingHelper.registerKeyBinding(strip);
 
-        dress = new KeyBinding(Translation.Key.DRESS, InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_INSERT, WorldStripper.NAME);
+        dress = new KeyMapping(Translation.Key.DRESS, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_INSERT, WorldStripper.NAME);
         KeyBindingHelper.registerKeyBinding(dress);
 
-        add = new KeyBinding(Translation.Key.ADD, InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
+        add = new KeyMapping(Translation.Key.ADD, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
         KeyBindingHelper.registerKeyBinding(add);
 
-        remove = new KeyBinding(Translation.Key.REMOVE, InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
+        remove = new KeyMapping(Translation.Key.REMOVE, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
         KeyBindingHelper.registerKeyBinding(remove);
     }
 
@@ -44,10 +44,10 @@ public class Keybindings {
         ClientTickEvents.END_CLIENT_TICK.register(Keybindings :: onEndTick);
     }
 
-    private static void onEndTick(MinecraftClient client) {
-        while (strip.wasPressed()) PacketHandler.sendToServer(new PacketStripWorker());
-        while (dress.wasPressed()) PacketHandler.sendToServer(new PacketDressWorker());
-        while (add.wasPressed()) PacketHandler.sendToServer(new PacketAddBlock());
-        while (remove.wasPressed()) PacketHandler.sendToServer(new PacketRemoveBlock());
+    private static void onEndTick(Minecraft client) {
+        while (strip.consumeClick()) PacketHandler.sendToServer(new PacketStripWorker());
+        while (dress.consumeClick()) PacketHandler.sendToServer(new PacketDressWorker());
+        while (add.consumeClick()) PacketHandler.sendToServer(new PacketAddBlock());
+        while (remove.consumeClick()) PacketHandler.sendToServer(new PacketRemoveBlock());
     }
 }

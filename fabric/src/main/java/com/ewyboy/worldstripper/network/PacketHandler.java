@@ -9,17 +9,16 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.server.PlayerStream;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.c2s.play.CustomPayloadC2SPacket;
-import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
+import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import java.util.Iterator;
 
 public class PacketHandler {
@@ -33,27 +32,27 @@ public class PacketHandler {
 
     @Environment(EnvType.CLIENT)
     public static void sendToServer(IPacket packet) {
-        PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
+        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         packet.write(buf);
 
-        ClientPlayNetworkHandler netHandler = MinecraftClient.getInstance().getNetworkHandler();
+        ClientPacketListener netHandler = Minecraft.getInstance().getConnection();
         if (netHandler != null) {
-            netHandler.getConnection().send(new CustomPayloadC2SPacket(packet.getID(), buf));
+            netHandler.getConnection().send(new ServerboundCustomPayloadPacket(packet.getID(), buf));
         }
     }
 
-    public static void sendToClient(IPacket packet, ServerPlayerEntity player) {
-        PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
+    public static void sendToClient(IPacket packet, ServerPlayer player) {
+        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         packet.write(buf);
-        player.networkHandler.sendPacket(new CustomPayloadS2CPacket(packet.getID(), buf));
+        player.connection.send(new ClientboundCustomPayloadPacket(packet.getID(), buf));
     }
 
-    public static void sendToAllAround(IPacket packet, World world, BlockPos center, int radius) {
-        if (world instanceof ServerWorld) {
-            Iterator<PlayerEntity> iter = PlayerStream.around(world, center, radius).iterator();
+    public static void sendToAllAround(IPacket packet, Level world, BlockPos center, int radius) {
+        if (world instanceof ServerLevel) {
+            Iterator<Player> iter = PlayerStream.around(world, center, radius).iterator();
             while (iter.hasNext()) {
-                PlayerEntity player = iter.next();
-                sendToClient(packet, (ServerPlayerEntity) player);
+                Player player = iter.next();
+                sendToClient(packet, (ServerPlayer) player);
             }
         }
     }

@@ -2,38 +2,38 @@ package com.ewyboy.worldstripper.commands.server;
 
 import com.ewyboy.worldstripper.json.JsonHandler;
 import com.mojang.brigadier.builder.ArgumentBuilder;
-import net.minecraft.command.argument.BlockStateArgument;
-import net.minecraft.command.argument.BlockStateArgumentType;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.LiteralText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.blocks.BlockInput;
+import net.minecraft.commands.arguments.blocks.BlockStateArgument;
+import net.minecraft.core.Registry;
+import net.minecraft.network.chat.TextComponent;
 
 public class CommandEditEntry {
 
-    public static ArgumentBuilder<ServerCommandSource, ?> register() {
-        return CommandManager.literal("edit").requires((commandSource) -> commandSource.hasPermissionLevel(2))
-                .then(CommandManager.argument("old block", BlockStateArgumentType.blockState())
-                .then(CommandManager.argument("new block", BlockStateArgumentType.blockState())
+    public static ArgumentBuilder<CommandSourceStack, ?> register() {
+        return Commands.literal("edit").requires((commandSource) -> commandSource.hasPermission(2))
+                .then(Commands.argument("old block", BlockStateArgument.block())
+                .then(Commands.argument("new block", BlockStateArgument.block())
                         .executes((commandSource) -> addEntry(
                                 commandSource.getSource(),
-                                BlockStateArgumentType.getBlockState(commandSource, "oldBlock"),
-                                BlockStateArgumentType.getBlockState(commandSource, "newBlock")
+                                BlockStateArgument.getBlock(commandSource, "oldBlock"),
+                                BlockStateArgument.getBlock(commandSource, "newBlock")
                         )))
                 );
     }
 
-    private static int addEntry(ServerCommandSource source, BlockStateArgument oldBlock, BlockStateArgument newBlock) {
-        String oldEntry = Registry.BLOCK.getId(oldBlock.getBlockState().getBlock()).toString();
-        String newEntry = Registry.BLOCK.getId(newBlock.getBlockState().getBlock()).toString();
+    private static int addEntry(CommandSourceStack source, BlockInput oldBlock, BlockInput newBlock) {
+        String oldEntry = Registry.BLOCK.getKey(oldBlock.getState().getBlock()).toString();
+        String newEntry = Registry.BLOCK.getKey(newBlock.getState().getBlock()).toString();
 
         if (JsonHandler.containsEntry(oldEntry)) {
             JsonHandler.removeEntry(oldEntry);
             JsonHandler.addEntry(newEntry);
-            source.sendFeedback(new LiteralText(Formatting.GREEN + oldEntry + Formatting.WHITE + " replaced with " + Formatting.GOLD + newEntry), true);
+            source.sendSuccess(new TextComponent(ChatFormatting.GREEN + oldEntry + ChatFormatting.WHITE + " replaced with " + ChatFormatting.GOLD + newEntry), true);
         } else {
-            source.sendFeedback(new LiteralText(Formatting.RED + "ERROR: " +  oldEntry.toUpperCase() + Formatting.WHITE + " was not found in strip list"), true);
+            source.sendSuccess(new TextComponent(ChatFormatting.RED + "ERROR: " +  oldEntry.toUpperCase() + ChatFormatting.WHITE + " was not found in strip list"), true);
         }
         return 0;
     }

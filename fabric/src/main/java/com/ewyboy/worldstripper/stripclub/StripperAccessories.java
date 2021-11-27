@@ -1,28 +1,28 @@
 package com.ewyboy.worldstripper.stripclub;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class StripperAccessories {
 
     public static BlockState getStateFromRaytrace() {
-        MinecraftClient instance = MinecraftClient.getInstance();
+        Minecraft instance = Minecraft.getInstance();
 
-        if (instance.crosshairTarget != null && instance.crosshairTarget.getType() != HitResult.Type.BLOCK) {
+        if (instance.hitResult != null && instance.hitResult.getType() != HitResult.Type.BLOCK) {
             return null;
         }
 
-        Vec3d blockVector;
+        Vec3 blockVector;
 
-        if (instance.crosshairTarget != null) {
-            blockVector = instance.crosshairTarget.getPos();
+        if (instance.hitResult != null) {
+            blockVector = instance.hitResult.getLocation();
 
-            double blockX = blockVector.getX();
-            double blockY = blockVector.getY();
-            double blockZ = blockVector.getZ();
+            double blockX = blockVector.x();
+            double blockY = blockVector.y();
+            double blockZ = blockVector.z();
 
             double playerX = 0;
             double playerY = 0;
@@ -36,8 +36,8 @@ public class StripperAccessories {
             if(blockY == Math.floor(blockY) && blockY <= playerY + 1)    {blockY--;}
             if(blockZ == Math.floor(blockZ) && blockZ <= playerZ)        {blockZ--;}
 
-            if (instance.world != null) {
-                return instance.world.getBlockState(new BlockPos(blockX, blockY, blockZ));
+            if (instance.level != null) {
+                return instance.level.getBlockState(new BlockPos(blockX, blockY, blockZ));
             }
         }
 

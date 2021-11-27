@@ -2,32 +2,32 @@ package com.ewyboy.worldstripper.commands.server;
 
 import com.ewyboy.worldstripper.json.JsonHandler;
 import com.mojang.brigadier.builder.ArgumentBuilder;
-import net.minecraft.command.argument.BlockStateArgument;
-import net.minecraft.command.argument.BlockStateArgumentType;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.LiteralText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.blocks.BlockInput;
+import net.minecraft.commands.arguments.blocks.BlockStateArgument;
+import net.minecraft.core.Registry;
+import net.minecraft.network.chat.TextComponent;
 
 public class CommandAddEntry {
 
-    public static ArgumentBuilder<ServerCommandSource, ?> register() {
-        return CommandManager.literal("add").requires((commandSource) -> commandSource.hasPermissionLevel(2))
-                .then(CommandManager.argument("block", BlockStateArgumentType.blockState())
+    public static ArgumentBuilder<CommandSourceStack, ?> register() {
+        return Commands.literal("add").requires((commandSource) -> commandSource.hasPermission(2))
+                .then(Commands.argument("block", BlockStateArgument.block())
                         .executes((commandSource) -> addEntry(
                                 commandSource.getSource(),
-                                BlockStateArgumentType.getBlockState(commandSource, "block")
+                                BlockStateArgument.getBlock(commandSource, "block")
                         ))
                 );
     }
 
-    private static int addEntry(ServerCommandSource source, BlockStateArgument block) {
-        String entry = Registry.BLOCK.getId(block.getBlockState().getBlock()).toString();
+    private static int addEntry(CommandSourceStack source, BlockInput block) {
+        String entry = Registry.BLOCK.getKey(block.getState().getBlock()).toString();
         if (JsonHandler.addEntry(entry)) {
-            source.sendFeedback(new LiteralText(Formatting.GREEN + entry + Formatting.WHITE + " added to strip list"), true);
+            source.sendSuccess(new TextComponent(ChatFormatting.GREEN + entry + ChatFormatting.WHITE + " added to strip list"), true);
         } else {
-            source.sendFeedback(new LiteralText(Formatting.RED + "ERROR: " + entry + Formatting.WHITE + " is already found in strip list"), true);
+            source.sendSuccess(new TextComponent(ChatFormatting.RED + "ERROR: " + entry + ChatFormatting.WHITE + " is already found in strip list"), true);
         }
         return 0;
     }

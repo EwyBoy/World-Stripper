@@ -9,37 +9,37 @@ import com.ewyboy.worldstripper.workers.DressWorker;
 import com.ewyboy.worldstripper.workers.WorldWorker;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.network.MessageType;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerGamePacketListenerImpl;
 
 public class PacketDressWorker implements IPacket {
 
-    public static final Identifier ID = new Identifier(WorldStripper.MOD_ID, "dress_worker_packet");
+    public static final ResourceLocation ID = new ResourceLocation(WorldStripper.MOD_ID, "dress_worker_packet");
 
     public PacketDressWorker() {}
 
     @Override
-    public void read(PacketByteBuf packetByteBuf) {}
+    public void read(FriendlyByteBuf packetByteBuf) {}
 
     @Override
-    public void write(PacketByteBuf packetByteBuf) {}
+    public void write(FriendlyByteBuf packetByteBuf) {}
 
     @Override
-    public Identifier getID() {
+    public ResourceLocation getID() {
         return ID;
     }
 
     public static class Handler implements ServerPlayNetworking.PlayChannelHandler {
 
         @Override
-        public void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
+        public void receive(MinecraftServer server, ServerPlayer player, ServerGamePacketListenerImpl handler, FriendlyByteBuf buf, PacketSender responseSender) {
             Settings settings = SettingsLoader.SETTINGS;
 
             int fillSizeX = (settings.stripRadiusX / 2);
@@ -47,10 +47,10 @@ public class PacketDressWorker implements IPacket {
 
             if (player != null) {
                 if (player.isSpectator() || player.isCreative()) {
-                    player.sendMessage(new LiteralText(Formatting.BOLD + "" + Formatting.RED + "WARNING! " + Formatting.WHITE + "World Dressing Initialized! Lag May Occur.."), MessageType.GAME_INFO, player.getUuid());
-                    WorldWorker.addWorker(new DressWorker(new BlockPos(player.getPos()), fillSizeX, fillSizeZ, player.getServerWorld(), 4096, BlockUpdater.getBlockUpdateFlag()));
+                    player.sendMessage(new TextComponent(ChatFormatting.BOLD + "" + ChatFormatting.RED + "WARNING! " + ChatFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."), ChatType.GAME_INFO, player.getUUID());
+                    WorldWorker.addWorker(new DressWorker(new BlockPos(player.position()), fillSizeX, fillSizeZ, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag()));
                 } else {
-                    player.sendMessage(new LiteralText(Formatting.RED + "Error: You have to be in creative mode to use this feature!"), MessageType.GAME_INFO, player.getUuid());
+                    player.sendMessage(new TextComponent(ChatFormatting.RED + "Error: You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
                 }
             }
         }

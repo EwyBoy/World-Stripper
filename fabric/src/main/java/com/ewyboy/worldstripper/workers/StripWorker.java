@@ -1,15 +1,14 @@
 package com.ewyboy.worldstripper.workers;
 
 import com.ewyboy.worldstripper.stripclub.StripperCache;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.pattern.CachedBlockPosition;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.pattern.BlockInWorld;
 
 public class StripWorker implements WorldWorker.IWorker {
 
@@ -17,8 +16,8 @@ public class StripWorker implements WorldWorker.IWorker {
     protected final int radiusX;
     protected final int radiusZ;
     private final int total;
-    private final ServerWorld dim;
-    private final Queue<CachedBlockPosition> queue;
+    private final ServerLevel dim;
+    private final Queue<BlockInWorld> queue;
     private final int notificationFrequency;
     private final List<String> stripList;
     private final int blockUpdateFlag;
@@ -36,7 +35,7 @@ public class StripWorker implements WorldWorker.IWorker {
         StripWorker.progress = progress;
     }
 
-    public StripWorker(BlockPos start, int radiusX, int radiusZ, ServerWorld dim, int notificationFrequency, int blockUpdateFlag, BlockState replacementBlock, List<String> stripList) {
+    public StripWorker(BlockPos start, int radiusX, int radiusZ, ServerLevel dim, int notificationFrequency, int blockUpdateFlag, BlockState replacementBlock, List<String> stripList) {
         this.start = start;
         this.radiusX = radiusX;
         this.radiusZ = radiusZ;
@@ -50,24 +49,24 @@ public class StripWorker implements WorldWorker.IWorker {
         this.stripList = stripList;
     }
 
-    private CachedBlockPosition blockInfo(BlockPos pos) {
-        return new CachedBlockPosition(dim, pos, true);
+    private BlockInWorld blockInfo(BlockPos pos) {
+        return new BlockInWorld(dim, pos, true);
     }
 
-    private Queue<CachedBlockPosition> stripQueue() {
-        final Queue<CachedBlockPosition> queue = new LinkedList<>();
+    private Queue<BlockInWorld> stripQueue() {
+        final Queue<BlockInWorld> queue = new LinkedList<>();
         final BlockPos neg = new BlockPos(start.getX() - radiusX, 0, start.getZ() - radiusZ);
         final BlockPos pos = new BlockPos(start.getX() + radiusX, 255, start.getZ() + radiusZ);
 
-        BlockPos.stream(neg, pos)
-                .map(BlockPos :: toImmutable)
+        BlockPos.betweenClosedStream(neg, pos)
+                .map(BlockPos :: immutable)
                 .map(this :: blockInfo)
                 .forEach(queue :: add);
         return queue;
     }
 
-    private boolean isReplaceableBlock(CachedBlockPosition next) {
-        return this.stripList.contains(Registry.BLOCK.getId(next.getBlockState().getBlock()).toString());
+    private boolean isReplaceableBlock(BlockInWorld next) {
+        return this.stripList.contains(Registry.BLOCK.getKey(next.getState().getBlock()).toString());
     }
 
     public boolean hasWork() {
@@ -75,7 +74,7 @@ public class StripWorker implements WorldWorker.IWorker {
     }
 
     public boolean doWork() {
-        CachedBlockPosition next;
+        BlockInWorld next;
 
         do {
             next = queue.poll();
@@ -90,8 +89,8 @@ public class StripWorker implements WorldWorker.IWorker {
                 lastNotificationTime = System.currentTimeMillis();
             }
 
-            StripperCache.hashedBlockCache.put(next.getBlockPos(), next.getBlockState());
-            dim.setBlockState(next.getBlockPos(), replacementBlock, blockUpdateFlag);
+            StripperCache.hashedBlockCache.put(next.getPos(), next.getState());
+            dim.setBlock(next.getPos(), replacementBlock, blockUpdateFlag);
         }
 
         if(queue.size() == 0) {

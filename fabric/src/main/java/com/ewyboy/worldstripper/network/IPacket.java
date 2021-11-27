@@ -1,14 +1,14 @@
 package com.ewyboy.worldstripper.network;
 
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 
 public interface IPacket {
 
-    void read(PacketByteBuf buf);
+    void read(FriendlyByteBuf buf);
 
-    void write(PacketByteBuf buf);
+    void write(FriendlyByteBuf buf);
 
-    Identifier getID();
+    ResourceLocation getID();
 
 }
