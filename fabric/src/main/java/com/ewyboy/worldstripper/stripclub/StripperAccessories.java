@@ -32,9 +32,9 @@ public class StripperAccessories {
             if (instance.player != null) playerY = instance.player.getY();
             if (instance.player != null) playerZ = instance.player.getZ();
 
-            if(blockX == Math.floor(blockX) && blockX <= playerX)        {blockX--;}
-            if(blockY == Math.floor(blockY) && blockY <= playerY + 1)    {blockY--;}
-            if(blockZ == Math.floor(blockZ) && blockZ <= playerZ)        {blockZ--;}
+            if(blockX == Math.floor(blockX) && blockX <= playerX)     {blockX--;}
+            if(blockY == Math.floor(blockY) && blockY <= playerY + 1) {blockY--;}
+            if(blockZ == Math.floor(blockZ) && blockZ <= playerZ)     {blockZ--;}
 
             if (instance.level != null) {
                 return instance.level.getBlockState(new BlockPos(blockX, blockY, blockZ));
