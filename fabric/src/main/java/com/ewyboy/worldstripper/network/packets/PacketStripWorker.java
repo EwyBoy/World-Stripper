@@ -1,18 +1,20 @@
 package com.ewyboy.worldstripper.network.packets;
 
 import com.ewyboy.worldstripper.WorldStripper;
+import com.ewyboy.worldstripper.json.JsonHandler;
 import com.ewyboy.worldstripper.network.IPacket;
-import com.ewyboy.worldstripper.network.MessageHandler;
 import com.ewyboy.worldstripper.settings.Settings;
 import com.ewyboy.worldstripper.settings.SettingsLoader;
 import com.ewyboy.worldstripper.stripclub.BlockUpdater;
-import com.ewyboy.worldstripper.stripclub.Profiles;
 import com.ewyboy.worldstripper.workers.StripWorker;
 import com.ewyboy.worldstripper.workers.WorldWorker;
-import net.fabricmc.fabric.api.network.PacketContext;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.BlockState;
 import net.minecraft.network.MessageType;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
@@ -40,23 +42,17 @@ public class PacketStripWorker implements IPacket {
         return ID;
     }
 
-    public static class Handler extends MessageHandler<PacketStripWorker> {
+    public static class Handler implements ServerPlayNetworking.PlayChannelHandler {
 
         @Override
-        protected PacketStripWorker create() {
-            return new PacketStripWorker();
-        }
-
-        @Override
-        public void handle(PacketContext ctx, PacketStripWorker packetStripWorker) {
+        public void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
             Settings settings = SettingsLoader.SETTINGS;
-            ServerPlayerEntity player = (ServerPlayerEntity) ctx.getPlayer();
 
-            int chunkClearSizeX = (settings.radiusX / 2);
-            int chunkClearSizeZ = (settings.radiusZ / 2);
+            int chunkClearSizeX = (settings.stripRadiusX / 2);
+            int chunkClearSizeZ = (settings.stripRadiusZ / 2);
 
             BlockState replacementBlock = Objects.requireNonNull(Registry.BLOCK.get(new Identifier(settings.replacementBlock))).getDefaultState();
-            List<String> stripList = Profiles.profileMapper.get(settings.selectedProfile);
+            List<String> stripList = JsonHandler.stripList.getEntries();
 
             if (player != null) {
                 if (player.isSpectator() || player.isCreative()) {

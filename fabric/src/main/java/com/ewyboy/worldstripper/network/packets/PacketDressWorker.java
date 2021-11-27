@@ -2,15 +2,17 @@ package com.ewyboy.worldstripper.network.packets;
 
 import com.ewyboy.worldstripper.WorldStripper;
 import com.ewyboy.worldstripper.network.IPacket;
-import com.ewyboy.worldstripper.network.MessageHandler;
 import com.ewyboy.worldstripper.settings.Settings;
 import com.ewyboy.worldstripper.settings.SettingsLoader;
 import com.ewyboy.worldstripper.stripclub.BlockUpdater;
 import com.ewyboy.worldstripper.workers.DressWorker;
 import com.ewyboy.worldstripper.workers.WorldWorker;
-import net.fabricmc.fabric.api.network.PacketContext;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.MessageType;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
@@ -34,20 +36,14 @@ public class PacketDressWorker implements IPacket {
         return ID;
     }
 
-    public static class Handler extends MessageHandler<PacketDressWorker> {
+    public static class Handler implements ServerPlayNetworking.PlayChannelHandler {
 
         @Override
-        protected PacketDressWorker create() {
-            return new PacketDressWorker();
-        }
-
-        @Override
-        public void handle(PacketContext ctx, PacketDressWorker packetDressWorld) {
+        public void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
             Settings settings = SettingsLoader.SETTINGS;
-            ServerPlayerEntity player = (ServerPlayerEntity) ctx.getPlayer();
 
-            int fillSizeX = (settings.radiusX / 2);
-            int fillSizeZ = (settings.radiusZ / 2);
+            int fillSizeX = (settings.stripRadiusX / 2);
+            int fillSizeZ = (settings.stripRadiusZ / 2);
 
             if (player != null) {
                 if (player.isSpectator() || player.isCreative()) {

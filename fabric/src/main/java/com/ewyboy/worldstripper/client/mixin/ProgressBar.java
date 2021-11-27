@@ -36,9 +36,9 @@ public class ProgressBar {
         MinecraftClient mc = MinecraftClient.getInstance();
         percent = Math.round(percent);
 
-        // TODO: Linear Scaling
-        int width = (int) (400 / mc.getWindow().getScaleFactor());
-        int height = (int) (28 / mc.getWindow().getScaleFactor());
+        // TODO: Linear Scaling - This does not work at SCALE : 1
+        int width = (int) (mc.getWindow().getScaledWidth() * 0.6 / mc.getWindow().getScaleFactor());
+        int height = (int) (mc.getWindow().getScaledHeight() * 0.2 / mc.getWindow().getScaleFactor());
         int centerX = mc.getWindow().getScaledWidth() / 2;
         int centerY = mc.getWindow().getScaledHeight() / 2;
 
@@ -54,9 +54,6 @@ public class ProgressBar {
 
         draw(startX, startY, stopX, stopY, BACKGROUND_TEXTURE);
         draw(startX + 2, startY + 2, stopX - 2, stopY - 2, BAR_BACKGROUND_TEXTURE);
-
-
-
         draw(startX + 2, startY + 2, getProgressBarWidth(startX, percent, width) - 2, stopY - 2, getBarTexture(percent));
 
         mc.textRenderer.draw(stack, percent + " / 100%", textX, textY, 0xff212121);
@@ -81,16 +78,16 @@ public class ProgressBar {
         return (int) (start + (double) (((percent / 100) * maxWidth) * 2));
     }
 
-    private static void draw(int x1, int y1, int x2, int y2, Identifier texture) {
+    private static void draw(int startX, int startY, int endX, int endY, Identifier texture) {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
         Objects.requireNonNull(MinecraftClient.getInstance()).getTextureManager().bindTexture(texture);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         buffer.begin(7, VertexFormats.POSITION_COLOR_TEXTURE);
-        buffer.vertex(x1, y2, 0.0D).color(255, 255, 255, 255).texture(x1 / 32.0F, y2 / 32.0F).next();
-        buffer.vertex(x2, y2, 0.0D).color(255, 255, 255, 255).texture(x2 / 32.0F, y2 / 32.0F).next();
-        buffer.vertex(x2, y1, 0.0D).color(255, 255, 255, 255).texture(x2 / 32.0F, y1 / 32.0F).next();
-        buffer.vertex(x1, y1, 0.0D).color(255, 255, 255, 255).texture(x1 / 32.0F, y1 / 32.0F).next();
+            buffer.vertex(startX, endY, 0.0D).color(255, 255, 255, 255).texture(startX / 32.0F, endY / 32.0F).next();
+            buffer.vertex(endX, endY, 0.0D).color(255, 255, 255, 255).texture(endX / 32.0F, endY / 32.0F).next();
+            buffer.vertex(endX, startY, 0.0D).color(255, 255, 255, 255).texture(endX / 32.0F, startY / 32.0F).next();
+            buffer.vertex(startX, startY, 0.0D).color(255, 255, 255, 255).texture(startX / 32.0F, startY / 32.0F).next();
         tessellator.draw();
     }
 

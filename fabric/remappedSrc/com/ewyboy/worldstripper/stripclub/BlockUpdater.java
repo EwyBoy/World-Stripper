@@ -2,10 +2,8 @@ package com.ewyboy.worldstripper.stripclub;
 
 import com.ewyboy.worldstripper.settings.Settings;
 import com.ewyboy.worldstripper.settings.SettingsLoader;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 
 public class BlockUpdater {
 
@@ -43,7 +41,7 @@ public class BlockUpdater {
          */
         public static final int NOTIFY_NEIGHBORS     = (1 << 0);
         /**
-         * Calls {@link World#notifyBlockUpdate(BlockPos, BlockState, BlockState, int)}.<br>
+         * Calls {@link Level#notifyBlockUpdate(BlockPos, BlockState, BlockState, int)}.<br>
          * Server-side, this updates all the path-finding navigators.
          */
         public static final int BLOCK_UPDATE         = (1 << 1);

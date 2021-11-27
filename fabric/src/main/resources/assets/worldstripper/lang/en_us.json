@@ -1,19 +1,17 @@
 {
-  "worldstripper.key.dress_world":   "Dress World",
-  "worldstripper.key.strip_world":   "Strip World",
+  "key.worldstripper.dress_world":   "Dress World",
+  "key.worldstripper.strip_world":   "Strip World",
+  "key.worldstripper.add_block":     "Add Block",
+  "key.worldstripper.remove_block":  "Remove Block",
 
-  "worldstripper.worker.progress":   "Progress: %.02f%%",
-
-  "text.autoconfig.worldstripper.title":                        "World Stripper - Settings",
-  "text.autoconfig.worldstripper.option.block_radius_x":        "Strip Radius: X",
-  "text.autoconfig.worldstripper.option.block_radius_z":        "Strip Radius: Z",
-  "text.autoconfig.worldstripper.option.replacement_block":     "Replacement Block",
-  "text.autoconfig.worldstripper.option.block_update_settings": "Block Update Settings",
-  "text.autoconfig.worldstripper.option.selected_profile":      "Selected Profile",
-
-  "text.autoconfig.worldstripper.option.strip_profile_1":       "Strip Profile 1",
-  "text.autoconfig.worldstripper.option.strip_profile_2":       "Strip Profile 2",
-  "text.autoconfig.worldstripper.option.strip_profile_3":       "Strip Profile 3",
-  "text.autoconfig.worldstripper.option.strip_profile_4":       "Strip Profile 4",
-  "text.autoconfig.worldstripper.option.strip_profile_5":       "Strip Profile 5"
+  "text.autoconfig.worldstripper.title": "World Stripper - Settings",
+  "text.autoconfig.worldstripper.option.stripRadiusX":     "Strip Radius: X",
+  "text.autoconfig.worldstripper.option.stripRadiusZ":     "Strip Radius: Z",
+  "text.autoconfig.worldstripper.option.replacementBlock": "Replacement Block",
+  "text.autoconfig.worldstripper.option.updateSettings":   "Block Update Settings",
+  "text.autoconfig.worldstripper.option.updateSettings.notifyNeighbors":  "Call Neighbors",
+  "text.autoconfig.worldstripper.option.updateSettings.blockUpdate":      "Update Block",
+  "text.autoconfig.worldstripper.option.updateSettings.noRender":         "Don't Update Renderer",
+  "text.autoconfig.worldstripper.option.updateSettings.renderMainThread": "Do Update Renderer",
+  "text.autoconfig.worldstripper.option.updateSettings.updateNeighbors":  "Block Update Neighbors"
 }

@@ -1,12 +1,13 @@
 package com.ewyboy.worldstripper.network;
 
-import com.ewyboy.worldstripper.WorldStripper;
+import com.ewyboy.worldstripper.network.packets.PacketAddBlock;
 import com.ewyboy.worldstripper.network.packets.PacketDressWorker;
+import com.ewyboy.worldstripper.network.packets.PacketRemoveBlock;
 import com.ewyboy.worldstripper.network.packets.PacketStripWorker;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.network.ServerSidePacketRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -24,8 +25,10 @@ import java.util.Iterator;
 public class PacketHandler {
 
     public static void setup() {
-        ServerSidePacketRegistry.INSTANCE.register(PacketStripWorker.ID, new PacketStripWorker.Handler());
-        ServerSidePacketRegistry.INSTANCE.register(PacketDressWorker.ID, new PacketDressWorker.Handler());
+        ServerPlayNetworking.registerGlobalReceiver(PacketStripWorker.ID, new PacketStripWorker.Handler());
+        ServerPlayNetworking.registerGlobalReceiver(PacketDressWorker.ID, new PacketDressWorker.Handler());
+        ServerPlayNetworking.registerGlobalReceiver(PacketAddBlock.ID, new PacketAddBlock.Handler());
+        ServerPlayNetworking.registerGlobalReceiver(PacketRemoveBlock.ID, new PacketRemoveBlock.Handler());
     }
 
     @Environment(EnvType.CLIENT)
