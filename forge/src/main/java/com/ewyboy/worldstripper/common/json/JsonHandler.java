@@ -1,11 +1,11 @@
-package com.ewyboy.worldstripper.json;
+package com.ewyboy.worldstripper.common.json;
 
 import com.ewyboy.worldstripper.WorldStripper;
-import com.ewyboy.worldstripper.json.objects.StripList;
-import com.ewyboy.worldstripper.stripclub.ModLogger;
+import com.ewyboy.worldstripper.common.json.objects.StripList;
+import com.ewyboy.worldstripper.common.stripclub.ModLogger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import net.fabricmc.loader.api.FabricLoader;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
@@ -18,7 +18,7 @@ import java.util.List;
 public class JsonHandler {
 
     private static final Gson gson = new Gson();
-    public static final File JSON_FILE = new File(FabricLoader.getInstance().getConfigDir() + "/worldstripper/world-stripper.json");
+    public static final File JSON_FILE = new File(FMLPaths.CONFIGDIR.get() + "/worldstripper/world-stripper.json");
 
     private static final List<String> STRIP_ENTRIES = new ArrayList<>(); static {
         STRIP_ENTRIES.add("minecraft:dirt");
@@ -121,7 +121,7 @@ public class JsonHandler {
     }
 
     private static void createDirectory() {
-        Path path = Paths.get(FabricLoader.getInstance().getConfigDir().toAbsolutePath().toString(), WorldStripper.MOD_ID);
+        Path path = Paths.get(FMLPaths.CONFIGDIR.get().toAbsolutePath().toString(), WorldStripper.MOD_ID);
         try {
             ModLogger.info("Creating World Stripper directory");
             Files.createDirectory(path);

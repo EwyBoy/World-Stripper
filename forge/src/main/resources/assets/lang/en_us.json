@@ -1,0 +1,16 @@
+{
+  "worldstripper.gui.save": "Save",
+  "worldstripper.gui.done": "Done",
+  "worldstripper.Profile_profile_1": "Profile 1",
+  "worldstripper.Profile_profile_2": "Profile 2",
+  "worldstripper.Profile_profile_3": "Profile 3",
+  "worldstripper.Profile_profile_4": "Profile 4",
+  "worldstripper.Profile_profile_5": "Profile 5",
+  "Profile_profile_1": "Profile 1",
+  "Profile_profile_2": "Profile 2",
+  "Profile_profile_3": "Profile 3",
+  "Profile_profile_4": "Profile 4",
+  "Profile_profile_5": "Profile 5",
+  "worldstripper.gui.configuration": "%s Configuration",
+  "worldstripper.config.category.general": "General"
+}

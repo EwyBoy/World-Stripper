@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.stripclub;
+package com.ewyboy.worldstripper.common.stripclub;
 
 import com.ewyboy.worldstripper.WorldStripper;
 import org.apache.logging.log4j.Level;
@@ -24,5 +24,4 @@ public class ModLogger {
     public static void warning(String message, Object... params) {
         logger.log(Level.WARN, String.format(message, params));
     }
-
 }

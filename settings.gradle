@@ -10,4 +10,5 @@ pluginManagement {
 
 include 'fabric'
 include 'forge'
+include 'test'
 
