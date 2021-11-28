@@ -92,6 +92,9 @@ curseforge {
         addGameVersion '1.16.1'
         mainArtifact(remapJar) {
             displayName = "${MOD_NAME}-${MC_VERSION_GENERAL}-${VERSION}-${MOD_LOADER}.jar"
+            relations {
+                requiredDependency 'cloth-config'
+            }
         }
     }
     options {

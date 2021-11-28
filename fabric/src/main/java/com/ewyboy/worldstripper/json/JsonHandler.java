@@ -18,7 +18,7 @@ import java.util.List;
 public class JsonHandler {
 
     private static final Gson gson = new Gson();
-    public static final File JSON_FILE = new File(FabricLoader.getInstance().getConfigDir() + "/worldstripper/world-stripper.json");
+    public static final File JSON_FILE = new File(FabricLoader.getInstance().getConfigDir() + "/worldstripper/strip-list.json");
 
     private static final List<String> STRIP_ENTRIES = new ArrayList<>(); static {
         STRIP_ENTRIES.add("minecraft:dirt");

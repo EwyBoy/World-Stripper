@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.settings;
+package com.ewyboy.worldstripper.common.settings;
 
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
