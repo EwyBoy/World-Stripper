@@ -4,6 +4,8 @@ import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import me.shedaniel.autoconfig.AutoConfig;
 
+import java.util.Map;
+
 public class SettingsMenu implements ModMenuApi {
 
     @Override

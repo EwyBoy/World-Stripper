@@ -6,8 +6,12 @@ import com.ewyboy.worldstripper.network.packets.PacketAddBlock;
 import com.ewyboy.worldstripper.network.packets.PacketDressWorker;
 import com.ewyboy.worldstripper.network.packets.PacketRemoveBlock;
 import com.ewyboy.worldstripper.network.packets.PacketStripWorker;
+import com.ewyboy.worldstripper.settings.Settings;
+import com.ewyboy.worldstripper.settings.SettingsMenu;
 import com.ewyboy.worldstripper.stripclub.Translation;
 import com.mojang.blaze3d.platform.InputConstants;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.clothconfig2.api.ConfigScreen;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
@@ -20,6 +24,7 @@ public class Keybindings {
     private static KeyMapping dress;
     private static KeyMapping add;
     private static KeyMapping remove;
+    private static KeyMapping config;
 
     public static void setup() {
         initKeyBinding();
@@ -38,6 +43,9 @@ public class Keybindings {
 
         remove = new KeyMapping(Translation.Key.REMOVE, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
         KeyBindingHelper.registerKeyBinding(remove);
+
+        config = new KeyMapping("Open Config", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
+        KeyBindingHelper.registerKeyBinding(config);
     }
 
     private static void clickEvent() {
@@ -49,5 +57,6 @@ public class Keybindings {
         while (dress.consumeClick()) PacketHandler.sendToServer(new PacketDressWorker());
         while (add.consumeClick()) PacketHandler.sendToServer(new PacketAddBlock());
         while (remove.consumeClick()) PacketHandler.sendToServer(new PacketRemoveBlock());
+        while (config.consumeClick()) Minecraft.getInstance().setScreen(AutoConfig.getConfigScreen(Settings.class, Minecraft.getInstance().screen).get());
     }
 }

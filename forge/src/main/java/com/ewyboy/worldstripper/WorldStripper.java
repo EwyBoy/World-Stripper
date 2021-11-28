@@ -6,7 +6,11 @@ import com.ewyboy.worldstripper.common.commands.CommandHandler;
 import com.ewyboy.worldstripper.common.config.ConfigHolder;
 import com.ewyboy.worldstripper.common.json.JsonHandler;
 import com.ewyboy.worldstripper.common.network.MessageHandler;
+import com.ewyboy.worldstripper.common.settings.Settings;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ExtensionPoint;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -32,7 +36,7 @@ public class WorldStripper {
     public void clientRegister(FMLClientSetupEvent event) {
         Keybindings.setup();
         // MinecraftForge.EVENT_BUS.register(new Display());
-        // ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, () -> (mc, screen) -> new GuiConfigMain(screen));
+        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, () -> (config, parent) -> AutoConfig.getConfigScreen(Settings.class, parent).get());
     }
 
 }
