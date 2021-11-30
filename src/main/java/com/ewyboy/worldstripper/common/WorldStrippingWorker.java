@@ -48,7 +48,7 @@ public class WorldStrippingWorker implements WorldWorkerManager.IWorker {
     private Queue<BlockInWorld> stripQueue() {
         final Queue<BlockInWorld> queue = new LinkedList<>();
 
-        final BlockPos neg = new BlockPos(start.getX() - radiusX, 0, start.getZ() - radiusZ);
+        final BlockPos neg = new BlockPos(start.getX() - radiusX, -64, start.getZ() - radiusZ);
         final BlockPos pos = new BlockPos(start.getX() + radiusX, 255, start.getZ() + radiusZ);
 
         BlockPos.betweenClosedStream(neg, pos).map(BlockPos :: immutable).map(this :: blockInfo).forEach(queue :: add);

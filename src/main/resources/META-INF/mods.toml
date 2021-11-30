@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[37,)"
+loaderVersion="[38,)"
 license="MIT"
 issueTrackerURL="https://github.com/EwyBoy/World-Stripper"
 # displayURL="https://minecraft.curseforge.com/projects/world-stripper/"
@@ -17,6 +17,6 @@ description="World Stripper is a lightweight modder / mapmaker tool that strips 
 [[dependencies.worldstripper]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.17.1, 1.18)"
+versionRange="[1.18, 1.19)"
 ordering="NONE"
 side="BOTH"

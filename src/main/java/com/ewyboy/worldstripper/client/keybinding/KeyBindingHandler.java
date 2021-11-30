@@ -12,10 +12,10 @@ import com.ewyboy.worldstripper.common.network.messages.stripping.MessageStripWo
 import com.ewyboy.worldstripper.common.network.messages.stripping.MessageStripWorld;
 import com.mojang.blaze3d.platform.InputConstants.Type;
 import net.minecraft.client.KeyMapping;
+import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.event.InputEvent.KeyInputEvent;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fmlclient.registry.ClientRegistry;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyBindingHandler {

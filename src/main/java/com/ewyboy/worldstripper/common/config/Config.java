@@ -43,6 +43,7 @@ public class Config {
             defaultStripList.add("minecraft:tall_grass");
             defaultStripList.add("minecraft:grass_block");
             defaultStripList.add("minecraft:stone");
+            defaultStripList.add("minecraft:deepslate");
             defaultStripList.add("minecraft:diorite");
             defaultStripList.add("minecraft:granite");
             defaultStripList.add("minecraft:andesite");
