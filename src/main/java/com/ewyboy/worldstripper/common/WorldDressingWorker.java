@@ -1,5 +1,6 @@
 package com.ewyboy.worldstripper.common;
 
+import com.ewyboy.worldstripper.common.config.ConfigOptions;
 import com.ewyboy.worldstripper.common.network.MessageHandler;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
@@ -41,8 +42,8 @@ public class WorldDressingWorker implements WorldWorkerManager.IWorker {
 
     private Deque<BlockPos> dressQueue() {
         final Deque<BlockPos> queue = new LinkedList<>();
-        final BlockPos neg = new BlockPos(start.getX() - radiusX, 0, start.getZ() - radiusZ);
-        final BlockPos pos = new BlockPos(start.getX() + radiusX, 255, start.getZ() + radiusZ);
+        final BlockPos neg = new BlockPos(start.getX() - radiusX, ConfigOptions.Stripping.stripStopY, start.getZ() - radiusZ);
+        final BlockPos pos = new BlockPos(start.getX() + radiusX, ConfigOptions.Stripping.stripStartY, start.getZ() + radiusZ);
         BlockPos.betweenClosedStream(neg, pos)
                 .map(BlockPos::immutable)
                 .filter(MessageHandler.hashedBlockCache::containsKey)

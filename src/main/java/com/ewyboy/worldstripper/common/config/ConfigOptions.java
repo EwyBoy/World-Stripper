@@ -10,6 +10,8 @@ public class ConfigOptions {
         public static boolean liveStripping;
         public static boolean stripBedrock;
         public static String replacementBlock;
+        public static int stripStartY;
+        public static int stripStopY;
     }
 
     public static class Profiles {

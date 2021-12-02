@@ -15,6 +15,9 @@ public class Config {
         ForgeConfigSpec.BooleanValue liveStripping;
         ForgeConfigSpec.BooleanValue stripBedrock;
         ForgeConfigSpec.ConfigValue<String> replacementBlock;
+
+        ForgeConfigSpec.IntValue stripStartY;
+        ForgeConfigSpec.IntValue stripStopY;
     }
 
     public static class Profiles {
@@ -43,7 +46,6 @@ public class Config {
             defaultStripList.add("minecraft:tall_grass");
             defaultStripList.add("minecraft:grass_block");
             defaultStripList.add("minecraft:stone");
-            defaultStripList.add("minecraft:deepslate");
             defaultStripList.add("minecraft:diorite");
             defaultStripList.add("minecraft:granite");
             defaultStripList.add("minecraft:andesite");
@@ -72,9 +74,6 @@ public class Config {
             defaultStripList.add("minecraft:bamboo");
             defaultStripList.add("minecraft:seagrass");
             defaultStripList.add("minecraft:tall_seagrass");
-            defaultStripList.add("minecraft:deepslate");
-            defaultStripList.add("minecraft:tuff");
-            defaultStripList.add("minecraft:glow_lichen");
         }
     }
 
@@ -118,6 +117,18 @@ public class Config {
                         .comment("Replaces every block touched by the stripper with this block")
                         .translation("worldstripper.config.stripping.replacementBlock")
                         .define("replacement_block", "minecraft:air"
+                );
+
+                stripping.stripStartY = builder
+                        .comment("World Y-Level to start stripping from")
+                        .translation("worldstripper.config.stripping.stripStartY")
+                        .defineInRange("strip_start_y", 255, -1073741823,  1073741823
+                );
+
+                stripping.stripStopY = builder
+                        .comment("World Y-Level to stop stripping at")
+                        .translation("worldstripper.config.stripping.stripStopY")
+                        .defineInRange("strip_stop_y", -64, -1073741823,  1073741823
                 );
 
             } builder.pop();

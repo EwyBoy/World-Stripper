@@ -28,6 +28,4 @@ public class ConfigHolder {
             ConfigHelper.readConfigToMemory(config);
         }
     }
-
-
 }
