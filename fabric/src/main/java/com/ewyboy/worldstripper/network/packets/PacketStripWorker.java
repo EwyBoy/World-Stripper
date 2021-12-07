@@ -1,10 +1,9 @@
 package com.ewyboy.worldstripper.network.packets;
 
 import com.ewyboy.worldstripper.WorldStripper;
-import com.ewyboy.worldstripper.json.JsonHandler;
+import com.ewyboy.worldstripper.settings.SettingsHandler;
+import com.ewyboy.worldstripper.json.StripListHandler;
 import com.ewyboy.worldstripper.network.IPacket;
-import com.ewyboy.worldstripper.settings.Settings;
-import com.ewyboy.worldstripper.settings.SettingsLoader;
 import com.ewyboy.worldstripper.stripclub.BlockUpdater;
 import com.ewyboy.worldstripper.workers.StripWorker;
 import com.ewyboy.worldstripper.workers.WorldWorker;
@@ -45,13 +44,11 @@ public class PacketStripWorker implements IPacket {
 
         @Override
         public void receive(MinecraftServer server, ServerPlayer player, ServerGamePacketListenerImpl handler, FriendlyByteBuf buf, PacketSender responseSender) {
-            Settings settings = SettingsLoader.SETTINGS;
+            int chunkClearSizeX = (SettingsHandler.SETTINGS.stripRadiusX / 2);
+            int chunkClearSizeZ = (SettingsHandler.SETTINGS.stripRadiusZ / 2);
 
-            int chunkClearSizeX = (settings.stripRadiusX / 2);
-            int chunkClearSizeZ = (settings.stripRadiusZ / 2);
-
-            BlockState replacementBlock = Objects.requireNonNull(Registry.BLOCK.get(new ResourceLocation(settings.replacementBlock))).defaultBlockState();
-            List<String> stripList = JsonHandler.stripList.getEntries();
+            BlockState replacementBlock = Objects.requireNonNull(Registry.BLOCK.get(new ResourceLocation(SettingsHandler.SETTINGS.replacementBlock)).defaultBlockState());
+            List<String> stripList = StripListHandler.stripListObject.getEntries();
 
             if (player != null) {
                 if (player.isSpectator() || player.isCreative()) {

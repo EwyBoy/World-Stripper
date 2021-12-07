@@ -1,6 +1,6 @@
 package com.ewyboy.worldstripper.commands.server;
 
-import com.ewyboy.worldstripper.json.JsonHandler;
+import com.ewyboy.worldstripper.json.StripListHandler;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
@@ -19,7 +19,7 @@ public class CommandReload {
 
     private static int reload(CommandSourceStack source) {
         try {
-            JsonHandler.readJson(JsonHandler.JSON_FILE);
+            StripListHandler.readJson(StripListHandler.JSON_FILE);
             source.sendSuccess(new TextComponent(ChatFormatting.GREEN + "SUCCESS: " + ChatFormatting.WHITE + "Strip list reloaded"), true);
         } catch (Exception e) {
             e.printStackTrace();

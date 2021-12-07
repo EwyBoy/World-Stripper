@@ -3,7 +3,6 @@ package com.ewyboy.worldstripper.common.commands;
 import com.ewyboy.worldstripper.WorldStripper;
 import com.ewyboy.worldstripper.common.commands.server.CommandReloadConfig;
 import com.ewyboy.worldstripper.common.commands.server.CommandDress;
-import com.ewyboy.worldstripper.common.commands.server.CommandProfile;
 import com.ewyboy.worldstripper.common.commands.server.CommandStrip;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -36,7 +35,6 @@ public class CommandHandler {
                 .then(CommandReloadConfig.register())
                 .then(CommandStrip.register())
                 .then(CommandDress.register())
-                .then(CommandProfile.register())
                 .executes(ctx -> {
                     // TODO: Funny text here
                     ctx.getSource().sendSuccess(new StringTextComponent("So I heard you like strippers, huh?"), false);

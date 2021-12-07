@@ -1,13 +1,13 @@
 package com.ewyboy.worldstripper;
 
-import com.electronwill.nightconfig.core.Config;
 import com.ewyboy.worldstripper.client.Keybindings;
+import com.ewyboy.worldstripper.client.hud.ProgressBar;
 import com.ewyboy.worldstripper.common.commands.CommandHandler;
-import com.ewyboy.worldstripper.common.config.ConfigHolder;
-import com.ewyboy.worldstripper.common.json.JsonHandler;
+import com.ewyboy.worldstripper.common.json.StripListHandler;
 import com.ewyboy.worldstripper.common.network.MessageHandler;
 import com.ewyboy.worldstripper.common.settings.Settings;
 import me.shedaniel.autoconfig.AutoConfig;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -24,19 +24,16 @@ public class WorldStripper {
     public static final String NAME = "World Stripper";
 
     public WorldStripper() {
-        Config.setInsertionOrderPreserved(true);
-        JsonHandler.setup();
+        StripListHandler.setup();
         CommandHandler.setup();
-        MessageHandler.init();
-        ConfigHolder.init();
+        MessageHandler.setup();
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
     }
 
     @SubscribeEvent
     public void clientRegister(FMLClientSetupEvent event) {
         Keybindings.setup();
-        // MinecraftForge.EVENT_BUS.register(new Display());
-        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, () -> (config, parent) -> AutoConfig.getConfigScreen(Settings.class, parent).get());
+        MinecraftForge.EVENT_BUS.register(new ProgressBar());
     }
 
 }

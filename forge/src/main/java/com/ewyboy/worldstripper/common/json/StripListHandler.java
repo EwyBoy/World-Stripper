@@ -1,7 +1,8 @@
 package com.ewyboy.worldstripper.common.json;
 
 import com.ewyboy.worldstripper.WorldStripper;
-import com.ewyboy.worldstripper.common.json.objects.StripList;
+import com.ewyboy.worldstripper.common.json.objects.StripListObject;
+import com.ewyboy.worldstripper.common.settings.Settings;
 import com.ewyboy.worldstripper.common.stripclub.ModLogger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,12 +16,14 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonHandler {
+public class StripListHandler {
 
     private static final Gson gson = new Gson();
-    public static final File JSON_FILE = new File(FMLPaths.CONFIGDIR.get() + "/worldstripper/world-stripper.json");
+    public static final File JSON_FILE = new File(FMLPaths.CONFIGDIR.get() + "/worldstripper/stripper.json");
 
-    private static final List<String> STRIP_ENTRIES = new ArrayList<>(); static {
+    private static final List<String> STRIP_ENTRIES = new ArrayList<>();
+
+    static {
         STRIP_ENTRIES.add("minecraft:dirt");
         STRIP_ENTRIES.add("minecraft:grass");
         STRIP_ENTRIES.add("minecraft:grass_path");
@@ -59,7 +62,7 @@ public class JsonHandler {
         STRIP_ENTRIES.add("minecraft:kelp_plant");
     }
 
-    public static StripList stripList = new StripList(STRIP_ENTRIES);
+    public static StripListObject stripList = new StripListObject(STRIP_ENTRIES);
 
     public static void setup() {
         createDirectory();
@@ -69,6 +72,7 @@ public class JsonHandler {
         }
         ModLogger.info("Reading World Stripper JSON file");
         readJson(JSON_FILE);
+        Settings.setup();
     }
 
     public static void reload() {
@@ -114,7 +118,7 @@ public class JsonHandler {
 
     public static void readJson(File jsonFile) {
         try(Reader reader = new FileReader(jsonFile)) {
-            stripList = gson.fromJson(reader, StripList.class);
+            stripList = gson.fromJson(reader, StripListObject.class);
         } catch(IOException e) {
             e.printStackTrace();
         }

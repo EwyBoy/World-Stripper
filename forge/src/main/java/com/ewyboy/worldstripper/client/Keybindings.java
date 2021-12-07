@@ -1,15 +1,11 @@
 package com.ewyboy.worldstripper.client;
 
 import com.ewyboy.worldstripper.WorldStripper;
-import com.ewyboy.worldstripper.client.gui.config.GuiConfigMain;
-import com.ewyboy.worldstripper.common.config.ConfigOptions;
 import com.ewyboy.worldstripper.common.network.MessageHandler;
 import com.ewyboy.worldstripper.common.network.messages.MessageAddBlock;
-import com.ewyboy.worldstripper.common.network.messages.MessageCycleProfile;
-import com.ewyboy.worldstripper.common.network.messages.MessageRemoveBlock;
 import com.ewyboy.worldstripper.common.network.messages.MessageDressWorker;
+import com.ewyboy.worldstripper.common.network.messages.MessageRemoveBlock;
 import com.ewyboy.worldstripper.common.network.messages.MessageStripWorker;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.client.util.InputMappings.Type;
 import net.minecraftforge.client.event.InputEvent.KeyInputEvent;
@@ -24,10 +20,9 @@ public class Keybindings {
 
     private static KeyBinding strip;
     private static KeyBinding dress;
-    private static KeyBinding config;
     private static KeyBinding add;
     private static KeyBinding remove;
-    private static KeyBinding profile;
+    private static KeyBinding config;
 
     public static void setup() {
         initKeyBinding();
@@ -39,15 +34,12 @@ public class Keybindings {
         ClientRegistry.registerKeyBinding(strip);
         dress = new KeyBinding("Dress World", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_INSERT, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(dress);
-        config = new KeyBinding("Open Config", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_HOME, WorldStripper.NAME);
-        ClientRegistry.registerKeyBinding(config);
         add = new KeyBinding("Add Block", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(add);
         remove = new KeyBinding("Remove Block", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(remove);
-        profile = new KeyBinding("Cycle Profile", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_END, WorldStripper.NAME);
-        ClientRegistry.registerKeyBinding(profile);
-
+        config = new KeyBinding("Open Config", KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_HOME, WorldStripper.NAME);
+        ClientRegistry.registerKeyBinding(config);
     }
 
     private static void clickEvent() {
@@ -60,8 +52,6 @@ public class Keybindings {
         if(dress.consumeClick()) MessageHandler.CHANNEL.sendToServer(new MessageDressWorker());
         if(add.consumeClick()) MessageHandler.CHANNEL.sendToServer(new MessageAddBlock());
         if(remove.consumeClick()) MessageHandler.CHANNEL.sendToServer(new MessageRemoveBlock());
-        if(profile.consumeClick()) MessageHandler.CHANNEL.sendToServer(new MessageCycleProfile());
-
         //if(config.consumeClick()) Minecraft.getInstance().setScreen(new GuiConfigMain());
     }
 

@@ -1,6 +1,6 @@
 package com.ewyboy.worldstripper.commands.server;
 
-import com.ewyboy.worldstripper.json.JsonHandler;
+import com.ewyboy.worldstripper.json.StripListHandler;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
@@ -24,7 +24,7 @@ public class CommandAddEntry {
 
     private static int addEntry(CommandSourceStack source, BlockInput block) {
         String entry = Registry.BLOCK.getKey(block.getState().getBlock()).toString();
-        if (JsonHandler.addEntry(entry)) {
+        if (StripListHandler.addEntry(entry)) {
             source.sendSuccess(new TextComponent(ChatFormatting.GREEN + entry + ChatFormatting.WHITE + " added to strip list"), true);
         } else {
             source.sendSuccess(new TextComponent(ChatFormatting.RED + "ERROR: " + entry + ChatFormatting.WHITE + " is already found in strip list"), true);

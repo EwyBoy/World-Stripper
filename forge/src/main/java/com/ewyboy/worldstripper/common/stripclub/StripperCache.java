@@ -15,6 +15,8 @@ import java.util.Set;
 public class StripperCache {
     // TODO maybe rename this StripperCash
 
+    public static final HashMap<BlockPos, BlockState> hashedBlockCache = new HashMap<>();
+
     public static final Codec<BlockPos> BLOCK_POS_STRING_CODEC = Codec.STRING.xmap(Long::parseLong, String::valueOf).xmap(BlockPos::of, BlockPos::asLong);
 
     public static final Codec<StripperCache> CODEC = RecordCodecBuilder.create(instance -> instance.group(

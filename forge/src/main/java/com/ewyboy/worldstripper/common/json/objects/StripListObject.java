@@ -2,11 +2,11 @@ package com.ewyboy.worldstripper.common.json.objects;
 
 import java.util.List;
 
-public class StripList {
+public class StripListObject {
 
     private List<String> entries;
 
-    public StripList(List<String> entries) {
+    public StripListObject(List<String> entries) {
         this.entries = entries;
     }
 
@@ -20,7 +20,7 @@ public class StripList {
 
     @Override
     public String toString() {
-        return "StripList{" +
+        return "StripList {" +
             "entries=" + entries +
         '}';
     }

@@ -1,10 +1,12 @@
 package com.ewyboy.worldstripper.common.network.messages;
 
-import com.ewyboy.worldstripper.common.workers.WorldDressingWorker;
-import com.ewyboy.worldstripper.common.config.ConfigOptions;
+import com.ewyboy.worldstripper.common.settings.Settings;
+import com.ewyboy.worldstripper.common.workers.DressWorker;
 import com.ewyboy.worldstripper.common.stripclub.BlockUpdater;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.WorldWorkerManager;
@@ -55,13 +57,16 @@ public class MessageDressWorker {
     public static void handle(MessageDressWorker message, Supplier<Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayerEntity player = ctx.get().getSender();
-            if (player.isSpectator() || player.isCreative()) {
-                int chunkClearSizeX = message.getX() < 0 ? ConfigOptions.Stripping.blocksToStripX : message.getX();
-                int chunkClearSizeZ = message.getZ() < 0 ? ConfigOptions.Stripping.blocksToStripZ : message.getZ();
-                player.displayClientMessage(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."), false);
-                WorldWorkerManager.addWorker(new WorldDressingWorker(player.createCommandSourceStack(), player.blockPosition(), chunkClearSizeX / 2, chunkClearSizeZ / 2, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag()));
-            } else {
-                player.displayClientMessage(new StringTextComponent(TextFormatting.RED + "Error: You have to be in creative mode to use this feature!"), false);
+            int fillSizeX = (Settings.SETTINGS.stripRadiusX.get() / 2);
+            int fillSizeZ = (Settings.SETTINGS.stripRadiusZ.get() / 2);
+
+            if (player != null) {
+                if (player.isSpectator() || player.isCreative()) {
+                    player.sendMessage(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."), ChatType.GAME_INFO, player.getUUID());
+                    WorldWorkerManager.addWorker(new DressWorker(new BlockPos(player.position()), fillSizeX, fillSizeZ, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag()));
+                } else {
+                    player.sendMessage(new StringTextComponent(TextFormatting.RED + "Error: You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
+                }
             }
         });
         ctx.get().setPacketHandled(true);

@@ -6,7 +6,9 @@ import com.mojang.blaze3d.vertex.BufferBuilder;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -37,8 +39,12 @@ public class ProgressBar {
         percent = Math.round(percent);
 
         // TODO: Linear Scaling - This does not work at SCALE : 1
-        int width = (int) (mc.getWindow().getGuiScaledWidth() * 0.6 / mc.getWindow().getGuiScale());
-        int height = (int) (mc.getWindow().getGuiScaledHeight() * 0.2 / mc.getWindow().getGuiScale());
+
+        double guiScale = mc.getWindow().getGuiScale() + 1;
+
+        int width = (int) (guiScale * 0.6 / mc.getWindow().getGuiScale());
+        int height = (int) (guiScale * 0.2 / mc.getWindow().getGuiScale());
+
         int centerX = mc.getWindow().getGuiScaledWidth() / 2;
         int centerY = mc.getWindow().getGuiScaledHeight() / 2;
 

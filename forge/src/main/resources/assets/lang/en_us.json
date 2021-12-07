@@ -1,16 +1,18 @@
 {
-  "worldstripper.gui.save": "Save",
-  "worldstripper.gui.done": "Done",
-  "worldstripper.Profile_profile_1": "Profile 1",
-  "worldstripper.Profile_profile_2": "Profile 2",
-  "worldstripper.Profile_profile_3": "Profile 3",
-  "worldstripper.Profile_profile_4": "Profile 4",
-  "worldstripper.Profile_profile_5": "Profile 5",
-  "Profile_profile_1": "Profile 1",
-  "Profile_profile_2": "Profile 2",
-  "Profile_profile_3": "Profile 3",
-  "Profile_profile_4": "Profile 4",
-  "Profile_profile_5": "Profile 5",
-  "worldstripper.gui.configuration": "%s Configuration",
-  "worldstripper.config.category.general": "General"
+  "key.worldstripper.dress_world":   "Dress World",
+  "key.worldstripper.strip_world":   "Strip World",
+  "key.worldstripper.add_block":     "Add Block",
+  "key.worldstripper.remove_block":  "Remove Block",
+
+  "text.autoconfig.worldstripper/config.title": "World Stripper - Settings",
+  "text.autoconfig.worldstripper/config.option.stripRadiusX":     "Strip Radius: X",
+  "text.autoconfig.worldstripper/config.option.stripRadiusZ":     "Strip Radius: Z",
+  "text.autoconfig.worldstripper/config.option.replacementBlock": "Replacement Block",
+  "text.autoconfig.worldstripper/config.option.updateSettings":   "Block Update Settings",
+  "text.autoconfig.worldstripper/config.option.updateSettings.notifyNeighbors":  "Call Neighbors",
+  "text.autoconfig.worldstripper/config.option.updateSettings.blockUpdate":      "Update Block",
+  "text.autoconfig.worldstripper/config.option.updateSettings.noRender":         "Don't Update Renderer",
+  "text.autoconfig.worldstripper/config.option.updateSettings.renderMainThread": "Do Update Renderer",
+  "text.autoconfig.worldstripper/config.option.updateSettings.updateNeighbors":  "Block Update Neighbors"
 }
+

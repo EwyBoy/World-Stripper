@@ -1,8 +1,5 @@
 package com.ewyboy.worldstripper.common.commands.server;
 
-import com.ewyboy.worldstripper.common.config.ConfigOptions;
-import com.ewyboy.worldstripper.common.network.MessageHandler;
-import com.ewyboy.worldstripper.common.network.messages.MessageDressWorker;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.command.CommandSource;

@@ -1,6 +1,6 @@
 package com.ewyboy.worldstripper.commands.server;
 
-import com.ewyboy.worldstripper.json.JsonHandler;
+import com.ewyboy.worldstripper.json.StripListHandler;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
@@ -19,7 +19,7 @@ public class CommandViewEntries {
 
     private static int viewEntries(CommandSourceStack source) {
         source.sendSuccess(new TextComponent(ChatFormatting.RED + "" + ChatFormatting.BOLD + "Strip List {"), true);
-        for (String entry : JsonHandler.stripList.getEntries()) {
+        for (String entry : StripListHandler.stripListObject.getEntries()) {
             String[] entryObject = entry.split(":");
             source.sendSuccess(new TextComponent(ChatFormatting.GOLD + "     [" + ChatFormatting.AQUA + entryObject[0] +  ChatFormatting.RED + ":" + ChatFormatting.GREEN + entryObject[1] + ChatFormatting.GOLD + "]"), true);
         }

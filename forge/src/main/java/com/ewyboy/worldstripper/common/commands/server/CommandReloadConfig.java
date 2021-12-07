@@ -1,6 +1,5 @@
 package com.ewyboy.worldstripper.common.commands.server;
 
-import com.ewyboy.worldstripper.common.config.ConfigHelper;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -15,7 +14,7 @@ public class CommandReloadConfig {
             .executes(context -> {
                 ServerPlayerEntity player = context.getSource().getPlayerOrException();
                 try {
-                    ConfigHelper.reloadAndSaveConfig();
+                    //ConfigHandler.reload();
                     player.displayClientMessage(new StringTextComponent("World Stripper config reloaded"), false);
                 } catch (Exception e) {
                     e.printStackTrace();

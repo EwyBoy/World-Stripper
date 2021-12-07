@@ -1,6 +1,6 @@
 package com.ewyboy.worldstripper.commands.server;
 
-import com.ewyboy.worldstripper.json.JsonHandler;
+import com.ewyboy.worldstripper.json.StripListHandler;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
@@ -28,9 +28,9 @@ public class CommandEditEntry {
         String oldEntry = Registry.BLOCK.getKey(oldBlock.getState().getBlock()).toString();
         String newEntry = Registry.BLOCK.getKey(newBlock.getState().getBlock()).toString();
 
-        if (JsonHandler.containsEntry(oldEntry)) {
-            JsonHandler.removeEntry(oldEntry);
-            JsonHandler.addEntry(newEntry);
+        if (StripListHandler.containsEntry(oldEntry)) {
+            StripListHandler.removeEntry(oldEntry);
+            StripListHandler.addEntry(newEntry);
             source.sendSuccess(new TextComponent(ChatFormatting.GREEN + oldEntry + ChatFormatting.WHITE + " replaced with " + ChatFormatting.GOLD + newEntry), true);
         } else {
             source.sendSuccess(new TextComponent(ChatFormatting.RED + "ERROR: " +  oldEntry.toUpperCase() + ChatFormatting.WHITE + " was not found in strip list"), true);

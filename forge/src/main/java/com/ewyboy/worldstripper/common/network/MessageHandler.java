@@ -1,7 +1,6 @@
 package com.ewyboy.worldstripper.common.network;
 
 import com.ewyboy.worldstripper.common.network.messages.MessageAddBlock;
-import com.ewyboy.worldstripper.common.network.messages.MessageCycleProfile;
 import com.ewyboy.worldstripper.common.network.messages.MessageRemoveBlock;
 import com.ewyboy.worldstripper.common.network.messages.MessageDressWorker;
 import com.ewyboy.worldstripper.common.network.messages.MessageStripWorker;
@@ -26,12 +25,11 @@ public class MessageHandler {
         return messageID++;
     }
 
-    public static void init() {
+    public static void setup() {
         CHANNEL.registerMessage(nextID(), MessageStripWorker.class, MessageStripWorker :: encode, MessageStripWorker :: decode, MessageStripWorker :: handle);
         CHANNEL.registerMessage(nextID(), MessageDressWorker.class, MessageDressWorker :: encode, MessageDressWorker :: decode, MessageDressWorker :: handle);
         CHANNEL.registerMessage(nextID(), MessageAddBlock.class, MessageAddBlock :: encode, MessageAddBlock :: decode, MessageAddBlock :: handle);
         CHANNEL.registerMessage(nextID(), MessageRemoveBlock.class, MessageRemoveBlock :: encode, MessageRemoveBlock :: decode, MessageRemoveBlock :: handle);
-        CHANNEL.registerMessage(nextID(), MessageCycleProfile.class, MessageCycleProfile :: encode, MessageCycleProfile :: decode, MessageCycleProfile :: handle);
     }
 
     static {

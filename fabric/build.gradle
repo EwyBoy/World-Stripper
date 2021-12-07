@@ -27,14 +27,15 @@ dependencies {
     includeFabricApiModule "fabric-key-binding-api-v1"
     includeFabricApiModule "fabric-lifecycle-events-v1"
 
-    modImplementation "com.terraformersmc:modmenu:${project.MODMENU_VERSION}"
-
     modApi("me.shedaniel.cloth:cloth-config-fabric:${project.CLOTH_CONFIG_VERSION}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
     include("me.shedaniel.cloth:cloth-config-fabric:${project.CLOTH_CONFIG_VERSION}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
+
+    modImplementation "com.terraformersmc:modmenu:${project.MODMENU_VERSION}"
+
     modRuntime ("supercoder79:databreaker:${project.DATABREAKER_VERSION}") {
         exclude module: "fabric-loader"
     }

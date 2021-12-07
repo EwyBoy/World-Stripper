@@ -1,8 +1,6 @@
 package com.ewyboy.worldstripper.common.network.messages;
 
-import com.ewyboy.worldstripper.common.config.ConfigHelper;
-import com.ewyboy.worldstripper.common.config.ConfigOptions;
-import com.ewyboy.worldstripper.common.stripclub.ProfileManager;
+import com.ewyboy.worldstripper.common.json.StripListHandler;
 import com.ewyboy.worldstripper.common.stripclub.StripperAccessories;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -17,12 +15,9 @@ import java.util.function.Supplier;
 
 public class MessageAddBlock {
 
-    public MessageAddBlock() {}
-
     public static void encode(MessageAddBlock pkt, PacketBuffer buf) {}
 
     public static MessageAddBlock decode(PacketBuffer buf) {
-
         return new MessageAddBlock();
     }
 
@@ -37,12 +32,12 @@ public class MessageAddBlock {
                     String blockString = Objects.requireNonNull(state.getBlock().getRegistryName()).toString();
                     String blockName = state.getBlock().getName().getString();
 
-                    List<String> selectedList = ConfigHelper.profileMap.get(ConfigOptions.Profiles.profile);
+                    List<String> selectedList = StripListHandler.stripList.getEntries();
 
                     if(!selectedList.contains(blockString)) {
                         selectedList.add(blockString);
-                        ConfigHelper.setValueAndSaveConfig(ConfigHelper.CategoryName.PROFILES + ConfigHelper.profilePathMap.get(ConfigOptions.Profiles.profile), selectedList);
-                        player.displayClientMessage(new StringTextComponent(blockName + " was added to strip " + ProfileManager.profileNameMap.get(ConfigOptions.Profiles.profile)), false);
+                        //ConfigHelper.setValueAndSaveConfig(ConfigHelper.CategoryName.PROFILES + ConfigHelper.profilePathMap.get(ConfigOptions.Profiles.profile), selectedList);
+                        //player.displayClientMessage(new StringTextComponent(blockName + " was added to strip " + ProfileManager.profileNameMap.get(ConfigOptions.Profiles.profile)), false);
                     } else {
                         player.displayClientMessage(new StringTextComponent(TextFormatting.RED + "Error: " + blockName + " is already in this profile."), false);
                     }

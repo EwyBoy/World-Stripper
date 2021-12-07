@@ -4,7 +4,7 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
-@Config(name = "worldstripper/config")
+@Config(name = "worldstripper")
 public class Settings implements ConfigData {
 
     @ConfigEntry.BoundedDiscrete(min=1, max=512)

@@ -24,15 +24,13 @@ archivesBaseName = MODNAME
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-
 minecraft {
     apply plugin: 'idea'
     mappings channel: MCP_CHANNEL, version: MCP_MAPPINGS
 
     runs {
         client {
-            workingDirectory project.file('run')
+            workingDirectory rootProject.file('run')
             property 'fml.earlyprogresswindow', 'false'
             mods {
                 worldstripper {
@@ -42,7 +40,7 @@ minecraft {
         }
 
         server {
-            workingDirectory project.file('run')
+            workingDirectory rootProject.file('run')
             mods {
                 worldstripper {
                     source sourceSets.main
@@ -50,8 +48,8 @@ minecraft {
             }
         }
 
-        data {
-            workingDirectory project.file('run')
+        data {1
+            workingDirectory rootProject.file('run')
             mods {
                 worldstripper {
                     source sourceSets.main

@@ -1,9 +1,8 @@
 package com.ewyboy.worldstripper.network.packets;
 
 import com.ewyboy.worldstripper.WorldStripper;
+import com.ewyboy.worldstripper.settings.SettingsHandler;
 import com.ewyboy.worldstripper.network.IPacket;
-import com.ewyboy.worldstripper.settings.Settings;
-import com.ewyboy.worldstripper.settings.SettingsLoader;
 import com.ewyboy.worldstripper.stripclub.BlockUpdater;
 import com.ewyboy.worldstripper.workers.DressWorker;
 import com.ewyboy.worldstripper.workers.WorldWorker;
@@ -40,10 +39,8 @@ public class PacketDressWorker implements IPacket {
 
         @Override
         public void receive(MinecraftServer server, ServerPlayer player, ServerGamePacketListenerImpl handler, FriendlyByteBuf buf, PacketSender responseSender) {
-            Settings settings = SettingsLoader.SETTINGS;
-
-            int fillSizeX = (settings.stripRadiusX / 2);
-            int fillSizeZ = (settings.stripRadiusZ / 2);
+            int fillSizeX = (SettingsHandler.SETTINGS.stripRadiusX / 2);
+            int fillSizeZ = (SettingsHandler.SETTINGS.stripRadiusZ / 2);
 
             if (player != null) {
                 if (player.isSpectator() || player.isCreative()) {

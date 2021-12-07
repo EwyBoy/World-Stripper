@@ -1,7 +1,7 @@
 package com.ewyboy.worldstripper.network.packets;
 
 import com.ewyboy.worldstripper.WorldStripper;
-import com.ewyboy.worldstripper.json.JsonHandler;
+import com.ewyboy.worldstripper.json.StripListHandler;
 import com.ewyboy.worldstripper.network.IPacket;
 import com.ewyboy.worldstripper.stripclub.StripperAccessories;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
@@ -42,7 +42,7 @@ public class PacketRemoveBlock implements IPacket {
                 BlockState state = StripperAccessories.getStateFromRaytrace();
                 if (state != null) {
                     String entry = Registry.BLOCK.getKey(state.getBlock()).toString();
-                    if (JsonHandler.removeEntry(entry)) {
+                    if (StripListHandler.removeEntry(entry)) {
                         player.displayClientMessage(new TextComponent(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"), true);
                     } else {
                         //TODO: fix color for text

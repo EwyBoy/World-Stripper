@@ -1,15 +1,23 @@
 package com.ewyboy.worldstripper.common.network.messages;
 
-import com.ewyboy.worldstripper.common.workers.WorldStrippingWorker;
-import com.ewyboy.worldstripper.common.config.ConfigOptions;
+import com.ewyboy.worldstripper.common.json.StripListHandler;
+import com.ewyboy.worldstripper.common.settings.Settings;
+import com.ewyboy.worldstripper.common.workers.StripWorker;
 import com.ewyboy.worldstripper.common.stripclub.BlockUpdater;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.WorldWorkerManager;
 import net.minecraftforge.fml.network.NetworkEvent.Context;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public class MessageStripWorker {
@@ -56,15 +64,19 @@ public class MessageStripWorker {
         ctx.get().enqueueWork(() -> {
             ServerPlayerEntity player = ctx.get().getSender();
 
-            if (player.isSpectator() || player.isCreative()) {
+            int chunkClearSizeX = (Settings.SETTINGS.stripRadiusX.get() / 2);
+            int chunkClearSizeZ = (Settings.SETTINGS.stripRadiusZ.get() / 2);
 
-                int chunkClearSizeX = message.getX() < 0 ? ConfigOptions.Stripping.blocksToStripX : message.getX();
-                int chunkClearSizeZ = message.getZ() < 0 ? ConfigOptions.Stripping.blocksToStripZ : message.getZ();
+            BlockState replacementBlock = Objects.requireNonNull(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(Settings.SETTINGS.replacementBlock.get()))).defaultBlockState());
+            List<String> stripList = StripListHandler.stripList.getEntries();
 
-                player.displayClientMessage(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."), false);
-                WorldWorkerManager.addWorker(new WorldStrippingWorker(player.createCommandSourceStack(), player.blockPosition(), chunkClearSizeX / 2, chunkClearSizeZ / 2, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag()));
-            } else {
-                player.displayClientMessage(new StringTextComponent(TextFormatting.RED + "Error: You have to be in creative mode to use this feature!"), false);
+            if (player != null) {
+                if (player.isSpectator() || player.isCreative()) {
+                    player.sendMessage(new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.RED + "WARNING! " + TextFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."), ChatType.GAME_INFO, player.getUUID());
+                    WorldWorkerManager.addWorker(new StripWorker(new BlockPos(player.position()), chunkClearSizeX, chunkClearSizeZ, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag(), replacementBlock, stripList));
+                } else {
+                    player.sendMessage(new StringTextComponent(TextFormatting.RED + "Error: You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
+                }
             }
         });
         ctx.get().setPacketHandled(true);
