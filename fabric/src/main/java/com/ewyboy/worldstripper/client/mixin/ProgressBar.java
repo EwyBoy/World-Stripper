@@ -38,12 +38,12 @@ public class ProgressBar {
         Minecraft mc = Minecraft.getInstance();
         percent = Math.round(percent);
 
-        // TODO: Linear Scaling - This does not work at SCALE : 1
+        double gui = mc.getWindow().getGuiScale() + 1;
+        int guiWidth = mc.getWindow().getGuiScaledWidth();
+        int guiHeight = mc.getWindow().getGuiScaledHeight();
 
-        double guiScale = mc.getWindow().getGuiScale() + 1;
-
-        int width = (int) (guiScale * 0.6 / mc.getWindow().getGuiScale());
-        int height = (int) (guiScale * 0.2 / mc.getWindow().getGuiScale());
+        int width = (int) ((guiWidth * gui) / (10 + gui));
+        int height = (int) ((guiHeight * gui) / (10 + gui)) / 4;
 
         int centerX = mc.getWindow().getGuiScaledWidth() / 2;
         int centerY = mc.getWindow().getGuiScaledHeight() / 2;
