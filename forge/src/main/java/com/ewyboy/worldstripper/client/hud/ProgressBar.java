@@ -38,12 +38,12 @@ public class ProgressBar {
         Minecraft mc = Minecraft.getInstance();
         percent = Math.round(percent);
 
-        double gui = mc.getWindow().getGuiScale() + 1;
+        double gui = mc.getWindow().getGuiScale();
         int guiWidth = mc.getWindow().getGuiScaledWidth();
         int guiHeight = mc.getWindow().getGuiScaledHeight();
 
-        int width = (int) ((guiWidth * gui) / (10 + gui));
-        int height = (int) ((int) ((guiHeight * gui) / (10 + gui)) / (6 - gui));
+        int width = (int) ((guiWidth * gui + 1) / (10 + gui + 1));
+        int height = (int) ((int) ((guiHeight * gui) / (10 + gui)) / 4.5);
 
         int centerX = mc.getWindow().getGuiScaledWidth() / 2;
         int centerY = mc.getWindow().getGuiScaledHeight() / 2;

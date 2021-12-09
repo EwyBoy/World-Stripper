@@ -19,8 +19,6 @@ public class CommandHandler {
     private static ArgumentBuilder<CommandSource, ?> commandRemoveEntry;
     private static ArgumentBuilder<CommandSource, ?> commandViewEntries;
     private static ArgumentBuilder<CommandSource, ?> commandReload;
-    private static ArgumentBuilder<CommandSource, ?> commandStrip;
-    private static ArgumentBuilder<CommandSource, ?> commandDress;
 
     public static CommandHandler commandHandler = new CommandHandler();
 
@@ -40,8 +38,6 @@ public class CommandHandler {
         commandRemoveEntry = CommandRemoveEntry.register();
         commandViewEntries = CommandViewEntries.register();
         commandReload = CommandReload.register();
-        commandStrip = CommandStrip.register();
-        commandDress = CommandDress.register();
     }
 
     public void onServerStart(FMLServerStartingEvent event) {
@@ -68,8 +64,6 @@ public class CommandHandler {
                     .then(commandRemoveEntry)
                     .then(commandViewEntries)
                     .then(commandReload)
-                    .then(commandStrip)
-                    .then(commandDress)
                     .executes(this :: help)
         );
         dispatcher.register(
@@ -79,8 +73,6 @@ public class CommandHandler {
                         .then(commandRemoveEntry)
                         .then(commandViewEntries)
                         .then(commandReload)
-                        .then(commandStrip)
-                        .then(commandDress)
                         .executes(this :: help)
         );
     }

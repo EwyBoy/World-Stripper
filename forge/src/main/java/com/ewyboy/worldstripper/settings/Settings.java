@@ -1,5 +1,6 @@
 package com.ewyboy.worldstripper.settings;
 
+import com.electronwill.nightconfig.core.Config;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
@@ -11,7 +12,7 @@ public class Settings {
     public static final CommonSettings SETTINGS;
 
     static {
-        Pair<CommonSettings, ForgeConfigSpec> specPair = (new ForgeConfigSpec.Builder()).configure(CommonSettings:: new);
+        Pair<CommonSettings, ForgeConfigSpec> specPair = (new ForgeConfigSpec.Builder()).configure(CommonSettings :: new);
         settingSpec = specPair.getRight();
         SETTINGS = specPair.getLeft();
     }
@@ -69,7 +70,7 @@ public class Settings {
                     .define("replacementBlock", "minecraft:air"
                 );
 
-                builder.push("Block Update Settings");
+                builder.push("Block-Update-Settings");
                     this.notifyNeighbors = builder
                         .comment("Call Neighbors")
                         .translation("settings.worldstripper.updatesettings.notify_neighbors")
@@ -101,6 +102,7 @@ public class Settings {
     }
 
     public static void setup() {
+        Config.setInsertionOrderPreserved(true);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Settings.settingSpec, "worldstripper/settings.toml");
     }
 

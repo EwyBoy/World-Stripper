@@ -1,5 +1,6 @@
 package com.ewyboy.worldstripper;
 
+import com.electronwill.nightconfig.core.Config;
 import com.ewyboy.worldstripper.client.Keybindings;
 import com.ewyboy.worldstripper.client.hud.ProgressBar;
 import com.ewyboy.worldstripper.commands.CommandHandler;
