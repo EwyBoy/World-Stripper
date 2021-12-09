@@ -6,19 +6,19 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
-import net.minecraft.command.CommandSource;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+import net.minecraftforge.fmlserverevents.FMLServerStartingEvent;
 
 public class CommandHandler {
 
-    private static ArgumentBuilder<CommandSource, ?> commandAddEntry;
-    private static ArgumentBuilder<CommandSource, ?> commandEditEntry;
-    private static ArgumentBuilder<CommandSource, ?> commandRemoveEntry;
-    private static ArgumentBuilder<CommandSource, ?> commandViewEntries;
-    private static ArgumentBuilder<CommandSource, ?> commandReload;
+    private static ArgumentBuilder<CommandSourceStack, ?> commandAddEntry;
+    private static ArgumentBuilder<CommandSourceStack, ?> commandEditEntry;
+    private static ArgumentBuilder<CommandSourceStack, ?> commandRemoveEntry;
+    private static ArgumentBuilder<CommandSourceStack, ?> commandViewEntries;
+    private static ArgumentBuilder<CommandSourceStack, ?> commandReload;
 
     public static CommandHandler commandHandler = new CommandHandler();
 
@@ -45,20 +45,20 @@ public class CommandHandler {
         new CommandHandler(event.getServer().getCommands().getDispatcher());
     }
 
-    private int help(CommandContext<CommandSource> ctx) {
-        ctx.getSource().sendSuccess(new StringTextComponent(""), false);
-        ctx.getSource().sendSuccess(new StringTextComponent("[" + TextFormatting.AQUA + "Add" + TextFormatting.WHITE + "] (" + TextFormatting.LIGHT_PURPLE + "block" +  TextFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(new StringTextComponent("[" + TextFormatting.AQUA + "Edit" + TextFormatting.WHITE + "] (" + TextFormatting.LIGHT_PURPLE + "block" + TextFormatting.WHITE + ", " +  TextFormatting.LIGHT_PURPLE + "block" +  TextFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(new StringTextComponent("[" + TextFormatting.AQUA + "Remove" + TextFormatting.WHITE + "] (" + TextFormatting.LIGHT_PURPLE + "block" +  TextFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(new StringTextComponent("[" + TextFormatting.AQUA + "View" + TextFormatting.WHITE + "] (" + TextFormatting.LIGHT_PURPLE + "" +  TextFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(new StringTextComponent("[" + TextFormatting.AQUA + "Reload" + TextFormatting.WHITE + "] (" + TextFormatting.LIGHT_PURPLE + "" +  TextFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(new StringTextComponent(""), false);
+    private int help(CommandContext<CommandSourceStack> ctx) {
+        ctx.getSource().sendSuccess(new TextComponent(""), false);
+        ctx.getSource().sendSuccess(new TextComponent("[" + ChatFormatting.AQUA + "Add" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(new TextComponent("[" + ChatFormatting.AQUA + "Edit" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" + ChatFormatting.WHITE + ", " +  ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(new TextComponent("[" + ChatFormatting.AQUA + "Remove" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(new TextComponent("[" + ChatFormatting.AQUA + "View" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "" +  ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(new TextComponent("[" + ChatFormatting.AQUA + "Reload" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "" +  ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(new TextComponent(""), false);
         return 0;
     }
 
-    public CommandHandler(CommandDispatcher<CommandSource> dispatcher) {
+    public CommandHandler(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(
-                LiteralArgumentBuilder.<CommandSource> literal(WorldStripper.MOD_ID)
+                LiteralArgumentBuilder.<CommandSourceStack> literal(WorldStripper.MOD_ID)
                     .then(commandAddEntry)
                     .then(commandEditEntry)
                     .then(commandRemoveEntry)
@@ -67,7 +67,7 @@ public class CommandHandler {
                     .executes(this :: help)
         );
         dispatcher.register(
-                LiteralArgumentBuilder.<CommandSource> literal("ws")
+                LiteralArgumentBuilder.<CommandSourceStack> literal("ws")
                         .then(commandAddEntry)
                         .then(commandEditEntry)
                         .then(commandRemoveEntry)

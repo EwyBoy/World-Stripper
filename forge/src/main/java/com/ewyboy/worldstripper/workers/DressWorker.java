@@ -2,8 +2,8 @@ package com.ewyboy.worldstripper.workers;
 
 import com.ewyboy.worldstripper.settings.Settings;
 import com.ewyboy.worldstripper.stripclub.StripperCache;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.WorldWorkerManager;
 
 import java.util.Deque;
@@ -14,14 +14,14 @@ public class DressWorker implements WorldWorkerManager.IWorker {
     protected final BlockPos start;
     protected final int radiusX;
     protected final int radiusZ;
-    private final ServerWorld dim;
+    private final ServerLevel dim;
     private final Deque<BlockPos> queue;
     private final int notificationFrequency;
     private int lastNotification = 0;
     private long lastNotificationTime;
     private final int blockUpdateFlag;
 
-    public DressWorker(BlockPos start, int radiusX, int radiusZ, ServerWorld dim, int interval, int blockUpdateFlag) {
+    public DressWorker(BlockPos start, int radiusX, int radiusZ, ServerLevel dim, int interval, int blockUpdateFlag) {
         this.start = start;
         this.radiusX = radiusX;
         this.radiusZ = radiusZ;

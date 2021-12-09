@@ -2,17 +2,19 @@ package com.ewyboy.worldstripper.commands.server;
 
 import com.ewyboy.worldstripper.json.StripListHandler;
 import com.mojang.brigadier.builder.ArgumentBuilder;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.command.arguments.BlockStateArgument;
-import net.minecraft.command.arguments.BlockStateInput;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.registries.ForgeRegistries;;import java.util.Objects;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.blocks.BlockInput;
+import net.minecraft.commands.arguments.blocks.BlockStateArgument;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Objects;
 
 public class CommandRemoveEntry {
 
-    public static ArgumentBuilder<CommandSource, ?> register() {
+    public static ArgumentBuilder<CommandSourceStack, ?> register() {
         return Commands.literal("remove").requires((commandSource) -> commandSource.hasPermission(2))
                 .then(Commands.argument("block", BlockStateArgument.block())
                         .executes((commandSource) -> removeEntry(
@@ -22,12 +24,12 @@ public class CommandRemoveEntry {
                 );
     }
 
-    private static int removeEntry(CommandSource source, BlockStateInput block) {
+    private static int removeEntry(CommandSourceStack source, BlockInput block) {
         String entry = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block.getState().getBlock())).toString();
         if (StripListHandler.removeEntry(entry)) {
-            source.sendSuccess(new StringTextComponent(TextFormatting.RED + entry + TextFormatting.WHITE + " removed from config"), true);
+            source.sendSuccess(new TextComponent(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"), true);
         } else {
-            source.sendSuccess(new StringTextComponent(TextFormatting.DARK_RED + "ERROR: " + TextFormatting.RED + entry + TextFormatting.WHITE + " not found in config"), true);
+            source.sendSuccess(new TextComponent(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " not found in config"), true);
         }
         return 0;
     }

@@ -2,10 +2,10 @@ package com.ewyboy.worldstripper.workers;
 
 import com.ewyboy.worldstripper.settings.Settings;
 import com.ewyboy.worldstripper.stripclub.StripperCache;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.CachedBlockInfo;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.pattern.BlockInWorld;
 import net.minecraftforge.common.WorldWorkerManager;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -20,8 +20,8 @@ public class StripWorker implements WorldWorkerManager.IWorker {
     protected final int radiusX;
     protected final int radiusZ;
     private final int total;
-    private final ServerWorld dim;
-    private final Queue<CachedBlockInfo> queue;
+    private final ServerLevel dim;
+    private final Queue<BlockInWorld> queue;
     private final int notificationFrequency;
     private final List<String> stripList;
     private final int blockUpdateFlag;
@@ -39,7 +39,7 @@ public class StripWorker implements WorldWorkerManager.IWorker {
         StripWorker.progress = progress;
     }
 
-    public StripWorker(BlockPos start, int radiusX, int radiusZ, ServerWorld dim, int notificationFrequency, int blockUpdateFlag, BlockState replacementBlock, List<String> stripList) {
+    public StripWorker(BlockPos start, int radiusX, int radiusZ, ServerLevel dim, int notificationFrequency, int blockUpdateFlag, BlockState replacementBlock, List<String> stripList) {
         this.start = start;
         this.radiusX = radiusX;
         this.radiusZ = radiusZ;
@@ -53,12 +53,12 @@ public class StripWorker implements WorldWorkerManager.IWorker {
         this.stripList = stripList;
     }
 
-    private CachedBlockInfo blockInfo(BlockPos pos) {
-        return new CachedBlockInfo(dim, pos, true);
+    private BlockInWorld blockInfo(BlockPos pos) {
+        return new BlockInWorld(dim, pos, true);
     }
 
-    private Queue<CachedBlockInfo> stripQueue() {
-        final Queue<CachedBlockInfo> queue = new LinkedList<>();
+    private Queue<BlockInWorld> stripQueue() {
+        final Queue<BlockInWorld> queue = new LinkedList<>();
         final BlockPos neg = new BlockPos(start.getX() - radiusX, Settings.SETTINGS.stripStopY.get(), start.getZ() - radiusZ);
         final BlockPos pos = new BlockPos(start.getX() + radiusX, Settings.SETTINGS.stripStartY.get(), start.getZ() + radiusZ);
 
@@ -69,7 +69,7 @@ public class StripWorker implements WorldWorkerManager.IWorker {
         return queue;
     }
 
-    private boolean isReplaceableBlock(CachedBlockInfo next) {
+    private boolean isReplaceableBlock(BlockInWorld next) {
         return this.stripList.contains(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(next.getState().getBlock())).toString());
     }
 
@@ -78,7 +78,7 @@ public class StripWorker implements WorldWorkerManager.IWorker {
     }
 
     public boolean doWork() {
-        CachedBlockInfo next;
+        BlockInWorld next;
 
         do {
             next = queue.poll();

@@ -2,14 +2,14 @@ package com.ewyboy.worldstripper.commands.server;
 
 import com.ewyboy.worldstripper.json.StripListHandler;
 import com.mojang.brigadier.builder.ArgumentBuilder;
-import net.minecraft.command.CommandSource;
-import net.minecraft.command.Commands;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.TextComponent;
 
 public class CommandViewEntries {
 
-    public static ArgumentBuilder<CommandSource, ?> register() {
+    public static ArgumentBuilder<CommandSourceStack, ?> register() {
         return Commands.literal("view").requires((commandSource) -> commandSource.hasPermission(2))
                 .executes((commandSource) -> viewEntries(
                                 commandSource.getSource()
@@ -17,13 +17,13 @@ public class CommandViewEntries {
                 );
     }
 
-    private static int viewEntries(CommandSource source) {
-        source.sendSuccess(new StringTextComponent(TextFormatting.RED + "" + TextFormatting.BOLD + "Strip List {"), true);
+    private static int viewEntries(CommandSourceStack source) {
+        source.sendSuccess(new TextComponent(ChatFormatting.RED + "" + ChatFormatting.BOLD + "Strip List {"), true);
         for (String entry : StripListHandler.stripList.getEntries()) {
             String[] entryObject = entry.split(":");
-            source.sendSuccess(new StringTextComponent(TextFormatting.GOLD + "     [" + TextFormatting.AQUA + entryObject[0] +  TextFormatting.RED + ":" + TextFormatting.GREEN + entryObject[1] + TextFormatting.GOLD + "]"), true);
+            source.sendSuccess(new TextComponent(ChatFormatting.GOLD + "     [" + ChatFormatting.AQUA + entryObject[0] +  ChatFormatting.RED + ":" + ChatFormatting.GREEN + entryObject[1] + ChatFormatting.GOLD + "]"), true);
         }
-        source.sendSuccess(new StringTextComponent(TextFormatting.RED + "" + TextFormatting.BOLD + "}"), true);
+        source.sendSuccess(new TextComponent(ChatFormatting.RED + "" + ChatFormatting.BOLD + "}"), true);
         return 0;
     }
 

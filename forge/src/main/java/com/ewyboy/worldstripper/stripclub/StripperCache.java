@@ -1,54 +1,12 @@
 package com.ewyboy.worldstripper.stripclub;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.CachedBlockInfo;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 public class StripperCache {
 
     public static final HashMap<BlockPos, BlockState> hashedBlockCache = new HashMap<>();
 
-    public static final Codec<BlockPos> BLOCK_POS_STRING_CODEC = Codec.STRING.xmap(Long::parseLong, String::valueOf).xmap(BlockPos::of, BlockPos::asLong);
-
-    public static final Codec<StripperCache> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            DimensionType.DIRECT_CODEC.fieldOf("dimension").forGetter(it -> it.dimensionType),
-            Codec.unboundedMap(BLOCK_POS_STRING_CODEC, BlockState.CODEC).fieldOf("strippedBlocks").forGetter(it -> it.strippedBlocksMap)
-    ).apply(instance, StripperCache :: new));
-
-    // private final long stripperId; TODO
-    private final DimensionType dimensionType;
-    private final Map<BlockPos, BlockState> strippedBlocksMap;
-
-    private StripperCache(DimensionType dimensionType, Map<BlockPos, BlockState> strippedBlocksMap) {
-        this.dimensionType = dimensionType;
-        this.strippedBlocksMap = strippedBlocksMap;
-    }
-
-    public StripperCache(IWorldReader world) {
-        this(world.dimensionType(), new HashMap<>());
-    }
-
-    public void addStrippedBlock(CachedBlockInfo blockInfo) {
-        this.strippedBlocksMap.put(blockInfo.getPos(), blockInfo.getState());
-    }
-
-    public Set<BlockPos> getCachedPositions() {
-        return this.strippedBlocksMap.keySet();
-    }
-
-    /**
-     * @param pos The position to get the cached block pos from
-     * @return The cached block position or null if there is no cached blockstate.
-     */
-    public BlockState getCachedState(BlockPos pos) {
-        return this.strippedBlocksMap.get(pos);
-    }
 }

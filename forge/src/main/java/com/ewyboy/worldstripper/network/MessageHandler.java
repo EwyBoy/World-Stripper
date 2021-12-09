@@ -4,11 +4,11 @@ import com.ewyboy.worldstripper.network.messages.MessageAddBlock;
 import com.ewyboy.worldstripper.network.messages.MessageRemoveBlock;
 import com.ewyboy.worldstripper.network.messages.MessageDressWorker;
 import com.ewyboy.worldstripper.network.messages.MessageStripWorker;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.NetworkRegistry.ChannelBuilder;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.fmllegacy.network.NetworkRegistry;
+import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
 
 import java.util.HashMap;
 
@@ -33,7 +33,7 @@ public class MessageHandler {
     }
 
     static {
-        ChannelBuilder channelBuilder = ChannelBuilder.named(new ResourceLocation("worldstripper", "network"));
+        NetworkRegistry.ChannelBuilder channelBuilder = NetworkRegistry.ChannelBuilder.named(new ResourceLocation("worldstripper", "network"));
         String version = PROTOCOL_VERSION;
         channelBuilder = channelBuilder.clientAcceptedVersions(version :: equals);
         version = PROTOCOL_VERSION;

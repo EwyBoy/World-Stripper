@@ -1,21 +1,21 @@
 package com.ewyboy.worldstripper.stripclub;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class StripperAccessories {
 
     public static BlockState getStateFromRaytrace() {
         Minecraft instance = Minecraft.getInstance();
 
-        if (instance.hitResult != null && instance.hitResult.getType() != RayTraceResult.Type.BLOCK) {
+        if (instance.hitResult != null && instance.hitResult.getType() != HitResult.Type.BLOCK) {
             return null;
         }
 
-        Vector3d blockVector;
+        Vec3 blockVector;
 
         if (instance.hitResult != null) {
             blockVector = instance.hitResult.getLocation();

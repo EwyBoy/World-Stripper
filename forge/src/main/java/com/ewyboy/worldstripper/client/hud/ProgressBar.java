@@ -1,13 +1,12 @@
 package com.ewyboy.worldstripper.client.hud;
 
 import com.ewyboy.worldstripper.workers.StripWorker;
-import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.Matrix4f;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -28,7 +27,7 @@ public class ProgressBar {
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation("textures/block/gray_concrete.png");
     private static final ResourceLocation BAR_BACKGROUND_TEXTURE = new ResourceLocation("textures/block/white_concrete.png");
 
-    public void init(MatrixStack stack) {
+    public void init(PoseStack stack) {
         float percent = StripWorker.getProgress();
 
         if (percent == 0) {
@@ -85,16 +84,21 @@ public class ProgressBar {
     }
 
     private static void draw(int startX, int startY, int endX, int endY, ResourceLocation texture) {
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder buffer = tessellator.getBuilder();
-        Objects.requireNonNull(Minecraft.getInstance()).getTextureManager().bind(texture);
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        buffer.begin(7, DefaultVertexFormats.POSITION_COLOR_TEX);
-        buffer.vertex(startX, endY, 0.0D).color(255, 255, 255, 255).uv(startX / 32.0F, endY / 32.0F).endVertex();
-        buffer.vertex(endX, endY, 0.0D).color(255, 255, 255, 255).uv(endX / 32.0F, endY / 32.0F).endVertex();
-        buffer.vertex(endX, startY, 0.0D).color(255, 255, 255, 255).uv(endX / 32.0F, startY / 32.0F).endVertex();
-        buffer.vertex(startX, startY, 0.0D).color(255, 255, 255, 255).uv(startX / 32.0F, startY / 32.0F).endVertex();
-        tessellator.end();
+        Tesselator tesselator = Tesselator.getInstance();
+        BufferBuilder buffer = tesselator.getBuilder();
+
+        RenderSystem.setShader(GameRenderer :: getPositionTexColorShader);
+        RenderSystem.setShaderTexture(0, texture);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+
+        Objects.requireNonNull(Minecraft.getInstance()).getTextureManager().getTexture(texture);
+
+        buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
+        buffer.vertex(startX, endY, 0.0D).uv(startX / 32.0F, endY / 32.0F).color(255, 255, 255, 255).endVertex();
+        buffer.vertex(endX, endY, 0.0D).uv(endX / 32.0F, endY / 32.0F).color(255, 255, 255, 255).endVertex();
+        buffer.vertex(endX, startY, 0.0D).uv(endX / 32.0F, startY / 32.0F).color(255, 255, 255, 255).endVertex();
+        buffer.vertex(startX, startY, 0.0D).uv(startX / 32.0F, startY / 32.0F).color(255, 255, 255, 255).endVertex();
+        tesselator.end();
     }
 
 

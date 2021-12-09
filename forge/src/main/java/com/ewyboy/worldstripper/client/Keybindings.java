@@ -8,11 +8,11 @@ import com.ewyboy.worldstripper.network.messages.MessageRemoveBlock;
 import com.ewyboy.worldstripper.network.messages.MessageStripWorker;
 import com.ewyboy.worldstripper.settings.Settings;
 import com.ewyboy.worldstripper.stripclub.Translation;
+import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.client.util.InputMappings.Type;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.client.event.InputEvent.KeyInputEvent;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.client.settings.KeyModifier;
@@ -20,19 +20,19 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fmlclient.registry.ClientRegistry;
 import org.lwjgl.glfw.GLFW;
 
 public class Keybindings {
 
-    private static KeyBinding strip;
-    private static KeyBinding dress;
-    private static KeyBinding add;
-    private static KeyBinding remove;
-    private static KeyBinding increase;
-    private static KeyBinding decrease;
-    private static KeyBinding increaseBig;
-    private static KeyBinding decreaseBig;
+    private static KeyMapping strip;
+    private static KeyMapping dress;
+    private static KeyMapping add;
+    private static KeyMapping remove;
+    private static KeyMapping increase;
+    private static KeyMapping decrease;
+    private static KeyMapping increaseBig;
+    private static KeyMapping decreaseBig;
 
     public static void setup() {
         initKeyBinding();
@@ -40,21 +40,21 @@ public class Keybindings {
     }
 
     public static void initKeyBinding() {
-        strip = new KeyBinding(Translation.Key.STRIP, KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_DELETE, WorldStripper.NAME);
+        strip = new KeyMapping(Translation.Key.STRIP, KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_DELETE, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(strip);
-        dress = new KeyBinding(Translation.Key.DRESS, KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_INSERT, WorldStripper.NAME);
+        dress = new KeyMapping(Translation.Key.DRESS, KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_INSERT, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(dress);
-        add = new KeyBinding(Translation.Key.ADD, KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
+        add = new KeyMapping(Translation.Key.ADD, KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(add);
-        remove = new KeyBinding(Translation.Key.REMOVE, KeyConflictContext.IN_GAME, Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
+        remove = new KeyMapping(Translation.Key.REMOVE, KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(remove);
-        increase = new KeyBinding(Translation.Key.INCREASE, KeyConflictContext.IN_GAME, KeyModifier.SHIFT, Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
+        increase = new KeyMapping(Translation.Key.INCREASE, KeyConflictContext.IN_GAME, KeyModifier.SHIFT, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(increase);
-        decrease = new KeyBinding(Translation.Key.DECREASE, KeyConflictContext.IN_GAME, KeyModifier.SHIFT, Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
+        decrease = new KeyMapping(Translation.Key.DECREASE, KeyConflictContext.IN_GAME, KeyModifier.SHIFT, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(decrease);
-        increaseBig = new KeyBinding(Translation.Key.INCREASE_BIG, KeyConflictContext.IN_GAME, KeyModifier.ALT, Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
+        increaseBig = new KeyMapping(Translation.Key.INCREASE_BIG, KeyConflictContext.IN_GAME, KeyModifier.ALT, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(increaseBig);
-        decreaseBig = new KeyBinding(Translation.Key.DECREASE_BIG, KeyConflictContext.IN_GAME, KeyModifier.ALT, Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
+        decreaseBig = new KeyMapping(Translation.Key.DECREASE_BIG, KeyConflictContext.IN_GAME, KeyModifier.ALT, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
         ClientRegistry.registerKeyBinding(decreaseBig);
     }
 
@@ -76,7 +76,7 @@ public class Keybindings {
 
     private static void bumpRange(ForgeConfigSpec.ConfigValue<Integer> setting, int change) {
         setting.set(setting.get() + change);
-        if (Minecraft.getInstance().player != null) Minecraft.getInstance().player.sendMessage(new StringTextComponent(TextFormatting.AQUA + setting.getPath().get(1) + TextFormatting.WHITE +  " is now set to " +  TextFormatting.LIGHT_PURPLE + setting.get()), Minecraft.getInstance().player.getUUID());
+        if (Minecraft.getInstance().player != null) Minecraft.getInstance().player.sendMessage(new TextComponent(ChatFormatting.AQUA + setting.getPath().get(1) + ChatFormatting.WHITE +  " is now set to " +  ChatFormatting.LIGHT_PURPLE + setting.get()), Minecraft.getInstance().player.getUUID());
     }
 
 }

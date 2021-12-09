@@ -2,10 +2,8 @@ package com.ewyboy.worldstripper.client.mixin;
 
 import com.ewyboy.worldstripper.workers.StripWorker;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.*;
+import net.minecraft.client.renderer.GameRenderer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -85,16 +83,21 @@ public class ProgressBar {
     }
 
     private static void draw(int startX, int startY, int endX, int endY, ResourceLocation texture) {
-        Tesselator tessellator = Tesselator.getInstance();
-        BufferBuilder buffer = tessellator.getBuilder();
-        Objects.requireNonNull(Minecraft.getInstance()).getTextureManager().bind(texture);
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        buffer.begin(7, DefaultVertexFormat.POSITION_COLOR_TEX);
-            buffer.vertex(startX, endY, 0.0D).color(255, 255, 255, 255).uv(startX / 32.0F, endY / 32.0F).endVertex();
-            buffer.vertex(endX, endY, 0.0D).color(255, 255, 255, 255).uv(endX / 32.0F, endY / 32.0F).endVertex();
-            buffer.vertex(endX, startY, 0.0D).color(255, 255, 255, 255).uv(endX / 32.0F, startY / 32.0F).endVertex();
-            buffer.vertex(startX, startY, 0.0D).color(255, 255, 255, 255).uv(startX / 32.0F, startY / 32.0F).endVertex();
-        tessellator.end();
+        Tesselator tesselator = Tesselator.getInstance();
+        BufferBuilder buffer = tesselator.getBuilder();
+
+        RenderSystem.setShader(GameRenderer:: getPositionTexColorShader);
+        RenderSystem.setShaderTexture(0, texture);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+
+        Objects.requireNonNull(Minecraft.getInstance()).getTextureManager().getTexture(texture);
+
+        buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
+        buffer.vertex(startX, endY, 0.0D).uv(startX / 32.0F, endY / 32.0F).color(255, 255, 255, 255).endVertex();
+        buffer.vertex(endX, endY, 0.0D).uv(endX / 32.0F, endY / 32.0F).color(255, 255, 255, 255).endVertex();
+        buffer.vertex(endX, startY, 0.0D).uv(endX / 32.0F, startY / 32.0F).color(255, 255, 255, 255).endVertex();
+        buffer.vertex(startX, startY, 0.0D).uv(startX / 32.0F, startY / 32.0F).color(255, 255, 255, 255).endVertex();
+        tesselator.end();
     }
 
 
