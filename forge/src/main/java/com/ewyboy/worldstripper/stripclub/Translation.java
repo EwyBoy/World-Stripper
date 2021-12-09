@@ -7,7 +7,6 @@ public class Translation {
         public static final String DRESS  = "key.worldstripper.dress_world";
         public static final String ADD    = "key.worldstripper.add_block";
         public static final String REMOVE = "key.worldstripper.remove_block";
-        public static final String CONFIG = "key.worldstripper.open_config";
     }
 
 }

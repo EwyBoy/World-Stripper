@@ -1,6 +1,6 @@
-package com.ewyboy.worldstripper.common.stripclub;
+package com.ewyboy.worldstripper.stripclub;
 
-import com.ewyboy.worldstripper.common.settings.Settings;
+import com.ewyboy.worldstripper.settings.Settings;
 import net.minecraftforge.common.util.Constants;
 
 public class BlockUpdater {

@@ -1,5 +1,6 @@
 package com.ewyboy.worldstripper.workers;
 
+import com.ewyboy.worldstripper.settings.Settings;
 import com.ewyboy.worldstripper.stripclub.StripperCache;
 import java.util.LinkedList;
 import java.util.List;
@@ -55,8 +56,8 @@ public class StripWorker implements WorldWorker.IWorker {
 
     private Queue<BlockInWorld> stripQueue() {
         final Queue<BlockInWorld> queue = new LinkedList<>();
-        final BlockPos neg = new BlockPos(start.getX() - radiusX, 0, start.getZ() - radiusZ);
-        final BlockPos pos = new BlockPos(start.getX() + radiusX, 255, start.getZ() + radiusZ);
+        final BlockPos neg = new BlockPos(start.getX() - radiusX, Settings.SETTINGS.stripStopY, start.getZ() - radiusZ);
+        final BlockPos pos = new BlockPos(start.getX() + radiusX, Settings.SETTINGS.stripStartY, start.getZ() + radiusZ);
 
         BlockPos.betweenClosedStream(neg, pos)
                 .map(BlockPos :: immutable)

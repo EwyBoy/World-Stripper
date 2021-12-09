@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.common.stripclub;
+package com.ewyboy.worldstripper.stripclub;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class StripperCache {
-    // TODO maybe rename this StripperCash
 
     public static final HashMap<BlockPos, BlockState> hashedBlockCache = new HashMap<>();
 

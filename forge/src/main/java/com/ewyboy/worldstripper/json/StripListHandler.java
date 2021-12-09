@@ -1,9 +1,9 @@
-package com.ewyboy.worldstripper.common.json;
+package com.ewyboy.worldstripper.json;
 
 import com.ewyboy.worldstripper.WorldStripper;
-import com.ewyboy.worldstripper.common.json.objects.StripListObject;
-import com.ewyboy.worldstripper.common.settings.Settings;
-import com.ewyboy.worldstripper.common.stripclub.ModLogger;
+import com.ewyboy.worldstripper.json.objects.StripListObject;
+import com.ewyboy.worldstripper.settings.Settings;
+import com.ewyboy.worldstripper.stripclub.ModLogger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.minecraftforge.fml.loading.FMLPaths;

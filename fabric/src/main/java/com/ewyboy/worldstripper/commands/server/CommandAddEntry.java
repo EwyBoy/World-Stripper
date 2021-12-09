@@ -27,7 +27,7 @@ public class CommandAddEntry {
         if (StripListHandler.addEntry(entry)) {
             source.sendSuccess(new TextComponent(ChatFormatting.GREEN + entry + ChatFormatting.WHITE + " added to strip list"), true);
         } else {
-            source.sendSuccess(new TextComponent(ChatFormatting.RED + "ERROR: " + entry + ChatFormatting.WHITE + " is already found in strip list"), true);
+            source.sendSuccess(new TextComponent(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " is already found in strip list"), true);
         }
         return 0;
     }

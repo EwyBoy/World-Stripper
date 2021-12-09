@@ -45,12 +45,11 @@ public class PacketAddBlock implements IPacket {
                     if (StripListHandler.addEntry(entry)) {
                         player.sendMessage(new TextComponent(ChatFormatting.GREEN + entry + ChatFormatting.WHITE + " added to strip list"), ChatType.GAME_INFO, player.getUUID());
                     } else {
-                        //TODO: fix color for text
-                        player.sendMessage(new TextComponent(ChatFormatting.RED + "ERROR: " + entry + ChatFormatting.WHITE + " is already found in strip list"), ChatType.GAME_INFO, player.getUUID());
+                        player.sendMessage(new TextComponent(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " is already found in strip list"), ChatType.GAME_INFO, player.getUUID());
                     }
                 }
             } else {
-                player.sendMessage(new TextComponent(ChatFormatting.RED + "Error: You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
+                player.sendMessage(new TextComponent(ChatFormatting.DARK_RED + "Error: " + ChatFormatting.WHITE + "You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
             }
         }
     }

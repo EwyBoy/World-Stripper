@@ -1,8 +1,8 @@
 package com.ewyboy.worldstripper.network.packets;
 
 import com.ewyboy.worldstripper.WorldStripper;
-import com.ewyboy.worldstripper.settings.SettingsHandler;
 import com.ewyboy.worldstripper.network.IPacket;
+import com.ewyboy.worldstripper.settings.Settings;
 import com.ewyboy.worldstripper.stripclub.BlockUpdater;
 import com.ewyboy.worldstripper.workers.DressWorker;
 import com.ewyboy.worldstripper.workers.WorldWorker;
@@ -39,15 +39,15 @@ public class PacketDressWorker implements IPacket {
 
         @Override
         public void receive(MinecraftServer server, ServerPlayer player, ServerGamePacketListenerImpl handler, FriendlyByteBuf buf, PacketSender responseSender) {
-            int fillSizeX = (SettingsHandler.SETTINGS.stripRadiusX / 2);
-            int fillSizeZ = (SettingsHandler.SETTINGS.stripRadiusZ / 2);
+            int fillSizeX = (Settings.SETTINGS.stripRadiusX / 2);
+            int fillSizeZ = (Settings.SETTINGS.stripRadiusZ / 2);
 
             if (player != null) {
                 if (player.isSpectator() || player.isCreative()) {
                     player.sendMessage(new TextComponent(ChatFormatting.BOLD + "" + ChatFormatting.RED + "WARNING! " + ChatFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."), ChatType.GAME_INFO, player.getUUID());
                     WorldWorker.addWorker(new DressWorker(new BlockPos(player.position()), fillSizeX, fillSizeZ, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag()));
                 } else {
-                    player.sendMessage(new TextComponent(ChatFormatting.RED + "Error: You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
+                    player.sendMessage(new TextComponent(ChatFormatting.DARK_RED + "Error: " + ChatFormatting.WHITE + "You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
                 }
             }
         }

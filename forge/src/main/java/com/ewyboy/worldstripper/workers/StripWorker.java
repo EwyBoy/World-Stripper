@@ -1,15 +1,10 @@
-package com.ewyboy.worldstripper.common.workers;
+package com.ewyboy.worldstripper.workers;
 
-import com.ewyboy.worldstripper.common.json.StripListHandler;
-import com.ewyboy.worldstripper.common.network.MessageHandler;
-import com.ewyboy.worldstripper.common.settings.Settings;
-import com.ewyboy.worldstripper.common.stripclub.StripperCache;
+import com.ewyboy.worldstripper.settings.Settings;
+import com.ewyboy.worldstripper.stripclub.StripperCache;
 import net.minecraft.block.BlockState;
-import net.minecraft.command.CommandSource;
 import net.minecraft.util.CachedBlockInfo;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.WorldWorkerManager;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -64,8 +59,8 @@ public class StripWorker implements WorldWorkerManager.IWorker {
 
     private Queue<CachedBlockInfo> stripQueue() {
         final Queue<CachedBlockInfo> queue = new LinkedList<>();
-        final BlockPos neg = new BlockPos(start.getX() - radiusX, 0, start.getZ() - radiusZ);
-        final BlockPos pos = new BlockPos(start.getX() + radiusX, 255, start.getZ() + radiusZ);
+        final BlockPos neg = new BlockPos(start.getX() - radiusX, Settings.SETTINGS.stripStopY.get(), start.getZ() - radiusZ);
+        final BlockPos pos = new BlockPos(start.getX() + radiusX, Settings.SETTINGS.stripStartY.get(), start.getZ() + radiusZ);
 
         BlockPos.betweenClosedStream(neg, pos)
                 .map(BlockPos :: immutable)

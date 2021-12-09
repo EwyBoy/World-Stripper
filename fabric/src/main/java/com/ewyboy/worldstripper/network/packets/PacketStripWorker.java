@@ -1,9 +1,9 @@
 package com.ewyboy.worldstripper.network.packets;
 
 import com.ewyboy.worldstripper.WorldStripper;
-import com.ewyboy.worldstripper.settings.SettingsHandler;
 import com.ewyboy.worldstripper.json.StripListHandler;
 import com.ewyboy.worldstripper.network.IPacket;
+import com.ewyboy.worldstripper.settings.Settings;
 import com.ewyboy.worldstripper.stripclub.BlockUpdater;
 import com.ewyboy.worldstripper.workers.StripWorker;
 import com.ewyboy.worldstripper.workers.WorldWorker;
@@ -44,18 +44,18 @@ public class PacketStripWorker implements IPacket {
 
         @Override
         public void receive(MinecraftServer server, ServerPlayer player, ServerGamePacketListenerImpl handler, FriendlyByteBuf buf, PacketSender responseSender) {
-            int chunkClearSizeX = (SettingsHandler.SETTINGS.stripRadiusX / 2);
-            int chunkClearSizeZ = (SettingsHandler.SETTINGS.stripRadiusZ / 2);
+            int chunkClearSizeX = (Settings.SETTINGS.stripRadiusX / 2);
+            int chunkClearSizeZ = (Settings.SETTINGS.stripRadiusZ / 2);
 
-            BlockState replacementBlock = Objects.requireNonNull(Registry.BLOCK.get(new ResourceLocation(SettingsHandler.SETTINGS.replacementBlock)).defaultBlockState());
-            List<String> stripList = StripListHandler.stripListObject.getEntries();
+            BlockState replacementBlock = Objects.requireNonNull(Registry.BLOCK.get(new ResourceLocation(Settings.SETTINGS.replacementBlock)).defaultBlockState());
+            List<String> stripList = StripListHandler.stripList.getEntries();
 
             if (player != null) {
                 if (player.isSpectator() || player.isCreative()) {
                     player.sendMessage(new TextComponent(ChatFormatting.BOLD + "" + ChatFormatting.RED + "WARNING! " + ChatFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."), ChatType.GAME_INFO, player.getUUID());
                     WorldWorker.addWorker(new StripWorker(new BlockPos(player.position()), chunkClearSizeX, chunkClearSizeZ, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag(), replacementBlock, stripList));
                 } else {
-                    player.sendMessage(new TextComponent(ChatFormatting.RED + "Error: You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
+                    player.sendMessage(new TextComponent(ChatFormatting.DARK_RED + "Error: " + ChatFormatting.WHITE + "You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
                 }
             }
         }

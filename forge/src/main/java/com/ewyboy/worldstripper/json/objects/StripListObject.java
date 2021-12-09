@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.common.json.objects;
+package com.ewyboy.worldstripper.json.objects;
 
 import java.util.List;
 

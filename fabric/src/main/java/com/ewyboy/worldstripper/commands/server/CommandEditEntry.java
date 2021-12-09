@@ -33,7 +33,7 @@ public class CommandEditEntry {
             StripListHandler.addEntry(newEntry);
             source.sendSuccess(new TextComponent(ChatFormatting.GREEN + oldEntry + ChatFormatting.WHITE + " replaced with " + ChatFormatting.GOLD + newEntry), true);
         } else {
-            source.sendSuccess(new TextComponent(ChatFormatting.RED + "ERROR: " +  oldEntry.toUpperCase() + ChatFormatting.WHITE + " was not found in strip list"), true);
+            source.sendSuccess(new TextComponent(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + oldEntry.toUpperCase() + ChatFormatting.WHITE + " was not found in strip list"), true);
         }
         return 0;
     }

@@ -1,7 +1,6 @@
 package com.ewyboy.worldstripper.json;
 
 import com.ewyboy.worldstripper.WorldStripper;
-import com.ewyboy.worldstripper.settings.SettingsHandler;
 import com.ewyboy.worldstripper.json.objects.StripListObject;
 import com.ewyboy.worldstripper.stripclub.ModLogger;
 import com.google.gson.Gson;
@@ -19,7 +18,7 @@ import java.util.List;
 public class StripListHandler {
 
     private static final Gson gson = new Gson();
-    public static final File JSON_FILE = new File(FabricLoader.getInstance().getConfigDir() + "/worldstripper/strip-list.json");
+    public static final File JSON_FILE = new File(FabricLoader.getInstance().getConfigDir() + "/worldstripper/stripper.json");
 
     private static final List<String> STRIP_ENTRIES = new ArrayList<>(); static {
         STRIP_ENTRIES.add("minecraft:dirt");
@@ -60,7 +59,7 @@ public class StripListHandler {
         STRIP_ENTRIES.add("minecraft:kelp_plant");
     }
 
-    public static StripListObject stripListObject = new StripListObject(STRIP_ENTRIES);
+    public static StripListObject stripList = new StripListObject(STRIP_ENTRIES);
 
     public static void setup() {
         createDirectory();
@@ -70,7 +69,6 @@ public class StripListHandler {
         }
         ModLogger.info("Reading World Stripper JSON file");
         readJson(JSON_FILE);
-        SettingsHandler.setup();
     }
 
     public static void reload() {
@@ -79,7 +77,7 @@ public class StripListHandler {
     }
 
     public static boolean containsEntry(String entry) {
-        for (String block : stripListObject.getEntries()) {
+        for (String block : stripList.getEntries()) {
             if (block.equals(entry)) {
                 return true;
             }
@@ -89,7 +87,7 @@ public class StripListHandler {
 
     public static boolean addEntry(String entry) {
         if (!containsEntry(entry)) {
-            stripListObject.getEntries().add(entry);
+            stripList.getEntries().add(entry);
             reload();
             return true;
         }
@@ -98,7 +96,7 @@ public class StripListHandler {
 
     public static boolean removeEntry(String entry) {
         if (containsEntry(entry)) {
-            stripListObject.getEntries().removeIf(target -> target.equals(entry));
+            stripList.getEntries().removeIf(target -> target.equals(entry));
             reload();
             return true;
         }
@@ -108,7 +106,7 @@ public class StripListHandler {
     public static void writeJson(File jsonFile) {
         try(Writer writer = new FileWriter(jsonFile)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            gson.toJson(stripListObject, writer);
+            gson.toJson(stripList, writer);
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -116,7 +114,7 @@ public class StripListHandler {
 
     public static void readJson(File jsonFile) {
         try(Reader reader = new FileReader(jsonFile)) {
-            stripListObject = gson.fromJson(reader, StripListObject.class);
+            stripList = gson.fromJson(reader, StripListObject.class);
         } catch(IOException e) {
             e.printStackTrace();
         }

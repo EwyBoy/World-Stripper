@@ -1,32 +1,29 @@
 package com.ewyboy.worldstripper.stripclub;
 
 import com.ewyboy.worldstripper.settings.Settings;
-import com.ewyboy.worldstripper.settings.SettingsHandler;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 
 public class BlockUpdater {
 
-    public static Settings.BlockUpdateSettings settings = SettingsHandler.SETTINGS.updateSettings;
-
     private static int notifyNeighbors() {
-        return settings.notifyNeighbors ? BlockFlags.NOTIFY_NEIGHBORS : 0;
+        return Settings.SETTINGS.updateSettings.notifyNeighbors ? BlockFlags.NOTIFY_NEIGHBORS : 0;
     }
 
     private static int blockUpdate() {
-        return settings.blockUpdate ? BlockFlags.BLOCK_UPDATE : 0;
+        return Settings.SETTINGS.updateSettings.blockUpdate ? BlockFlags.BLOCK_UPDATE : 0;
     }
 
     private static int noRender() {
-        return settings.noRender ? BlockFlags.NO_RERENDER : 0;
+        return Settings.SETTINGS.updateSettings.noRender ? BlockFlags.NO_RERENDER : 0;
     }
 
     private static int renderMainThread() {
-        return settings.renderMainThread ? BlockFlags.RERENDER_MAIN_THREAD : 0;
+        return Settings.SETTINGS.updateSettings.renderMainThread ? BlockFlags.RERENDER_MAIN_THREAD : 0;
     }
 
     private static int updateNeighbors() {
-        return settings.updateNeighbors ? BlockFlags.UPDATE_NEIGHBORS : 0;
+        return Settings.SETTINGS.updateSettings.updateNeighbors ? BlockFlags.UPDATE_NEIGHBORS : 0;
     }
 
     public static int getBlockUpdateFlag() {

@@ -3,6 +3,7 @@ package com.ewyboy.worldstripper;
 import com.ewyboy.worldstripper.commands.CommandHandler;
 import com.ewyboy.worldstripper.json.StripListHandler;
 import com.ewyboy.worldstripper.network.PacketHandler;
+import com.ewyboy.worldstripper.settings.Settings;
 import com.ewyboy.worldstripper.workers.WorldWorker;
 import net.fabricmc.api.ModInitializer;
 
@@ -13,6 +14,7 @@ public class WorldStripper implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		Settings.setup();
 		WorldWorker.setup();
 		PacketHandler.setup();
 		CommandHandler.setup();

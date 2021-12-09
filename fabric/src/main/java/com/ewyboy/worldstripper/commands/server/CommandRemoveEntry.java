@@ -27,7 +27,7 @@ public class CommandRemoveEntry {
         if (StripListHandler.removeEntry(entry)) {
             source.sendSuccess(new TextComponent(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"), true);
         } else {
-            source.sendSuccess(new TextComponent(ChatFormatting.RED + "ERROR: " + entry + ChatFormatting.WHITE + " not found in config"), true);
+            source.sendSuccess(new TextComponent(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " not found in config"), true);
         }
         return 0;
     }

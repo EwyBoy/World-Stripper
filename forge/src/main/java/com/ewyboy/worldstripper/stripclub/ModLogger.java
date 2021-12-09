@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.common.stripclub;
+package com.ewyboy.worldstripper.stripclub;
 
 import com.ewyboy.worldstripper.WorldStripper;
 import org.apache.logging.log4j.Level;

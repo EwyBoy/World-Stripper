@@ -43,7 +43,7 @@ public class ProgressBar {
         int guiHeight = mc.getWindow().getGuiScaledHeight();
 
         int width = (int) ((guiWidth * gui) / (10 + gui));
-        int height = (int) ((guiHeight * gui) / (10 + gui)) / 4;
+        int height = (int) ((guiHeight * gui) / (10 + gui)) / 5;
 
         int centerX = mc.getWindow().getGuiScaledWidth() / 2;
         int centerY = mc.getWindow().getGuiScaledHeight() / 2;

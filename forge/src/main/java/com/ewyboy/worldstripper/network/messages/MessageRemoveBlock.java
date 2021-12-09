@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.common.network.messages;
+package com.ewyboy.worldstripper.network.messages;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;

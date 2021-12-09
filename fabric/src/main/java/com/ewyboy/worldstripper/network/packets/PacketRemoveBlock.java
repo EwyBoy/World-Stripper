@@ -45,12 +45,11 @@ public class PacketRemoveBlock implements IPacket {
                     if (StripListHandler.removeEntry(entry)) {
                         player.displayClientMessage(new TextComponent(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"), true);
                     } else {
-                        //TODO: fix color for text
-                        player.sendMessage(new TextComponent(ChatFormatting.RED + "ERROR: " + entry + ChatFormatting.WHITE + " not found in config"), ChatType.GAME_INFO, player.getUUID());
+                        player.sendMessage(new TextComponent(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " not found in config"), ChatType.GAME_INFO, player.getUUID());
                     }
                 }
             } else {
-                player.sendMessage(new TextComponent(ChatFormatting.RED + "Error: You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
+                player.sendMessage(new TextComponent(ChatFormatting.DARK_RED + "Error: " + ChatFormatting.WHITE + "You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
             }
         }
     }

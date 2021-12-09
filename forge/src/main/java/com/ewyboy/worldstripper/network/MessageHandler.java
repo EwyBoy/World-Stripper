@@ -1,9 +1,9 @@
-package com.ewyboy.worldstripper.common.network;
+package com.ewyboy.worldstripper.network;
 
-import com.ewyboy.worldstripper.common.network.messages.MessageAddBlock;
-import com.ewyboy.worldstripper.common.network.messages.MessageRemoveBlock;
-import com.ewyboy.worldstripper.common.network.messages.MessageDressWorker;
-import com.ewyboy.worldstripper.common.network.messages.MessageStripWorker;
+import com.ewyboy.worldstripper.network.messages.MessageAddBlock;
+import com.ewyboy.worldstripper.network.messages.MessageRemoveBlock;
+import com.ewyboy.worldstripper.network.messages.MessageDressWorker;
+import com.ewyboy.worldstripper.network.messages.MessageStripWorker;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;

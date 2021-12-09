@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.common.settings;
+package com.ewyboy.worldstripper.settings;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;

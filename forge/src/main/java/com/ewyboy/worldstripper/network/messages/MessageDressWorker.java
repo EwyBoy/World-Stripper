@@ -1,8 +1,8 @@
-package com.ewyboy.worldstripper.common.network.messages;
+package com.ewyboy.worldstripper.network.messages;
 
-import com.ewyboy.worldstripper.common.settings.Settings;
-import com.ewyboy.worldstripper.common.workers.DressWorker;
-import com.ewyboy.worldstripper.common.stripclub.BlockUpdater;
+import com.ewyboy.worldstripper.settings.Settings;
+import com.ewyboy.worldstripper.workers.DressWorker;
+import com.ewyboy.worldstripper.stripclub.BlockUpdater;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;

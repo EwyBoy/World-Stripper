@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.common.commands.server;
+package com.ewyboy.worldstripper.commands.server;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;

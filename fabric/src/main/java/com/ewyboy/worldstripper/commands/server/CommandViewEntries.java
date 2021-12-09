@@ -19,7 +19,7 @@ public class CommandViewEntries {
 
     private static int viewEntries(CommandSourceStack source) {
         source.sendSuccess(new TextComponent(ChatFormatting.RED + "" + ChatFormatting.BOLD + "Strip List {"), true);
-        for (String entry : StripListHandler.stripListObject.getEntries()) {
+        for (String entry : StripListHandler.stripList.getEntries()) {
             String[] entryObject = entry.split(":");
             source.sendSuccess(new TextComponent(ChatFormatting.GOLD + "     [" + ChatFormatting.AQUA + entryObject[0] +  ChatFormatting.RED + ":" + ChatFormatting.GREEN + entryObject[1] + ChatFormatting.GOLD + "]"), true);
         }

@@ -1,4 +1,4 @@
-package com.ewyboy.worldstripper.common.stripclub;
+package com.ewyboy.worldstripper.stripclub;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;

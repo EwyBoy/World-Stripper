@@ -1,7 +1,6 @@
 package com.ewyboy.worldstripper.client.hud;
 
-import com.ewyboy.worldstripper.common.stripclub.ModLogger;
-import com.ewyboy.worldstripper.common.workers.StripWorker;
+import com.ewyboy.worldstripper.workers.StripWorker;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
@@ -44,7 +43,7 @@ public class ProgressBar {
         int guiHeight = mc.getWindow().getGuiScaledHeight();
 
         int width = (int) ((guiWidth * gui) / (10 + gui));
-        int height = (int) ((guiHeight * gui) / (10 + gui)) / 4;
+        int height = (int) ((int) ((guiHeight * gui) / (10 + gui)) / (6 - gui));
 
         int centerX = mc.getWindow().getGuiScaledWidth() / 2;
         int centerY = mc.getWindow().getGuiScaledHeight() / 2;

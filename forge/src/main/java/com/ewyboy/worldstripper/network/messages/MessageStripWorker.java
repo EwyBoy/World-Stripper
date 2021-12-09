@@ -1,9 +1,9 @@
-package com.ewyboy.worldstripper.common.network.messages;
+package com.ewyboy.worldstripper.network.messages;
 
-import com.ewyboy.worldstripper.common.json.StripListHandler;
-import com.ewyboy.worldstripper.common.settings.Settings;
-import com.ewyboy.worldstripper.common.workers.StripWorker;
-import com.ewyboy.worldstripper.common.stripclub.BlockUpdater;
+import com.ewyboy.worldstripper.json.StripListHandler;
+import com.ewyboy.worldstripper.settings.Settings;
+import com.ewyboy.worldstripper.workers.StripWorker;
+import com.ewyboy.worldstripper.stripclub.BlockUpdater;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;

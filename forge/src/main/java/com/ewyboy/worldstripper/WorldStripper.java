@@ -2,15 +2,11 @@ package com.ewyboy.worldstripper;
 
 import com.ewyboy.worldstripper.client.Keybindings;
 import com.ewyboy.worldstripper.client.hud.ProgressBar;
-import com.ewyboy.worldstripper.common.commands.CommandHandler;
-import com.ewyboy.worldstripper.common.json.StripListHandler;
-import com.ewyboy.worldstripper.common.network.MessageHandler;
-import com.ewyboy.worldstripper.common.settings.Settings;
-import me.shedaniel.autoconfig.AutoConfig;
+import com.ewyboy.worldstripper.commands.CommandHandler;
+import com.ewyboy.worldstripper.json.StripListHandler;
+import com.ewyboy.worldstripper.network.MessageHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ExtensionPoint;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
