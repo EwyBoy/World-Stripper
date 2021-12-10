@@ -4,8 +4,8 @@ plugins {
     id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_16
-targetCompatibility = JavaVersion.VERSION_16
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 archivesBaseName = project.MOD_NAME
 version = project.MC_VERSION_GENERAL + "-" + project.VERSION + "-" + project.MOD_LOADER
@@ -36,9 +36,6 @@ dependencies {
 
     modImplementation "com.terraformersmc:modmenu:${project.MODMENU_VERSION}"
 
-    modRuntime ("supercoder79:databreaker:${project.DATABREAKER_VERSION}") {
-        exclude module: "fabric-loader"
-    }
 }
 
 def includeFabricApiModule(String moduleName) {
@@ -58,7 +55,7 @@ processResources {
 tasks.withType(JavaCompile).configureEach {
 
     it.options.encoding = "UTF-8"
-    def targetVersion = 16
+    def targetVersion = 17
 
     if (JavaVersion.current().isJava9Compatible()) {
         it.options.release = targetVersion

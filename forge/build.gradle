@@ -20,7 +20,7 @@ version = "${MC_VERSION}-${VERSION}"
 group = "com.ewyboy.${MODID}"
 archivesBaseName = MODNAME
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(16)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
     apply plugin: 'idea'

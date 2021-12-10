@@ -10,7 +10,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fmlserverevents.FMLServerStartingEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 
 public class CommandHandler {
 
@@ -40,9 +40,9 @@ public class CommandHandler {
         commandReload = CommandReload.register();
     }
 
-    public void onServerStart(FMLServerStartingEvent event) {
+    public void onServerStart(RegisterCommandsEvent event) {
         registerCommands();
-        new CommandHandler(event.getServer().getCommands().getDispatcher());
+        new CommandHandler(event.getDispatcher());
     }
 
     private int help(CommandContext<CommandSourceStack> ctx) {

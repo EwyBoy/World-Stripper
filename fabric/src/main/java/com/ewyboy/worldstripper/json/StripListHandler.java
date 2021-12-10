@@ -57,6 +57,9 @@ public class StripListHandler {
         STRIP_ENTRIES.add("minecraft:tall_seagrass");
         STRIP_ENTRIES.add("minecraft:kelp");
         STRIP_ENTRIES.add("minecraft:kelp_plant");
+        STRIP_ENTRIES.add("minecraft:deepslate");
+        STRIP_ENTRIES.add("minecraft:tuff");
+        STRIP_ENTRIES.add("minecraft:glow_lichen");
     }
 
     public static StripListObject stripList = new StripListObject(STRIP_ENTRIES);
