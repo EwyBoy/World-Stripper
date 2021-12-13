@@ -32,10 +32,6 @@ public class Settings {
         public final ForgeConfigSpec.ConfigValue<Boolean> renderMainThread;
         public final ForgeConfigSpec.ConfigValue<Boolean> updateNeighbors;
 
-        public static void setFalse(ForgeConfigSpec.ConfigValue<Boolean> booleanConfigValue) {
-            if (booleanConfigValue.get()) booleanConfigValue.set(Boolean.FALSE);
-        }
-
         CommonSettings(ForgeConfigSpec.Builder builder) {
             builder.comment("World Stripper - Settings File");
             builder.push("SETTINGS");
@@ -61,7 +57,7 @@ public class Settings {
                 this.stripStopY = builder
                     .comment("Strip Stop: Y")
                     .translation("settings.worldstripper.strip_stop_y")
-                    .defineInRange("stripStopY", 0, -10240, 10240
+                    .defineInRange("stripStopY", -64, -10240, 10240
                 );
 
                 this.replacementBlock = builder
@@ -74,27 +70,27 @@ public class Settings {
                     this.notifyNeighbors = builder
                         .comment("Call Neighbors")
                         .translation("settings.worldstripper.updatesettings.notify_neighbors")
-                        .define("notifyNeighbors", false
+                        .define("notifyNeighbors", true
                     );
                     this.blockUpdate = builder
                         .comment("Update Block")
                         .translation("settings.worldstripper.update_settings.block_update")
-                        .define("blockUpdate", true
+                        .define("blockUpdate", false
                     );
                     this.noRender = builder
                         .comment("Don't Update Renderer")
                         .translation("settings.worldstripper.update_settings.no_render")
-                        .define("noRender", false
+                        .define("noRender", true
                     );
                     this.renderMainThread = builder
                         .comment("Do Update Renderer")
                         .translation("settings.worldstripper.update_settings.render_main_thread")
-                        .define("renderMainThread", false
+                        .define("renderMainThread", true
                     );
                     this.updateNeighbors = builder
                         .comment("Block Update Neighbors")
                         .translation("settings.worldstripper.update_settings.update_neighbors")
-                        .define("updateNeighbors", true
+                        .define("updateNeighbors", false
                     );
                     builder.pop();
             builder.build();

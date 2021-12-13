@@ -57,7 +57,7 @@ public class DressWorker implements WorldWorkerManager.IWorker {
         do {
             next = queue.pollLast();
         } while (
-                (next == null || !isBlockCached(next)) && !queue.isEmpty()
+            (next == null || !isBlockCached(next)) && !queue.isEmpty()
         );
 
         if (next != null) {

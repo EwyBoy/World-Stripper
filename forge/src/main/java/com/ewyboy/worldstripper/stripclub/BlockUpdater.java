@@ -9,23 +9,23 @@ public class BlockUpdater {
     public static Settings.CommonSettings settings = Settings.SETTINGS;
 
     private static int notifyNeighbors() {
-        return settings.notifyNeighbors.get() ? BlockFlags.NOTIFY_NEIGHBORS : 0;
+        return !settings.notifyNeighbors.get() ? BlockFlags.NOTIFY_NEIGHBORS : 0;
     }
 
     private static int blockUpdate() {
-        return settings.blockUpdate.get() ? BlockFlags.BLOCK_UPDATE : 0;
+        return !settings.blockUpdate.get() ? BlockFlags.BLOCK_UPDATE : 0;
     }
 
     private static int noRender() {
-        return settings.noRender.get() ? BlockFlags.NO_RERENDER : 0;
+        return !settings.noRender.get() ? BlockFlags.NO_RERENDER : 0;
     }
 
     private static int renderMainThread() {
-        return settings.renderMainThread.get() ? BlockFlags.RERENDER_MAIN_THREAD : 0;
+        return !settings.renderMainThread.get() ? BlockFlags.RERENDER_MAIN_THREAD : 0;
     }
 
     private static int updateNeighbors() {
-        return settings.updateNeighbors.get() ? BlockFlags.UPDATE_NEIGHBORS : 0;
+        return !settings.updateNeighbors.get() ? BlockFlags.UPDATE_NEIGHBORS : 0;
     }
 
     public static int getBlockUpdateFlag() {

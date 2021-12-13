@@ -13,7 +13,7 @@ public class Settings implements ConfigData {
     public Integer stripRadiusZ = 48;
 
     public Integer stripStartY = 256;
-    public Integer stripStopY = 0;
+    public Integer stripStopY = -64;
 
     public String replacementBlock = "minecraft:air";
 

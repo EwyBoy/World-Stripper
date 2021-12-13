@@ -46,7 +46,7 @@ minecraft {
             }
         }
 
-        data {1
+        data {
             workingDirectory rootProject.file('run')
             mods {
                 worldstripper {
@@ -101,8 +101,8 @@ curseforge {
         changelog = file('CHANGELOG.md')
         releaseType = "${RELEASE_TYPE}"
         addGameVersion 'Forge'
-        addGameVersion '1.17.1'
-        addGameVersion '1.17'
+        addGameVersion '1.18.1'
+        addGameVersion '1.18'
         mainArtifact(jar) {
             displayName = "${MODNAME}-${MC_VERSION}-${VERSION}.jar"
             relations {

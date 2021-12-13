@@ -17,7 +17,6 @@ public class MessageHandler {
     private static int messageID = 0;
     private static final String PROTOCOL_VERSION = Integer.toString(1);
     public static final SimpleChannel CHANNEL;
-    public static final HashMap<BlockPos, BlockState> hashedBlockCache;
 
     public MessageHandler() {}
 
@@ -38,6 +37,5 @@ public class MessageHandler {
         channelBuilder = channelBuilder.clientAcceptedVersions(version :: equals);
         version = PROTOCOL_VERSION;
         CHANNEL = channelBuilder.serverAcceptedVersions(version :: equals).networkProtocolVersion(() -> PROTOCOL_VERSION).simpleChannel();
-        hashedBlockCache = new HashMap();
     }
 }

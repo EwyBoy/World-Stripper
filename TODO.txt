@@ -1,7 +1,0 @@
-TODO
-
-? undo operations & write to file
-Commands
-Jar signing
-Remove proxy
-Translation / lang file stuff

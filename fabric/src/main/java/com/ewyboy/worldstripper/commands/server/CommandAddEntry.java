@@ -18,8 +18,9 @@ public class CommandAddEntry {
                         .executes((commandSource) -> addEntry(
                                 commandSource.getSource(),
                                 BlockStateArgument.getBlock(commandSource, "block")
-                        ))
-                );
+                        )
+                )
+        );
     }
 
     private static int addEntry(CommandSourceStack source, BlockInput block) {
