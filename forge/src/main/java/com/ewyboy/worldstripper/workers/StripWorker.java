@@ -75,7 +75,7 @@ public class StripWorker implements WorldWorkerManager.IWorker {
     }
 
     public boolean hasWork() {
-        return queue.size() > 0;
+        return !queue.isEmpty();
     }
 
     public boolean doWork() {
@@ -94,13 +94,12 @@ public class StripWorker implements WorldWorkerManager.IWorker {
                 lastNotificationTime = System.currentTimeMillis();
             }
 
-            StripperCache.hashedBlockCache.put(next.getPos(), next.getState());
+            //StripperCache.hashedBlockCache.put(next.getPos(), next.getState());
             dim.setBlock(next.getPos(), replacementBlock, blockUpdateFlag);
         }
 
         if(queue.size() == 0) {
             setProgress(100);
-            WorldWorkerManager.clear();
             return false;
         }
 
