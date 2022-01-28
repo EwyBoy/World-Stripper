@@ -101,13 +101,11 @@ curseforge {
         changelog = file('CHANGELOG.md')
         releaseType = "${RELEASE_TYPE}"
         addGameVersion 'Forge'
+        addGameVersion 'Java 17'
         addGameVersion '1.18.1'
         addGameVersion '1.18'
         mainArtifact(jar) {
-            displayName = "${MODNAME}-${MC_VERSION}-${VERSION}.jar"
-            relations {
-                requiredDependency 'cloth-config-forge'
-            }
+            displayName = "${MODNAME}-${MC_VERSION_GENERAL}-${VERSION}-${MOD_LOADER}.jar"
         }
     }
 }

@@ -83,11 +83,8 @@ curseforge {
         releaseType = "${RELEASE_TYPE}"
         addGameVersion "${MOD_LOADER}"
         addGameVersion "${JAVA_VERSION}"
-        addGameVersion '1.16.5'
-        addGameVersion '1.16.4'
-        addGameVersion '1.16.3'
-        addGameVersion '1.16.2'
-        addGameVersion '1.16.1'
+        addGameVersion '1.18.1'
+        addGameVersion '1.18'
         mainArtifact(remapJar) {
             displayName = "${MOD_NAME}-${MC_VERSION_GENERAL}-${VERSION}-${MOD_LOADER}.jar"
             relations {
