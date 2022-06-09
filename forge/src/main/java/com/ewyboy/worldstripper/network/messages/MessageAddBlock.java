@@ -5,7 +5,7 @@ import com.ewyboy.worldstripper.stripclub.StripperAccessories;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkEvent;
@@ -31,13 +31,13 @@ public class MessageAddBlock {
                     if (state != null) {
                         String entry = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(state.getBlock())).toString();
                         if (StripListHandler.addEntry(entry)) {
-                            player.sendMessage(new TextComponent(ChatFormatting.GREEN + entry + ChatFormatting.WHITE + " added to strip list"), ChatType.GAME_INFO, player.getUUID());
+                            player.sendSystemMessage(Component.literal(ChatFormatting.GREEN + entry + ChatFormatting.WHITE + " added to strip list"));
                         } else {
-                            player.sendMessage(new TextComponent(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " is already found in strip list"), ChatType.GAME_INFO, player.getUUID());
+                            player.sendSystemMessage(Component.literal(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " is already found in strip list"));
                         }
                     }
                 } else {
-                    player.sendMessage(new TextComponent(ChatFormatting.DARK_RED + "Error: " + ChatFormatting.WHITE + "You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
+                    player.sendSystemMessage(Component.literal(ChatFormatting.DARK_RED + "Error: " + ChatFormatting.WHITE + "You have to be in creative mode to use this feature!"));
                 }
             }
         });

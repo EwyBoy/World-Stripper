@@ -12,7 +12,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.event.InputEvent.KeyInputEvent;
 import net.minecraftforge.client.settings.KeyConflictContext;
@@ -76,7 +76,7 @@ public class Keybindings {
 
     private static void bumpRange(ForgeConfigSpec.ConfigValue<Integer> setting, int change) {
         setting.set(setting.get() + change);
-        if (Minecraft.getInstance().player != null) Minecraft.getInstance().player.sendMessage(new TextComponent(ChatFormatting.AQUA + setting.getPath().get(1) + ChatFormatting.WHITE +  " is now set to " +  ChatFormatting.LIGHT_PURPLE + setting.get()), Minecraft.getInstance().player.getUUID());
+        if (Minecraft.getInstance().player != null) Minecraft.getInstance().player.sendSystemMessage(Component.literal(ChatFormatting.AQUA + setting.getPath().get(1) + ChatFormatting.WHITE +  " is now set to " +  ChatFormatting.LIGHT_PURPLE + setting.get()));
     }
 
 }

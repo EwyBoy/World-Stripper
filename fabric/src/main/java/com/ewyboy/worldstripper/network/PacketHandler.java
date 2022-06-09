@@ -7,19 +7,18 @@ import com.ewyboy.worldstripper.network.packets.PacketStripWorker;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import java.util.Iterator;
+
+import java.util.Objects;
 
 public class PacketHandler {
 
@@ -47,12 +46,10 @@ public class PacketHandler {
         player.connection.send(new ClientboundCustomPayloadPacket(packet.getID(), buf));
     }
 
-    public static void sendToAllAround(IPacket packet, Level world, BlockPos center, int radius) {
+    public static void sendToAllAround(IPacket packet, Level world) {
         if (world instanceof ServerLevel) {
-            Iterator<Player> iter = PlayerStream.around(world, center, radius).iterator();
-            while (iter.hasNext()) {
-                Player player = iter.next();
-                sendToClient(packet, (ServerPlayer) player);
+            for (ServerPlayer player : PlayerLookup.all(Objects.requireNonNull(world.getServer()))) {
+                sendToClient(packet, player);
             }
         }
     }

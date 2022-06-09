@@ -6,10 +6,10 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 
 public class CommandHandler {
 
@@ -26,30 +26,29 @@ public class CommandHandler {
     }
 
     public void register() {
-        registerCommands();
-        CommandRegistrationCallback.EVENT.register(this :: registerCommands);
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            commandAddEntry = CommandAddEntry.register(registryAccess);
+            commandEditEntry = CommandEditEntry.register(registryAccess);
+            commandRemoveEntry = CommandRemoveEntry.register(registryAccess);
+            commandViewEntries = CommandViewEntries.register();
+            commandReload = CommandReload.register();
+            registerCommands(dispatcher);
+        });
     }
 
-    private void registerCommands() {
-        commandAddEntry = CommandAddEntry.register();
-        commandEditEntry = CommandEditEntry.register();
-        commandRemoveEntry = CommandRemoveEntry.register();
-        commandViewEntries = CommandViewEntries.register();
-        commandReload = CommandReload.register();
-    }
 
     private int help(CommandContext<CommandSourceStack> ctx) {
-        ctx.getSource().sendSuccess(new TextComponent(""), false);
-        ctx.getSource().sendSuccess(new TextComponent("[" + ChatFormatting.AQUA + "Add" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(new TextComponent("[" + ChatFormatting.AQUA + "Edit" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" + ChatFormatting.WHITE + ", " +  ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(new TextComponent("[" + ChatFormatting.AQUA + "Remove" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(new TextComponent("[" + ChatFormatting.AQUA + "View" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "" +  ChatFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(new TextComponent("[" + ChatFormatting.AQUA + "Reload" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "" +  ChatFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(new TextComponent(""), false);
+        ctx.getSource().sendSuccess(Component.literal(""), false);
+        ctx.getSource().sendSuccess(Component.literal("[" + ChatFormatting.AQUA + "Add" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(Component.literal("[" + ChatFormatting.AQUA + "Edit" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" + ChatFormatting.WHITE + ", " +  ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(Component.literal("[" + ChatFormatting.AQUA + "Remove" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(Component.literal("[" + ChatFormatting.AQUA + "View" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "" +  ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(Component.literal("[" + ChatFormatting.AQUA + "Reload" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "" +  ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(Component.literal(""), false);
         return 0;
     }
 
-    private void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher, boolean dedicated) {
+    private void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(
                 LiteralArgumentBuilder.<CommandSourceStack> literal(WorldStripper.MOD_ID)
                         .then(commandAddEntry)

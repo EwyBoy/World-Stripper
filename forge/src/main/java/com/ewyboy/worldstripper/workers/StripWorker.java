@@ -5,6 +5,7 @@ import com.ewyboy.worldstripper.settings.Settings;
 import com.ewyboy.worldstripper.stripclub.ModLogger;
 import com.ewyboy.worldstripper.stripclub.StripperCache;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,6 +26,7 @@ public class StripWorker implements WorldWorkerManager.IWorker {
     private final ServerLevel dim;
     private final Queue<BlockInWorld> queue;
     private final int notificationFrequency;
+    private final List<String> stripList;
     private final int blockUpdateFlag;
     private final BlockState replacementBlock;
     private int lastNotification = 0;
@@ -40,7 +42,7 @@ public class StripWorker implements WorldWorkerManager.IWorker {
         StripWorker.progress = progress;
     }
 
-    public StripWorker(BlockPos start, int radiusX, int radiusZ, ServerLevel dim, int notificationFrequency, int blockUpdateFlag, BlockState replacementBlock) {
+    public StripWorker(BlockPos start, int radiusX, int radiusZ, ServerLevel dim, int notificationFrequency, int blockUpdateFlag, BlockState replacementBlock, List<String> stripList) {
         this.start = start;
         this.radiusX = radiusX;
         this.radiusZ = radiusZ;
@@ -51,6 +53,7 @@ public class StripWorker implements WorldWorkerManager.IWorker {
         this.lastNotificationTime = System.currentTimeMillis(); // We also notify at least once every 60 seconds, to show we haven't frozen.
         this.blockUpdateFlag = blockUpdateFlag;
         this.replacementBlock = replacementBlock;
+        this.stripList = stripList;
     }
 
     private BlockInWorld blockInfo(BlockPos pos) {
@@ -59,19 +62,20 @@ public class StripWorker implements WorldWorkerManager.IWorker {
 
     private Queue<BlockInWorld> stripQueue() {
         final Queue<BlockInWorld> queue = new LinkedList<>();
-        List<String> stripList = StripListHandler.stripList.getEntries();
         final BlockPos neg = new BlockPos(start.getX() - radiusX, Settings.SETTINGS.stripStopY.get(), start.getZ() - radiusZ);
         final BlockPos pos = new BlockPos(start.getX() + radiusX, Settings.SETTINGS.stripStartY.get(), start.getZ() + radiusZ);
 
         BlockPos.betweenClosedStream(neg, pos)
-                .filter(target -> blockInfo(target).getState() != Blocks.AIR.defaultBlockState())
-                .filter(target -> stripList.contains(Objects.requireNonNull(blockInfo(target).getState().getBlock().getRegistryName()).toString()))
                 .map(BlockPos :: immutable)
                 .map(this :: blockInfo)
                 .forEach(queue :: add);
         ModLogger.info("Queue Size :: " + queue.size());
 
         return queue;
+    }
+
+    private boolean isReplaceableBlock(BlockInWorld next) {
+        return this.stripList.contains(Registry.BLOCK.getKey(next.getState().getBlock()).toString());
     }
 
     public boolean hasWork() {
@@ -84,7 +88,7 @@ public class StripWorker implements WorldWorkerManager.IWorker {
         do {
             next = queue.poll();
         } while(
-            (next == null) && !queue.isEmpty()
+                (next == null || !isReplaceableBlock(next)) && !queue.isEmpty()
         );
 
         if (next != null) {
@@ -94,7 +98,7 @@ public class StripWorker implements WorldWorkerManager.IWorker {
                 lastNotificationTime = System.currentTimeMillis();
             }
 
-            //StripperCache.hashedBlockCache.put(next.getPos(), next.getState());
+            StripperCache.hashedBlockCache.put(next.getPos(), next.getState());
             dim.setBlock(next.getPos(), replacementBlock, blockUpdateFlag);
         }
 

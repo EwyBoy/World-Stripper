@@ -1,5 +1,6 @@
 package com.ewyboy.worldstripper.network.messages;
 
+import com.ewyboy.worldstripper.json.StripListHandler;
 import com.ewyboy.worldstripper.settings.Settings;
 import com.ewyboy.worldstripper.stripclub.BlockUpdater;
 import com.ewyboy.worldstripper.workers.StripWorker;
@@ -7,7 +8,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,6 +16,7 @@ import net.minecraftforge.common.WorldWorkerManager;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
 
@@ -64,14 +66,15 @@ public class MessageStripWorker {
             int chunkClearSizeX = (Settings.SETTINGS.stripRadiusX.get() / 2);
             int chunkClearSizeZ = (Settings.SETTINGS.stripRadiusZ.get() / 2);
 
+            List<String> stripList = StripListHandler.stripList.getEntries();
             BlockState replacementBlock = Objects.requireNonNull(Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(Settings.SETTINGS.replacementBlock.get()))).defaultBlockState());
 
             if (player != null) {
                 if (player.isSpectator() || player.isCreative()) {
-                    player.sendMessage(new TextComponent(ChatFormatting.BOLD + "" + ChatFormatting.RED + "WARNING! " + ChatFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."), ChatType.GAME_INFO, player.getUUID());
-                    WorldWorkerManager.addWorker(new StripWorker(new BlockPos(player.position()), chunkClearSizeX, chunkClearSizeZ, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag(), replacementBlock));
+                    player.sendSystemMessage(Component.literal(ChatFormatting.BOLD + "" + ChatFormatting.RED + "WARNING! " + ChatFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."));
+                    WorldWorkerManager.addWorker(new StripWorker(new BlockPos(player.position()), chunkClearSizeX, chunkClearSizeZ, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag(), replacementBlock, stripList));
                 } else {
-                    player.sendMessage(new TextComponent(ChatFormatting.RED + "Error: You have to be in creative mode to use this feature!"), ChatType.GAME_INFO, player.getUUID());
+                    player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Error: You have to be in creative mode to use this feature!"));
                 }
             }
         });

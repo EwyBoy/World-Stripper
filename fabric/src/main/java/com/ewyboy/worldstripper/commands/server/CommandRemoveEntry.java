@@ -3,18 +3,19 @@ package com.ewyboy.worldstripper.commands.server;
 import com.ewyboy.worldstripper.json.StripListHandler;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.blocks.BlockInput;
 import net.minecraft.commands.arguments.blocks.BlockStateArgument;
 import net.minecraft.core.Registry;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 
 public class CommandRemoveEntry {
 
-    public static ArgumentBuilder<CommandSourceStack, ?> register() {
+    public static ArgumentBuilder<CommandSourceStack, ?> register(CommandBuildContext ctx) {
         return Commands.literal("remove").requires((commandSource) -> commandSource.hasPermission(2))
-                .then(Commands.argument("block", BlockStateArgument.block())
+                .then(Commands.argument("block", BlockStateArgument.block(ctx))
                         .executes((commandSource) -> removeEntry(
                                 commandSource.getSource(),
                                 BlockStateArgument.getBlock(commandSource, "block")
@@ -25,9 +26,9 @@ public class CommandRemoveEntry {
     private static int removeEntry(CommandSourceStack source, BlockInput block) {
         String entry = Registry.BLOCK.getKey(block.getState().getBlock()).toString();
         if (StripListHandler.removeEntry(entry)) {
-            source.sendSuccess(new TextComponent(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"), true);
+            source.sendSuccess(Component.literal(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"), true);
         } else {
-            source.sendSuccess(new TextComponent(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " not found in config"), true);
+            source.sendSuccess(Component.literal(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " not found in config"), true);
         }
         return 0;
     }

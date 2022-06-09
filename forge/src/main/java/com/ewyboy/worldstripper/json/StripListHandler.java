@@ -36,6 +36,12 @@ public class StripListHandler {
         STRIP_ENTRIES.add("minecraft:gravel");
         STRIP_ENTRIES.add("minecraft:sand");
         STRIP_ENTRIES.add("minecraft:sandstone");
+        STRIP_ENTRIES.add("minecraft:red_sand");
+        STRIP_ENTRIES.add("minecraft:red_sandstone");
+        STRIP_ENTRIES.add("minecraft:ice");
+        STRIP_ENTRIES.add("minecraft:snow");
+        STRIP_ENTRIES.add("minecraft:snow_block");
+        STRIP_ENTRIES.add("minecraft:powder_snow");
         STRIP_ENTRIES.add("minecraft:oak_log");
         STRIP_ENTRIES.add("minecraft:dark_oak_log");
         STRIP_ENTRIES.add("minecraft:spruce_log");
@@ -55,6 +61,7 @@ public class StripListHandler {
         STRIP_ENTRIES.add("minecraft:netherrack");
         STRIP_ENTRIES.add("minecraft:end_stone");
         STRIP_ENTRIES.add("minecraft:podzol");
+        STRIP_ENTRIES.add("minecraft:mycelium");
         STRIP_ENTRIES.add("minecraft:bamboo");
         STRIP_ENTRIES.add("minecraft:seagrass");
         STRIP_ENTRIES.add("minecraft:tall_seagrass");

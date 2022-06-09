@@ -5,7 +5,7 @@ import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 
 public class CommandReload {
 
@@ -20,10 +20,10 @@ public class CommandReload {
     private static int reload(CommandSourceStack source) {
         try {
             StripListHandler.readJson(StripListHandler.JSON_FILE);
-            source.sendSuccess(new TextComponent(ChatFormatting.GREEN + "SUCCESS: " + ChatFormatting.WHITE + "Strip list reloaded"), true);
+            source.sendSuccess(Component.literal(ChatFormatting.GREEN + "SUCCESS: " + ChatFormatting.WHITE + "Strip list reloaded"), true);
         } catch (Exception e) {
             e.printStackTrace();
-            source.sendSuccess(new TextComponent(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.WHITE + "Strip list failed to reload"), true);
+            source.sendSuccess(Component.literal(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.WHITE + "Strip list failed to reload"), true);
         }
         return 0;
     }
