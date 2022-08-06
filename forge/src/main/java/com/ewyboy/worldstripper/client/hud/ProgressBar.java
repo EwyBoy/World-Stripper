@@ -3,11 +3,10 @@ package com.ewyboy.worldstripper.client.hud;
 import com.ewyboy.worldstripper.workers.StripWorker;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import com.mojang.math.Matrix4f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Objects;
@@ -15,10 +14,8 @@ import java.util.Objects;
 public class ProgressBar {
 
     @SubscribeEvent
-    public void onRenderOverlay(RenderGameOverlayEvent.Post event) {
-        if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
-            init(event.getPoseStack());
-        }
+    public void onRenderOverlay(RenderGuiOverlayEvent.Post event) {
+        init(event.getPoseStack());
     }
 
     private static final ResourceLocation BAR_TEXTURE_1 = new ResourceLocation("textures/block/red_concrete.png");

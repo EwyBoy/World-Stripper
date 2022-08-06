@@ -24,11 +24,12 @@ public class WorldStripper {
         CommandHandler.setup();
         MessageHandler.setup();
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(Keybindings :: onRegisterKeyBinds);
     }
 
     @SubscribeEvent
     public void clientRegister(FMLClientSetupEvent event) {
-        Keybindings.setup();
+        MinecraftForge.EVENT_BUS.register(new Keybindings());
         MinecraftForge.EVENT_BUS.register(new ProgressBar());
     }
 

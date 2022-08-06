@@ -3,6 +3,7 @@ package com.ewyboy.worldstripper.commands.server;
 import com.ewyboy.worldstripper.json.StripListHandler;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.blocks.BlockInput;
@@ -14,15 +15,15 @@ import java.util.Objects;
 
 public class CommandRemoveEntry {
 
-   /* public static ArgumentBuilder<CommandSourceStack, ?> register() {
+    public static ArgumentBuilder<CommandSourceStack, ?> register(CommandBuildContext ctx) {
         return Commands.literal("remove").requires((commandSource) -> commandSource.hasPermission(2))
-                .then(Commands.argument("block", BlockStateArgument.block())
+                .then(Commands.argument("block", BlockStateArgument.block(ctx))
                         .executes((commandSource) -> removeEntry(
                                 commandSource.getSource(),
                                 BlockStateArgument.getBlock(commandSource, "block")
                         ))
                 );
-    }*/
+    }
 
     private static int removeEntry(CommandSourceStack source, BlockInput block) {
         String entry = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block.getState().getBlock())).toString();

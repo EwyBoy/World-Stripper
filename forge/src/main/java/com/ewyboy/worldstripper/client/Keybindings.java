@@ -13,8 +13,10 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.client.ClientRegistry;
-import net.minecraftforge.client.event.InputEvent.KeyInputEvent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.client.settings.KeyModifier;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -23,6 +25,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.lwjgl.glfw.GLFW;
 
+@OnlyIn(Dist.CLIENT)
 public class Keybindings {
 
     private static KeyMapping strip;
@@ -34,36 +37,27 @@ public class Keybindings {
     private static KeyMapping increaseBig;
     private static KeyMapping decreaseBig;
 
-    public static void setup() {
-        initKeyBinding();
-        clickEvent();
-    }
-
-    public static void initKeyBinding() {
+    public static void onRegisterKeyBinds(RegisterKeyMappingsEvent event) {
         strip = new KeyMapping(Translation.Key.STRIP, KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_DELETE, WorldStripper.NAME);
-        ClientRegistry.registerKeyBinding(strip);
+        event.register(strip);
         dress = new KeyMapping(Translation.Key.DRESS, KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_INSERT, WorldStripper.NAME);
-        ClientRegistry.registerKeyBinding(dress);
+        event.register(dress);
         add = new KeyMapping(Translation.Key.ADD, KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
-        ClientRegistry.registerKeyBinding(add);
+        event.register(add);
         remove = new KeyMapping(Translation.Key.REMOVE, KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
-        ClientRegistry.registerKeyBinding(remove);
+        event.register(remove);
         increase = new KeyMapping(Translation.Key.INCREASE, KeyConflictContext.IN_GAME, KeyModifier.SHIFT, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
-        ClientRegistry.registerKeyBinding(increase);
+        event.register(increase);
         decrease = new KeyMapping(Translation.Key.DECREASE, KeyConflictContext.IN_GAME, KeyModifier.SHIFT, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
-        ClientRegistry.registerKeyBinding(decrease);
+        event.register(decrease);
         increaseBig = new KeyMapping(Translation.Key.INCREASE_BIG, KeyConflictContext.IN_GAME, KeyModifier.ALT, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_UP, WorldStripper.NAME);
-        ClientRegistry.registerKeyBinding(increaseBig);
+        event.register(increaseBig);
         decreaseBig = new KeyMapping(Translation.Key.DECREASE_BIG, KeyConflictContext.IN_GAME, KeyModifier.ALT, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_PAGE_DOWN, WorldStripper.NAME);
-        ClientRegistry.registerKeyBinding(decreaseBig);
-    }
-
-    private static void clickEvent() {
-        MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, Keybindings :: onKeyInput);
+        event.register(decreaseBig);
     }
 
     @SubscribeEvent
-    public static void onKeyInput(KeyInputEvent event) {
+    public void onKeyInput(InputEvent.Key event) {
         if(strip.consumeClick()) MessageHandler.CHANNEL.sendToServer(new MessageStripWorker());
         if(dress.consumeClick()) MessageHandler.CHANNEL.sendToServer(new MessageDressWorker());
         if(add.consumeClick()) MessageHandler.CHANNEL.sendToServer(new MessageAddBlock());
