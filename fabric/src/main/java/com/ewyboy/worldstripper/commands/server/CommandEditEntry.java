@@ -9,6 +9,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.blocks.BlockInput;
 import net.minecraft.commands.arguments.blocks.BlockStateArgument;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 
 public class CommandEditEntry {
@@ -26,8 +27,8 @@ public class CommandEditEntry {
     }
 
     private static int addEntry(CommandSourceStack source, BlockInput oldBlock, BlockInput newBlock) {
-        String oldEntry = Registry.BLOCK.getKey(oldBlock.getState().getBlock()).toString();
-        String newEntry = Registry.BLOCK.getKey(newBlock.getState().getBlock()).toString();
+        String oldEntry = BuiltInRegistries.BLOCK.getKey(oldBlock.getState().getBlock()).toString();
+        String newEntry = BuiltInRegistries.BLOCK.getKey(newBlock.getState().getBlock()).toString();
 
         if (StripListHandler.containsEntry(oldEntry)) {
             StripListHandler.removeEntry(oldEntry);

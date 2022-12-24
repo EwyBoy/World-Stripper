@@ -34,13 +34,24 @@ public class DressWorker implements WorldWorkerManager.IWorker {
 
     private Deque<BlockPos> dressQueue() {
         final Deque<BlockPos> queue = new LinkedList<>();
-        final BlockPos neg = new BlockPos(start.getX() - radiusX, Settings.SETTINGS.stripStopY.get(), start.getZ() - radiusZ);
-        final BlockPos pos = new BlockPos(start.getX() + radiusX, Settings.SETTINGS.stripStartY.get(), start.getZ() + radiusZ);
+        final int minX = start.getX() - radiusX;
+        final int maxX = start.getX() + radiusX;
+        final int minY = Settings.SETTINGS.stripStopY.get();
+        final int maxY = Settings.SETTINGS.stripStartY.get();
+        final int minZ = start.getZ() - radiusZ;
+        final int maxZ = start.getZ() + radiusZ;
 
-        BlockPos.betweenClosedStream(neg, pos)
-                .map(BlockPos :: immutable)
-                .filter(StripperCache.hashedBlockCache :: containsKey)
-                .forEach(queue :: add);
+        for (int x = minX; x <= maxX; x++) {
+            for (int y = minY; y <= maxY; y++) {
+                for (int z = minZ; z <= maxZ; z++) {
+                    BlockPos pos = new BlockPos(x, y, z);
+                    if (StripperCache.hashedBlockCache.containsKey(pos)) {
+                        queue.add(pos);
+                    }
+                }
+            }
+        }
+
         return queue;
     }
 
@@ -53,12 +64,13 @@ public class DressWorker implements WorldWorkerManager.IWorker {
     }
 
     public boolean doWork() {
-        BlockPos next;
-        do {
+        BlockPos next = null;
+        while (!queue.isEmpty()) {
             next = queue.pollLast();
-        } while (
-            (next == null || !isBlockCached(next)) && !queue.isEmpty()
-        );
+            if (next != null && isBlockCached(next)) {
+                break;
+            }
+        }
 
         if (next != null) {
             if (++lastNotification >= notificationFrequency || lastNotificationTime < System.currentTimeMillis() - 60 * 1000) {

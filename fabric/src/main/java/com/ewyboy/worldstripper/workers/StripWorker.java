@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Queue;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
@@ -67,7 +68,7 @@ public class StripWorker implements WorldWorker.IWorker {
     }
 
     private boolean isReplaceableBlock(BlockInWorld next) {
-        return this.stripList.contains(Registry.BLOCK.getKey(next.getState().getBlock()).toString());
+        return this.stripList.contains(BuiltInRegistries.BLOCK.getKey(next.getState().getBlock()).toString());
     }
 
     public boolean hasWork() {

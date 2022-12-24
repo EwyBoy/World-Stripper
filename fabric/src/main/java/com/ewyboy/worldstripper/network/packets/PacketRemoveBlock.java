@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
@@ -41,7 +42,7 @@ public class PacketRemoveBlock implements IPacket {
             if(player.isSpectator() || player.isCreative()) {
                 BlockState state = StripperAccessories.getStateFromRaytrace();
                 if (state != null) {
-                    String entry = Registry.BLOCK.getKey(state.getBlock()).toString();
+                    String entry = BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString();
                     if (StripListHandler.removeEntry(entry)) {
                         player.displayClientMessage(Component.literal(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"), true);
                     } else {

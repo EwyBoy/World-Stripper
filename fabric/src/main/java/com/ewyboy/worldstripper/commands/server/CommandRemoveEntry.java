@@ -9,6 +9,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.blocks.BlockInput;
 import net.minecraft.commands.arguments.blocks.BlockStateArgument;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 
 public class CommandRemoveEntry {
@@ -24,7 +25,7 @@ public class CommandRemoveEntry {
     }
 
     private static int removeEntry(CommandSourceStack source, BlockInput block) {
-        String entry = Registry.BLOCK.getKey(block.getState().getBlock()).toString();
+        String entry = BuiltInRegistries.BLOCK.getKey(block.getState().getBlock()).toString();
         if (StripListHandler.removeEntry(entry)) {
             source.sendSuccess(Component.literal(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"), true);
         } else {

@@ -1,20 +1,18 @@
 package com.ewyboy.worldstripper.workers;
 
-import com.ewyboy.worldstripper.json.StripListHandler;
 import com.ewyboy.worldstripper.settings.Settings;
-import com.ewyboy.worldstripper.stripclub.ModLogger;
 import com.ewyboy.worldstripper.stripclub.StripperCache;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraftforge.common.WorldWorkerManager;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Queue;
 
 public class StripWorker implements WorldWorkerManager.IWorker {
@@ -62,20 +60,22 @@ public class StripWorker implements WorldWorkerManager.IWorker {
 
     private Queue<BlockInWorld> stripQueue() {
         final Queue<BlockInWorld> queue = new LinkedList<>();
-        final BlockPos neg = new BlockPos(start.getX() - radiusX, Settings.SETTINGS.stripStopY.get(), start.getZ() - radiusZ);
-        final BlockPos pos = new BlockPos(start.getX() + radiusX, Settings.SETTINGS.stripStartY.get(), start.getZ() + radiusZ);
+        final int minX = start.getX() - radiusX;
+        final int maxX = start.getX() + radiusX;
+        final int minY = Settings.SETTINGS.stripStopY.get();
+        final int maxY = Settings.SETTINGS.stripStartY.get();
+        final int minZ = start.getZ() - radiusZ;
+        final int maxZ = start.getZ() + radiusZ;
 
-        BlockPos.betweenClosedStream(neg, pos)
-                .map(BlockPos :: immutable)
-                .map(this :: blockInfo)
-                .forEach(queue :: add);
-        ModLogger.info("Queue Size :: " + queue.size());
+        for (BlockPos pos : BlockPos.betweenClosed(minX, minY, minZ, maxX, maxY, maxZ)) {
+            queue.add(blockInfo(pos));
+        }
 
         return queue;
     }
 
     private boolean isReplaceableBlock(BlockInWorld next) {
-        return this.stripList.contains(Registry.BLOCK.getKey(next.getState().getBlock()).toString());
+        return this.stripList.contains(BuiltInRegistries.BLOCK.getKey(next.getState().getBlock()).toString());
     }
 
     public boolean hasWork() {
@@ -83,16 +83,17 @@ public class StripWorker implements WorldWorkerManager.IWorker {
     }
 
     public boolean doWork() {
-        BlockInWorld next;
+        BlockInWorld next = null;
 
-        do {
+        while (!queue.isEmpty()) {
             next = queue.poll();
-        } while(
-                (next == null || !isReplaceableBlock(next)) && !queue.isEmpty()
-        );
+            if (next != null && isReplaceableBlock(next)) {
+                break;
+            }
+        }
 
         if (next != null) {
-            if(++lastNotification >= notificationFrequency || lastNotificationTime < System.currentTimeMillis() - 60 * 1000) {
+            if (++lastNotification >= notificationFrequency || lastNotificationTime < System.currentTimeMillis() - 60 * 1000) {
                 setProgress((float) (total - queue.size()) / total * 100F);
                 lastNotification = 0;
                 lastNotificationTime = System.currentTimeMillis();
@@ -102,7 +103,7 @@ public class StripWorker implements WorldWorkerManager.IWorker {
             dim.setBlock(next.getPos(), replacementBlock, blockUpdateFlag);
         }
 
-        if(queue.size() == 0) {
+        if (queue.size() == 0) {
             setProgress(100);
             return false;
         }

@@ -12,6 +12,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
@@ -47,7 +48,7 @@ public class PacketStripWorker implements IPacket {
             int chunkClearSizeX = (Settings.SETTINGS.stripRadiusX / 2);
             int chunkClearSizeZ = (Settings.SETTINGS.stripRadiusZ / 2);
 
-            BlockState replacementBlock = Objects.requireNonNull(Registry.BLOCK.get(new ResourceLocation(Settings.SETTINGS.replacementBlock)).defaultBlockState());
+            BlockState replacementBlock = Objects.requireNonNull(BuiltInRegistries.BLOCK.get(new ResourceLocation(Settings.SETTINGS.replacementBlock)).defaultBlockState());
             List<String> stripList = StripListHandler.stripList.getEntries();
 
             if (player != null) {

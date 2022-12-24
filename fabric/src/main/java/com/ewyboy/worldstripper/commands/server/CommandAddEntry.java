@@ -9,6 +9,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.blocks.BlockInput;
 import net.minecraft.commands.arguments.blocks.BlockStateArgument;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 
 public class CommandAddEntry {
@@ -25,7 +26,7 @@ public class CommandAddEntry {
     }
 
     private static int addEntry(CommandSourceStack source, BlockInput block) {
-        String entry = Registry.BLOCK.getKey(block.getState().getBlock()).toString();
+        String entry = BuiltInRegistries.BLOCK.getKey(block.getState().getBlock()).toString();
         if (StripListHandler.addEntry(entry)) {
             source.sendSuccess(Component.literal(ChatFormatting.GREEN + entry + ChatFormatting.WHITE + " added to strip list"), true);
         } else {
