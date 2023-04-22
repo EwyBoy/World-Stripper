@@ -37,7 +37,7 @@ public class StripperAccessories {
             if(blockZ == Math.floor(blockZ) && blockZ <= playerZ)     {blockZ--;}
 
             if (instance.level != null) {
-                return instance.level.getBlockState(new BlockPos(blockX, blockY, blockZ));
+                return instance.level.getBlockState(BlockPos.containing(blockX, blockY, blockZ));
             }
         }
 
