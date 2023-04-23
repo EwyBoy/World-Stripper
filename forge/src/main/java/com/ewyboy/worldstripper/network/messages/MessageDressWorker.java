@@ -6,7 +6,6 @@ import com.ewyboy.worldstripper.workers.DressWorker;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.WorldWorkerManager;
@@ -63,7 +62,7 @@ public class MessageDressWorker {
             if (player != null) {
                 if (player.isSpectator() || player.isCreative()) {
                     player.sendSystemMessage(Component.literal(ChatFormatting.BOLD + "" + ChatFormatting.RED + "WARNING! " + ChatFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."));
-                    WorldWorkerManager.addWorker(new DressWorker(new BlockPos(player.position()), fillSizeX, fillSizeZ, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag()));
+                    WorldWorkerManager.addWorker(new DressWorker(BlockPos.containing(player.position()), fillSizeX, fillSizeZ, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag()));
                 } else {
                     player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Error: You have to be in creative mode to use this feature!"));
                 }

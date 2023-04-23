@@ -7,7 +7,6 @@ import com.ewyboy.worldstripper.workers.StripWorker;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -72,7 +71,7 @@ public class MessageStripWorker {
             if (player != null) {
                 if (player.isSpectator() || player.isCreative()) {
                     player.sendSystemMessage(Component.literal(ChatFormatting.BOLD + "" + ChatFormatting.RED + "WARNING! " + ChatFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."));
-                    WorldWorkerManager.addWorker(new StripWorker(new BlockPos(player.position()), chunkClearSizeX, chunkClearSizeZ, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag(), replacementBlock, stripList));
+                    WorldWorkerManager.addWorker(new StripWorker(BlockPos.containing(player.position()), chunkClearSizeX, chunkClearSizeZ, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag(), replacementBlock, stripList));
                 } else {
                     player.sendSystemMessage(Component.literal(ChatFormatting.RED + "Error: You have to be in creative mode to use this feature!"));
                 }
