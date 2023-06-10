@@ -28,9 +28,9 @@ public class CommandAddEntry {
     private static int addEntry(CommandSourceStack source, BlockInput block) {
         String entry = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block.getState().getBlock())).toString();
         if (StripListHandler.addEntry(entry)) {
-            source.sendSuccess(Component.literal(ChatFormatting.GREEN + entry + ChatFormatting.WHITE + " added to strip list"), true);
+            source.sendSuccess(() -> Component.literal(ChatFormatting.GREEN + entry + ChatFormatting.WHITE + " added to strip list"), true);
         } else {
-            source.sendSuccess(Component.literal(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " is already found in strip list"), true);
+            source.sendSuccess(() -> Component.literal(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " is already found in strip list"), true);
         }
         return 0;
     }

@@ -27,9 +27,9 @@ public class CommandRemoveEntry {
     private static int removeEntry(CommandSourceStack source, BlockInput block) {
         String entry = BuiltInRegistries.BLOCK.getKey(block.getState().getBlock()).toString();
         if (StripListHandler.removeEntry(entry)) {
-            source.sendSuccess(Component.literal(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"), true);
+            source.sendSuccess(() -> Component.literal(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"), true);
         } else {
-            source.sendSuccess(Component.literal(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " not found in config"), true);
+            source.sendSuccess(() -> Component.literal(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " not found in config"), true);
         }
         return 0;
     }

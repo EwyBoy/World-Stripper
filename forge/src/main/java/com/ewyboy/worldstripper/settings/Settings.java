@@ -23,9 +23,7 @@ public class Settings {
         public final ForgeConfigSpec.ConfigValue<Integer> stripRadiusZ;
         public final ForgeConfigSpec.ConfigValue<Integer> stripStartY;
         public final ForgeConfigSpec.ConfigValue<Integer> stripStopY;
-
         public final ForgeConfigSpec.ConfigValue<String> replacementBlock;
-
         public final ForgeConfigSpec.ConfigValue<Boolean> notifyNeighbors;
         public final ForgeConfigSpec.ConfigValue<Boolean> blockUpdate;
         public final ForgeConfigSpec.ConfigValue<Boolean> noRender;

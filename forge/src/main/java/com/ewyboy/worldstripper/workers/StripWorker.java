@@ -29,7 +29,6 @@ public class StripWorker implements WorldWorkerManager.IWorker {
     private final BlockState replacementBlock;
     private int lastNotification = 0;
     private long lastNotificationTime;
-
     private static float progress = 0;
 
     public static float getProgress() {

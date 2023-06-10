@@ -52,8 +52,8 @@ public class PacketStripWorker implements IPacket {
 
             if (player != null) {
                 if (player.isSpectator() || player.isCreative()) {
-                    player.sendSystemMessage(Component.literal(ChatFormatting.BOLD + "" + ChatFormatting.RED + "WARNING! " + ChatFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."));
-                    WorldWorker.addWorker(new StripWorker(BlockPos.containing(player.position()), chunkClearSizeX, chunkClearSizeZ, player.getLevel(), 4096, BlockUpdater.getBlockUpdateFlag(), replacementBlock, stripList));
+                    player.sendSystemMessage(Component.literal(ChatFormatting.BOLD + String.valueOf(ChatFormatting.RED) + "WARNING! " + ChatFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."));
+                    WorldWorker.addWorker(new StripWorker(BlockPos.containing(player.position()), chunkClearSizeX, chunkClearSizeZ, player.serverLevel(), 4096, BlockUpdater.getBlockUpdateFlag(), replacementBlock, stripList));
                 } else {
                     player.sendSystemMessage(Component.literal(ChatFormatting.DARK_RED + "Error: " + ChatFormatting.WHITE + "You have to be in creative mode to use this feature!"));
                 }

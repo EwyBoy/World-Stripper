@@ -17,13 +17,13 @@ description="World Stripper is a lightweight modder / mapmaker tool that strips 
 [[dependencies.worldstripper]]
 modId="forge"
 mandatory=true
-versionRange="[45,)"
+versionRange="[46,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.worldstripper]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.19.4,1.20)"
+versionRange="[1.20,1.21)"
 ordering="NONE"
 side="BOTH"

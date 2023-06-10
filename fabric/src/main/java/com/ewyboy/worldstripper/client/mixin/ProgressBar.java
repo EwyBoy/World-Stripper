@@ -3,6 +3,7 @@ package com.ewyboy.worldstripper.client.mixin;
 import com.ewyboy.worldstripper.workers.StripWorker;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,7 +27,7 @@ public class ProgressBar {
     private static final ResourceLocation BAR_BACKGROUND_TEXTURE = new ResourceLocation("textures/block/white_concrete.png");
 
     @Inject(at = @At("TAIL"), method = "render")
-    public void init(PoseStack stack, float deltaTime, CallbackInfo info) {
+    public void init(GuiGraphics stack, float deltaTime, CallbackInfo info) {
         float percent = StripWorker.getProgress();
 
         if (percent == 0) {
@@ -60,7 +61,7 @@ public class ProgressBar {
         draw(startX + 2, startY + 2, stopX - 2, stopY - 2, BAR_BACKGROUND_TEXTURE);
         draw(startX + 2, startY + 2, getProgressBarWidth(startX, percent, width) - 2, stopY - 2, getBarTexture(percent));
 
-        mc.font.draw(stack, percent + " / 100%", textX, textY, 0xff212121);
+        stack.drawString(mc.font, percent + " / 100%", textX, textY, 0xff212121, false);
 
         if (percent >= 100) {
             StripWorker.setProgress(0);

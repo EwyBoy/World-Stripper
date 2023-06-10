@@ -4,6 +4,7 @@ import com.ewyboy.worldstripper.workers.StripWorker;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
@@ -15,7 +16,7 @@ public class ProgressBar {
 
     @SubscribeEvent
     public void onRenderOverlay(RenderGuiOverlayEvent.Post event) {
-        init(event.getPoseStack());
+        init(event.getGuiGraphics());
     }
 
     private static final ResourceLocation BAR_TEXTURE_1 = new ResourceLocation("textures/block/red_concrete.png");
@@ -24,7 +25,7 @@ public class ProgressBar {
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation("textures/block/gray_concrete.png");
     private static final ResourceLocation BAR_BACKGROUND_TEXTURE = new ResourceLocation("textures/block/white_concrete.png");
 
-    public void init(PoseStack stack) {
+    public void init(GuiGraphics stack) {
         float percent = StripWorker.getProgress();
 
         if (percent == 0) {
@@ -58,7 +59,7 @@ public class ProgressBar {
         draw(startX + 2, startY + 2, stopX - 2, stopY - 2, BAR_BACKGROUND_TEXTURE);
         draw(startX + 2, startY + 2, getProgressBarWidth(startX, percent, width) - 2, stopY - 2, getBarTexture(percent));
 
-        mc.font.draw(stack, percent + " / 100%", textX, textY, 0xff212121);
+        stack.drawString(mc.font, percent + " / 100%", textX, textY, 0xff212121, false);
 
         if (percent >= 100) {
             StripWorker.setProgress(0);

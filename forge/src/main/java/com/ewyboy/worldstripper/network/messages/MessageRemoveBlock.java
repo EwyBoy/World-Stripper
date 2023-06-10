@@ -12,7 +12,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public class MessageRemoveBlock {
@@ -32,7 +34,7 @@ public class MessageRemoveBlock {
                 if(player.isSpectator() || player.isCreative()) {
                     BlockState state = StripperAccessories.getStateFromRaytrace();
                     if (state != null) {
-                        String entry = BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString();
+                        String entry = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(state.getBlock())).toString();
                         if (StripListHandler.removeEntry(entry)) {
                             player.sendSystemMessage(Component.literal(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"));
                         } else {

@@ -33,9 +33,9 @@ public class CommandEditEntry {
         if (StripListHandler.containsEntry(oldEntry)) {
             StripListHandler.removeEntry(oldEntry);
             StripListHandler.addEntry(newEntry);
-            source.sendSuccess(Component.literal(ChatFormatting.GREEN + oldEntry + ChatFormatting.WHITE + " replaced with " + ChatFormatting.GOLD + newEntry), true);
+            source.sendSuccess(() -> Component.literal(ChatFormatting.GREEN + oldEntry + ChatFormatting.WHITE + " replaced with " + ChatFormatting.GOLD + newEntry), true);
         } else {
-            source.sendSuccess(Component.literal(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + oldEntry.toUpperCase() + ChatFormatting.WHITE + " was not found in strip list"), true);
+            source.sendSuccess(() -> Component.literal(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + oldEntry.toUpperCase() + ChatFormatting.WHITE + " was not found in strip list"), true);
         }
         return 0;
     }

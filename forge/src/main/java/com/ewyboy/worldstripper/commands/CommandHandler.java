@@ -13,6 +13,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 
+import java.util.function.Supplier;
+
 public class CommandHandler {
 
     private static ArgumentBuilder<CommandSourceStack, ?> commandAddEntry;
@@ -23,14 +25,14 @@ public class CommandHandler {
 
     public static CommandHandler commandHandler = new CommandHandler();
 
-    public CommandHandler() {}
+    public CommandHandler() { }
 
     public static void setup() {
         commandHandler.register();
     }
 
     public void register() {
-        MinecraftForge.EVENT_BUS.addListener(this :: onServerStart);
+        MinecraftForge.EVENT_BUS.addListener(this::onServerStart);
     }
 
     private void registerCommands(CommandBuildContext ctx) {
@@ -47,34 +49,35 @@ public class CommandHandler {
     }
 
     private int help(CommandContext<CommandSourceStack> ctx) {
-        ctx.getSource().sendSuccess(Component.literal(""), false);
-        ctx.getSource().sendSuccess(Component.literal("[" + ChatFormatting.AQUA + "Add" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(Component.literal("[" + ChatFormatting.AQUA + "Edit" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" + ChatFormatting.WHITE + ", " +  ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(Component.literal("[" + ChatFormatting.AQUA + "Remove" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(Component.literal("[" + ChatFormatting.AQUA + "View" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "" +  ChatFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(Component.literal("[" + ChatFormatting.AQUA + "Reload" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "" +  ChatFormatting.WHITE + ") to strip list"), false);
-        ctx.getSource().sendSuccess(Component.literal(""), false);
+        ctx.getSource().sendSuccess(() -> Component.literal(""), false);
+        ctx.getSource().sendSuccess(() -> Component.literal("[" + ChatFormatting.AQUA + "Add" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(() -> Component.literal("[" + ChatFormatting.AQUA + "Edit" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" + ChatFormatting.WHITE + ", " +  ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(() -> Component.literal("[" + ChatFormatting.AQUA + "Remove" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + "block" +  ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(() -> Component.literal("[" + ChatFormatting.AQUA + "View" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(() -> Component.literal("[" + ChatFormatting.AQUA + "Reload" + ChatFormatting.WHITE + "] (" + ChatFormatting.LIGHT_PURPLE + ChatFormatting.WHITE + ") to strip list"), false);
+        ctx.getSource().sendSuccess(() -> Component.literal(""), false);
+
         return 0;
     }
 
     public CommandHandler(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(
-                LiteralArgumentBuilder.<CommandSourceStack> literal(WorldStripper.MOD_ID)
-                    .then(commandAddEntry)
-                    .then(commandEditEntry)
-                    .then(commandRemoveEntry)
-                    .then(commandViewEntries)
-                    .then(commandReload)
-                    .executes(this :: help)
-        );
-        dispatcher.register(
-                LiteralArgumentBuilder.<CommandSourceStack> literal("ws")
+                LiteralArgumentBuilder.<CommandSourceStack>literal(WorldStripper.MOD_ID)
                         .then(commandAddEntry)
                         .then(commandEditEntry)
                         .then(commandRemoveEntry)
                         .then(commandViewEntries)
                         .then(commandReload)
-                        .executes(this :: help)
+                        .executes(this::help)
+        );
+        dispatcher.register(
+                LiteralArgumentBuilder.<CommandSourceStack>literal("ws")
+                        .then(commandAddEntry)
+                        .then(commandEditEntry)
+                        .then(commandRemoveEntry)
+                        .then(commandViewEntries)
+                        .then(commandReload)
+                        .executes(this::help)
         );
     }
 
