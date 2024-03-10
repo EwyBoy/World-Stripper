@@ -1,40 +1,28 @@
 {
   "schemaVersion": 1,
-  "id": "world-stripper",
+  "id": "worldstrpper",
   "version": "${version}",
-  "name": "World Stripper",
-  "description": "World-Stripper is a tool made for modpack / map creators who wants to debug their world gen",
-  "authors": [
-    "EwyBoy"
-  ],
-  "contact": {
-    "homepage": "https://github.com/EwyBoy/World-Stripper-Fabric",
-    "issues:" : "https://github.com/EwyBoy/World-Stripper-Fabric/issues",
-    "sources": "https://github.com/EwyBoy/World-Stripper-Fabric"
-  },
+
+  "name": "WorldStrpper",
+  "description": "",
+  "authors": [],
+  "contact": {},
+
   "license": "MIT",
-  "icon": "assets/worldstripper/slightly_offending_image.png",
+  "icon": "icon.png",
+
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.ewyboy.worldstripper.WorldStripper"
-    ],
-    "client": [
-      "com.ewyboy.worldstripper.client.WorldStripperClient"
-    ],
-    "modmenu": [
-      "com.ewyboy.worldstripper.settings.SettingsMenu"
+      "com.ewyboy.worldstrpper.fabric.WorldStrpperFabric"
     ]
   },
-
   "mixins": [
-    "worldstripper.mixins.json"
+    "worldstrpper.mixins.json",
+    "worldstrpper-common.mixins.json"
   ],
-
   "depends": {
-    "fabricloader": ">=0.14.7",
-    "minecraft": "1.20.x",
-    "fabric-key-binding-api-v1": "*",
-    "fabric-lifecycle-events-v1": "*"
+    "fabricloader": ">=0.15.7",
+    "minecraft": ">=1.20.4"
   }
 }

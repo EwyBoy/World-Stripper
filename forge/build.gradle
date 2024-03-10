@@ -1,110 +1,81 @@
-buildscript {
-    repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-    }
-}
-
 plugins {
-    id 'com.matthewprenger.cursegradle' version '1.4.0'
+    id "com.github.johnrengelman.shadow" version "7.1.2"
 }
-
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
-
-version = "${MC_VERSION}-${VERSION}"
-group = "com.ewyboy.${MODID}"
-archivesBaseName = MODNAME
-
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-
-minecraft {
-    apply plugin: 'idea'
-    mappings channel: MCP_CHANNEL, version: MCP_MAPPINGS
-
-    runs {
-        client {
-            workingDirectory rootProject.file('run')
-            property 'fml.earlyprogresswindow', 'false'
-            mods {
-                worldstripper {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        server {
-            workingDirectory rootProject.file('run')
-            mods {
-                worldstripper {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        data {
-            workingDirectory rootProject.file('run')
-            mods {
-                worldstripper {
-                    source sourceSets.main
-                }
-            }
-        }
+loom {
+    forge {
+        mixinConfig "worldstrpper-common.mixins.json"
+        mixinConfig "worldstrpper.mixins.json"
     }
 }
-
-repositories {
-    maven {
-        url "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
-    maven {
-        url "https://maven.shedaniel.me/"
-    }
+architectury {
+    platformSetupLoomIde()
+    forge()
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin since it *excludes* files.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentForge.extendsFrom common
+}
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${MC_VERSION}-${FORGE_VERSION}"
+    forge "net.minecraftforge:forge:${rootProject.forge_version}"
+    // Remove the next line if you don't want to depend on the API
+    modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
+
+    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("META-INF/mods.toml") {
+        expand "version": project.version
+    }
+}
+
+shadowJar {
+    exclude "fabric.mod.json"
+
+    configurations = [project.configurations.shadowCommon]
+    archiveClassifier = "dev-shadow"
+}
+
+remapJar {
+    inputFile.set(shadowJar.archiveFile)
+    dependsOn shadowJar
+    archiveClassifier.set(null)
 }
 
 jar {
-    manifest {
-        attributes([
-                "Specification-Title"     : MODNAME,
-                "Specification-Vendor"    : AUTHOR,
-                "Specification-Version"   : MC_VERSION,
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : VERSION,
-                "Implementation-Vendor"   : AUTHOR,
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
+    archiveClassifier.set("dev")
+}
+
+sourcesJar {
+    def commonSources = project(":common").sourcesJar
+    dependsOn commonSources
+    from commonSources.archiveFile.map { zipTree(it) }
+}
+
+components.java {
+    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+        skip()
     }
 }
 
-jar.finalizedBy('reobfJar')
-
-curseforge {
-    if (project.hasProperty('CF_API_KEY')){
-        apiKey = project.getProperty('CF_API_KEY')
-    }
-    project {
-        id = "${PROJECT_ID}"
-        changelogType = 'markdown'
-        changelog = file('CHANGELOG.md')
-        releaseType = "${RELEASE_TYPE}"
-        addGameVersion 'Forge'
-        addGameVersion 'Java 17'
-        addGameVersion '1.20'
-        mainArtifact(jar) {
-            displayName = "${MODNAME}-${MC_VERSION_GENERAL}-${VERSION}-${MOD_LOADER}.jar"
+publishing {
+    publications {
+        mavenForge(MavenPublication) {
+            artifactId = rootProject.archives_base_name + "-" + project.name
+            from components.java
         }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
     }
 }
