@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="[2,)"
+license="MIT"
+issueTrackerURL="https://github.com/EwyBoy/AuctionHouse/issues"
+
+[[mods]]
+modId="worldstripper"
+version="${version}"
+displayName="World Stripper"
+displayURL="https://github.com/EwyBoy/AuctionHouse"
+logoFile="icon.png"
+authors="Ewy"
+description="wow!"
+
+[[mixins]]
+config="worldstripper.mixins.json"
+
+[[dependencies.worldstripper]]
+modId="neoforge"
+type="required"
+versionRange="[20,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.worldstripper]]
+modId="minecraft"
+type="required"
+reason="You need Minecraft to play this mod"
+versionRange="[1.20.4,1.21)"
+ordering="NONE"
+side="BOTH"

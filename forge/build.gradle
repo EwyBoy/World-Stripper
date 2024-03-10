@@ -3,8 +3,8 @@ plugins {
 }
 loom {
     forge {
-        mixinConfig "worldstrpper-common.mixins.json"
-        mixinConfig "worldstrpper.mixins.json"
+        mixinConfig "worldstripper-common.mixins.json"
+        mixinConfig "worldstripper.mixins.json"
     }
 }
 architectury {
@@ -27,6 +27,10 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+
+    implementation "org.yaml:snakeyaml:${rootProject.snakeyaml_version}"
+    forgeRuntimeLibrary "org.yaml:snakeyaml:${rootProject.snakeyaml_version}"
+    shadowCommon "org.yaml:snakeyaml:${rootProject.snakeyaml_version}"
 }
 
 processResources {

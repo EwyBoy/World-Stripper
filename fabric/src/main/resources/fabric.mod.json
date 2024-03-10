@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "worldstrpper",
+  "id": "worldstripper",
   "version": "${version}",
 
-  "name": "WorldStrpper",
+  "name": "WorldStripper",
   "description": "",
   "authors": [],
   "contact": {},
@@ -14,12 +14,12 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.ewyboy.worldstrpper.fabric.WorldStrpperFabric"
+      "com.ewyboy.worldstripper.fabric.WorldStripperFabric"
     ]
   },
   "mixins": [
-    "worldstrpper.mixins.json",
-    "worldstrpper-common.mixins.json"
+    "worldstripper.mixins.json",
+    "worldstripper-common.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.15.7",
