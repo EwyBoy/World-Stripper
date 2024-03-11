@@ -27,7 +27,6 @@ displayName="WorldStripper" #mandatory
 # A URL for the "homepage" for this mod, displayed in the mod UI
 #displayURL="http://example.com/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
-logoFile="icon.png" #optional
 # A text field displayed in the mod UI
 #credits="Thanks for this example mod goes to Java" #optional
 # A text field displayed in the mod UI
@@ -41,9 +40,8 @@ authors="Ewy" #optional
 #displayTest="MATCH_VERSION" # MATCH_VERSION is the default if nothing is specified (#optional)
 
 # The description text for the mod (multi line!) (#mandatory)
-description='''
+description='''World Stripper is a utility mod that allows you to strip away the terrain to view the underground world generation.'''
 
-'''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.worldstripper]] #optional
    # the modid of the dependency
@@ -56,11 +54,20 @@ description='''
    ordering="NONE"
    # Side this dependency is applied on - BOTH, CLIENT or SERVER
    side="BOTH"
+
 # Here's another dependency
 [[dependencies.worldstripper]]
    modId="minecraft"
    mandatory=true
    # This version range declares a minimum of the current minecraft version up to but not including the next major version
    versionRange="[1.20.4,1.21)"
+   ordering="NONE"
+   side="BOTH"
+
+[[dependencies.worldstripper]]
+   modId="architectury"
+   mandatory=true
+   # This version range declares a minimum of the current minecraft version up to but not including the next major version
+   versionRange="[11,)"
    ordering="NONE"
    side="BOTH"

@@ -3,13 +3,12 @@
   "id": "worldstripper",
   "version": "${version}",
 
-  "name": "WorldStripper",
+  "name": "World Stripper",
   "description": "",
   "authors": [],
   "contact": {},
 
   "license": "MIT",
-  "icon": "icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -23,6 +22,7 @@
   ],
   "depends": {
     "fabricloader": ">=0.15.7",
-    "minecraft": ">=1.20.4"
+    "minecraft": ">=1.20.4",
+    "architectury": ">=11.1.0"
   }
 }

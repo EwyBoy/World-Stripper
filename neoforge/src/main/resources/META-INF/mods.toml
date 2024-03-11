@@ -8,7 +8,6 @@ modId="worldstripper"
 version="${version}"
 displayName="World Stripper"
 displayURL="https://github.com/EwyBoy/AuctionHouse"
-logoFile="icon.png"
 authors="Ewy"
 description="wow!"
 
@@ -29,3 +28,12 @@ reason="You need Minecraft to play this mod"
 versionRange="[1.20.4,1.21)"
 ordering="NONE"
 side="BOTH"
+
+[[dependencies.worldstripper]]
+modId="architectury"
+type="required"
+reason="You need architectury to play this mod"
+versionRange="[11,)"
+ordering="NONE"
+side="BOTH"
+
