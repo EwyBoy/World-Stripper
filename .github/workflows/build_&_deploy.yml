@@ -1,0 +1,92 @@
+name: build & deploy
+
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [ forge, neoforge, fabric ]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build artifacts
+        run: |
+          if [ ${{ matrix.platform }} == "neoforge" ]; then
+            ./gradlew clean neoforge:build
+          elif [ ${{ matrix.platform }} == "forge" ]; then
+            ./gradlew clean forge:build
+          elif [ ${{ matrix.platform }} == "fabric" ]; then
+            ./gradlew clean fabric:build
+          fi
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts-${{ matrix.platform }}
+          path: ${{ matrix.platform }}/build/libs
+
+      - name: Deploy to CurseForge, Modrinth, or GitHub Releases
+        if: matrix.platform == 'forge'
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          curseforge-id: world-stripper
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+
+          modrinth-id: world-stripper
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          changelog: ${{ steps.get-changelog.outputs.changelog }}
+
+          name: ""
+          loaders: forge
+          game-versions: "1.20.4"
+          release-type: release
+
+      - name: Deploy to CurseForge, Modrinth, or GitHub Releases (for neoforge)
+        if: matrix.platform == 'neoforge'
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          curseforge-id: world-stripper
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+
+          modrinth-id: world-stripper
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          changelog: ${{ steps.get-changelog.outputs.changelog }}
+
+          name: ""
+          loaders: neoforge
+          game-versions: "1.20.4"
+          release-type: release
+
+      - name: Deploy to CurseForge, Modrinth, or GitHub Releases (for fabric)
+        if: matrix.platform == 'fabric'
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          curseforge-id: world-stripper
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+
+          modrinth-id: world-stripper
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          changelog: ${{ steps.get-changelog.outputs.changelog }}
+
+          name: ""
+          loaders: fabric
+          game-versions: "1.20.4"
+          release-type: release
