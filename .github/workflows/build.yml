@@ -22,7 +22,14 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build artifacts
-        run: ./gradlew clean build
+        run: |
+          if [ ${{ matrix.platform }} == "neoforge" ]; then
+            ./gradlew clean neoforge:build
+          elif [ ${{ matrix.platform }} == "forge" ]; then
+            ./gradlew clean forge:build
+          elif [ ${{ matrix.platform }} == "fabric" ]; then
+            ./gradlew clean fabric:build
+          fi
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
