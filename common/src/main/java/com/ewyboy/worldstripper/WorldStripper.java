@@ -15,9 +15,12 @@ public class WorldStripper
 		WSCommands.init();
 		StrippablesHandler.init();
 		WSConfigLoader.init();
-		Keymappings.init();
 		NetworkHandler.init();
 		WorldWorker.init();
+	}
+
+	public static void initClient() {
+		Keymappings.init();
 	}
 
 }
