@@ -1,10 +1,13 @@
 plugins {
     id 'idea'
+    id 'java'
     id "net.neoforged.gradle.userdev" version "7.0.142"
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
-base.archivesName.set("${mod_name}-neoforge")
+base {
+    archivesName = "${mod_id}-neoforge-${minecraft_version}"
+}
 
 minecraft {
     mappings {
@@ -31,12 +34,23 @@ runs {
         programArgument '--nogui'
     }
 
+    // This run config launches GameTestServer and runs all registered gametests, then exits.
+    // By default, the server will crash when no gametests are provided.
+    // The gametest system is also enabled by default for other run configs under the /test command.
+    gameTestServer {
+        systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+    }
+
     data {
         programArguments.addAll '--mod', project.mod_id, '--all', '--output', project(':Common').file('src/generated/resources/').getAbsolutePath(), '--existing', project(':Common').file('src/main/resources/').getAbsolutePath()
     }
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+tasks.named("test").configure {
+    enabled = false
+}
 
 dependencies {
     implementation "net.neoforged:neoforge:${neoforge_version}"

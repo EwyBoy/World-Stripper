@@ -6,7 +6,9 @@ plugins {
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
-base.archivesName.set("${mod_name}-forge")
+base {
+    archivesName = "${mod_id}-forge-${minecraft_version}"
+}
 
 mixin {
     add sourceSets.main, "${mod_id}.refmap.json"

@@ -9,34 +9,12 @@ buildscript {
     dependencies {
         classpath 'com.modrinth.minotaur:Minotaur:2.+'
         classpath 'gradle.plugin.org.jetbrains.gradle.plugin.idea-ext:gradle-idea-ext:1.1.7' // Required for NeoGradle
-        classpath 'net.minecraftforge:gradleutils:2.2.0' // Required for changelog generation
     }
 }
 
 apply plugin: 'org.jetbrains.gradle.plugin.idea-ext'
-apply plugin: 'net.minecraftforge.gradleutils'
 
-changelog {
-    fromTag '19.0.0'
-}
-
-ext {
-    mod_version = gradleutils.getTagOffsetVersion()
-    changelog_file = rootProject.file("build/changelog.txt")
-    trimChangelog = (String text) -> {
-        def m = text =~ /(?s) - (?:[0-9.]+) (.+?)(?=( - )|$)/
-        return '```\n' + m[0][1].replaceAll(/(?m)^ */, '')
-    }
-}
-
-allprojects {
-    // Allow 400 errors.
-    gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xmaxerrs" << "400"
-        }
-    }
-}
+allprojects { }
 
 subprojects {
     apply plugin: 'java'
@@ -47,10 +25,11 @@ subprojects {
         apply plugin: 'com.modrinth.minotaur'
     }
 
-    version = "${minecraft_version}-${mod_version}"
+    version = "${mod_version}"
 
     java.toolchain.languageVersion = JavaLanguageVersion.of(21)
     java.withSourcesJar()
+    java.withJavadocJar()
 
     jar {
         manifest {
@@ -66,6 +45,12 @@ subprojects {
                     'Built-On-Java'           : "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})",
                     'Build-On-Minecraft'      : minecraft_version
             ])
+        }
+    }
+
+    sourcesJar {
+        from(rootProject.file("LICENSE.md")) {
+            rename { "${it}_${mod_name}" }
         }
     }
 
@@ -88,14 +73,32 @@ subprojects {
 
     processResources {
         var expandProps = [
-                minecraft_version   : minecraft_version,
-                forge_version       : forge_version, forge_version_range: forge_version_range, forge_loader_version_range: forge_loader_version_range,
-                neoforge_version    : neoforge_version, neoforge_version_range: neoforge_version_range, neoforge_loader_version_range: neoforge_loader_version_range,
-                mod_id              : mod_id, mod_name: mod_name, mod_display_name: mod_display_name, mod_version: mod_version,
-                mod_authors         : mod_authors, mod_description: mod_description,
-                mod_issues_url      : mod_issues_url, mod_page_url: mod_page_url, mod_git_url: mod_git_url,
-                mod_license         : mod_license
+                minecraft_version             : minecraft_version,
+                minecraft_version_range       : minecraft_version_range,
+                forge_version                 : forge_version,
+                forge_version_range           : forge_version_range,
+                forge_loader_version_range    : forge_loader_version_range,
+                neoforge_version              : neoforge_version,
+                neoforge_version_range        : neoforge_version_range,
+                neoforge_loader_version_range : neoforge_loader_version_range,
+                fabric_version                : fabric_version,
+                fabric_loader_version         : fabric_loader_version,
+                mod_id                        : mod_id,
+                mod_name                      : mod_name,
+                mod_display_name              : mod_display_name,
+                mod_version                   : mod_version,
+                mod_authors                   : mod_authors,
+                mod_description               : mod_description,
+                mod_issues_url                : mod_issues_url,
+                mod_page_url                  : mod_page_url,
+                mod_git_url                   : mod_git_url,
+                mod_license                   : mod_license
         ]
+
+        filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml']) {
+            expand expandProps
+        }
+
         inputs.properties(expandProps)
     }
 

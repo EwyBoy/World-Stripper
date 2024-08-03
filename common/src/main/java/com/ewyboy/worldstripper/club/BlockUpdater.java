@@ -30,14 +30,11 @@ public class BlockUpdater {
 
     public static class BlockFlags {
         /**
-         * Calls
-         * {@link Block#neighborChanged(BlockState, World, BlockPos, Block, BlockPos, boolean)
-         * neighborChanged} on surrounding blocks (with isMoving as false). Also updates comparator output state.
+         * Calls neighborChanged on surrounding blocks (with isMoving as false). Also updates comparator output state.
          */
         public static final int NOTIFY_NEIGHBORS = (1 << 0);
         /**
-         * Calls {@link Level#notifyBlockUpdate(BlockPos, BlockState, BlockState, int)}.<br>
-         * Server-side, this updates all the path-finding navigators.
+         * Calls notifyBlockUpdate Server-side, this updates all the path-finding navigators.
          */
         public static final int BLOCK_UPDATE = (1 << 1);
         /**
@@ -50,18 +47,13 @@ public class BlockUpdater {
          */
         public static final int RERENDER_MAIN_THREAD = (1 << 3);
         /**
-         * Causes neighbor updates to be sent to all surrounding blocks (including
-         * diagonals). This in turn will call
-         * {@link Block#updateDiagonalNeighbors(BlockState, IWorld, BlockPos, int)
-         * updateDiagonalNeighbors} on both old and new states, and
-         * {@link Block#updateNeighbors(BlockState, IWorld, BlockPos, int)
-         * updateNeighbors} on the new state.
+         * Causes neighbor updates to be sent to all surrounding blocks (including diagonals).
+         * This in turn will call updateDiagonalNeighbors on both old and new states, and updateNeighbors on the new state.
          */
         public static final int UPDATE_NEIGHBORS = (1 << 4);
 
         /**
-         * Prevents neighbor changes from spawning item drops, used by
-         * {@link Block#replaceBlock(BlockState, BlockState, IWorld, BlockPos, int)}.
+         * Prevents neighbor changes from spawning item drops, used by replaceBlock
          */
         public static final int NO_NEIGHBOR_DROPS = (1 << 5);
     }
