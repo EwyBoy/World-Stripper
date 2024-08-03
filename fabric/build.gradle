@@ -6,7 +6,7 @@ plugins {
 }
 
 base {
-    archivesName = "${mod_id}-fabric-${minecraft_version}"
+    archivesName = "${mod_id}-${minecraft_version}-${mod_version}-fabric"
 }
 
 dependencies {
