@@ -1,7 +1,5 @@
 package com.ewyboy.worldstripper.workers;
 
-import dev.architectury.event.events.common.TickEvent;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,13 +8,6 @@ public class WorldWorker {
     private static final List<IWorker> workers = new ArrayList<>();
     private static long startTime = -1;
     private static int index = 0;
-
-    public static void init() {
-        TickEvent.ServerLevelTick.SERVER_PRE.register(serverTick -> tick(true));
-        TickEvent.ServerLevelTick.SERVER_POST.register(serverTick -> tick(false));
-        // TickEvent.ServerLevelTick.SERVER_LEVEL_PRE.register(serverTick -> tick(true));
-        // TickEvent.ServerLevelTick.SERVER_LEVEL_POST.register(serverTick -> tick(false));
-    }
 
     public static void tick(boolean start) {
         if (start) {

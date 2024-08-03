@@ -5,19 +5,16 @@ issueTrackerURL="https://github.com/EwyBoy/AuctionHouse/issues"
 
 [[mods]]
 modId="worldstripper"
-version="${version}"
+version="5.0.0"
 displayName="World Stripper"
 displayURL="https://github.com/EwyBoy/AuctionHouse"
 authors="Ewy"
 description="wow!"
 
-[[mixins]]
-config="worldstripper.mixins.json"
-
 [[dependencies.worldstripper]]
 modId="neoforge"
 type="required"
-versionRange="[20,)"
+versionRange="[21,)"
 ordering="NONE"
 side="BOTH"
 
@@ -25,15 +22,6 @@ side="BOTH"
 modId="minecraft"
 type="required"
 reason="You need Minecraft to play this mod"
-versionRange="[1.20.4,1.21)"
+versionRange="[1.21,)"
 ordering="NONE"
 side="BOTH"
-
-[[dependencies.worldstripper]]
-modId="architectury"
-type="required"
-reason="You need architectury to play this mod"
-versionRange="[11,)"
-ordering="NONE"
-side="BOTH"
-

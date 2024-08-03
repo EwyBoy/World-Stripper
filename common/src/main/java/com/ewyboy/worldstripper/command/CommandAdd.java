@@ -24,7 +24,7 @@ public class CommandAdd {
                 );
     }
 
-    private static int addEntry(CommandSourceStack source, BlockInput block) {
+    public static int addEntry(CommandSourceStack source, BlockInput block) {
         String entry = BuiltInRegistries.BLOCK.getKey(block.getState().getBlock()).toString();
         if (StrippablesHandler.addEntry(entry)) {
             source.sendSuccess(() -> Component.literal(ChatFormatting.GREEN + entry + ChatFormatting.WHITE + " added to strip list"), true);

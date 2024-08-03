@@ -8,6 +8,10 @@ import net.minecraft.world.phys.Vec3;
 
 public class StripperAccessories {
 
+    /**
+     * Gets the block state from the raytrace.
+     * @return The block state from the raytrace.
+     */
     public static BlockState getStateFromRaytrace() {
         Minecraft instance = Minecraft.getInstance();
 

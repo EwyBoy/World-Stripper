@@ -1,14 +1,30 @@
-pluginManagement {
-    repositories {
-        maven { url "https://maven.fabricmc.net/" }
-        maven { url "https://maven.architectury.dev/" }
-        maven { url "https://maven.minecraftforge.net/" }
-        maven { url "https://maven.neoforged.net/releases/" }
-        gradlePluginPortal()
+include("common", "forge", "neoforge", "fabric")
+//include("common", "neoforge", "fabric")
+
+pluginManagement.repositories {
+    gradlePluginPortal()
+    maven {
+        name = "Fabric"
+        url = "https://maven.fabricmc.net/"
+    }
+    maven {
+        name = "NeoForge"
+        url = "https://maven.neoforged.net/releases"
+    }
+    maven {
+        name = "Forge"
+        url = "https://maven.minecraftforge.net"
+    }
+    maven {
+        name = "Sponge Snapshots"
+        url = "https://repo.spongepowered.org/repository/maven-public/"
     }
 }
 
-include("common")
-include("fabric")
-include("forge")
-include("neoforge")
+rootProject.name = "World-Stripper"
+
+// We want lowercase folder names but uppercase project names
+project(":common").name = "Common"
+project(":forge").name = "Forge"
+project(":neoforge").name = "NeoForge"
+project(":fabric").name = "Fabric"

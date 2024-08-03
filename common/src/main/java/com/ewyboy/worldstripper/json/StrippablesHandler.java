@@ -1,10 +1,10 @@
 package com.ewyboy.worldstripper.json;
 
 import com.ewyboy.worldstripper.WorldStripper;
+import com.ewyboy.worldstripper.services.Services;
 import com.ewyboy.worldstripper.util.ModLogger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dev.architectury.platform.Platform;
 
 import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
@@ -17,7 +17,7 @@ import java.util.List;
 public class StrippablesHandler {
 
     private static final Gson gson = new Gson();
-    public static final File JSON_FILE = new File(Platform.getConfigFolder() + "/worldstripper/strippables.json");
+    public static final File JSON_FILE = new File(Services.PLATFORM.getPlatformConfigDir().toString() + "/worldstripper/strippables.json");
 
     private static final List<String> STRIPPABLES = new ArrayList<>();
 
@@ -128,7 +128,7 @@ public class StrippablesHandler {
     }
 
     private static void createDirectory() {
-        Path path = Paths.get(Platform.getConfigFolder().toAbsolutePath().toString(), WorldStripper.MOD_ID);
+        Path path = Paths.get("", WorldStripper.MOD_ID);
         try {
             ModLogger.info("Creating World Stripper directory");
             Files.createDirectory(path);

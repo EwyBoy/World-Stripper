@@ -1,13 +1,13 @@
 package com.ewyboy.worldstripper.json;
 
-import dev.architectury.platform.Platform;
+import com.ewyboy.worldstripper.services.Services;
 
 import java.io.File;
 
 public class WSConfigLoader {
 
     private static WSConfigLoader INSTANCE;
-    private static final File CONFIG_FILE = new File(Platform.getConfigFolder() + "/worldstripper/config.json");
+    private static final File CONFIG_FILE = new File(Services.PLATFORM.getPlatformConfigDir().toString() + "/worldstripper/config.json");
 
     private final WSConfig config;
 

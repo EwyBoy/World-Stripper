@@ -8,6 +8,9 @@ public class WorldStripperFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         WorldStripper.init();
+        CommonEvents.registerEvents();
+        WorldStripper.registerServerPackets();
+        WorldStripper.registerClientPackets(false);
     }
 
 }
