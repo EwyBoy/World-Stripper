@@ -66,7 +66,7 @@ public class StripWorker extends SectionWorker {
                     if (strippables.contains(state.getBlock())) {
                         if (!fresh) undo.states.getAndSetUnchecked(x & 15, y & 15, z & 15, state);
                         undo.stripped.set((y & 15) << 8 | (z & 15) << 4 | (x & 15));
-                        setBlock(chunk, levelSection, x, y, z, replacementBlock, blockUpdateFlag);
+                        setBlock(chunk, levelSection, x, y, z, replacementBlock, blockUpdateFlag, true);
                         changed++;
                     }
                 }

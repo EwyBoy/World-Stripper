@@ -39,7 +39,8 @@ public class DressWorker extends SectionWorker {
         for (int i = undo.stripped.nextSetBit(0); i >= 0; i = undo.stripped.nextSetBit(i + 1)) {
             int x = i & 15, z = i >> 4 & 15, y = i >> 8;
             if (x < x0 || x > x1 || y < y0 || y > y1 || z < z0 || z > z1) continue;
-            setBlock(chunk, levelSection, baseX + x, baseY + y, baseZ + z, undo.states.get(x, y, z), blockUpdateFlag);
+            // No onPlace: put the world back as it was, instead of letting restored gravel fall into restored caves.
+            setBlock(chunk, levelSection, baseX + x, baseY + y, baseZ + z, undo.states.get(x, y, z), blockUpdateFlag, false);
             undo.stripped.clear(i);
             changed++;
         }

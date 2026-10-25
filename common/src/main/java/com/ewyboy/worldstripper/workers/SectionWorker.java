@@ -93,9 +93,10 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
      * {@code level.setBlock(pos, state, flags)} for a block in the current section, minus the per-call overhead:
      * writes the section directly and then does exactly what LevelChunk/Level would do server-side (heightmaps,
      * light, onRemove/onPlace, POI, client sync), except re-checking mob paths. Neighbour/shape updates and new
-     * block entities still go through vanilla.
+     * block entities still go through vanilla. {@code onPlace = false} skips the placed block's onPlace
+     * (which is how gravel schedules its fall and fluids their flow).
      */
-    protected void setBlock(LevelChunk chunk, LevelChunkSection levelSection, int x, int y, int z, BlockState state, int flags) {
+    protected void setBlock(LevelChunk chunk, LevelChunkSection levelSection, int x, int y, int z, BlockState state, int flags, boolean onPlace) {
         if ((flags & (Block.UPDATE_NEIGHBORS | Block.UPDATE_KNOWN_SHAPE)) != Block.UPDATE_KNOWN_SHAPE || state.hasBlockEntity()) {
             level.setBlock(new BlockPos(x, y, z), state, flags);
             return;
@@ -116,7 +117,7 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
             lightChecks.add(pos.asLong());
         }
         old.onRemove(level, pos, state, false);
-        if (levelSection.getBlockState(x & 15, y & 15, z & 15).is(state.getBlock())) state.onPlace(level, pos, old, false);
+        if (onPlace && levelSection.getBlockState(x & 15, y & 15, z & 15).is(state.getBlock())) state.onPlace(level, pos, old, false);
         chunk.setUnsaved(true);
         if ((flags & Block.UPDATE_CLIENTS) != 0) {
             level.getChunkSource().blockChanged(pos); // ChunkHolder batches these into one packet per section per tick
