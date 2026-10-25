@@ -30,7 +30,7 @@ public record ServerboundAddBlockKeyPressedPacket(boolean pressed) implements Pa
         ServerPlayer serverPlayer = (ServerPlayer) player;
 
         if(serverPlayer.isCreative()) {
-            BlockState state = StripperAccessories.getStateFromRaytrace();
+            BlockState state = StripperAccessories.getStateFromRaytrace(serverPlayer);
             if (state != null) {
                 String entry = BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString();
                 if (StrippablesHandler.addEntry(entry)) {

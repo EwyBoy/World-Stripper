@@ -1,51 +1,22 @@
 package com.ewyboy.worldstripper.club;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
 
 public class StripperAccessories {
 
     /**
-     * Gets the block state from the raytrace.
-     * @return The block state from the raytrace.
+     * The block the player is looking at, ray-traced on the server.
+     * (This used to read the client's Minecraft instance, which crashes dedicated servers.)
+     * @return The targeted block state, or null when the player isn't looking at a block in reach.
      */
-    public static BlockState getStateFromRaytrace() {
-        Minecraft instance = Minecraft.getInstance();
-
-        if (instance.hitResult != null && instance.hitResult.getType() != HitResult.Type.BLOCK) {
-            return null;
-        }
-
-        Vec3 blockVector;
-
-        if (instance.hitResult != null) {
-            blockVector = instance.hitResult.getLocation();
-
-            double blockX = blockVector.x();
-            double blockY = blockVector.y();
-            double blockZ = blockVector.z();
-
-            double playerX = 0;
-            double playerY = 0;
-            double playerZ = 0;
-
-            if (instance.player != null) playerX = instance.player.getX();
-            if (instance.player != null) playerY = instance.player.getY();
-            if (instance.player != null) playerZ = instance.player.getZ();
-
-            if(blockX == Math.floor(blockX) && blockX <= playerX)     {blockX--;}
-            if(blockY == Math.floor(blockY) && blockY <= playerY + 1) {blockY--;}
-            if(blockZ == Math.floor(blockZ) && blockZ <= playerZ)     {blockZ--;}
-
-            if (instance.level != null) {
-                return instance.level.getBlockState(BlockPos.containing(blockX, blockY, blockZ));
-            }
-        }
-
-        return null;
+    public static BlockState getStateFromRaytrace(ServerPlayer player) {
+        HitResult hit = player.pick(player.blockInteractionRange(), 1.0F, false);
+        return hit instanceof BlockHitResult blockHit && hit.getType() == HitResult.Type.BLOCK
+                ? player.serverLevel().getBlockState(blockHit.getBlockPos())
+                : null;
     }
 
 }
