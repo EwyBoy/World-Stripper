@@ -4,9 +4,11 @@ import com.ewyboy.worldstripper.json.WSConfigLoader;
 import com.ewyboy.worldstripper.util.ModLogger;
 import net.minecraft.core.BlockPos;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
+import it.unimi.dsi.fastutil.objects.Reference2BooleanOpenHashMap;
 import net.minecraft.core.SectionPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ThreadedLevelLightEngine;
+import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,6 +18,8 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.lighting.LayerLightEventListener;
 import net.minecraft.world.level.lighting.LevelLightEngine;
 import net.minecraft.world.level.lighting.LightEngine;
+
+import java.util.function.Predicate;
 
 /**
  * Walks a box one chunk section per {@link #doWork()} call: chunk columns x-fastest then z,
@@ -80,6 +84,10 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
 
     private static final Heightmap.Types[] HEIGHTMAPS = {
             Heightmap.Types.MOTION_BLOCKING, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Heightmap.Types.OCEAN_FLOOR, Heightmap.Types.WORLD_SURFACE};
+    private static final Predicate<BlockState> POI = state -> PoiTypes.forState(state).isPresent();
+    private final Heightmap[] heightmaps = new Heightmap[HEIGHTMAPS.length];
+    private LevelChunk heightmapChunk;
+    private final Reference2BooleanOpenHashMap<BlockState> hasPoi = new Reference2BooleanOpenHashMap<>();
 
     /**
      * {@code level.setBlock(pos, state, flags)} for a block in the current section, minus the per-call overhead:
@@ -96,7 +104,11 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
         BlockState old = levelSection.setBlockState(x & 15, y & 15, z & 15, state, false);
         if (old == state) return;
         BlockPos pos = new BlockPos(x, y, z);
-        for (Heightmap.Types type : HEIGHTMAPS) chunk.getOrCreateHeightmapUnprimed(type).update(x & 15, y, z & 15, state);
+        if (chunk != heightmapChunk) { // getOrCreateHeightmapUnprimed is an EnumMap.computeIfAbsent: too slow per block
+            heightmapChunk = chunk;
+            for (int i = 0; i < HEIGHTMAPS.length; i++) heightmaps[i] = chunk.getOrCreateHeightmapUnprimed(HEIGHTMAPS[i]);
+        }
+        for (Heightmap heightmap : heightmaps) heightmap.update(x & 15, y, z & 15, state);
         LevelLightEngine light = level.getChunkSource().getLightEngine();
         if (wasEmpty != levelSection.hasOnlyAir()) light.updateSectionStatus(pos, levelSection.hasOnlyAir());
         if (LightEngine.hasDifferentLightProperties(chunk, pos, old, state)) {
@@ -110,7 +122,7 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
             level.getChunkSource().blockChanged(pos); // ChunkHolder batches these into one packet per section per tick
             level.getPathTypeCache().invalidate(pos);
         }
-        level.onBlockStateChange(pos, old, state);
+        if (hasPoi.computeIfAbsent(old, POI) || hasPoi.computeIfAbsent(state, POI)) level.onBlockStateChange(pos, old, state);
     }
 
     /**
