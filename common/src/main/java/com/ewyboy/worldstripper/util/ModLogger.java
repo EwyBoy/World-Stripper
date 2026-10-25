@@ -17,6 +17,10 @@ public class ModLogger {
         logger.log(Level.INFO, String.format(message, params));
     }
 
+    public static void error(String message, Throwable throwable) {
+        logger.log(Level.ERROR, message, throwable);
+    }
+
     public static void error(String message, Object... params) {
         logger.log(Level.ERROR, String.format(message, params));
     }
