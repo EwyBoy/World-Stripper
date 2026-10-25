@@ -21,7 +21,9 @@ public class WorldStripperClientFabric implements ClientModInitializer {
     }
 
     public static void sendPacketToServer(PacketBase packet) {
-        ClientPlayNetworking.send(packet);
+        if (ClientPlayNetworking.canSend(packet.type())) { // the server may not have the mod
+            ClientPlayNetworking.send(packet);
+        }
     }
 
     public static <T extends PacketBase> void registerClientboundPacket(CustomPacketPayload.Type<T> id, BiConsumer<T, Player> handler)

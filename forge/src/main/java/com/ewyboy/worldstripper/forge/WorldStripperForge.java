@@ -19,7 +19,8 @@ public class WorldStripperForge {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        network = ChannelBuilder.named(ResourceLocation.fromNamespaceAndPath(WorldStripper.MOD_ID, "worldstripperpackets")).simpleChannel();
+        // optional: a client with the mod can join servers without it, and vice versa
+        network = ChannelBuilder.named(ResourceLocation.fromNamespaceAndPath(WorldStripper.MOD_ID, "worldstripperpackets")).optional().simpleChannel();
         WorldStripper.registerServerPackets(network);
         WorldStripper.registerClientPackets(network);
     }

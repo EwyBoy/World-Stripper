@@ -2,11 +2,12 @@ package com.ewyboy.worldstripper.forge;
 
 import com.ewyboy.worldstripper.WorldStripper;
 import com.ewyboy.worldstripper.client.Keymappings;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = WorldStripper.MOD_ID)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = WorldStripper.MOD_ID, value = Dist.CLIENT)
 public class ModClientEvents {
 
     @SubscribeEvent

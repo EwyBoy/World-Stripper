@@ -16,7 +16,7 @@ public final class WorldStripperNeoForge {
     }
 
     public void registerPackets(final RegisterPayloadHandlersEvent event) {
-        final PayloadRegistrar registrar = event.registrar("1.0.0");
+        final PayloadRegistrar registrar = event.registrar("1.0.0").optional(); // clients with the mod can join servers without it, and vice versa
         WorldStripper.registerServerPackets(registrar);
         WorldStripper.registerClientPackets(registrar);
     }

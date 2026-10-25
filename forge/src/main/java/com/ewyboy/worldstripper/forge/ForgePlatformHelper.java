@@ -2,6 +2,7 @@ package com.ewyboy.worldstripper.forge;
 
 import com.ewyboy.worldstripper.networking.PacketBase;
 import com.ewyboy.worldstripper.services.IPlatformHelper;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -57,7 +58,10 @@ public class ForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public void sendPacketToServer(ResourceLocation id, PacketBase packet) {
-        WorldStripperForge.network.send(packet, PacketDistributor.SERVER.noArg());
+        var connection = Minecraft.getInstance().getConnection();
+        if (connection != null && WorldStripperForge.network.isRemotePresent(connection.getConnection())) { // the server may not have the mod
+            WorldStripperForge.network.send(packet, PacketDistributor.SERVER.noArg());
+        }
     }
 
     @Override

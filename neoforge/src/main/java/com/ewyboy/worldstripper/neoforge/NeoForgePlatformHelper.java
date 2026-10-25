@@ -2,6 +2,7 @@ package com.ewyboy.worldstripper.neoforge;
 
 import com.ewyboy.worldstripper.networking.PacketBase;
 import com.ewyboy.worldstripper.services.IPlatformHelper;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -52,7 +53,10 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public void sendPacketToServer(ResourceLocation id, PacketBase packet) {
-        PacketDistributor.sendToServer(packet);
+        var connection = Minecraft.getInstance().getConnection();
+        if (connection != null && connection.hasChannel(packet)) { // the server may not have the mod
+            connection.send(packet);
+        }
     }
 
     @Override
