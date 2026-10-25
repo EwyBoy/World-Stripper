@@ -6,7 +6,6 @@ import com.ewyboy.worldstripper.services.IPlatformHelper;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.impl.FabricLoaderImpl;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -27,7 +26,7 @@ public class FabricPlatformHelper implements IPlatformHelper {
 
     @Override
     public Path getPlatformConfigDir() {
-        return FabricLoaderImpl.INSTANCE.getConfigDir();
+        return FabricLoader.getInstance().getConfigDir();
     }
 
     @Override
