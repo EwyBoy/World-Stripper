@@ -46,6 +46,9 @@ tasks.withType(Javadoc).configureEach {
 tasks.named("sourcesJar", Jar) {
     from(project(":Common").sourceSets.main.allSource)
 }
+processResources {
+    from project(":Common").sourceSets.main.resources
+}
 
 /*
 curseforge {
