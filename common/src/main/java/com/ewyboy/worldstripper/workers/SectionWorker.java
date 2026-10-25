@@ -3,13 +3,17 @@ package com.ewyboy.worldstripper.workers;
 import com.ewyboy.worldstripper.json.WSConfigLoader;
 import com.ewyboy.worldstripper.util.ModLogger;
 import net.minecraft.core.BlockPos;
+import it.unimi.dsi.fastutil.longs.LongArrayList;
 import net.minecraft.core.SectionPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ThreadedLevelLightEngine;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.lighting.LayerLightEventListener;
 import net.minecraft.world.level.lighting.LevelLightEngine;
 import net.minecraft.world.level.lighting.LightEngine;
 
@@ -25,6 +29,7 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
     private final String verb;
     private final long startNanos = System.nanoTime();
     protected int cx, cz, section, changed;
+    private final LongArrayList lightChecks = new LongArrayList();
 
     protected SectionWorker(ServerLevel level, BlockPos center, int radiusX, int radiusZ, boolean downwards, String verb) {
         var config = WSConfigLoader.getInstance().getConfig();
@@ -57,6 +62,7 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
     public boolean doWork() {
         if (!hasWork()) return false;
         processSection();
+        flushLightChecks();
         if (section != lastSection) {
             section += step;
         } else {
@@ -95,7 +101,7 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
         if (wasEmpty != levelSection.hasOnlyAir()) light.updateSectionStatus(pos, levelSection.hasOnlyAir());
         if (LightEngine.hasDifferentLightProperties(chunk, pos, old, state)) {
             chunk.getSkyLightSources().update(chunk, x & 15, y, z & 15);
-            light.checkBlock(pos);
+            lightChecks.add(pos.asLong());
         }
         old.onRemove(level, pos, state, false);
         if (levelSection.getBlockState(x & 15, y & 15, z & 15).is(state.getBlock())) state.onPlace(level, pos, old, false);
@@ -105,6 +111,28 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
             level.getPathTypeCache().invalidate(pos);
         }
         level.onBlockStateChange(pos, old, state);
+    }
+
+    /**
+     * Hands the section's light checks to the light thread as one task. ThreadedLevelLightEngine.checkBlock
+     * queues a prioritised task per block, which made lighting take 4x longer than the strip itself.
+     * The batch runs on the light thread after everything already queued for this chunk (section status
+     * changes included) and is processed on its next update, same as vanilla checks.
+     */
+    private void flushLightChecks() {
+        if (lightChecks.isEmpty()) return;
+        long[] nodes = lightChecks.toLongArray();
+        lightChecks.clear();
+        ThreadedLevelLightEngine light = level.getChunkSource().getLightEngine();
+        LayerLightEventListener blockLight = light.getLayerListener(LightLayer.BLOCK);
+        LayerLightEventListener skyLight = light.getLayerListener(LightLayer.SKY);
+        light.waitForPendingTasks(cx, cz).thenRun(() -> {
+            for (long node : nodes) {
+                BlockPos pos = BlockPos.of(node);
+                blockLight.checkBlock(pos);
+                skyLight.checkBlock(pos);
+            }
+        });
     }
 
     protected long sectionKey() {

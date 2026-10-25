@@ -82,7 +82,7 @@ public final class Bench {
                 }
             }
             case 3 -> {
-                if (!light.isDone()) return;
+                if (!lightDone()) return;
                 tStripLight = now - t0;
                 retained = usedAfterGc() - heap0;
                 afterStrip = scan();
@@ -98,7 +98,7 @@ public final class Bench {
                 }
             }
             case 5 -> {
-                if (!light.isDone()) return;
+                if (!lightDone()) return;
                 long tDressLight = now - t0;
                 long[] after = scan();
                 int diffs = 0;
@@ -115,6 +115,14 @@ public final class Bench {
             }
             default -> { }
         }
+    }
+
+    /** Settled = everything queued so far ran and the engine has no nodes left to propagate. */
+    private static boolean lightDone() {
+        if (!light.isDone()) return false;
+        if (!level.getChunkSource().getLightEngine().hasLightWork()) return true;
+        light = lightSettled(); // work was added meanwhile (checks handed over in batches): go round again
+        return false;
     }
 
     /** Completes once the light engine has worked through everything queued so far for the box. */
