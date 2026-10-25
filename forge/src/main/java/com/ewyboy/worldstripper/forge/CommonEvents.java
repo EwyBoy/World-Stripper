@@ -1,6 +1,7 @@
 package com.ewyboy.worldstripper.forge;
 
 import com.ewyboy.worldstripper.WorldStripper;
+import com.ewyboy.worldstripper.dev.Bench;
 import com.ewyboy.worldstripper.workers.WorldWorker;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
@@ -24,9 +25,10 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
-    public static void onServerTickPost(TickEvent.ServerTickEvent.Post ignoredEvent)
+    public static void onServerTickPost(TickEvent.ServerTickEvent.Post event)
     {
         WorldWorker.tick(false);
+        Bench.tick(event.getServer());
     }
 
     @SubscribeEvent

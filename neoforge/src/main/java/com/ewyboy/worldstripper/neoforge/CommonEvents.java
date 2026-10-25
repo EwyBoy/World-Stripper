@@ -1,6 +1,7 @@
 package com.ewyboy.worldstripper.neoforge;
 
 import com.ewyboy.worldstripper.WorldStripper;
+import com.ewyboy.worldstripper.dev.Bench;
 import com.ewyboy.worldstripper.workers.WorldWorker;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -24,9 +25,10 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
-    public static void onServerTickPost(ServerTickEvent.Post ignoredEvent)
+    public static void onServerTickPost(ServerTickEvent.Post event)
     {
         WorldWorker.tick(false);
+        Bench.tick(event.getServer());
     }
 
     @SubscribeEvent
