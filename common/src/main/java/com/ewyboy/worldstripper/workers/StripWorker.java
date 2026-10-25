@@ -5,16 +5,20 @@ import com.ewyboy.worldstripper.club.StripperCache;
 import com.ewyboy.worldstripper.json.StrippablesHandler;
 import com.ewyboy.worldstripper.json.WSConfigLoader;
 import com.ewyboy.worldstripper.util.ModLogger;
+import it.unimi.dsi.fastutil.objects.ReferenceOpenHashSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 
 public class StripWorker implements WorldWorker.IWorker {
 
@@ -25,7 +29,7 @@ public class StripWorker implements WorldWorker.IWorker {
     private final ServerLevel dim;
     private final Queue<BlockInWorld> queue;
     private final int notificationFrequency;
-    private final List<String> strippables;
+    private final Set<Block> strippables;
     private final int blockUpdateFlag;
     private final BlockState replacementBlock;
     private int lastNotification = 0;
@@ -53,7 +57,12 @@ public class StripWorker implements WorldWorker.IWorker {
         this.lastNotificationTime = System.currentTimeMillis(); // We also notify at least once every 60 seconds, to show we haven't frozen.
         this.blockUpdateFlag = blockUpdateFlag;
         this.replacementBlock = replacementBlock;
-        this.strippables = stripList;
+        // Resolve the id list once: the old per-block getKey().toString() + List.contains dominated the cost.
+        Set<String> ids = new HashSet<>(stripList);
+        this.strippables = new ReferenceOpenHashSet<>();
+        for (Block block : BuiltInRegistries.BLOCK) {
+            if (ids.contains(BuiltInRegistries.BLOCK.getKey(block).toString())) strippables.add(block);
+        }
     }
 
     /** Queues a strip of the configured box around {@code center}; radii are in blocks. */
@@ -86,7 +95,7 @@ public class StripWorker implements WorldWorker.IWorker {
     }
 
     private boolean isReplaceableBlock(BlockInWorld next) {
-        return this.strippables.contains(BuiltInRegistries.BLOCK.getKey(next.getState().getBlock()).toString());
+        return this.strippables.contains(next.getState().getBlock());
     }
 
     public boolean hasWork() {
