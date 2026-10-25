@@ -15,12 +15,12 @@ public class CommandEdit {
 
     public static ArgumentBuilder<CommandSourceStack, ?> register(CommandBuildContext ctx) {
         return Commands.literal("edit").requires((commandSource) -> commandSource.hasPermission(2))
-                .then(Commands.argument("old block", BlockStateArgument.block(ctx))
-                        .then(Commands.argument("new block", BlockStateArgument.block(ctx))
+                .then(Commands.argument("old_block", BlockStateArgument.block(ctx))
+                        .then(Commands.argument("new_block", BlockStateArgument.block(ctx))
                                 .executes((commandSource) -> addEntry(
                                         commandSource.getSource(),
-                                        BlockStateArgument.getBlock(commandSource, "oldBlock"),
-                                        BlockStateArgument.getBlock(commandSource, "newBlock")
+                                        BlockStateArgument.getBlock(commandSource, "old_block"),
+                                        BlockStateArgument.getBlock(commandSource, "new_block")
                                 )))
                 );
     }
