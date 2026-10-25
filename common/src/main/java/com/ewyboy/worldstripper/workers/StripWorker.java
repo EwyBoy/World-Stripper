@@ -12,124 +12,112 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.pattern.BlockInWorld;
+import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.chunk.LevelChunkSection;
 
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Set;
 
+/**
+ * Strips one chunk section per {@link #doWork()} call, walking the box chunk by chunk and top to bottom.
+ * Sections whose palette holds no strippable state are skipped without touching a single block.
+ */
 public class StripWorker implements WorldWorker.IWorker {
 
-    protected final BlockPos start;
-    protected final int radiusX;
-    protected final int radiusZ;
-    private final int total;
     private final ServerLevel dim;
-    private final Queue<BlockInWorld> queue;
-    private final int notificationFrequency;
     private final Set<Block> strippables;
     private final int blockUpdateFlag;
     private final BlockState replacementBlock;
-    private int lastNotification = 0;
-    private long lastNotificationTime;
-    private static float progress = 0;
+    private final int minX, maxX, minY, maxY, minZ, maxZ;
+    private final int minCX, maxCX, maxCZ, minSection;
+    private int cx, cz, section;
     private final long startNanos = System.nanoTime();
     private int stripped = 0;
 
-    public static float getProgress() {
-        return progress;
-    }
-
-    public static void setProgress(float progress) {
-        StripWorker.progress = progress;
-    }
-
-    public StripWorker(BlockPos start, int radiusX, int radiusZ, ServerLevel dim, int notificationFrequency, int blockUpdateFlag, BlockState replacementBlock, List<String> stripList) {
-        this.start = start;
-        this.radiusX = radiusX;
-        this.radiusZ = radiusZ;
+    public StripWorker(BlockPos start, int radiusX, int radiusZ, ServerLevel dim, int blockUpdateFlag, BlockState replacementBlock, List<String> stripList) {
         this.dim = dim;
-        this.queue = stripQueue();
-        this.total = queue.size();
-        this.notificationFrequency = notificationFrequency != -1 ? notificationFrequency : Math.max(((radiusX + radiusZ) / 2) / 10, 100); // Every 5% or every 100, whichever is more.
-        this.lastNotificationTime = System.currentTimeMillis(); // We also notify at least once every 60 seconds, to show we haven't frozen.
         this.blockUpdateFlag = blockUpdateFlag;
         this.replacementBlock = replacementBlock;
+
         // Resolve the id list once: the old per-block getKey().toString() + List.contains dominated the cost.
         Set<String> ids = new HashSet<>(stripList);
         this.strippables = new ReferenceOpenHashSet<>();
         for (Block block : BuiltInRegistries.BLOCK) {
             if (ids.contains(BuiltInRegistries.BLOCK.getKey(block).toString())) strippables.add(block);
         }
+
+        var config = WSConfigLoader.getInstance().getConfig();
+        this.minX = start.getX() - radiusX;
+        this.maxX = start.getX() + radiusX;
+        this.minZ = start.getZ() - radiusZ;
+        this.maxZ = start.getZ() + radiusZ;
+        this.minY = Math.max(config.stripEndY(), dim.getMinBuildHeight());
+        this.maxY = Math.min(config.stripStartY(), dim.getMaxBuildHeight() - 1);
+        this.minCX = minX >> 4;
+        this.maxCX = maxX >> 4;
+        this.maxCZ = maxZ >> 4;
+        this.minSection = dim.getSectionIndex(minY);
+        this.cx = minCX;
+        this.cz = minZ >> 4;
+        this.section = dim.getSectionIndex(maxY);
     }
 
     /** Queues a strip of the configured box around {@code center}; radii are in blocks. */
     public static StripWorker start(ServerLevel level, BlockPos center, int radiusX, int radiusZ) {
         var config = WSConfigLoader.getInstance().getConfig();
         BlockState replacement = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(config.replacementBlock())).defaultBlockState();
-        StripWorker worker = new StripWorker(center, radiusX, radiusZ, level, -1, BlockUpdater.getBlockUpdateFlag(), replacement, StrippablesHandler.strippables.strippables());
+        StripWorker worker = new StripWorker(center, radiusX, radiusZ, level, BlockUpdater.getBlockUpdateFlag(), replacement, StrippablesHandler.strippables.strippables());
         WorldWorker.addWorker(worker);
         return worker;
     }
 
-    private BlockInWorld blockInfo(BlockPos pos) {
-        return new BlockInWorld(dim, pos, true);
-    }
-
-    private Queue<BlockInWorld> stripQueue() {
-        final Queue<BlockInWorld> queue = new LinkedList<>();
-        final int minX = start.getX() - radiusX;
-        final int maxX = start.getX() + radiusX;
-        final int minY = WSConfigLoader.getInstance().getConfig().stripEndY();
-        final int maxY = WSConfigLoader.getInstance().getConfig().stripStartY();
-        final int minZ = start.getZ() - radiusZ;
-        final int maxZ = start.getZ() + radiusZ;
-
-        for (BlockPos pos : BlockPos.betweenClosed(minX, minY, minZ, maxX, maxY, maxZ)) {
-            queue.add(blockInfo(pos));
-        }
-
-        return queue;
-    }
-
-    private boolean isReplaceableBlock(BlockInWorld next) {
-        return this.strippables.contains(next.getState().getBlock());
-    }
-
     public boolean hasWork() {
-        return !queue.isEmpty();
+        return cz <= maxCZ && minY <= maxY;
     }
 
     public boolean doWork() {
-        BlockInWorld next = null;
-
-        while (!queue.isEmpty()) {
-            next = queue.poll();
-            if (next != null && isReplaceableBlock(next)) {
-                break;
-            }
+        if (!hasWork()) return false;
+        LevelChunk chunk = dim.getChunk(cx, cz);
+        LevelChunkSection levelSection = chunk.getSection(section);
+        if (!levelSection.hasOnlyAir() && levelSection.maybeHas(state -> strippables.contains(state.getBlock()))) {
+            stripSection(levelSection);
         }
-
-        if (next != null) {
-            if (++lastNotification >= notificationFrequency || lastNotificationTime < System.currentTimeMillis() - 60 * 1000) {
-                setProgress((float) (total - queue.size()) / total * 100F);
-                lastNotification = 0;
-                lastNotificationTime = System.currentTimeMillis();
-            }
-
-            StripperCache.hashedBlockCache.put(next.getPos(), next.getState());
-            dim.setBlock(next.getPos(), replacementBlock, blockUpdateFlag);
-            stripped++;
-        }
-
-        if (queue.isEmpty()) {
-            setProgress(100);
+        advance();
+        if (!hasWork()) {
             ModLogger.info("Stripped %d blocks in %d ms", stripped, (System.nanoTime() - startNanos) / 1_000_000);
-            return false;
         }
+        return hasWork();
+    }
 
-        return true;
+    private void stripSection(LevelChunkSection levelSection) {
+        int baseY = dim.getSectionYFromSectionIndex(section) << 4;
+        int x0 = Math.max(minX, cx << 4), x1 = Math.min(maxX, (cx << 4) + 15);
+        int z0 = Math.max(minZ, cz << 4), z1 = Math.min(maxZ, (cz << 4) + 15);
+        int y0 = Math.max(minY, baseY), y1 = Math.min(maxY, baseY + 15);
+        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+        for (int y = y1; y >= y0; y--) {
+            for (int z = z0; z <= z1; z++) {
+                for (int x = x0; x <= x1; x++) {
+                    BlockState state = levelSection.getBlockState(x & 15, y & 15, z & 15);
+                    if (strippables.contains(state.getBlock())) {
+                        pos.set(x, y, z);
+                        StripperCache.hashedBlockCache.put(pos.immutable(), state);
+                        dim.setBlock(pos, replacementBlock, blockUpdateFlag);
+                        stripped++;
+                    }
+                }
+            }
+        }
+    }
+
+    /** Next section downwards, then the next chunk column (x fastest, then z). */
+    private void advance() {
+        if (--section >= minSection) return;
+        section = dim.getSectionIndex(maxY);
+        if (++cx > maxCX) {
+            cx = minCX;
+            cz++;
+        }
     }
 }
