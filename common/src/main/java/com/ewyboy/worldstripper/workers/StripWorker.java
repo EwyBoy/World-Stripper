@@ -1,9 +1,13 @@
 package com.ewyboy.worldstripper.workers;
 
+import com.ewyboy.worldstripper.club.BlockUpdater;
 import com.ewyboy.worldstripper.club.StripperCache;
+import com.ewyboy.worldstripper.json.StrippablesHandler;
 import com.ewyboy.worldstripper.json.WSConfigLoader;
+import com.ewyboy.worldstripper.util.ModLogger;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
@@ -27,6 +31,8 @@ public class StripWorker implements WorldWorker.IWorker {
     private int lastNotification = 0;
     private long lastNotificationTime;
     private static float progress = 0;
+    private final long startNanos = System.nanoTime();
+    private int stripped = 0;
 
     public static float getProgress() {
         return progress;
@@ -48,6 +54,15 @@ public class StripWorker implements WorldWorker.IWorker {
         this.blockUpdateFlag = blockUpdateFlag;
         this.replacementBlock = replacementBlock;
         this.strippables = stripList;
+    }
+
+    /** Queues a strip of the configured box around {@code center}; radii are in blocks. */
+    public static StripWorker start(ServerLevel level, BlockPos center, int radiusX, int radiusZ) {
+        var config = WSConfigLoader.getInstance().getConfig();
+        BlockState replacement = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(config.replacementBlock())).defaultBlockState();
+        StripWorker worker = new StripWorker(center, radiusX, radiusZ, level, -1, BlockUpdater.getBlockUpdateFlag(), replacement, StrippablesHandler.strippables.strippables());
+        WorldWorker.addWorker(worker);
+        return worker;
     }
 
     private BlockInWorld blockInfo(BlockPos pos) {
@@ -97,10 +112,12 @@ public class StripWorker implements WorldWorker.IWorker {
 
             StripperCache.hashedBlockCache.put(next.getPos(), next.getState());
             dim.setBlock(next.getPos(), replacementBlock, blockUpdateFlag);
+            stripped++;
         }
 
         if (queue.isEmpty()) {
             setProgress(100);
+            ModLogger.info("Stripped %d blocks in %d ms", stripped, (System.nanoTime() - startNanos) / 1_000_000);
             return false;
         }
 

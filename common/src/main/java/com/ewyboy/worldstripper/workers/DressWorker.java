@@ -1,7 +1,9 @@
 package com.ewyboy.worldstripper.workers;
 
+import com.ewyboy.worldstripper.club.BlockUpdater;
 import com.ewyboy.worldstripper.club.StripperCache;
 import com.ewyboy.worldstripper.json.WSConfigLoader;
+import com.ewyboy.worldstripper.util.ModLogger;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 
@@ -19,6 +21,8 @@ public class DressWorker implements WorldWorker.IWorker {
     private int lastNotification = 0;
     private long lastNotificationTime;
     private final int blockUpdateFlag;
+    private final long startNanos = System.nanoTime();
+    private int dressed = 0;
 
     public DressWorker(BlockPos start, int radiusX, int radiusZ, ServerLevel dim, int interval, int blockUpdateFlag) {
         this.start = start;
@@ -29,6 +33,13 @@ public class DressWorker implements WorldWorker.IWorker {
         this.notificationFrequency = interval != -1 ? interval : Math.max(((radiusX + radiusZ) / 2) / 10, 100); // Every 5% or every 100, whichever is more.
         this.lastNotificationTime = System.currentTimeMillis(); // We also notify at least once every 60 seconds, to show we haven't frozen.
         this.blockUpdateFlag = blockUpdateFlag;
+    }
+
+    /** Queues restoring every stripped block in the box around {@code center}; radii are in blocks. */
+    public static DressWorker start(ServerLevel level, BlockPos center, int radiusX, int radiusZ) {
+        DressWorker worker = new DressWorker(center, radiusX, radiusZ, level, -1, BlockUpdater.getBlockUpdateFlag());
+        WorldWorker.addWorker(worker);
+        return worker;
     }
 
     private Deque<BlockPos> dressQueue() {
@@ -77,8 +88,12 @@ public class DressWorker implements WorldWorker.IWorker {
                 lastNotificationTime = System.currentTimeMillis();
             }
             dim.setBlock(next, StripperCache.hashedBlockCache.remove(next), blockUpdateFlag);
+            dressed++;
         }
 
+        if (queue.isEmpty()) {
+            ModLogger.info("Dressed %d blocks in %d ms", dressed, (System.nanoTime() - startNanos) / 1_000_000);
+        }
         return !queue.isEmpty();
     }
 }
