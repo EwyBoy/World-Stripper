@@ -4,6 +4,8 @@ import com.ewyboy.worldstripper.club.BlockUpdater;
 import com.ewyboy.worldstripper.club.StripperCache;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.chunk.LevelChunkSection;
 
 /** Puts back every stripped block in the box that {@link StripperCache} remembers, bottom-up. */
 public class DressWorker extends SectionWorker {
@@ -31,12 +33,13 @@ public class DressWorker extends SectionWorker {
 
         int x0 = x0() & 15, x1 = x1() & 15, y0 = y0() & 15, y1 = y1() & 15, z0 = z0() & 15, z1 = z1() & 15;
         int baseX = cx << 4, baseY = level.getSectionYFromSectionIndex(section) << 4, baseZ = cz << 4;
-        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+        LevelChunk chunk = level.getChunk(cx, cz);
+        LevelChunkSection levelSection = chunk.getSection(section);
         // Bit order is y-major, so this restores bottom-up.
         for (int i = undo.stripped.nextSetBit(0); i >= 0; i = undo.stripped.nextSetBit(i + 1)) {
             int x = i & 15, z = i >> 4 & 15, y = i >> 8;
             if (x < x0 || x > x1 || y < y0 || y > y1 || z < z0 || z > z1) continue;
-            level.setBlock(pos.set(baseX + x, baseY + y, baseZ + z), undo.states.get(x, y, z), blockUpdateFlag);
+            setBlock(chunk, levelSection, baseX + x, baseY + y, baseZ + z, undo.states.get(x, y, z), blockUpdateFlag);
             undo.stripped.clear(i);
             changed++;
         }

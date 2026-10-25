@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 
 import java.util.HashSet;
@@ -48,7 +49,8 @@ public class StripWorker extends SectionWorker {
 
     @Override
     protected void processSection() {
-        LevelChunkSection levelSection = level.getChunk(cx, cz).getSection(section);
+        LevelChunk chunk = level.getChunk(cx, cz);
+        LevelChunkSection levelSection = chunk.getSection(section);
         if (levelSection.hasOnlyAir() || !levelSection.maybeHas(state -> strippables.contains(state.getBlock()))) return;
 
         var cache = StripperCache.of(level);
@@ -57,7 +59,6 @@ public class StripWorker extends SectionWorker {
         boolean fresh = undo == null;
         if (fresh) undo = new StripperCache.Section(levelSection.getStates().copy()); // originals, before we touch anything
 
-        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
         for (int y = y1(), y0 = y0(); y >= y0; y--) {
             for (int z = z0(), z1 = z1(); z <= z1; z++) {
                 for (int x = x0(), x1 = x1(); x <= x1; x++) {
@@ -65,7 +66,7 @@ public class StripWorker extends SectionWorker {
                     if (strippables.contains(state.getBlock())) {
                         if (!fresh) undo.states.getAndSetUnchecked(x & 15, y & 15, z & 15, state);
                         undo.stripped.set((y & 15) << 8 | (z & 15) << 4 | (x & 15));
-                        level.setBlock(pos.set(x, y, z), replacementBlock, blockUpdateFlag);
+                        setBlock(chunk, levelSection, x, y, z, replacementBlock, blockUpdateFlag);
                         changed++;
                     }
                 }

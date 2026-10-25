@@ -5,6 +5,13 @@ import com.ewyboy.worldstripper.util.ModLogger;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.chunk.LevelChunkSection;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.lighting.LevelLightEngine;
+import net.minecraft.world.level.lighting.LightEngine;
 
 /**
  * Walks a box one chunk section per {@link #doWork()} call: chunk columns x-fastest then z,
@@ -63,6 +70,41 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
             ModLogger.info("%s %d blocks in %d ms", verb, changed, (System.nanoTime() - startNanos) / 1_000_000);
         }
         return hasWork();
+    }
+
+    private static final Heightmap.Types[] HEIGHTMAPS = {
+            Heightmap.Types.MOTION_BLOCKING, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Heightmap.Types.OCEAN_FLOOR, Heightmap.Types.WORLD_SURFACE};
+
+    /**
+     * {@code level.setBlock(pos, state, flags)} for a block in the current section, minus the per-call overhead:
+     * writes the section directly and then does exactly what LevelChunk/Level would do server-side (heightmaps,
+     * light, onRemove/onPlace, POI, client sync), except re-checking mob paths. Neighbour/shape updates and new
+     * block entities still go through vanilla.
+     */
+    protected void setBlock(LevelChunk chunk, LevelChunkSection levelSection, int x, int y, int z, BlockState state, int flags) {
+        if ((flags & (Block.UPDATE_NEIGHBORS | Block.UPDATE_KNOWN_SHAPE)) != Block.UPDATE_KNOWN_SHAPE || state.hasBlockEntity()) {
+            level.setBlock(new BlockPos(x, y, z), state, flags);
+            return;
+        }
+        boolean wasEmpty = levelSection.hasOnlyAir();
+        BlockState old = levelSection.setBlockState(x & 15, y & 15, z & 15, state, false);
+        if (old == state) return;
+        BlockPos pos = new BlockPos(x, y, z);
+        for (Heightmap.Types type : HEIGHTMAPS) chunk.getOrCreateHeightmapUnprimed(type).update(x & 15, y, z & 15, state);
+        LevelLightEngine light = level.getChunkSource().getLightEngine();
+        if (wasEmpty != levelSection.hasOnlyAir()) light.updateSectionStatus(pos, levelSection.hasOnlyAir());
+        if (LightEngine.hasDifferentLightProperties(chunk, pos, old, state)) {
+            chunk.getSkyLightSources().update(chunk, x & 15, y, z & 15);
+            light.checkBlock(pos);
+        }
+        old.onRemove(level, pos, state, false);
+        if (levelSection.getBlockState(x & 15, y & 15, z & 15).is(state.getBlock())) state.onPlace(level, pos, old, false);
+        chunk.setUnsaved(true);
+        if ((flags & Block.UPDATE_CLIENTS) != 0) {
+            level.getChunkSource().blockChanged(pos); // ChunkHolder batches these into one packet per section per tick
+            level.getPathTypeCache().invalidate(pos);
+        }
+        level.onBlockStateChange(pos, old, state);
     }
 
     protected long sectionKey() {
