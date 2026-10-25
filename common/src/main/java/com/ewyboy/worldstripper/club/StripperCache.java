@@ -14,7 +14,7 @@ import java.util.Map;
 
 /**
  * What dressing puts back: per dimension and chunk section, a palette copy of the original states
- * plus a bit per stripped block (index = y << 8 | z << 4 | x, the palette's own order).
+ * plus a bit per stripped block (index {@code y << 8 | z << 4 | x}, the palette's own order).
  * A stone-heavy section costs ~2.5 KB here instead of ~4096 HashMap entries.
  */
 public class StripperCache {
