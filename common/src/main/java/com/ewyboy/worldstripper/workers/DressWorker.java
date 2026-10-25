@@ -2,98 +2,44 @@ package com.ewyboy.worldstripper.workers;
 
 import com.ewyboy.worldstripper.club.BlockUpdater;
 import com.ewyboy.worldstripper.club.StripperCache;
-import com.ewyboy.worldstripper.json.WSConfigLoader;
-import com.ewyboy.worldstripper.util.ModLogger;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.Deque;
-import java.util.LinkedList;
+/** Puts back every stripped block in the box that {@link StripperCache} remembers, bottom-up. */
+public class DressWorker extends SectionWorker {
 
-public class DressWorker implements WorldWorker.IWorker {
-
-    protected final BlockPos start;
-    protected final int radiusX;
-    protected final int radiusZ;
-    private final ServerLevel dim;
-    private final Deque<BlockPos> queue;
-    private final int notificationFrequency;
-    private int lastNotification = 0;
-    private long lastNotificationTime;
     private final int blockUpdateFlag;
-    private final long startNanos = System.nanoTime();
-    private int dressed = 0;
 
-    public DressWorker(BlockPos start, int radiusX, int radiusZ, ServerLevel dim, int interval, int blockUpdateFlag) {
-        this.start = start;
-        this.radiusX = radiusX;
-        this.radiusZ = radiusZ;
-        this.dim = dim;
-        this.queue = dressQueue();
-        this.notificationFrequency = interval != -1 ? interval : Math.max(((radiusX + radiusZ) / 2) / 10, 100); // Every 5% or every 100, whichever is more.
-        this.lastNotificationTime = System.currentTimeMillis(); // We also notify at least once every 60 seconds, to show we haven't frozen.
+    public DressWorker(BlockPos center, int radiusX, int radiusZ, ServerLevel level, int blockUpdateFlag) {
+        super(level, center, radiusX, radiusZ, false, "Dressed");
         this.blockUpdateFlag = blockUpdateFlag;
     }
 
     /** Queues restoring every stripped block in the box around {@code center}; radii are in blocks. */
     public static DressWorker start(ServerLevel level, BlockPos center, int radiusX, int radiusZ) {
-        DressWorker worker = new DressWorker(center, radiusX, radiusZ, level, -1, BlockUpdater.getBlockUpdateFlag());
+        DressWorker worker = new DressWorker(center, radiusX, radiusZ, level, BlockUpdater.getBlockUpdateFlag());
         WorldWorker.addWorker(worker);
         return worker;
     }
 
-    private Deque<BlockPos> dressQueue() {
-        final Deque<BlockPos> queue = new LinkedList<>();
-        final int minX = start.getX() - radiusX;
-        final int maxX = start.getX() + radiusX;
-        final int minY = WSConfigLoader.getInstance().getConfig().stripEndY();
-        final int maxY = WSConfigLoader.getInstance().getConfig().stripStartY();
-        final int minZ = start.getZ() - radiusZ;
-        final int maxZ = start.getZ() + radiusZ;
+    @Override
+    protected void processSection() {
+        var cache = StripperCache.of(level);
+        long key = sectionKey();
+        StripperCache.Section undo = cache.get(key);
+        if (undo == null) return;
 
-        for (int x = minX; x <= maxX; x++) {
-            for (int y = minY; y <= maxY; y++) {
-                for (int z = minZ; z <= maxZ; z++) {
-                    BlockPos pos = new BlockPos(x, y, z);
-                    if (StripperCache.hashedBlockCache.containsKey(pos)) {
-                        queue.add(pos);
-                    }
-                }
-            }
+        int x0 = x0() & 15, x1 = x1() & 15, y0 = y0() & 15, y1 = y1() & 15, z0 = z0() & 15, z1 = z1() & 15;
+        int baseX = cx << 4, baseY = level.getSectionYFromSectionIndex(section) << 4, baseZ = cz << 4;
+        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+        // Bit order is y-major, so this restores bottom-up.
+        for (int i = undo.stripped.nextSetBit(0); i >= 0; i = undo.stripped.nextSetBit(i + 1)) {
+            int x = i & 15, z = i >> 4 & 15, y = i >> 8;
+            if (x < x0 || x > x1 || y < y0 || y > y1 || z < z0 || z > z1) continue;
+            level.setBlock(pos.set(baseX + x, baseY + y, baseZ + z), undo.states.get(x, y, z), blockUpdateFlag);
+            undo.stripped.clear(i);
+            changed++;
         }
-
-        return queue;
-    }
-
-    private boolean isBlockCached(BlockPos next) {
-        return StripperCache.hashedBlockCache.containsKey(next);
-    }
-
-    public boolean hasWork() {
-        return !queue.isEmpty();
-    }
-
-    public boolean doWork() {
-        BlockPos next = null;
-        while (!queue.isEmpty()) {
-            next = queue.pollLast();
-            if (next != null && isBlockCached(next)) {
-                break;
-            }
-        }
-
-        if (next != null) {
-            if (++lastNotification >= notificationFrequency || lastNotificationTime < System.currentTimeMillis() - 60 * 1000) {
-                lastNotification = 0;
-                lastNotificationTime = System.currentTimeMillis();
-            }
-            dim.setBlock(next, StripperCache.hashedBlockCache.remove(next), blockUpdateFlag);
-            dressed++;
-        }
-
-        if (queue.isEmpty()) {
-            ModLogger.info("Dressed %d blocks in %d ms", dressed, (System.nanoTime() - startNanos) / 1_000_000);
-        }
-        return !queue.isEmpty();
+        if (undo.stripped.isEmpty()) cache.remove(key);
     }
 }

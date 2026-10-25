@@ -1,5 +1,7 @@
 package com.ewyboy.worldstripper.workers;
 
+import com.ewyboy.worldstripper.club.StripperCache;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +59,7 @@ public class WorldWorker {
 
     public static synchronized void clear() {
         workers.clear();
+        StripperCache.clear(); // the cache is per server; never dress a new world with the last one's blocks
     }
 
     public interface IWorker {

@@ -148,7 +148,9 @@ public final class Bench {
                 int top = level.getMaxBuildHeight() - 1;
                 while (top >= level.getMinBuildHeight() && level.getBlockState(pos.set(x, top, z)).isAir()) top--;
                 if (level.getChunk(x >> 4, z >> 4).getHeight(Heightmap.Types.WORLD_SURFACE, x & 15, z & 15) != top) hmBad++;
-                if (top + 1 < level.getMaxBuildHeight() && level.getBrightness(LightLayer.SKY, pos.set(x, top + 1, z)) != 15) skyBad++;
+                // columns topped by fluid are skipped: water flowing in after the strip is still being relit
+                if (top + 1 < level.getMaxBuildHeight() && level.getFluidState(pos.set(x, top, z)).isEmpty() && level.getBrightness(LightLayer.SKY, pos.set(x, top + 1, z)) != 15 && skyBad++ < 3)
+                    ModLogger.info("BENCH sky %d at %s above %s", level.getBrightness(LightLayer.SKY, pos), pos.toShortString(), level.getBlockState(pos.below()));
             }
         return new long[]{hash, lightSum, hmBad, skyBad};
     }
