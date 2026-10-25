@@ -8,7 +8,7 @@ import com.ewyboy.worldstripper.workers.WorldWorker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -43,7 +43,7 @@ public final class Bench {
             case 0 -> {
                 radii = new ArrayDeque<>(Arrays.stream(PROP.split(",")).map(String::trim).map(Integer::parseInt).toList());
                 level = server.overworld();
-                server.getGameRules().getRule(GameRules.RULE_RANDOMTICKING).set(0, server); // grass spread would make the world drift
+                server.getGameRules().set(GameRules.RANDOM_TICK_SPEED, 0, server); // grass spread would make the world drift
                 phase = 1;
             }
             case 1 -> { // prepare: force-load the box, record the pristine state
@@ -54,7 +54,7 @@ public final class Bench {
                     return;
                 }
                 r = radii.poll();
-                center = level.getSharedSpawnPos().offset(1100 * run++, 0, 0); // fresh terrain per radius, so runs never see each other's leftovers
+                center = level.getRespawnData().pos().offset(1100 * run++, 0, 0); // fresh terrain per radius, so runs never see each other's leftovers
                 for (int cx = (center.getX() - r >> 4) - 1; cx <= (center.getX() + r >> 4) + 1; cx++)
                     for (int cz = (center.getZ() - r >> 4) - 1; cz <= (center.getZ() + r >> 4) + 1; cz++) {
                         level.setChunkForced(cx, cz, true);
@@ -140,8 +140,8 @@ public final class Bench {
     /** [block checksum, light sum, columns whose heightmap is wrong, columns whose lowest open block is not sky-lit 15]. */
     private static long[] scan() {
         var config = WSConfigLoader.getInstance().getConfig();
-        int minY = Math.max(config.stripEndY(), level.getMinBuildHeight());
-        int maxY = Math.min(config.stripStartY(), level.getMaxBuildHeight() - 1);
+        int minY = Math.max(config.stripEndY(), level.getMinY());
+        int maxY = Math.min(config.stripStartY(), level.getMaxY());
         long hash = 1, lightSum = 0, hmBad = 0, skyBad = 0;
         ids = new int[(2 * r + 1) * (2 * r + 1) * (maxY - minY + 1)];
         int n = 0;
@@ -153,11 +153,11 @@ public final class Bench {
                     hash = hash * 31 + (ids[n++] = Block.getId(level.getBlockState(pos)));
                     lightSum += level.getBrightness(LightLayer.SKY, pos) * 16L + level.getBrightness(LightLayer.BLOCK, pos);
                 }
-                int top = level.getMaxBuildHeight() - 1;
-                while (top >= level.getMinBuildHeight() && level.getBlockState(pos.set(x, top, z)).isAir()) top--;
+                int top = level.getMaxY();
+                while (top >= level.getMinY() && level.getBlockState(pos.set(x, top, z)).isAir()) top--;
                 if (level.getChunk(x >> 4, z >> 4).getHeight(Heightmap.Types.WORLD_SURFACE, x & 15, z & 15) != top) hmBad++;
                 // columns topped by fluid are skipped: water flowing in after the strip is still being relit
-                if (top + 1 < level.getMaxBuildHeight() && level.getFluidState(pos.set(x, top, z)).isEmpty() && level.getBrightness(LightLayer.SKY, pos.set(x, top + 1, z)) != 15 && skyBad++ < 3)
+                if (top + 1 < (level.getMaxY() + 1) && level.getFluidState(pos.set(x, top, z)).isEmpty() && level.getBrightness(LightLayer.SKY, pos.set(x, top + 1, z)) != 15 && skyBad++ < 3)
                     ModLogger.info("BENCH sky %d at %s above %s", level.getBrightness(LightLayer.SKY, pos), pos.toShortString(), level.getBlockState(pos.below()));
             }
         return new long[]{hash, lightSum, hmBad, skyBad};

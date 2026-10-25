@@ -30,10 +30,10 @@ public record ServerboundDressWorldKeyPressedPacket(boolean pressed) implements 
         ServerPlayer serverPlayer = (ServerPlayer) player;
 
         if (serverPlayer.isCreative()) {
-            serverPlayer.displayClientMessage(Component.literal(ChatFormatting.BOLD + String.valueOf(ChatFormatting.RED) + "WARNING! " + ChatFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."), true);
-            DressWorker.start(serverPlayer.serverLevel(), serverPlayer.blockPosition(), config.stripRadiusX() / 2, config.stripRadiusZ() / 2);
+            serverPlayer.sendOverlayMessage(Component.literal(ChatFormatting.BOLD + String.valueOf(ChatFormatting.RED) + "WARNING! " + ChatFormatting.WHITE + "World Dressing Initialized! Lag May Occur.."));
+            DressWorker.start(serverPlayer.level(), serverPlayer.blockPosition(), config.stripRadiusX() / 2, config.stripRadiusZ() / 2);
         } else {
-            serverPlayer.displayClientMessage(Component.literal(ChatFormatting.BOLD + String.valueOf(ChatFormatting.DARK_RED) + "WARNING! " + ChatFormatting.WHITE + "You must be in creative mode to use this feature!"), true);
+            serverPlayer.sendOverlayMessage(Component.literal(ChatFormatting.BOLD + String.valueOf(ChatFormatting.DARK_RED) + "WARNING! " + ChatFormatting.WHITE + "You must be in creative mode to use this feature!"));
         }
     }
 

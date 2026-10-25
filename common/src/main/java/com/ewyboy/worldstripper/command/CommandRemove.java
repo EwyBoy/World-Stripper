@@ -14,7 +14,7 @@ import net.minecraft.network.chat.Component;
 public class CommandRemove {
 
     public static ArgumentBuilder<CommandSourceStack, ?> register(CommandBuildContext ctx) {
-        return Commands.literal("remove").requires((commandSource) -> commandSource.hasPermission(2))
+        return Commands.literal("remove").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                 .then(Commands.argument("block", BlockStateArgument.block(ctx))
                         .executes((commandSource) -> removeEntry(
                                 commandSource.getSource(),

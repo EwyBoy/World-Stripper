@@ -15,7 +15,7 @@ public class StripperAccessories {
     public static BlockState getStateFromRaytrace(ServerPlayer player) {
         HitResult hit = player.pick(player.blockInteractionRange(), 1.0F, false);
         return hit instanceof BlockHitResult blockHit && hit.getType() == HitResult.Type.BLOCK
-                ? player.serverLevel().getBlockState(blockHit.getBlockPos())
+                ? player.level().getBlockState(blockHit.getBlockPos())
                 : null;
     }
 

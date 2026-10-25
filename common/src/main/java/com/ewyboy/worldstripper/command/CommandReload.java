@@ -11,7 +11,7 @@ import net.minecraft.network.chat.Component;
 public class CommandReload {
 
     public static ArgumentBuilder<CommandSourceStack, ?> register() {
-        return Commands.literal("reload").requires((commandSource) -> commandSource.hasPermission(2))
+        return Commands.literal("reload").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                 .executes((commandSource) -> reload(
                                 commandSource.getSource()
                         )

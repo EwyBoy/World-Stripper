@@ -4,7 +4,7 @@ import com.ewyboy.worldstripper.networking.PacketBase;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
@@ -44,11 +44,11 @@ public interface IPlatformHelper {
     /**
      * Sends a packet to the server
      */
-    void sendPacketToServer(ResourceLocation id, PacketBase packet);
+    void sendPacketToServer(Identifier id, PacketBase packet);
 
     /**
      * Sends a packet to a player
      */
-    void sendPacketToPlayer(ResourceLocation id, PacketBase packet, ServerPlayer player);
+    void sendPacketToPlayer(Identifier id, PacketBase packet, ServerPlayer player);
 
 }

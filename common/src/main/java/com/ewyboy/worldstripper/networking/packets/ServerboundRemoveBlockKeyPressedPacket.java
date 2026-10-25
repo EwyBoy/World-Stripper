@@ -34,13 +34,13 @@ public record ServerboundRemoveBlockKeyPressedPacket(boolean pressed) implements
             if (state != null) {
                 String entry = BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString();
                 if (StrippablesHandler.removeEntry(entry)) {
-                    serverPlayer.displayClientMessage(Component.literal(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"), true);
+                    serverPlayer.sendOverlayMessage(Component.literal(ChatFormatting.RED + entry + ChatFormatting.WHITE + " removed from config"));
                 } else {
-                    serverPlayer.displayClientMessage(Component.literal(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " not found in config"), true);
+                    serverPlayer.sendOverlayMessage(Component.literal(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " not found in config"));
                 }
             }
         } else {
-            serverPlayer.displayClientMessage(Component.literal(ChatFormatting.DARK_RED + "Error: " + ChatFormatting.WHITE + "You have to be in creative mode to use this feature!"), true);
+            serverPlayer.sendOverlayMessage(Component.literal(ChatFormatting.DARK_RED + "Error: " + ChatFormatting.WHITE + "You have to be in creative mode to use this feature!"));
         }
     }
 

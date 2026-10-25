@@ -1,78 +1,28 @@
 plugins {
-    id 'java'
-    id 'idea'
-    id "fabric-loom" version "1.6-SNAPSHOT"
-    id "com.matthewprenger.cursegradle" version "1.4.0"
-}
-
-base {
-    archivesName = "${mod_id}-${minecraft_version}-${mod_version}-fabric"
+    id 'multiloader-loader'
+    id 'net.fabricmc.fabric-loom'
 }
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.officialMojangMappings()
-    compileOnly project(":Common")
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    // No mappings: Minecraft 26.x ships deobfuscated, and the release artifact is `jar` (there is no remapJar).
+    implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 }
 
 loom {
-    mixin {
-        defaultRefmapName.set("${mod_id}.refmap.json")
-    }
     runs {
         client {
             client()
-            setConfigName("Fabric Client")
+            setConfigName('Fabric Client')
             ideConfigGenerated(true)
-            runDir("run")
+            runDir('runs/client')
         }
         server {
             server()
-            setConfigName("Fabric Server")
+            setConfigName('Fabric Server')
             ideConfigGenerated(true)
-            runDir("run")
+            runDir('runs/server')
         }
     }
 }
-
-tasks.withType(JavaCompile).configureEach {
-    source(project(":Common").sourceSets.main.allSource)
-}
-tasks.withType(Javadoc).configureEach {
-    source(project(":Common").sourceSets.main.allJava)
-}
-tasks.named("sourcesJar", Jar) {
-    from(project(":Common").sourceSets.main.allSource)
-}
-processResources {
-    from project(":Common").sourceSets.main.resources
-}
-
-/*
-curseforge {
-    apiKey = project.findProperty('curseApiKey') ?: 'unset'
-    project {
-        id = mod_curseforge_id
-
-        if (changelog_file.exists()) {
-            changelog = changelog_file
-        }
-
-        releaseType = release_channel
-        addGameVersion minecraft_version
-        addGameVersion name
-
-        mainArtifact(remapJar) {
-            displayName = "${mod_display_name} ${name} ${version}"
-        }
-
-        relations {
-            requiredDependency 'fabric-api'
-            requiredDependency 'glitchcore'
-            requiredDependency 'terrablender-fabric'
-        }
-    }
-}
-*/

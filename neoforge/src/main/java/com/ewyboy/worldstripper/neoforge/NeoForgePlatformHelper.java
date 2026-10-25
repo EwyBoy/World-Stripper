@@ -7,10 +7,10 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadHandler;
@@ -32,7 +32,7 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public boolean isDevelopmentEnvironment() {
-        return !FMLLoader.isProduction();
+        return !FMLEnvironment.isProduction();
     }
 
     @Override
@@ -52,7 +52,7 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public void sendPacketToServer(ResourceLocation id, PacketBase packet) {
+    public void sendPacketToServer(Identifier id, PacketBase packet) {
         var connection = Minecraft.getInstance().getConnection();
         if (connection != null && connection.hasChannel(packet)) { // the server may not have the mod
             connection.send(packet);
@@ -60,7 +60,7 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
     }
 
     @Override
-    public void sendPacketToPlayer(ResourceLocation id, PacketBase packet, ServerPlayer player) {
+    public void sendPacketToPlayer(Identifier id, PacketBase packet, ServerPlayer player) {
         PacketDistributor.sendToPlayer(player, packet);
     }
 }

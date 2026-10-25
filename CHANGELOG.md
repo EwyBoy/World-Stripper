@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.0.0 (Minecraft 26.3 - Fabric, NeoForge)
+
+First release for Minecraft 26.3, with everything from 6.0.0 for 1.21 below. Forge is no longer built for 26.x.
+On 26.3 the strip/dress benchmark gives the same results as on 1.21 (r=24: strip ~160 ms, r=64: ~0.7 s on the server thread),
+and Fabric and NeoForge produce identical stripped worlds.
+
 ## 6.0.0 (Minecraft 1.21 / 1.21.1 - Fabric, NeoForge, Forge)
 
 ### Faster stripping
@@ -20,7 +26,7 @@ Measured on a dedicated server, seed `worldstripper`, default strip list, Y -64.
 
 ### Fixes
 - Dedicated servers: pressing Page Up / Page Down no longer crashes the server (#26).
-- Forge: client-only event handlers are no longer loaded on dedicated servers (#26).
+- Forge (1.21): client-only event handlers are no longer loaded on dedicated servers (#26).
 - The mod's network channel is optional: a client with World Stripper can join servers without it, and vice versa (#26).
 - Keybinds have readable names again under "World Stripper" in Controls (#31).
 - New `/worldstripper strip [radius]` and `/worldstripper dress [radius]` commands (#31).

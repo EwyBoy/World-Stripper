@@ -14,7 +14,7 @@ import net.minecraft.network.chat.Component;
 public class CommandEdit {
 
     public static ArgumentBuilder<CommandSourceStack, ?> register(CommandBuildContext ctx) {
-        return Commands.literal("edit").requires((commandSource) -> commandSource.hasPermission(2))
+        return Commands.literal("edit").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                 .then(Commands.argument("old_block", BlockStateArgument.block(ctx))
                         .then(Commands.argument("new_block", BlockStateArgument.block(ctx))
                                 .executes((commandSource) -> addEntry(

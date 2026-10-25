@@ -1,86 +1,25 @@
 plugins {
-    id 'idea'
-    id 'java'
-    id "net.neoforged.gradle.userdev" version "7.0.142"
-    id "com.matthewprenger.cursegradle" version "1.4.0"
+    id 'multiloader-loader'
+    id 'net.neoforged.moddev'
 }
 
-base {
-    archivesName = "${mod_id}-${minecraft_version}-${mod_version}-neoforge"
-}
-
-minecraft {
-    mappings {
-        channel = official()
-        version.put "minecraft", minecraft_version
+neoForge {
+    version = neoforge_version
+    runs {
+        configureEach {
+            ideName = "NeoForge ${it.name.capitalize()} (${project.path})" // Unify the run config names with fabric
+        }
+        client {
+            client()
+        }
+        server {
+            server()
+            programArgument '--nogui'
+        }
     }
-}
-
-runs {
-    configureEach {
-        systemProperty 'forge.logging.markers', 'REGISTRIES'
-        systemProperty 'forge.logging.console.level', 'debug'
-        modSource project.sourceSets.main
-    }
-
-    client {
-        workingDirectory.set(project.file('run'))
-        systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
-    }
-
-    server {
-        workingDirectory.set(project.file('run'))
-        systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
-        programArgument '--nogui'
-    }
-
-    // This run config launches GameTestServer and runs all registered gametests, then exits.
-    // By default, the server will crash when no gametests are provided.
-    // The gametest system is also enabled by default for other run configs under the /test command.
-    gameTestServer {
-        systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-    }
-
-    data {
-        programArguments.addAll '--mod', project.mod_id, '--all', '--output', project(':Common').file('src/generated/resources/').getAbsolutePath(), '--existing', project(':Common').file('src/main/resources/').getAbsolutePath()
-    }
-}
-
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-tasks.named("test").configure {
-    enabled = false
-}
-
-dependencies {
-    implementation "net.neoforged:neoforge:${neoforge_version}"
-    compileOnly project(":Common")
-}
-
-// NeoGradle compiles the game, but we don't want to add our common code to the game's code
-TaskCollection.metaClass.excludingNeoTasks = { ->
-    delegate.matching { !it.name.startsWith("neo") }
-}
-
-tasks.withType(JavaCompile).excludingNeoTasks().configureEach {
-    source(project(":Common").sourceSets.main.allSource)
-}
-
-tasks.withType(Javadoc).excludingNeoTasks().configureEach {
-    source(project(":Common").sourceSets.main.allJava)
-}
-
-tasks.named("sourcesJar", Jar) {
-    from(project(":Common").sourceSets.main.allSource)
-}
-
-tasks.withType(ProcessResources).excludingNeoTasks().configureEach {
-    from project(":Common").sourceSets.main.resources
-}
-
-idea {
-    module {
-        downloadSources = true
-        downloadJavadoc = true
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
     }
 }

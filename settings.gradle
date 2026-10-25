@@ -1,30 +1,27 @@
-include("common", "forge", "neoforge", "fabric")
-//include("common", "neoforge", "fabric")
-
-pluginManagement.repositories {
-    gradlePluginPortal()
-    maven {
-        name = "Fabric"
-        url = "https://maven.fabricmc.net/"
-    }
-    maven {
-        name = "NeoForge"
-        url = "https://maven.neoforged.net/releases"
-    }
-    maven {
-        name = "Forge"
-        url = "https://maven.minecraftforge.net"
-    }
-    maven {
-        name = "Sponge Snapshots"
-        url = "https://repo.spongepowered.org/repository/maven-public/"
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'Fabric'
+                    url = uri('https://maven.fabricmc.net')
+                }
+            }
+            filter {
+                includeGroupAndSubgroups('net.fabricmc')
+            }
+        }
     }
 }
 
-rootProject.name = "World-Stripper"
+plugins {
+    // Downloads the Java 25 toolchain Minecraft 26.x needs when it isn't installed
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
 
-// We want lowercase folder names but uppercase project names
-project(":common").name = "Common"
-project(":forge").name = "Forge"
-project(":neoforge").name = "NeoForge"
-project(":fabric").name = "Fabric"
+rootProject.name = 'World-Stripper'
+include('common')
+include('fabric')
+include('neoforge')

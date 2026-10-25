@@ -29,10 +29,10 @@ public record ServerboundStripWorldKeyPressedPacket(boolean pressed) implements 
         ServerPlayer serverPlayer = (ServerPlayer) player;
 
         if (serverPlayer.isCreative()) {
-            serverPlayer.displayClientMessage(Component.literal(ChatFormatting.BOLD + String.valueOf(ChatFormatting.RED) + "WARNING! " + ChatFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."), true);
-            StripWorker.start(serverPlayer.serverLevel(), serverPlayer.blockPosition(), config.stripRadiusX() / 2, config.stripRadiusZ() / 2);
+            serverPlayer.sendOverlayMessage(Component.literal(ChatFormatting.BOLD + String.valueOf(ChatFormatting.RED) + "WARNING! " + ChatFormatting.WHITE + "World Stripping Initialized! Lag May Occur.."));
+            StripWorker.start(serverPlayer.level(), serverPlayer.blockPosition(), config.stripRadiusX() / 2, config.stripRadiusZ() / 2);
         } else {
-            serverPlayer.displayClientMessage(Component.literal(ChatFormatting.BOLD + String.valueOf(ChatFormatting.DARK_RED) + "WARNING! " + ChatFormatting.WHITE + "You must be in creative mode to use this feature!"), true);
+            serverPlayer.sendOverlayMessage(Component.literal(ChatFormatting.BOLD + String.valueOf(ChatFormatting.DARK_RED) + "WARNING! " + ChatFormatting.WHITE + "You must be in creative mode to use this feature!"));
         }
     }
 

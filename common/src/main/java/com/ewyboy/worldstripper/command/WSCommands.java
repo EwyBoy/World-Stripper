@@ -20,7 +20,7 @@ public class WSCommands {
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context) {
         LiteralArgumentBuilder<CommandSourceStack> literalargumentbuilder = Commands.literal(WorldStripper.MOD_ID)
-                .then(Commands.literal("add").requires((commandSource) -> commandSource.hasPermission(2))
+                .then(Commands.literal("add").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                         .then(Commands.argument("block", BlockStateArgument.block(context))
                                 .executes((commandSource) -> CommandAdd.addEntry(
                                         commandSource.getSource(),
@@ -32,11 +32,11 @@ public class WSCommands {
                 .then(CommandEdit.register(context))
                 .then(CommandView.register())
                 .then(CommandReload.register())
-                .then(Commands.literal("strip").requires((commandSource) -> commandSource.hasPermission(2))
+                .then(Commands.literal("strip").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                         .executes(ctx -> strip(ctx.getSource(), -1))
                         .then(Commands.argument("radius", IntegerArgumentType.integer(0, 4096))
                                 .executes(ctx -> strip(ctx.getSource(), IntegerArgumentType.getInteger(ctx, "radius")))))
-                .then(Commands.literal("dress").requires((commandSource) -> commandSource.hasPermission(2))
+                .then(Commands.literal("dress").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                         .executes(ctx -> dress(ctx.getSource(), -1))
                         .then(Commands.argument("radius", IntegerArgumentType.integer(0, 4096))
                                 .executes(ctx -> dress(ctx.getSource(), IntegerArgumentType.getInteger(ctx, "radius")))))

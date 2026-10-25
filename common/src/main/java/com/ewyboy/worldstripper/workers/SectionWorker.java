@@ -16,7 +16,6 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.lighting.LayerLightEventListener;
-import net.minecraft.world.level.lighting.LevelLightEngine;
 import net.minecraft.world.level.lighting.LightEngine;
 
 import java.util.function.Predicate;
@@ -43,8 +42,8 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
         this.maxX = center.getX() + radiusX;
         this.minZ = center.getZ() - radiusZ;
         this.maxZ = center.getZ() + radiusZ;
-        this.minY = Math.max(config.stripEndY(), level.getMinBuildHeight());
-        this.maxY = Math.min(config.stripStartY(), level.getMaxBuildHeight() - 1);
+        this.minY = Math.max(config.stripEndY(), level.getMinY());
+        this.maxY = Math.min(config.stripStartY(), level.getMaxY());
         this.minCX = minX >> 4;
         this.maxCX = maxX >> 4;
         this.maxCZ = maxZ >> 4;
@@ -92,13 +91,14 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
     /**
      * {@code level.setBlock(pos, state, flags)} for a block in the current section, minus the per-call overhead:
      * writes the section directly and then does exactly what LevelChunk/Level would do server-side (heightmaps,
-     * light, onRemove/onPlace, POI, client sync), except re-checking mob paths. Neighbour/shape updates and new
-     * block entities still go through vanilla. {@code onPlace = false} skips the placed block's onPlace
+     * light, onPlace, POI, client sync), except re-checking mob paths. Neighbour/shape updates and anything with a
+     * block entity still go through vanilla. {@code onPlace = false} skips the placed block's onPlace
      * (which is how gravel schedules its fall and fluids their flow).
      */
     protected void setBlock(LevelChunk chunk, LevelChunkSection levelSection, int x, int y, int z, BlockState state, int flags, boolean onPlace) {
-        if ((flags & (Block.UPDATE_NEIGHBORS | Block.UPDATE_KNOWN_SHAPE)) != Block.UPDATE_KNOWN_SHAPE || state.hasBlockEntity()) {
-            level.setBlock(new BlockPos(x, y, z), state, flags);
+        BlockState current = levelSection.getBlockState(x & 15, y & 15, z & 15);
+        if ((flags & (Block.UPDATE_NEIGHBORS | Block.UPDATE_KNOWN_SHAPE)) != Block.UPDATE_KNOWN_SHAPE || state.hasBlockEntity() || current.hasBlockEntity()) {
+            level.setBlock(new BlockPos(x, y, z), state, onPlace ? flags : flags | Block.UPDATE_SKIP_ON_PLACE);
             return;
         }
         boolean wasEmpty = levelSection.hasOnlyAir();
@@ -110,20 +110,23 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
             for (int i = 0; i < HEIGHTMAPS.length; i++) heightmaps[i] = chunk.getOrCreateHeightmapUnprimed(HEIGHTMAPS[i]);
         }
         for (Heightmap heightmap : heightmaps) heightmap.update(x & 15, y, z & 15, state);
-        LevelLightEngine light = level.getChunkSource().getLightEngine();
-        if (wasEmpty != levelSection.hasOnlyAir()) light.updateSectionStatus(pos, levelSection.hasOnlyAir());
-        if (LightEngine.hasDifferentLightProperties(chunk, pos, old, state)) {
+        boolean isEmpty = levelSection.hasOnlyAir();
+        if (wasEmpty != isEmpty) {
+            level.getChunkSource().getLightEngine().updateSectionStatus(pos, isEmpty);
+            level.getChunkSource().onSectionEmptinessChanged(cx, SectionPos.blockToSectionCoord(y), cz, isEmpty);
+        }
+        if (LightEngine.hasDifferentLightProperties(old, state)) {
             chunk.getSkyLightSources().update(chunk, x & 15, y, z & 15);
             lightChecks.add(pos.asLong());
         }
-        old.onRemove(level, pos, state, false);
+        // Block entities never reach this path, and without UPDATE_NEIGHBORS vanilla skips affectNeighborsAfterRemoval.
         if (onPlace && levelSection.getBlockState(x & 15, y & 15, z & 15).is(state.getBlock())) state.onPlace(level, pos, old, false);
-        chunk.setUnsaved(true);
+        chunk.markUnsaved();
         if ((flags & Block.UPDATE_CLIENTS) != 0) {
             level.getChunkSource().blockChanged(pos); // ChunkHolder batches these into one packet per section per tick
             level.getPathTypeCache().invalidate(pos);
         }
-        if (hasPoi.computeIfAbsent(old, POI) || hasPoi.computeIfAbsent(state, POI)) level.onBlockStateChange(pos, old, state);
+        if (hasPoi.computeIfAbsent(old, POI) || hasPoi.computeIfAbsent(state, POI)) level.updatePOIOnBlockStateChange(pos, old, state);
     }
 
     /**

@@ -34,13 +34,13 @@ public record ServerboundAddBlockKeyPressedPacket(boolean pressed) implements Pa
             if (state != null) {
                 String entry = BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString();
                 if (StrippablesHandler.addEntry(entry)) {
-                    serverPlayer.displayClientMessage(Component.literal(ChatFormatting.GREEN + entry + ChatFormatting.WHITE + " added to strip list"), true);
+                    serverPlayer.sendOverlayMessage(Component.literal(ChatFormatting.GREEN + entry + ChatFormatting.WHITE + " added to strip list"));
                 } else {
-                    serverPlayer.displayClientMessage(Component.literal(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " is already found in strip list"), true);
+                    serverPlayer.sendOverlayMessage(Component.literal(ChatFormatting.DARK_RED + "ERROR: " + ChatFormatting.RED + entry + ChatFormatting.WHITE + " is already found in strip list"));
                 }
             }
         } else {
-            serverPlayer.displayClientMessage(Component.literal(ChatFormatting.DARK_RED + "Error: " + ChatFormatting.WHITE + "You have to be in creative mode to use this feature!"), true);
+            serverPlayer.sendOverlayMessage(Component.literal(ChatFormatting.DARK_RED + "Error: " + ChatFormatting.WHITE + "You have to be in creative mode to use this feature!"));
         }
     }
 

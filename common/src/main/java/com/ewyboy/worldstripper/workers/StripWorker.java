@@ -7,7 +7,7 @@ import com.ewyboy.worldstripper.json.WSConfigLoader;
 import it.unimi.dsi.fastutil.objects.ReferenceOpenHashSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -41,7 +41,7 @@ public class StripWorker extends SectionWorker {
     /** Queues a strip of the configured box around {@code center}; radii are in blocks. */
     public static StripWorker start(ServerLevel level, BlockPos center, int radiusX, int radiusZ) {
         var config = WSConfigLoader.getInstance().getConfig();
-        BlockState replacement = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(config.replacementBlock())).defaultBlockState();
+        BlockState replacement = BuiltInRegistries.BLOCK.getValue(Identifier.parse(config.replacementBlock())).defaultBlockState();
         StripWorker worker = new StripWorker(center, radiusX, radiusZ, level, BlockUpdater.getBlockUpdateFlag(), replacement, StrippablesHandler.strippables.strippables());
         WorldWorker.addWorker(worker);
         return worker;

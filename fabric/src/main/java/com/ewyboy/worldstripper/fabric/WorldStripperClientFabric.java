@@ -4,7 +4,7 @@ import com.ewyboy.worldstripper.WorldStripper;
 import com.ewyboy.worldstripper.client.Keymappings;
 import com.ewyboy.worldstripper.networking.PacketBase;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.entity.player.Player;
@@ -15,7 +15,7 @@ public class WorldStripperClientFabric implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        Keymappings.registerKeymappings(KeyBindingHelper :: registerKeyBinding);
+        Keymappings.registerKeymappings(KeyMappingHelper :: registerKeyMapping);
         ClientEvents.registerEvents();
         WorldStripper.registerClientPackets(true);
     }

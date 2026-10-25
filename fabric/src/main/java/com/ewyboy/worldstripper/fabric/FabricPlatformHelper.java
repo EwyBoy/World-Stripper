@@ -10,7 +10,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
@@ -36,7 +36,7 @@ public class FabricPlatformHelper implements IPlatformHelper {
 
     @Override
     public <T extends PacketBase, B extends FriendlyByteBuf> void registerServerboundPacket(CustomPacketPayload.Type<T> type, Class<T> clazz, StreamCodec<B, T> codec, BiConsumer<T, Player> handler, Object... args) {
-        PayloadTypeRegistry.playC2S().register(type, (StreamCodec<RegistryFriendlyByteBuf, T>)codec);
+        PayloadTypeRegistry.serverboundPlay().register(type, (StreamCodec<RegistryFriendlyByteBuf, T>)codec);
 
         ServerPlayNetworking.registerGlobalReceiver(type, (T packet, ServerPlayNetworking.Context context) -> {
             context.server().execute(() -> handler.accept(packet, context.player()));
@@ -47,19 +47,19 @@ public class FabricPlatformHelper implements IPlatformHelper {
     public <T extends PacketBase, B extends FriendlyByteBuf> void registerClientboundPacket(CustomPacketPayload.Type<T> type, Class<T> clazz, StreamCodec<B, T> codec, BiConsumer<T, Player> handler, Object... args) {
         boolean client = (boolean)args[0];
         if(!client) {
-            PayloadTypeRegistry.playS2C().register(type, (StreamCodec<RegistryFriendlyByteBuf, T>)codec);
+            PayloadTypeRegistry.clientboundPlay().register(type, (StreamCodec<RegistryFriendlyByteBuf, T>)codec);
         } else {
             WorldStripperClientFabric.registerClientboundPacket(type, handler);
         }
     }
 
     @Override
-    public void sendPacketToServer(ResourceLocation id, PacketBase packet) {
+    public void sendPacketToServer(Identifier id, PacketBase packet) {
         WorldStripperClientFabric.sendPacketToServer(packet);
     }
 
     @Override
-    public void sendPacketToPlayer(ResourceLocation id, PacketBase packet, ServerPlayer player) {
+    public void sendPacketToPlayer(Identifier id, PacketBase packet, ServerPlayer player) {
         ServerPlayNetworking.send(player, packet);
     }
 }

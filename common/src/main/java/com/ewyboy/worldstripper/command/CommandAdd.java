@@ -14,7 +14,7 @@ import net.minecraft.network.chat.Component;
 public class CommandAdd {
 
     public static ArgumentBuilder<CommandSourceStack, ?> register(CommandBuildContext context) {
-        return Commands.literal("add").requires((commandSource) -> commandSource.hasPermission(2))
+        return Commands.literal("add").requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                 .then(Commands.argument("block", BlockStateArgument.block(context))
                         .executes((commandSource) -> addEntry(
                                         commandSource.getSource(),

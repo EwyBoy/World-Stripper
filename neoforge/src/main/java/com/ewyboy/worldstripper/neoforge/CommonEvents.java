@@ -9,7 +9,7 @@ import net.neoforged.neoforge.event.*;
 import net.neoforged.neoforge.event.server.ServerStoppingEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.GAME, modid = WorldStripper.MOD_ID)
+@EventBusSubscriber(modid = WorldStripper.MOD_ID)
 public class CommonEvents {
 
     @SubscribeEvent
