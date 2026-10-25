@@ -10,6 +10,7 @@ displayName="${mod_display_name}"
 displayURL="${mod_git_url}"
 authors="${mod_authors}"
 description="${mod_description}"
+logoFile="worldstripper.png"
 
 [[dependencies.${mod_id}]]
 modId="neoforge"
