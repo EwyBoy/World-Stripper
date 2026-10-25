@@ -136,10 +136,17 @@ public abstract class SectionWorker implements WorldWorker.IWorker {
         if (lightChecks.isEmpty()) return;
         long[] nodes = lightChecks.toLongArray();
         lightChecks.clear();
-        ThreadedLevelLightEngine light = level.getChunkSource().getLightEngine();
+        queueLightChecks(level.getChunkSource().getLightEngine(), cx, cz, nodes);
+    }
+
+    private void queueLightChecks(ThreadedLevelLightEngine light, int chunkX, int chunkZ, long[] nodes) {
         LayerLightEventListener blockLight = light.getLayerListener(LightLayer.BLOCK);
         LayerLightEventListener skyLight = light.getLayerListener(LightLayer.SKY);
-        light.waitForPendingTasks(cx, cz).thenRun(() -> {
+        light.waitForPendingTasks(chunkX, chunkZ).thenRun(() -> {
+            if (level.getServer().isSameThread()) { // the future completed before thenRun: never touch the engines off the light thread
+                queueLightChecks(light, chunkX, chunkZ, nodes);
+                return;
+            }
             for (long node : nodes) {
                 BlockPos pos = BlockPos.of(node);
                 blockLight.checkBlock(pos);
